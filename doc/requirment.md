@@ -49,7 +49,6 @@
 	参考设计: quantos中的datacore项目 链接地址:https://www.quantos.org/datacore/
 
 
-
 #### 历史数据中心
 
 设计哲学:
