@@ -1,0 +1,6 @@
+start cmd /k "python3 realdata_module.py"
+start cmd /k "python3 historydata_module.py"
+start cmd /k "python3 trade_module.py"
+start cmd /k "python3 backtest_module.py"
+start cmd /k "python3 manage_module.py"
+start cmd /k "python3 strategy_module.py"
