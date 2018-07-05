@@ -21,12 +21,23 @@ limitations under the License.
 
 #include <string>
 #include <vector>
+#include <assert.h>
+#include <cmath>
+#include <cstring>
+#include <fstream>
+#include <iostream>
+#include <limits>
+#include <thread>
+// #include <unistd.h>
 
 #include "../base/Logger.h"
+#include "../base/StringUtil.h"
+#include "../base/TimeUtil.h"
+#include "../config/SysConfig.h"
+#include "../public/MapTables.h"
 #include "../ctp/include/ThostFtdcMdApi.h"
 #include "../protocol/cpp/md.pb.h"
 #include "../public/MdServer.h"
-#include <unistd.h>
 
 namespace jzs {
 
@@ -44,9 +55,9 @@ private:
 public:
     CtpMdServer() { reqid = 0; userapi = NULL; }
 
-    CtpMdServer::~CtpMdServer() { ; }
+    ~CtpMdServer() { ; }
 
-    void CtpMdServer::Run()
+    void Run()
     {
 	LoadSymbol();
 
@@ -107,7 +118,7 @@ private:
 	CHECK(ret == 0) << "Send ReqUserLogin Failed.";
     }
 
-    inline virtual void CtpMdServer::OnRspUserLogin(CThostFtdcRspUserLoginField* pRspUserLogin, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+    inline virtual void OnRspUserLogin(CThostFtdcRspUserLoginField* pRspUserLogin, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
     {
 	if (!IsErrorRspInfo(pRspInfo) && pRspUserLogin) {
 	    LOG(INFO) << "Login to ctp success. trading day=" << pRspUserLogin->TradingDay;
@@ -226,7 +237,7 @@ private:
 private:
     void PublishMarketQuote(jzs::msg::md::MarketDataType type, const jzs::msg::md::MarketQuote* bk);
 
-    inline bool CtpMdServer::IsErrorRspInfo(CThostFtdcRspInfoField* pRspInfo)
+    inline bool IsErrorRspInfo(CThostFtdcRspInfoField* pRspInfo)
     {
 	bool err = ((pRspInfo) && (pRspInfo->ErrorID != 0));
 	if (err) {
@@ -235,7 +246,7 @@ private:
 	return err;
     }
 
-    void CtpMdServer::LoadSymbol()
+    void LoadSymbol()
     {
 	m_subscribed.clear();
 
@@ -274,21 +285,21 @@ private:
 	LOG(INFO) << "Load " << m_subscribed.size() << " symbols from database";
     }
 
-    int CtpMdServer::ctp_jzcode(const char* mkt, const char* symbol)
+    int ctp_jzcode(const char* mkt, const char* symbol)
     {
 	assert(m_maptables->g_ctpcode_map.size());
 	auto iter = m_maptables->g_ctpcode_map.find(symbol);
 	return iter != m_maptables->g_ctpcode_map.end() ? iter->second : 0;
     }
 
-    std::string CtpMdServer::ctp_symbol(int jzcode)
+    std::string ctp_symbol(int jzcode)
     {
 	assert(m_maptables->g_ctpsymbol_map.size());
 	auto iter = m_maptables->g_ctpsymbol_map.find(jzcode);
 	return iter != m_maptables->g_ctpsymbol_map.end() ? iter->second : "";
     }
 
-    inline double CtpMdServer::Norm(double price)
+    inline double Norm(double price)
     {
 	static double eps = 0.0000001f;
 	static double dbl_max = (numeric_limits<double>::max)();
