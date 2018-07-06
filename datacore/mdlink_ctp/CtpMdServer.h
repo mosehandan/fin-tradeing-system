@@ -46,7 +46,7 @@ public:
 
     CtpMdServer::~CtpMdServer() { ; }
 
-    void CtpMdServer::Run()
+    void Run()
     {
 	LoadSymbol();
 
