@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package ctp;
+
+//数据类型MSG_DATA_FUTURE
+message TDF_FUTURE_DATA
+{
+	//TODO: 字段ctp行情中没有
+	string 	szwindcode = 1;         //600001.sh
+	int32	nauctionprice = 27;			    //波动性中断参考价
+	int32	nauctionqty = 28;			    //波动性中断集合竞价虚拟匹配量
+	int32 	nstatus = 6;				//状态
+
+	string 	szcode = 2;             //原始code
+	string 	nactionday = 3;             //业务发生日(自然日)
+	string 	ntradingday = 4;            //交易日
+	int32 	ntime = 5;					//时间(hhmmssmmm)
+	double 	ipreopeninterest = 7;		//昨持仓
+	double 	npreclose = 8;				//昨收盘价
+	double	npresettleprice = 9;		//昨结算
+	double 	nopen = 10;					//开盘价
+	double 	nhigh = 11;					//最高价
+	double 	nlow = 12;					//最低价
+	double	nmatch = 13;				//最新价
+	int32 	ivolume = 14;				//成交总量
+	double 	iturnover = 15;				//成交总金额
+	double 	iopeninterest = 16;			//持仓总量
+	double 	nclose = 17;				//今收盘
+	double 	nsettleprice = 18;			//今结算
+	double	nhighlimited = 19;			//涨停价
+	double 	nlowlimited = 20;			//跌停价
+	double 	npredelta = 21;			    //昨虚实度
+	double 	ncurrdelta = 22;            //今虚实度
+	repeated double naskprice = 23;			//申卖价
+	repeated int32 	naskvol = 24;			//申卖量
+	repeated double nbidprice = 25;			//申买价
+	repeated int32	nbidvol = 26;			//申买量
+	double 	navgprice = 29;                      //郑商所期货均价
+};
