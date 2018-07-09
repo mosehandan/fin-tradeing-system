@@ -16,6 +16,8 @@ int main (int argc, char *argv[])
 	subscriber.connect("tcp://localhost:5556");
 	// subscriber.connect("tcp://localhost:5557");
 	// subscriber.connect("tcp://localhost:5558");
+	
+	int count = 0;
 
 	while(1){
 		// zmq::message_t message;
@@ -29,11 +31,19 @@ int main (int argc, char *argv[])
 		ctp::TDF_FUTURE_DATA td;
 		
 		td.ParseFromArray(message.data(),message.size());
+
+		count = count + 1;
+
+		if (count > 10){
+			cout << "szcode:" << td.szcode() << endl;	
+			cout << "ntime:" << td.ntime() << endl;	
+			cout << "open " << td.nopen() << endl;	
+			cout << "high" << td.nhigh() << endl;	
+			cout << "close" << td.nhigh() << endl;	
+
+			count = 0;
+		}
 		
-		cout << td.szcode << endl;	
-		cout << td.ntime<< endl;	
-		cout << td.nopen<< endl;	
-		cout << td.nhigh<< endl;	
 		// cout << "what i get is :" << static_cast<char*>(message.data()) << endl;
 	}
 	google::protobuf::ShutdownProtobufLibrary();
