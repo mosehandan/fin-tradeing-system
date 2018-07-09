@@ -1,4 +1,4 @@
-#include "MdSpi.h"
+#include "TraderSpi.h"
 #include "zhelpers.hpp"
 #include "ctp.pb.h"
 
@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 	publisher.bind("tcp://*:5541");
 	reply.bind("tcp://*:5531");
 
-	CMdSpi *cmdspi = new CMdSpi();
-	cmdspi->load_config(d);
-	cmdspi->connect();
+	CTraderSpi *ctraderapi = new CTraderSpi();
+	ctraderapi->load_config(d);
+	ctraderapi->connect();
 }

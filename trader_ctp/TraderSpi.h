@@ -9,6 +9,7 @@ private:
     string front_id;
     string broker_id;
     string passwd;
+    string user_id;
     int reqid;
 
 public:

@@ -7,7 +7,7 @@ extern Document d;
 extern zmq::socket_t publisher;
 extern zmq::socket_t reply;
 
-void CMdSpi::load_config(const Document& d)
+void CTraderSpi::load_config(const Document& d)
 {
     broker_id = d["broker_id"].GetString();
     user_id = d["user_id"].GetString();
@@ -15,10 +15,11 @@ void CMdSpi::load_config(const Document& d)
     front_id = d["md_address"].GetString();
 }
 
-void CMdSpi::connect()
+void CTraderSpi::connect()
 {
     if (userapi == nullptr) {
-	userapi = CThostFtdcTraderApi::CreateFtdcTraderApi("./log/md/"); // 创建UserApi
+	userapi = CThostFtdcTraderApi::CreateFtdcTraderApi("./log/trader/"); // 创建UserApi
+
 	if (!userapi) {
 	    // throw runtime_error("ctp_md failed to create api");
 	    throw "CtpTrader failed to create api";
@@ -62,16 +63,11 @@ void CTraderSpi::OnRspUserLogin(CThostFtdcRspUserLoginField* pRspUserLogin, CTho
 	cout << "pRspUserLogin is null!" << endl;
 	return;
     }
-    // cout << "TradingDay=" << pRspUserLogin->TradingDay << endl;
-    // cout << "TBrokerID=" << pRspUserLogin->BrokerID << endl;
-    // cout << "TUserID=" << pRspUserLogin->UserID << endl;
-    // cout << "TPassword=" << pRspUserLogin->Password << endl;
-    // cout << "TUserProductInfo=" << pRspUserLogin->UserProductInfo << endl;
-    // cout << "TInterfaceProductInfo=" << pRspUserLogin->InterfaceProductInfo << endl;
-    // cout << "TProtocolInfo=" << pRspUserLogin->ProtocolInfo << endl;
-    // cout << "TMacAddress=" << pRspUserLogin->MacAddress << endl;
-    // cout << "TOneTimePassword=" << pRspUserLogin->OneTimePassword << endl;
-    // cout << "TClientIPAddress=" << pRspUserLogin->ClientIPAddress << endl;
+    cout << "TradingDay=" << pRspUserLogin->TradingDay << endl;
+    cout << "TBrokerID=" << pRspUserLogin->BrokerID << endl;
+    cout << "TUserID=" << pRspUserLogin->UserID << endl;
+    cout << pRspUserLogin->FrontID << endl;
+    cout << pRspUserLogin->SessionID << endl;
     //
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
 	// 保存会话参数
@@ -91,8 +87,8 @@ void CTraderSpi::ReqSettlementInfoConfirm()
 {
     CThostFtdcSettlementInfoConfirmField req;
     memset(&req, 0, sizeof(req));
-    strcpy(req.BrokerID, d["brokerID"].GetString());
-    strcpy(req.InvestorID, d["userID"].GetString());
+    strcpy(req.BrokerID, broker_id.c_str());
+    strcpy(req.InvestorID, user_id.c_str());
     int iResult = userapi->ReqSettlementInfoConfirm(&req, ++reqid);
     cout << "--->>> investor confirm settlement: " << ((iResult == 0) ? "success" : "failed") << endl;
 }
@@ -125,7 +121,7 @@ void CTraderSpi::ReqQryInstrument()
     memset(&req, 0, sizeof(req));
     // strcpy(req.InstrumentID, INSTRUMENT_ID);
     strcpy(req.InstrumentID, "IF1808");
-    int iResult = userapi->ReqQryInstrument(&req, ++reqid;
+    int iResult = userapi->ReqQryInstrument(&req, ++reqid);
     cout << "--->>> send ReqQryInstrument request: " << ((iResult == 0) ? "success" : "failed") << endl;
 }
 
@@ -200,11 +196,11 @@ void CTraderSpi::OnRspQryInstrument(CThostFtdcInstrumentField* pInstrument, CTho
     ///组合类型
     cout << "CombinationType=" << pInstrument->CombinationType << endl;
     ///最小买下单单位
-    cout << "MinBuyVolume=" << pInstrument->MinBuyVolume << endl;
-    ///最小卖下单单位
-    cout << "MinSellVolume=" << pInstrument->MinSellVolume << endl;
-    ///合约标识码
-    cout << "InstrumentCode=" << pInstrument->InstrumentCode << endl;
+    // cout << "MinBuyVolume=" << pInstrument->MinBuyVolume << endl;
+    // ///最小卖下单单位
+    // cout << "MinSellVolume=" << pInstrument->MinSellVolume << endl;
+    // ///合约标识码
+    // cout << "InstrumentCode=" << pInstrument->InstrumentCode << endl;
 
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
 	// 请求查询合约
@@ -217,8 +213,8 @@ void CTraderSpi::ReqQryTradingAccount()
     sleep(1);
     CThostFtdcQryTradingAccountField req;
     memset(&req, 0, sizeof(req));
-    strcpy(req.BrokerID, d["brokerID"].GetString());
-    strcpy(req.InvestorID, d["userID"].GetString());
+    strcpy(req.BrokerID, broker_id.c_str());
+    strcpy(req.InvestorID, user_id.c_str());
     int iResult = userapi->ReqQryTradingAccount(&req, ++reqid);
     cout << "--->>> sent ReqQryTradingAccount request: " << ((iResult == 0) ? "success" : "failed") << endl;
 }
@@ -324,7 +320,7 @@ void CTraderSpi::OnRspQryTradingAccount(CThostFtdcTradingAccountField* pTradingA
     ///特殊产品交易所保证金
     cout << "SpecProductExchangeMargin=" << pTradingAccount->SpecProductExchangeMargin << endl;
     ///业务类型
-    cout << "BizType=" << pTradingAccount->BizType << endl;
+    // cout << "BizType=" << pTradingAccount->BizType << endl;
 
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
 	///请求查询投资者持仓
@@ -337,8 +333,8 @@ void CTraderSpi::ReqQryInvestorPosition()
     sleep(1);
     CThostFtdcQryInvestorPositionField req;
     memset(&req, 0, sizeof(req));
-    strcpy(req.BrokerID, d["brokerID"].GetString());
-    strcpy(req.InvestorID, d["userID"].GetString());
+    strcpy(req.BrokerID, broker_id.c_str());
+    strcpy(req.InvestorID, user_id.c_str());
     // strcpy(req.InstrumentID, INSTRUMENT_ID);
     int iResult = userapi->ReqQryInvestorPosition(&req, ++reqid);
     cout << "--->>> sent ReqQryInvestorPosition request: " << ((iResult == 0) ? "success" : "failed") << endl;
@@ -439,9 +435,9 @@ void CTraderSpi::OnRspQryInvestorPosition(CThostFtdcInvestorPositionField* pInve
     /////放弃执行冻结
     cout << "AbandonFrozen=" << pInvestorPosition->AbandonFrozen << endl;
     /////交易所代码
-    cout << "ExchangeID=" << pInvestorPosition->ExchangeID << endl;
+    // cout << "ExchangeID=" << pInvestorPosition->ExchangeID << endl;
     /////执行冻结的昨仓
-    cout << "YdStrikeFrozen=" << pInvestorPosition->YdStrikeFrozen << endl;
+    // cout << "YdStrikeFrozen=" << pInvestorPosition->YdStrikeFrozen << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
 	///报单录入请求
 	//ReqOrderInsert();
@@ -453,25 +449,25 @@ void CTraderSpi::ReqOrderInsert()
     CThostFtdcInputOrderField req;
     memset(&req, 0, sizeof(req));
     ///经纪公司代码
-    strcpy(req.BrokerID, d["brokerID"].GetString());
+    strcpy(req.BrokerID, broker_id.c_str());
     ///投资者代码
-    strcpy(req.InvestorID, d["userID"].GetString());
+    strcpy(req.InvestorID, user_id.c_str());
     ///合约代码
-    strcpy(req.InstrumentID, INSTRUMENT_ID);
+    // strcpy(req.InstrumentID, INSTRUMENT_ID);
     ///报单引用
-    strcpy(req.OrderRef, ORDER_REF);
+    // strcpy(req.OrderRef, ORDER_REF);
     ///用户代码
     //	TThostFtdcUserIDType	UserID;
     ///报单价格条件: 限价
     req.OrderPriceType = THOST_FTDC_OPT_LimitPrice;
     ///买卖方向:
-    req.Direction = DIRECTION;
+    // req.Direction = DIRECTION;
     ///组合开平标志: 开仓
     req.CombOffsetFlag[0] = THOST_FTDC_OF_Open;
     ///组合投机套保标志
     req.CombHedgeFlag[0] = THOST_FTDC_HF_Speculation;
     ///价格
-    req.LimitPrice = LIMIT_PRICE;
+    // req.LimitPrice = LIMIT_PRICE;
     ///数量: 1
     req.VolumeTotalOriginal = 1;
     ///有效期类型: 当日有效
@@ -556,7 +552,7 @@ void CTraderSpi::OnRspOrderInsert(CThostFtdcInputOrderField* pInputOrder, CThost
     ///互换单标志
     cout << "IsSwapOrder=" << pInputOrder->IsSwapOrder << endl;
     ///交易所代码
-    cout << "ExchangeID=" << pInputOrder->ExchangeID << endl;
+    // cout << "ExchangeID=" << pInputOrder->ExchangeID << endl;
 }
 
 void CTraderSpi::ReqOrderAction(CThostFtdcOrderField* pOrder)
@@ -578,9 +574,9 @@ void CTraderSpi::ReqOrderAction(CThostFtdcOrderField* pOrder)
     ///请求编号
     //	TThostFtdcRequestIDType	RequestID;
     ///前置编号
-    req.FrontID = FRONT_ID;
+    // req.FrontID = FRONT_ID;
     ///会话编号
-    req.SessionID = SESSION_ID;
+    // req.SessionID = SESSION_ID;
     ///交易所代码
     //	TThostFtdcExchangeIDType	ExchangeID;
     ///报单编号
@@ -763,7 +759,7 @@ void CTraderSpi::OnRtnOrder(CThostFtdcOrderField* pOrder)
     ///互换单标志
     cout << "IsSwapOrder=" << pOrder->IsSwapOrder << endl;
     ///营业部编号
-    cout << "BranchID=" << pOrder->BranchID << endl;
+    // cout << "BranchID=" << pOrder->BranchID << endl;
     // if (IsMyOrder(pOrder)) {
     //     if (IsTradingOrder(pOrder))
     //         ReqOrderAction(pOrder);
