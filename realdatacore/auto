@@ -1,0 +1,35 @@
+#!/bin/bash 
+	
+if [ $1 = "rm" ];then
+	rm -rf MdCore 
+	rm -rf CtpMd 
+	rm -rf TestMdCore 
+	echo "delete link..."
+fi
+
+if [ $1 = "ln" ];then
+	ln -s ./build/bin/MdCore ./MdCore 
+	ln -s ./build/bin/CtpMd	./CtpMd
+	ln -s ./build/bin/TestMdCore ./TestMdCore
+	echo "make new link..."
+fi
+
+if [ $1 = "run" ];then
+	./CtpMd ctp_zhongxin.json &
+	./MdCore &
+	./TestMdCore &
+fi
+
+if [ $1 = "all" ];then
+	rm -rf MdCore 
+	rm -rf CtpMd 
+	rm -rf TestMdCore 
+	echo "delete link..."
+	ln -s ./build/bin/MdCore ./MdCore 
+	ln -s ./build/bin/CtpMd	./CtpMd
+	ln -s ./build/bin/TestMdCore ./TestMdCore
+	echo "make new link..."
+	./CtpMd ctp_zhongxin.json &
+	./MdCore &
+	./TestMdCore &
+fi
