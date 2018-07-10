@@ -1,6 +1,8 @@
 // #include "ThostFtdcTraderApi.h"
 #include "TraderSpi.h"
 #include "zhelpers.hpp"
+#include <thread>
+#include <chrono>
 // #include <unistd.h>
 
 extern Document d;
@@ -12,13 +14,15 @@ void CTraderSpi::load_config(const Document& d)
     broker_id = d["broker_id"].GetString();
     user_id = d["user_id"].GetString();
     passwd = d["passwd"].GetString();
-    front_id = d["md_address"].GetString();
+    front_id = d["td_address"].GetString();
 }
 
 void CTraderSpi::connect()
 {
     if (userapi == nullptr) {
 	userapi = CThostFtdcTraderApi::CreateFtdcTraderApi("./log/trader/"); // 创建UserApi
+	//userapi = CThostFtdcTraderApi::CreateFtdcTraderApi(); // 创建UserApi
+
 
 	if (!userapi) {
 	    // throw runtime_error("ctp_md failed to create api");
@@ -27,7 +31,7 @@ void CTraderSpi::connect()
 	userapi->RegisterSpi(this);
     }
 
-    userapi->RegisterFront(const_cast<char*>(front_id.c_str())); // connect
+	userapi->RegisterFront(const_cast<char*>(front_id.c_str())); // connect
     userapi->Init();
     userapi->Join();
     LOG(FATAL) << "CTP exit!";
@@ -55,17 +59,19 @@ void CTraderSpi::OnRspUserLogin(CThostFtdcRspUserLoginField* pRspUserLogin, CTho
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     // copy from ctp documents demo
-    if (pRspInfo->ErrorID != 0) {
-	return;
-    }
+ //   if (pRspInfo->ErrorID != 0) {
+	//return;
+ //   }
+
+	cout << pRspInfo->ErrorID << endl;
 
     if (pRspUserLogin == NULL) {
 	cout << "pRspUserLogin is null!" << endl;
 	return;
     }
     cout << "TradingDay=" << pRspUserLogin->TradingDay << endl;
-    cout << "TBrokerID=" << pRspUserLogin->BrokerID << endl;
-    cout << "TUserID=" << pRspUserLogin->UserID << endl;
+    cout << "BrokerID=" << pRspUserLogin->BrokerID << endl;
+    cout << "UserID=" << pRspUserLogin->UserID << endl;
     cout << pRspUserLogin->FrontID << endl;
     cout << pRspUserLogin->SessionID << endl;
     //
@@ -210,7 +216,8 @@ void CTraderSpi::OnRspQryInstrument(CThostFtdcInstrumentField* pInstrument, CTho
 
 void CTraderSpi::ReqQryTradingAccount()
 {
-    sleep(1);
+    // sleep(1);
+    std::this_thread::sleep_for(chrono::seconds(1));
     CThostFtdcQryTradingAccountField req;
     memset(&req, 0, sizeof(req));
     strcpy(req.BrokerID, broker_id.c_str());
@@ -330,7 +337,8 @@ void CTraderSpi::OnRspQryTradingAccount(CThostFtdcTradingAccountField* pTradingA
 
 void CTraderSpi::ReqQryInvestorPosition()
 {
-    sleep(1);
+    // sleep(1);
+    std::this_thread::sleep_for(chrono::seconds(1));
     CThostFtdcQryInvestorPositionField req;
     memset(&req, 0, sizeof(req));
     strcpy(req.BrokerID, broker_id.c_str());
@@ -853,7 +861,7 @@ void CTraderSpi::OnHeartBeatWarning(int nTimeLapse)
 	 << "--->>> nTimerLapse = " << nTimeLapse << endl;
 }
 
-inline void CTraderSpi::OnRspError(CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspError(CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> ErrorID=" << pRspInfo->ErrorID << ", ErrorMsg=" << pRspInfo->ErrorMsg << endl;
 }
