@@ -1,159 +1,27 @@
 // #include "ThostFtdcTraderApi.h"
 #include "TraderSpi.h"
 // #include "zhelpers.hpp"
-#include <chrono>
-#include <thread>
-// #include <unistd.h>
+// #include <chrono>
+// #include <thread>
 
 // extern Document d;
 // extern zmq::socket_t publisher;
 // extern zmq::socket_t reply;
 
-// void CTraderSpi::ReqSettlementInfoConfirm()
-// {
-//     CThostFtdcSettlementInfoConfirmField req;
-//     memset(&req, 0, sizeof(req));
-//     strcpy(req.BrokerID, broker_id.c_str());
-//     strcpy(req.InvestorID, user_id.c_str());
-//     int iResult = userapi->ReqSettlementInfoConfirm(&req, ++reqid);
-//     cout << "--->>> investor confirm settlement: " << ((iResult == 0) ? "success" : "failed") << endl;
-// }
+//inline void CTraderSpi::connect()
+//{
+//	if (userapi == nullptr) {
+//		//userapi = CThostFtdcTraderApi::CreateFtdcTraderApi("./log/trader/"); // 创建UserApi
+//		userapi = CThostFtdcTraderApi::CreateFtdcTraderApi(); // 创建UserApi
 //
-// void CTraderSpi::ReqQryInstrument()
-// {
-//     CThostFtdcQryInstrumentField req;
-//     memset(&req, 0, sizeof(req));
-//     // strcpy(req.InstrumentID, INSTRUMENT_ID);
-//     strcpy(req.InstrumentID, "IF1808");
-//     int iResult = userapi->ReqQryInstrument(&req, ++reqid);
-//     cout << "--->>> send ReqQryInstrument request: " << ((iResult == 0) ? "success" : "failed") << endl;
-// }
-//
-// void CTraderSpi::ReqQryTradingAccount()
-// {
-//     // sleep(1);
-//     std::this_thread::sleep_for(chrono::seconds(1));
-//     CThostFtdcQryTradingAccountField req;
-//     memset(&req, 0, sizeof(req));
-//     strcpy(req.BrokerID, broker_id.c_str());
-//     strcpy(req.InvestorID, user_id.c_str());
-//     int iResult = userapi->ReqQryTradingAccount(&req, ++reqid);
-//     cout << "--->>> sent ReqQryTradingAccount request: " << ((iResult == 0) ? "success" : "failed") << endl;
-// }
-//
-// void CTraderSpi::ReqQryInvestorPosition()
-// {
-//     // sleep(1);
-//     std::this_thread::sleep_for(chrono::seconds(1));
-//     CThostFtdcQryInvestorPositionField req;
-//     memset(&req, 0, sizeof(req));
-//     strcpy(req.BrokerID, broker_id.c_str());
-//     strcpy(req.InvestorID, user_id.c_str());
-//     // strcpy(req.InstrumentID, INSTRUMENT_ID);
-//     int iResult = userapi->ReqQryInvestorPosition(&req, ++reqid);
-//     cout << "--->>> sent ReqQryInvestorPosition request: " << ((iResult == 0) ? "success" : "failed") << endl;
-// }
-//
-// void CTraderSpi::ReqOrderInsert()
-// {
-//     CThostFtdcInputOrderField req;
-//     memset(&req, 0, sizeof(req));
-//     ///经纪公司代码
-//     strcpy(req.BrokerID, broker_id.c_str());
-//     ///投资者代码
-//     strcpy(req.InvestorID, user_id.c_str());
-//     ///合约代码
-//     // strcpy(req.InstrumentID, INSTRUMENT_ID);
-//     ///报单引用
-//     // strcpy(req.OrderRef, ORDER_REF);
-//     ///用户代码
-//     //	TThostFtdcUserIDType	UserID;
-//     ///报单价格条件: 限价
-//     req.OrderPriceType = THOST_FTDC_OPT_LimitPrice;
-//     ///买卖方向:
-//     // req.Direction = DIRECTION;
-//     ///组合开平标志: 开仓
-//     req.CombOffsetFlag[0] = THOST_FTDC_OF_Open;
-//     ///组合投机套保标志
-//     req.CombHedgeFlag[0] = THOST_FTDC_HF_Speculation;
-//     ///价格
-//     // req.LimitPrice = LIMIT_PRICE;
-//     ///数量: 1
-//     req.VolumeTotalOriginal = 1;
-//     ///有效期类型: 当日有效
-//     req.TimeCondition = THOST_FTDC_TC_GFD;
-//     ///GTD日期
-//     //	TThostFtdcDateType	GTDDate;
-//     ///成交量类型: 任何数量
-//     req.VolumeCondition = THOST_FTDC_VC_AV;
-//     ///最小成交量: 1
-//     req.MinVolume = 1;
-//     ///触发条件: 立即
-//     req.ContingentCondition = THOST_FTDC_CC_Immediately;
-//     ///止损价
-//     //	TThostFtdcPriceType	StopPrice;
-//     ///强平原因: 非强平
-//     req.ForceCloseReason = THOST_FTDC_FCC_NotForceClose;
-//     ///自动挂起标志: 否
-//     req.IsAutoSuspend = 0;
-//     ///业务单元
-//     //	TThostFtdcBusinessUnitType	BusinessUnit;
-//     ///请求编号
-//     //	TThostFtdcRequestIDType	RequestID;
-//     ///用户强评标志: 否
-//     req.UserForceClose = 0;
-//
-//     int iResult = userapi->ReqOrderInsert(&req, ++reqid);
-//     cout << "--->>> sent orderInsert request: " << ((iResult == 0) ? "success" : "failed") << endl;
-// }
-//
-// void CTraderSpi::ReqOrderAction(CThostFtdcOrderField* pOrder)
-// {
-//     static bool ORDER_ACTION_SENT = false; //是否发送了报单
-//     if (ORDER_ACTION_SENT)
-//         return;
-//
-//     CThostFtdcInputOrderActionField req;
-//     memset(&req, 0, sizeof(req));
-//     ///经纪公司代码
-//     strcpy(req.BrokerID, pOrder->BrokerID);
-//     ///投资者代码
-//     strcpy(req.InvestorID, pOrder->InvestorID);
-//     ///报单操作引用
-//     //	TThostFtdcOrderActionRefType	OrderActionRef;
-//     ///报单引用
-//     strcpy(req.OrderRef, pOrder->OrderRef);
-//     ///请求编号
-//     //	TThostFtdcRequestIDType	RequestID;
-//     ///前置编号
-//     // req.FrontID = FRONT_ID;
-//     ///会话编号
-//     // req.SessionID = SESSION_ID;
-//     ///交易所代码
-//     //	TThostFtdcExchangeIDType	ExchangeID;
-//     ///报单编号
-//     //	TThostFtdcOrderSysIDType	OrderSysID;
-//     ///操作标志
-//     req.ActionFlag = THOST_FTDC_AF_Delete;
-//     ///价格
-//     //	TThostFtdcPriceType	LimitPrice;
-//     ///数量变化
-//     //	TThostFtdcVolumeType	VolumeChange;
-//     ///用户代码
-//     //	TThostFtdcUserIDType	UserID;
-//     ///合约代码
-//     strcpy(req.InstrumentID, pOrder->InstrumentID);
-//
-//     int iResult = userapi->ReqOrderAction(&req, ++reqid);
-//     cout << "--->>> sent orderaction request: " << ((iResult == 0) ? "success" : "failed") << endl;
-//     ORDER_ACTION_SENT = true;
-// }
-//
-// ///报单通知
-//
-// ///成交通知
-//
-inline bool CTraderSpi::IsErrorRspInfo(CThostFtdcRspInfoField* pRspInfo)
+//		if (!userapi) {
+//			throw "CtpTrader failed to create api";
+//		}
+//		userapi->RegisterSpi(this);
+//	}
+//}
+
+bool CTraderSpi::IsErrorRspInfo(CThostFtdcRspInfoField* pRspInfo)
 {
     // 如果ErrorID != 0, 说明收到了错误的响应
     bool bResult = ((pRspInfo) && (pRspInfo->ErrorID != 0));
@@ -161,28 +29,8 @@ inline bool CTraderSpi::IsErrorRspInfo(CThostFtdcRspInfoField* pRspInfo)
 	cout << "--->>> ErrorID=" << pRspInfo->ErrorID << ", ErrorMsg=" << pRspInfo->ErrorMsg << endl;
     return bResult;
 }
-//
-// inline bool CTraderSpi::IsMyOrder(CThostFtdcOrderField* pOrder)
-// {
-//     // return ((pOrder->FrontID == FRONT_ID) && (pOrder->SessionID == SESSION_ID) && (strcmp(pOrder->OrderRef, ORDER_REF) == 0));
-// }
-//
-// inline bool CTraderSpi::IsTradingOrder(CThostFtdcOrderField* pOrder)
-// {
-//     return ((pOrder->OrderStatus != THOST_FTDC_OST_PartTradedNotQueueing) && (pOrder->OrderStatus != THOST_FTDC_OST_Canceled) && (pOrder->OrderStatus != THOST_FTDC_OST_AllTraded));
-// }
 
-// void CTraderSpi::ReqUserLogin()
-// {
-//     CThostFtdcReqUserLoginField req;
-//     memset(&req, 0, sizeof(req));
-//     strcpy(req.BrokerID, broker_id.c_str());
-//     strcpy(req.UserID, user_id.c_str());
-//     strcpy(req.Password, passwd.c_str());
-//     int iResult = userapi->ReqUserLogin(&req, ++reqid);
-//     cout << "--->>> sent login request: " << ((iResult == 0) ? "success" : "failed") << endl;
-// }
-void TestAllFunction()
+void CTraderSpi::TestAllFunction()
 {
     int fun_number = 0;
     PrintAllFunction();
@@ -190,275 +38,280 @@ void TestAllFunction()
 	cout << "请输入要测试的函数编号,0为显示所有函数: ";
 	cin >> fun_number;
 	switch (fun_number) {
-	case 0: {
-	    PrintAllFunction();
-	    break;
-	}
+
 	case 1: {
-	    reqUserPasswordUpdate();
+	    reqUserLogin();
 	    break;
 	}
 	case 2: {
-	    reqTradingAccountPasswordUpdate();
+	    reqUserLogout();
 	    break;
 	}
 	case 3: {
-	    reqOrderInsert();
+	    reqUserPasswordUpdate();
 	    break;
 	}
 	case 4: {
-	    reqParkedOrderInsert();
+	    reqTradingAccountPasswordUpdate();
 	    break;
 	}
 	case 5: {
-	    reqParkedOrderAction();
+	    reqOrderInsert();
 	    break;
 	}
 	case 6: {
-	    reqOrderAction();
+	    reqParkedOrderInsert();
 	    break;
 	}
 	case 7: {
-	    reqQueryMaxOrderVolume();
+	    reqParkedOrderAction();
 	    break;
 	}
 	case 8: {
-	    reqSettlementInfoConfirm();
+	    reqOrderAction();
 	    break;
 	}
 	case 9: {
-	    reqRemoveParkedOrder();
+	    reqQueryMaxOrderVolume();
 	    break;
 	}
 	case 10: {
-	    reqRemoveParkedOrderAction();
+	    reqSettlementInfoConfirm();
 	    break;
 	}
 	case 11: {
-	    reqExecOrderInsert();
+	    reqRemoveParkedOrder();
 	    break;
 	}
 	case 12: {
-	    reqExecOrderAction();
+	    reqRemoveParkedOrderAction();
 	    break;
 	}
 	case 13: {
-	    reqForQuoteInsert();
+	    reqExecOrderInsert();
 	    break;
 	}
 	case 14: {
-	    reqQuoteInsert();
+	    reqExecOrderAction();
 	    break;
 	}
 	case 15: {
-	    reqQuoteAction();
+	    reqForQuoteInsert();
 	    break;
 	}
 	case 16: {
-	    reqLockInsert();
+	    reqQuoteInsert();
 	    break;
 	}
 	case 17: {
-	    reqCombActionInsert();
+	    reqQuoteAction();
 	    break;
 	}
 	case 18: {
-	    reqQryOrder();
+	    reqLockInsert();
 	    break;
 	}
 	case 19: {
-	    reqQryTrade();
+	    reqCombActionInsert();
 	    break;
 	}
 	case 20: {
-	    reqQryInvestorPosition();
+	    reqQryOrder();
 	    break;
 	}
 	case 21: {
-	    reqQryTradingAccount();
+	    reqQryTrade();
 	    break;
 	}
 	case 22: {
-	    reqQryInvestor();
+	    reqQryInvestorPosition();
 	    break;
 	}
 	case 23: {
-	    reqQryTradingCode();
+	    reqQryTradingAccount();
 	    break;
 	}
 	case 24: {
-	    reqQryInstrumentMarginRate();
+	    reqQryInvestor();
 	    break;
 	}
 	case 25: {
-	    reqQryInstrumentCommissionRate();
+	    reqQryTradingCode();
 	    break;
 	}
 	case 26: {
-	    reqQryExchange();
+	    reqQryInstrumentMarginRate();
 	    break;
 	}
 	case 27: {
-	    reqQryProduct();
+	    reqQryInstrumentCommissionRate();
 	    break;
 	}
 	case 28: {
-	    reqQryInstrument();
+	    reqQryExchange();
 	    break;
 	}
 	case 29: {
-	    reqQryDepthMarketData();
+	    reqQryProduct();
 	    break;
 	}
 	case 30: {
-	    reqQrySettlementInfo();
+	    reqQryInstrument();
 	    break;
 	}
 	case 31: {
-	    reqQryTransferBank();
+	    reqQryDepthMarketData();
 	    break;
 	}
 	case 32: {
-	    reqQryInvestorPositionDetail();
+	    reqQrySettlementInfo();
 	    break;
 	}
 	case 33: {
-	    reqQryNotice();
+	    reqQryTransferBank();
 	    break;
 	}
 	case 34: {
-	    reqQrySettlementInfoConfirm();
+	    reqQryInvestorPositionDetail();
 	    break;
 	}
 	case 35: {
-	    reqQryInvestorPositionCombineDetail();
+	    reqQryNotice();
 	    break;
 	}
 	case 36: {
-	    reqQryCFMMCTradingAccountKey();
+	    reqQrySettlementInfoConfirm();
 	    break;
 	}
 	case 37: {
-	    reqQryEWarrantOffset();
+	    reqQryInvestorPositionCombineDetail();
 	    break;
 	}
 	case 38: {
-	    reqQryInvestorProductGroupMargin();
+	    reqQryCFMMCTradingAccountKey();
 	    break;
 	}
 	case 39: {
-	    reqQryExchangeMarginRate();
+	    reqQryEWarrantOffset();
 	    break;
 	}
 	case 40: {
-	    reqQryExchangeMarginRateAdjust();
+	    reqQryInvestorProductGroupMargin();
 	    break;
 	}
 	case 41: {
-	    reqQryExchangeRate();
+	    reqQryExchangeMarginRate();
 	    break;
 	}
 	case 42: {
-	    reqQrySecAgentACIDMap();
+	    reqQryExchangeMarginRateAdjust();
 	    break;
 	}
 	case 43: {
-	    reqQryProductExchRate();
+	    reqQryExchangeRate();
 	    break;
 	}
 	case 44: {
-	    reqQryProductGroup();
+	    reqQrySecAgentACIDMap();
 	    break;
 	}
 	case 45: {
-	    reqQryOptionInstrTradeCost();
+	    reqQryProductExchRate();
 	    break;
 	}
 	case 46: {
-	    reqQryOptionInstrCommRate();
+	    reqQryProductGroup();
 	    break;
 	}
 	case 47: {
-	    reqQryExecOrder();
+	    reqQryOptionInstrTradeCost();
 	    break;
 	}
 	case 48: {
-	    reqQryForQuote();
+	    reqQryOptionInstrCommRate();
 	    break;
 	}
 	case 49: {
-	    reqQryQuote();
+	    reqQryExecOrder();
 	    break;
 	}
 	case 50: {
-	    reqQryLock();
+	    reqQryForQuote();
 	    break;
 	}
 	case 51: {
-	    reqQryLockPosition();
+	    reqQryQuote();
 	    break;
 	}
 	case 52: {
-	    reqQryInvestorLevel();
+	    reqQryLock();
 	    break;
 	}
 	case 53: {
-	    reqQryExecFreeze();
+	    reqQryLockPosition();
 	    break;
 	}
 	case 54: {
-	    reqQryCombInstrumentGuard();
+	    reqQryInvestorLevel();
 	    break;
 	}
 	case 55: {
-	    reqQryCombAction();
+	    reqQryExecFreeze();
 	    break;
 	}
 	case 56: {
-	    reqQryTransferSerial();
+	    reqQryCombInstrumentGuard();
 	    break;
 	}
 	case 57: {
-	    reqQryAccountregister();
+	    reqQryCombAction();
 	    break;
 	}
 	case 58: {
-	    reqQryContractBank();
+	    reqQryTransferSerial();
 	    break;
 	}
 	case 59: {
-	    reqQryParkedOrder();
+	    reqQryAccountregister();
 	    break;
 	}
 	case 60: {
-	    reqQryParkedOrderAction();
+	    reqQryContractBank();
 	    break;
 	}
 	case 61: {
-	    reqQryTradingNotice();
+	    reqQryParkedOrder();
 	    break;
 	}
 	case 62: {
-	    reqQryBrokerTradingParams();
+	    reqQryParkedOrderAction();
 	    break;
 	}
 	case 63: {
-	    reqQryBrokerTradingAlgos();
+	    reqQryTradingNotice();
 	    break;
 	}
 	case 64: {
-	    reqQueryCFMMCTradingAccountToken();
+	    reqQryBrokerTradingParams();
 	    break;
 	}
 	case 65: {
-	    reqFromBankToFutureByFuture();
+	    reqQryBrokerTradingAlgos();
 	    break;
 	}
 	case 66: {
-	    reqFromFutureToBankByFuture();
+	    reqQueryCFMMCTradingAccountToken();
 	    break;
 	}
 	case 67: {
+	    reqFromBankToFutureByFuture();
+	    break;
+	}
+	case 68: {
+	    reqFromFutureToBankByFuture();
+	    break;
+	}
+	case 69: {
 	    reqQueryBankAccountMoneyByFuture();
 	    break;
 	}
@@ -470,109 +323,82 @@ void CTraderSpi::PrintAllFunction()
 {
 
     cout << "可供测试的函数如下:" << endl;
-    cout << "1 reqUserPasswordUpdate" << endl;
-    cout << "2 reqTradingAccountPasswordUpdate" << endl;
-    cout << "3 reqOrderInsert" << endl;
-    cout << "4 reqParkedOrderInsert" << endl;
-    cout << "5 reqParkedOrderAction" << endl;
-    cout << "6 reqOrderAction" << endl;
-    cout << "7 reqQueryMaxOrderVolume" << endl;
-    cout << "8 reqSettlementInfoConfirm" << endl;
-    cout << "9 reqRemoveParkedOrder" << endl;
-    cout << "10 reqRemoveParkedOrderAction" << endl;
-    cout << "11 reqExecOrderInsert" << endl;
-    cout << "12 reqExecOrderAction" << endl;
-    cout << "13 reqForQuoteInsert" << endl;
-    cout << "14 reqQuoteInsert" << endl;
-    cout << "15 reqQuoteAction" << endl;
-    cout << "16 reqLockInsert" << endl;
-    cout << "17 reqCombActionInsert" << endl;
-    cout << "18 reqQryOrder" << endl;
-    cout << "19 reqQryTrade" << endl;
-    cout << "20 reqQryInvestorPosition" << endl;
-    cout << "21 reqQryTradingAccount" << endl;
-    cout << "22 reqQryInvestor" << endl;
-    cout << "23 reqQryTradingCode" << endl;
-    cout << "24 reqQryInstrumentMarginRate" << endl;
-    cout << "25 reqQryInstrumentCommissionRate" << endl;
-    cout << "26 reqQryExchange" << endl;
-    cout << "27 reqQryProduct" << endl;
-    cout << "28 reqQryInstrument" << endl;
-    cout << "29 reqQryDepthMarketData" << endl;
-    cout << "30 reqQrySettlementInfo" << endl;
-    cout << "31 reqQryTransferBank" << endl;
-    cout << "32 reqQryInvestorPositionDetail" << endl;
-    cout << "33 reqQryNotice" << endl;
-    cout << "34 reqQrySettlementInfoConfirm" << endl;
-    cout << "35 reqQryInvestorPositionCombineDetail" << endl;
-    cout << "36 reqQryCFMMCTradingAccountKey" << endl;
-    cout << "37 reqQryEWarrantOffset" << endl;
-    cout << "38 reqQryInvestorProductGroupMargin" << endl;
-    cout << "39 reqQryExchangeMarginRate" << endl;
-    cout << "40 reqQryExchangeMarginRateAdjust" << endl;
-    cout << "41 reqQryExchangeRate" << endl;
-    cout << "42 reqQrySecAgentACIDMap" << endl;
-    cout << "43 reqQryProductExchRate" << endl;
-    cout << "44 reqQryProductGroup" << endl;
-    cout << "45 reqQryOptionInstrTradeCost" << endl;
-    cout << "46 reqQryOptionInstrCommRate" << endl;
-    cout << "47 reqQryExecOrder" << endl;
-    cout << "48 reqQryForQuote" << endl;
-    cout << "49 reqQryQuote" << endl;
-    cout << "50 reqQryLock" << endl;
-    cout << "51 reqQryLockPosition" << endl;
-    cout << "52 reqQryInvestorLevel" << endl;
-    cout << "53 reqQryExecFreeze" << endl;
-    cout << "54 reqQryCombInstrumentGuard" << endl;
-    cout << "55 reqQryCombAction" << endl;
-    cout << "56 reqQryTransferSerial" << endl;
-    cout << "57 reqQryAccountregister" << endl;
-    cout << "58 reqQryContractBank" << endl;
-    cout << "59 reqQryParkedOrder" << endl;
-    cout << "60 reqQryParkedOrderAction" << endl;
-    cout << "61 reqQryTradingNotice" << endl;
-    cout << "62 reqQryBrokerTradingParams" << endl;
-    cout << "63 reqQryBrokerTradingAlgos" << endl;
-    cout << "64 reqQueryCFMMCTradingAccountToken" << endl;
-    cout << "65 reqFromBankToFutureByFuture" << endl;
-    cout << "66 reqFromFutureToBankByFuture" << endl;
-    cout << "67 reqQueryBankAccountMoneyByFuture" << endl;
-}
-
-void CTraderSpi::load_config(const Document& d)
-{
-    // config_info.insert({ "broker_id", d["broker_id"].GetString() });
-    // config_info.insert({ "user_id", d["user_id"].GetString() });
-    // config_info.insert({ "passwd", d["passwd"].GetString() });
-    // config_info.insert({ "td_address", d["td_address"].GetString() });
-    broker_id = d["broker_id"].GetString();
-    user_id = d["user_id"].GetString();
-    passwd = d["passwd"].GetString();
-    front_id = d["td_address"].GetString();
-}
-
-void CTraderSpi::connect()
-{
-    if (userapi == nullptr) {
-	userapi = CThostFtdcTraderApi::CreateFtdcTraderApi("./log/trader/"); // 创建UserApi
-
-	if (!userapi) {
-	    throw "CtpTrader failed to create api";
-	}
-	userapi->RegisterSpi(this);
-    }
-
-    userapi->RegisterFront(const_cast<char*>(front_id.c_str())); // connect
-    userapi->Init();
-    userapi->Join();
-    LOG(FATAL) << "CTP exit!";
+    cout << "1 用户登录请求 ReqUserLogin" << endl;
+    cout << "2 登出请求 ReqUserLogout" << endl;
+    cout << "3 用户口令更新请求 ReqUserPasswordUpdate" << endl;
+    cout << "4 资金账户口令更新请求 ReqTradingAccountPasswordUpdate" << endl;
+    cout << "5 报单录入请求 ReqOrderInsert" << endl;
+    cout << "6 预埋单录入请求 ReqParkedOrderInsert" << endl;
+    cout << "7 预埋撤单录入请求 ReqParkedOrderAction" << endl;
+    cout << "8 报单操作请求 ReqOrderAction" << endl;
+    cout << "9 查询最大报单数量请求 ReqQueryMaxOrderVolume" << endl;
+    cout << "10 投资者结算结果确认 ReqSettlementInfoConfirm" << endl;
+    cout << "11 请求删除预埋单 ReqRemoveParkedOrder" << endl;
+    cout << "12 请求删除预埋撤单 ReqRemoveParkedOrderAction" << endl;
+    cout << "13 执行宣告录入请求 ReqExecOrderInsert" << endl;
+    cout << "14 执行宣告操作请求 ReqExecOrderAction" << endl;
+    cout << "15 询价录入请求 ReqForQuoteInsert" << endl;
+    cout << "16 报价录入请求 ReqQuoteInsert" << endl;
+    cout << "17 报价操作请求 ReqQuoteAction" << endl;
+    cout << "18 锁定请求 ReqLockInsert" << endl;
+    cout << "19 申请组合录入请求 ReqCombActionInsert" << endl;
+    cout << "20 请求查询报单 ReqQryOrder" << endl;
+    cout << "21 请求查询成交 ReqQryTrade" << endl;
+    cout << "22 请求查询投资者持仓 ReqQryInvestorPosition" << endl;
+    cout << "23 请求查询资金账户 ReqQryTradingAccount" << endl;
+    cout << "24 请求查询投资者 ReqQryInvestor" << endl;
+    cout << "25 请求查询交易编码 ReqQryTradingCode" << endl;
+    cout << "26 请求查询合约保证金率 ReqQryInstrumentMarginRate" << endl;
+    cout << "27 请求查询合约手续费率 ReqQryInstrumentCommissionRate" << endl;
+    cout << "28 请求查询交易所 ReqQryExchange" << endl;
+    cout << "29 请求查询产品 ReqQryProduct" << endl;
+    cout << "30 请求查询合约 ReqQryInstrument" << endl;
+    cout << "31 请求查询行情 ReqQryDepthMarketData" << endl;
+    cout << "32 请求查询投资者结算结果 ReqQrySettlementInfo" << endl;
+    cout << "33 请求查询转帐银行 ReqQryTransferBank" << endl;
+    cout << "34 请求查询投资者持仓明细 ReqQryInvestorPositionDetail" << endl;
+    cout << "35 请求查询客户通知 ReqQryNotice" << endl;
+    cout << "36 请求查询结算信息确认 ReqQrySettlementInfoConfirm" << endl;
+    cout << "37 请求查询投资者持仓明细 ReqQryInvestorPositionCombineDetail" << endl;
+    cout << "38 请求查询保证金监管系统经纪公司资金账户密钥 ReqQryCFMMCTradingAccountKey" << endl;
+    cout << "39 请求查询仓单折抵信息 ReqQryEWarrantOffset" << endl;
+    cout << "40 请求查询投资者品种/跨品种保证金 ReqQryInvestorProductGroupMargin" << endl;
+    cout << "41 请求查询交易所保证金率 ReqQryExchangeMarginRate" << endl;
+    cout << "42 请求查询交易所调整保证金率 ReqQryExchangeMarginRateAdjust" << endl;
+    cout << "43 请求查询汇率 ReqQryExchangeRate" << endl;
+    cout << "44 请求查询二级代理操作员银期权限 ReqQrySecAgentACIDMap" << endl;
+    cout << "45 请求查询产品报价汇率 ReqQryProductExchRate" << endl;
+    cout << "46 请求查询产品组 ReqQryProductGroup" << endl;
+    cout << "47 请求查询期权交易成本 ReqQryOptionInstrTradeCost" << endl;
+    cout << "48 请求查询期权合约手续费 ReqQryOptionInstrCommRate" << endl;
+    cout << "49 请求查询执行宣告 ReqQryExecOrder" << endl;
+    cout << "50 请求查询询价 ReqQryForQuote" << endl;
+    cout << "51 请求查询报价 ReqQryQuote" << endl;
+    cout << "52 请求查询锁定 ReqQryLock" << endl;
+    cout << "53 请求查询锁定证券仓位 ReqQryLockPosition" << endl;
+    cout << "54 请求查询投资者分级 ReqQryInvestorLevel" << endl;
+    cout << "55 请求查询E+1日行权冻结 ReqQryExecFreeze" << endl;
+    cout << "56 请求查询组合合约安全系数 ReqQryCombInstrumentGuard" << endl;
+    cout << "57 请求查询申请组合 ReqQryCombAction" << endl;
+    cout << "58 请求查询转帐流水 ReqQryTransferSerial" << endl;
+    cout << "59 请求查询银期签约关系 ReqQryAccountregister" << endl;
+    cout << "60 请求查询签约银行 ReqQryContractBank" << endl;
+    cout << "61 请求查询预埋单 ReqQryParkedOrder" << endl;
+    cout << "62 请求查询预埋撤单 ReqQryParkedOrderAction" << endl;
+    cout << "63 请求查询交易通知 ReqQryTradingNotice" << endl;
+    cout << "64 请求查询经纪公司交易参数 ReqQryBrokerTradingParams" << endl;
+    cout << "65 请求查询经纪公司交易算法 ReqQryBrokerTradingAlgos" << endl;
+    cout << "66 请求查询监控中心用户令牌 ReqQueryCFMMCTradingAccountToken" << endl;
+    cout << "67 期货发起银行资金转期货请求 ReqFromBankToFutureByFuture" << endl;
+    cout << "68 期货发起期货资金转银行请求 ReqFromFutureToBankByFuture" << endl;
+    cout << "69 期货发起查询银行余额请求 ReqQueryBankAccountMoneyByFuture" << endl;
 }
 
 int CTraderSpi::exit()
 {
     userapi->RegisterFront(NULL);
     userapi->Release();
-    userapi->= NULL;
+    userapi = NULL;
     return 1;
 }
 
@@ -631,9 +457,9 @@ void CTraderSpi::reqAuthenticate()
     CThostFtdcReqAuthenticateField myreq = CThostFtdcReqAuthenticateField();
     memset(&myreq, 0, sizeof(myreq));
     cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-    strcpy(myreq.BrokerID, broker_id.cstr());
+    strcpy(myreq.BrokerID, broker_id.c_str());
     cout << "用户代码 TThostFtdcUserIDType:" << endl;
-    strcpy(myreq.UserID, user_id.cstr());
+    strcpy(myreq.UserID, user_id.c_str());
     cout << "用户端产品信息 TThostFtdcProductInfoType:" << endl;
     cin >> myreq.UserProductInfo;
     cout << "认证码 TThostFtdcAuthCodeType:" << endl;
@@ -647,25 +473,25 @@ void CTraderSpi::reqUserLogin()
     CThostFtdcReqUserLoginField myreq = CThostFtdcReqUserLoginField();
     memset(&myreq, 0, sizeof(myreq));
     cout << "交易日 TThostFtdcDateType:" << endl;
-    cin >> myreq.TradingDay;
+    // cin >> myreq.TradingDay;
     cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-    strcpy(myreq.BrokerID, broker_id.cstr());
+    strcpy(myreq.BrokerID, broker_id.c_str());
     cout << "用户代码 TThostFtdcUserIDType:" << endl;
-    strcpy(myreq.UserID, user_id.cstr());
+    strcpy(myreq.UserID, user_id.c_str());
     cout << "密码 TThostFtdcPasswordType:" << endl;
-    strcpy(myreq.Password, passwd.cstr());
+    strcpy(myreq.Password, passwd.c_str());
     cout << "用户端产品信息 TThostFtdcProductInfoType:" << endl;
-    cin >> myreq.UserProductInfo;
+    // cin >> myreq.UserProductInfo;
     cout << "接口端产品信息 TThostFtdcProductInfoType:" << endl;
-    cin >> myreq.InterfaceProductInfo;
+    // cin >> myreq.InterfaceProductInfo;
     cout << "协议信息 TThostFtdcProtocolInfoType:" << endl;
-    cin >> myreq.ProtocolInfo;
+    // cin >> myreq.ProtocolInfo;
     cout << "Mac地址 TThostFtdcMacAddressType:" << endl;
-    cin >> myreq.MacAddress;
+    // cin >> myreq.MacAddress;
     cout << "动态密码 TThostFtdcPasswordType:" << endl;
-    cin >> myreq.OneTimePassword;
+    // cin >> myreq.OneTimePassword;
     cout << "终端IP地址 TThostFtdcIPAddressType:" << endl;
-    cin >> myreq.ClientIPAddress;
+    // cin >> myreq.ClientIPAddress;
     int i = userapi->ReqUserLogin(&myreq, ++nRequestID);
     cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
 };
@@ -677,7 +503,7 @@ void CTraderSpi::reqUserLogout()
     cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
     cin >> myreq.BrokerID;
     cout << "用户代码 TThostFtdcUserIDType:" << endl;
-    strcpy(myreq.UserID, user_id.cstr());
+    strcpy(myreq.UserID, user_id.c_str());
     int i = userapi->ReqUserLogout(&myreq, ++nRequestID);
     cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
 };
@@ -689,7 +515,7 @@ void CTraderSpi::reqUserPasswordUpdate()
     cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
     cin >> myreq.BrokerID;
     cout << "用户代码 TThostFtdcUserIDType:" << endl;
-    strcpy(myreq.UserID, user_id.cstr());
+    strcpy(myreq.UserID, user_id.c_str());
     cout << "原来的口令 TThostFtdcPasswordType:" << endl;
     cin >> myreq.OldPassword;
     cout << "新的口令 TThostFtdcPasswordType:" << endl;
@@ -729,7 +555,7 @@ void CTraderSpi::reqOrderInsert()
     cout << "报单引用 TThostFtdcOrderRefType:" << endl;
     cin >> myreq.OrderRef;
     cout << "用户代码 TThostFtdcUserIDType:" << endl;
-    strcpy(myreq.UserID, user_id.cstr());
+    strcpy(myreq.UserID, user_id.c_str());
     cout << "报单价格条件 TThostFtdcOrderPriceTypeType:" << endl;
     cin >> myreq.OrderPriceType;
     cout << "买卖方向 TThostFtdcDirectionType:" << endl;
@@ -785,7 +611,7 @@ void CTraderSpi::reqParkedOrderInsert()
     cout << "报单引用 TThostFtdcOrderRefType:" << endl;
     cin >> myreq.OrderRef;
     cout << "用户代码 TThostFtdcUserIDType:" << endl;
-    strcpy(myreq.UserID, user_id.cstr());
+    strcpy(myreq.UserID, user_id.c_str());
     cout << "报单价格条件 TThostFtdcOrderPriceTypeType:" << endl;
     cin >> myreq.OrderPriceType;
     cout << "买卖方向 TThostFtdcDirectionType:" << endl;
@@ -867,7 +693,7 @@ void CTraderSpi::reqParkedOrderAction()
     cout << "数量变化 TThostFtdcVolumeType:" << endl;
     cin >> myreq.VolumeChange;
     cout << "用户代码 TThostFtdcUserIDType:" << endl;
-    strcpy(myreq.UserID, user_id.cstr());
+    strcpy(myreq.UserID, user_id.c_str());
     cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
     cin >> myreq.InstrumentID;
     cout << "预埋撤单单编号 TThostFtdcParkedOrderActionIDType:" << endl;
@@ -913,7 +739,7 @@ void CTraderSpi::reqOrderAction()
     cout << "数量变化 TThostFtdcVolumeType:" << endl;
     cin >> myreq.VolumeChange;
     cout << "用户代码 TThostFtdcUserIDType:" << endl;
-    strcpy(myreq.UserID, user_id.cstr());
+    strcpy(myreq.UserID, user_id.c_str());
     cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
     cin >> myreq.InstrumentID;
     int i = userapi->ReqOrderAction(&myreq, ++nRequestID);
@@ -1001,7 +827,7 @@ void CTraderSpi::reqExecOrderInsert()
     cout << "执行宣告引用 TThostFtdcOrderRefType:" << endl;
     cin >> myreq.ExecOrderRef;
     cout << "用户代码 TThostFtdcUserIDType:" << endl;
-    strcpy(myreq.UserID, user_id.cstr());
+    strcpy(myreq.UserID, user_id.c_str());
     cout << "数量 TThostFtdcVolumeType:" << endl;
     cin >> myreq.Volume;
     cout << "请求编号 TThostFtdcRequestIDType:" << endl;
@@ -1051,7 +877,7 @@ void CTraderSpi::reqExecOrderAction()
     cout << "操作标志 TThostFtdcActionFlagType:" << endl;
     cin >> myreq.ActionFlag;
     cout << "用户代码 TThostFtdcUserIDType:" << endl;
-    strcpy(myreq.UserID, user_id.cstr());
+    strcpy(myreq.UserID, user_id.c_str());
     cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
     cin >> myreq.InstrumentID;
     int i = userapi->ReqExecOrderAction(&myreq, ++nRequestID);
@@ -1071,7 +897,7 @@ void CTraderSpi::reqForQuoteInsert()
     cout << "询价引用 TThostFtdcOrderRefType:" << endl;
     cin >> myreq.ForQuoteRef;
     cout << "用户代码 TThostFtdcUserIDType:" << endl;
-    strcpy(myreq.UserID, user_id.cstr());
+    strcpy(myreq.UserID, user_id.c_str());
     cout << "交易所代码 TThostFtdcExchangeIDType:" << endl;
     cin >> myreq.ExchangeID;
     int i = userapi->ReqForQuoteInsert(&myreq, ++nRequestID);
@@ -1091,7 +917,7 @@ void CTraderSpi::reqQuoteInsert()
     cout << "报价引用 TThostFtdcOrderRefType:" << endl;
     cin >> myreq.QuoteRef;
     cout << "用户代码 TThostFtdcUserIDType:" << endl;
-    strcpy(myreq.UserID, user_id.cstr());
+    strcpy(myreq.UserID, user_id.c_str());
     cout << "卖价格 TThostFtdcPriceType:" << endl;
     cin >> myreq.AskPrice;
     cout << "买价格 TThostFtdcPriceType:" << endl;
@@ -1149,7 +975,7 @@ void CTraderSpi::reqQuoteAction()
     cout << "操作标志 TThostFtdcActionFlagType:" << endl;
     cin >> myreq.ActionFlag;
     cout << "用户代码 TThostFtdcUserIDType:" << endl;
-    strcpy(myreq.UserID, user_id.cstr());
+    strcpy(myreq.UserID, user_id.c_str());
     cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
     cin >> myreq.InstrumentID;
     int i = userapi->ReqQuoteAction(&myreq, ++nRequestID);
@@ -1169,7 +995,7 @@ void CTraderSpi::reqLockInsert()
     cout << "锁定引用 TThostFtdcOrderRefType:" << endl;
     cin >> myreq.LockRef;
     cout << "用户代码 TThostFtdcUserIDType:" << endl;
-    strcpy(myreq.UserID, user_id.cstr());
+    strcpy(myreq.UserID, user_id.c_str());
     cout << "数量 TThostFtdcVolumeType:" << endl;
     cin >> myreq.Volume;
     cout << "请求编号 TThostFtdcRequestIDType:" << endl;
@@ -1197,7 +1023,7 @@ void CTraderSpi::reqCombActionInsert()
     cout << "组合引用 TThostFtdcOrderRefType:" << endl;
     cin >> myreq.CombActionRef;
     cout << "用户代码 TThostFtdcUserIDType:" << endl;
-    strcpy(myreq.UserID, user_id.cstr());
+    strcpy(myreq.UserID, user_id.c_str());
     cout << "买卖方向 TThostFtdcDirectionType:" << endl;
     cin >> myreq.Direction;
     cout << "数量 TThostFtdcVolumeType:" << endl;
@@ -1573,7 +1399,7 @@ void CTraderSpi::reqQrySecAgentACIDMap()
     cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
     cin >> myreq.BrokerID;
     cout << "用户代码 TThostFtdcUserIDType:" << endl;
-    strcpy(myreq.UserID, user_id.cstr());
+    strcpy(myreq.UserID, user_id.c_str());
     cout << "资金账户 TThostFtdcAccountIDType:" << endl;
     cin >> myreq.AccountID;
     cout << "币种 TThostFtdcCurrencyIDType:" << endl;
@@ -1954,8 +1780,8 @@ void CTraderSpi::reqFromBankToFutureByFuture()
     cin >> myreq.TradeTime;
     cout << "银行流水号 TThostFtdcBankSerialType:" << endl;
     cin >> myreq.BankSerial;
-    cout << "交易系统日期 TThostFtdcTradeDateType	TradingDa:" << endl;
-    cin >> myreq.;
+    // cout << "交易系统日期 TThostFtdcTradeDateType	TradingDa:" << endl;
+    // cin >> myreq.;
     cout << "银期平台消息流水号 TThostFtdcSerialType:" << endl;
     cin >> myreq.PlateSerial;
     cout << "最后分片标志 TThostFtdcLastFragmentType:" << endl;
@@ -1977,13 +1803,13 @@ void CTraderSpi::reqFromBankToFutureByFuture()
     cout << "投资者帐号 TThostFtdcAccountIDType:" << endl;
     cin >> myreq.AccountID;
     cout << "期货密码 TThostFtdcPasswordType:" << endl;
-    strcpy(myreq.Password, passwd.cstr());
+    strcpy(myreq.Password, passwd.c_str());
     cout << "安装编号 TThostFtdcInstallIDType:" << endl;
     cin >> myreq.InstallID;
     cout << "期货公司流水号 TThostFtdcFutureSerialType:" << endl;
     cin >> myreq.FutureSerial;
     cout << "用户标识 TThostFtdcUserIDType:" << endl;
-    strcpy(myreq.UserID, user_id.cstr());
+    strcpy(myreq.UserID, user_id.c_str());
     cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << endl;
     cin >> myreq.VerifyCertNoFlag;
     cout << "币种代码 TThostFtdcCurrencyIDType:" << endl;
@@ -2048,8 +1874,8 @@ void CTraderSpi::reqFromFutureToBankByFuture()
     cin >> myreq.TradeTime;
     cout << "银行流水号 TThostFtdcBankSerialType:" << endl;
     cin >> myreq.BankSerial;
-    cout << "交易系统日期 TThostFtdcTradeDateType	TradingDa:" << endl;
-    cin >> myreq.;
+    // cout << "交易系统日期 TThostFtdcTradeDateType	TradingDa:" << endl;
+    // cin >> myreq.;
     cout << "银期平台消息流水号 TThostFtdcSerialType:" << endl;
     cin >> myreq.PlateSerial;
     cout << "最后分片标志 TThostFtdcLastFragmentType:" << endl;
@@ -2071,13 +1897,13 @@ void CTraderSpi::reqFromFutureToBankByFuture()
     cout << "投资者帐号 TThostFtdcAccountIDType:" << endl;
     cin >> myreq.AccountID;
     cout << "期货密码 TThostFtdcPasswordType:" << endl;
-    strcpy(myreq.Password, passwd.cstr());
+    strcpy(myreq.Password, passwd.c_str());
     cout << "安装编号 TThostFtdcInstallIDType:" << endl;
     cin >> myreq.InstallID;
     cout << "期货公司流水号 TThostFtdcFutureSerialType:" << endl;
     cin >> myreq.FutureSerial;
     cout << "用户标识 TThostFtdcUserIDType:" << endl;
-    strcpy(myreq.UserID, user_id.cstr());
+    strcpy(myreq.UserID, user_id.c_str());
     cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << endl;
     cin >> myreq.VerifyCertNoFlag;
     cout << "币种代码 TThostFtdcCurrencyIDType:" << endl;
@@ -2165,13 +1991,13 @@ void CTraderSpi::reqQueryBankAccountMoneyByFuture()
     cout << "投资者帐号 TThostFtdcAccountIDType:" << endl;
     cin >> myreq.AccountID;
     cout << "期货密码 TThostFtdcPasswordType:" << endl;
-    strcpy(myreq.Password, passwd.cstr());
+    strcpy(myreq.Password, passwd.c_str());
     cout << "期货公司流水号 TThostFtdcFutureSerialType:" << endl;
     cin >> myreq.FutureSerial;
     cout << "安装编号 TThostFtdcInstallIDType:" << endl;
     cin >> myreq.InstallID;
     cout << "用户标识 TThostFtdcUserIDType:" << endl;
-    strcpy(myreq.UserID, user_id.cstr());
+    strcpy(myreq.UserID, user_id.c_str());
     cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << endl;
     cin >> myreq.VerifyCertNoFlag;
     cout << "币种代码 TThostFtdcCurrencyIDType:" << endl;
@@ -2207,7 +2033,7 @@ void CTraderSpi::OnFrontConnected()
     cout << "--->>> "
 	 << "OnFrontConnected" << endl;
     // user login request
-    ReqUserLogin();
+    reqUserLogin();
 }
 
 ///当客户端与交易后台通信连接断开时，该方法被调用。当发生这个情况后，API会自动重新连接，客户端可不做处理。
@@ -2234,7 +2060,7 @@ void CTraderSpi::OnHeartBeatWarning(int nTimeLapse)
 }
 
 ///客户端认证响应
-virtual void OnRspAuthenticate(CThostFtdcRspAuthenticateField* pRspAuthenticateField, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspAuthenticate(CThostFtdcRspAuthenticateField* pRspAuthenticateField, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2278,7 +2104,7 @@ void CTraderSpi::OnRspUserLogin(CThostFtdcRspUserLoginField* pRspUserLogin, CTho
 }
 
 ///登出请求响应
-virtual void OnRspUserLogout(CThostFtdcUserLogoutField* pUserLogout, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspUserLogout(CThostFtdcUserLogoutField* pUserLogout, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2288,7 +2114,7 @@ virtual void OnRspUserLogout(CThostFtdcUserLogoutField* pUserLogout, CThostFtdcR
 }
 
 ///用户口令更新请求响应
-virtual void OnRspUserPasswordUpdate(CThostFtdcUserPasswordUpdateField* pUserPasswordUpdate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspUserPasswordUpdate(CThostFtdcUserPasswordUpdateField* pUserPasswordUpdate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2300,7 +2126,7 @@ virtual void OnRspUserPasswordUpdate(CThostFtdcUserPasswordUpdateField* pUserPas
 }
 
 ///资金账户口令更新请求响应
-virtual void OnRspTradingAccountPasswordUpdate(CThostFtdcTradingAccountPasswordUpdateField* pTradingAccountPasswordUpdate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspTradingAccountPasswordUpdate(CThostFtdcTradingAccountPasswordUpdateField* pTradingAccountPasswordUpdate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2329,7 +2155,7 @@ void CTraderSpi::OnRspOrderInsert(CThostFtdcInputOrderField* pInputOrder, CThost
 	cout << "价格 TThostFtdcPriceType:" << pInputOrder->LimitPrice << endl;
 	cout << "数量 TThostFtdcVolumeType:" << pInputOrder->VolumeTotalOriginal << endl;
 	cout << "有效期类型 TThostFtdcTimeConditionType:" << pInputOrder->TimeCondition << endl;
-	cout << "GTD日期:" << pInputOrder->TThostFtdcDateType << endlGTDDate;
+	cout << "GTD日期 pInputOrder->TThostFtdcDateType:" << pInputOrder->GTDDate << endl;
 	cout << "成交量类型 TThostFtdcVolumeConditionType:" << pInputOrder->VolumeCondition << endl;
 	cout << "最小成交量 TThostFtdcVolumeType:" << pInputOrder->MinVolume << endl;
 	cout << "触发条件 TThostFtdcContingentConditionType:" << pInputOrder->ContingentCondition << endl;
@@ -2345,7 +2171,7 @@ void CTraderSpi::OnRspOrderInsert(CThostFtdcInputOrderField* pInputOrder, CThost
 }
 
 ///预埋单录入请求响应
-virtual void OnRspParkedOrderInsert(CThostFtdcParkedOrderField* pParkedOrder, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspParkedOrderInsert(CThostFtdcParkedOrderField* pParkedOrder, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2361,7 +2187,7 @@ virtual void OnRspParkedOrderInsert(CThostFtdcParkedOrderField* pParkedOrder, CT
 	cout << "价格 TThostFtdcPriceType:" << pParkedOrder->LimitPrice << endl;
 	cout << "数量 TThostFtdcVolumeType:" << pParkedOrder->VolumeTotalOriginal << endl;
 	cout << "有效期类型 TThostFtdcTimeConditionType:" << pParkedOrder->TimeCondition << endl;
-	cout << "GTD日期:" << pParkedOrder->TThostFtdcDateType << endlGTDDate;
+	// cout << "GTD日期:" << pParkedOrder->TThostFtdcDateType << endlGTDDate;
 	cout << "成交量类型 TThostFtdcVolumeConditionType:" << pParkedOrder->VolumeCondition << endl;
 	cout << "最小成交量 TThostFtdcVolumeType:" << pParkedOrder->MinVolume << endl;
 	cout << "触发条件 TThostFtdcContingentConditionType:" << pParkedOrder->ContingentCondition << endl;
@@ -2382,7 +2208,7 @@ virtual void OnRspParkedOrderInsert(CThostFtdcParkedOrderField* pParkedOrder, CT
 }
 
 ///预埋撤单录入请求响应
-virtual void OnRspParkedOrderAction(CThostFtdcParkedOrderActionField* pParkedOrderAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspParkedOrderAction(CThostFtdcParkedOrderActionField* pParkedOrderAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2431,7 +2257,7 @@ void CTraderSpi::OnRspOrderAction(CThostFtdcInputOrderActionField* pInputOrderAc
 }
 
 ///查询最大报单数量响应
-virtual void OnRspQueryMaxOrderVolume(CThostFtdcQueryMaxOrderVolumeField* pQueryMaxOrderVolume, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQueryMaxOrderVolume(CThostFtdcQueryMaxOrderVolumeField* pQueryMaxOrderVolume, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2459,7 +2285,7 @@ void CTraderSpi::OnRspSettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField
 }
 
 ///删除预埋单响应
-virtual void OnRspRemoveParkedOrder(CThostFtdcRemoveParkedOrderField* pRemoveParkedOrder, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspRemoveParkedOrder(CThostFtdcRemoveParkedOrderField* pRemoveParkedOrder, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2470,7 +2296,7 @@ virtual void OnRspRemoveParkedOrder(CThostFtdcRemoveParkedOrderField* pRemovePar
 }
 
 ///删除预埋撤单响应
-virtual void OnRspRemoveParkedOrderAction(CThostFtdcRemoveParkedOrderActionField* pRemoveParkedOrderAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspRemoveParkedOrderAction(CThostFtdcRemoveParkedOrderActionField* pRemoveParkedOrderAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2481,7 +2307,7 @@ virtual void OnRspRemoveParkedOrderAction(CThostFtdcRemoveParkedOrderActionField
 }
 
 ///执行宣告录入请求响应
-virtual void OnRspExecOrderInsert(CThostFtdcInputExecOrderField* pInputExecOrder, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspExecOrderInsert(CThostFtdcInputExecOrderField* pInputExecOrder, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2504,7 +2330,7 @@ virtual void OnRspExecOrderInsert(CThostFtdcInputExecOrderField* pInputExecOrder
 }
 
 ///执行宣告操作请求响应
-virtual void OnRspExecOrderAction(CThostFtdcInputExecOrderActionField* pInputExecOrderAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspExecOrderAction(CThostFtdcInputExecOrderActionField* pInputExecOrderAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2524,7 +2350,7 @@ virtual void OnRspExecOrderAction(CThostFtdcInputExecOrderActionField* pInputExe
 }
 
 ///询价录入请求响应
-virtual void OnRspForQuoteInsert(CThostFtdcInputForQuoteField* pInputForQuote, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspForQuoteInsert(CThostFtdcInputForQuoteField* pInputForQuote, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2538,7 +2364,7 @@ virtual void OnRspForQuoteInsert(CThostFtdcInputForQuoteField* pInputForQuote, C
 }
 
 ///报价录入请求响应
-virtual void OnRspQuoteInsert(CThostFtdcInputQuoteField* pInputQuote, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQuoteInsert(CThostFtdcInputQuoteField* pInputQuote, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2565,7 +2391,7 @@ virtual void OnRspQuoteInsert(CThostFtdcInputQuoteField* pInputQuote, CThostFtdc
 }
 
 ///报价操作请求响应
-virtual void OnRspQuoteAction(CThostFtdcInputQuoteActionField* pInputQuoteAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQuoteAction(CThostFtdcInputQuoteActionField* pInputQuoteAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2585,7 +2411,7 @@ virtual void OnRspQuoteAction(CThostFtdcInputQuoteActionField* pInputQuoteAction
 }
 
 ///锁定应答
-virtual void OnRspLockInsert(CThostFtdcInputLockField* pInputLock, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspLockInsert(CThostFtdcInputLockField* pInputLock, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2603,7 +2429,7 @@ virtual void OnRspLockInsert(CThostFtdcInputLockField* pInputLock, CThostFtdcRsp
 }
 
 ///申请组合录入请求响应
-virtual void OnRspCombActionInsert(CThostFtdcInputCombActionField* pInputCombAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspCombActionInsert(CThostFtdcInputCombActionField* pInputCombAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2621,7 +2447,7 @@ virtual void OnRspCombActionInsert(CThostFtdcInputCombActionField* pInputCombAct
 }
 
 ///请求查询报单响应
-virtual void OnRspQryOrder(CThostFtdcOrderField* pOrder, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryOrder(CThostFtdcOrderField* pOrder, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2637,7 +2463,7 @@ virtual void OnRspQryOrder(CThostFtdcOrderField* pOrder, CThostFtdcRspInfoField*
 	cout << "价格 TThostFtdcPriceType:" << pOrder->LimitPrice << endl;
 	cout << "数量 TThostFtdcVolumeType:" << pOrder->VolumeTotalOriginal << endl;
 	cout << "有效期类型 TThostFtdcTimeConditionType:" << pOrder->TimeCondition << endl;
-	cout << "GTD日期:" << pOrder->TThostFtdcDateType << endlGTDDate;
+	// cout << "GTD日期:" << pOrder->TThostFtdcDateType << endlGTDDate;
 	cout << "成交量类型 TThostFtdcVolumeConditionType:" << pOrder->VolumeCondition << endl;
 	cout << "最小成交量 TThostFtdcVolumeType:" << pOrder->MinVolume << endl;
 	cout << "触发条件 TThostFtdcContingentConditionType:" << pOrder->ContingentCondition << endl;
@@ -2687,7 +2513,7 @@ virtual void OnRspQryOrder(CThostFtdcOrderField* pOrder, CThostFtdcRspInfoField*
 }
 
 ///请求查询成交响应
-virtual void OnRspQryTrade(CThostFtdcTradeField* pTrade, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryTrade(CThostFtdcTradeField* pTrade, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2833,7 +2659,7 @@ void CTraderSpi::OnRspQryTradingAccount(CThostFtdcTradingAccountField* pTradingA
 }
 
 ///请求查询投资者响应
-virtual void OnRspQryInvestor(CThostFtdcInvestorField* pInvestor, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryInvestor(CThostFtdcInvestorField* pInvestor, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2854,7 +2680,7 @@ virtual void OnRspQryInvestor(CThostFtdcInvestorField* pInvestor, CThostFtdcRspI
 }
 
 ///请求查询交易编码响应
-virtual void OnRspQryTradingCode(CThostFtdcTradingCodeField* pTradingCode, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryTradingCode(CThostFtdcTradingCodeField* pTradingCode, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2870,7 +2696,7 @@ virtual void OnRspQryTradingCode(CThostFtdcTradingCodeField* pTradingCode, CThos
 }
 
 ///请求查询合约保证金率响应
-virtual void OnRspQryInstrumentMarginRate(CThostFtdcInstrumentMarginRateField* pInstrumentMarginRate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryInstrumentMarginRate(CThostFtdcInstrumentMarginRateField* pInstrumentMarginRate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2888,7 +2714,7 @@ virtual void OnRspQryInstrumentMarginRate(CThostFtdcInstrumentMarginRateField* p
 }
 
 ///请求查询合约手续费率响应
-virtual void OnRspQryInstrumentCommissionRate(CThostFtdcInstrumentCommissionRateField* pInstrumentCommissionRate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryInstrumentCommissionRate(CThostFtdcInstrumentCommissionRateField* pInstrumentCommissionRate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2908,7 +2734,7 @@ virtual void OnRspQryInstrumentCommissionRate(CThostFtdcInstrumentCommissionRate
 }
 
 ///请求查询交易所响应
-virtual void OnRspQryExchange(CThostFtdcExchangeField* pExchange, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryExchange(CThostFtdcExchangeField* pExchange, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2919,7 +2745,7 @@ virtual void OnRspQryExchange(CThostFtdcExchangeField* pExchange, CThostFtdcRspI
 }
 
 ///请求查询产品响应
-virtual void OnRspQryProduct(CThostFtdcProductField* pProduct, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryProduct(CThostFtdcProductField* pProduct, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -2987,7 +2813,7 @@ void CTraderSpi::OnRspQryInstrument(CThostFtdcInstrumentField* pInstrument, CTho
 }
 
 ///请求查询行情响应
-virtual void OnRspQryDepthMarketData(CThostFtdcDepthMarketDataField* pDepthMarketData, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryDepthMarketData(CThostFtdcDepthMarketDataField* pDepthMarketData, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3039,7 +2865,7 @@ virtual void OnRspQryDepthMarketData(CThostFtdcDepthMarketDataField* pDepthMarke
 }
 
 ///请求查询投资者结算结果响应
-virtual void OnRspQrySettlementInfo(CThostFtdcSettlementInfoField* pSettlementInfo, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQrySettlementInfo(CThostFtdcSettlementInfoField* pSettlementInfo, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3053,7 +2879,7 @@ virtual void OnRspQrySettlementInfo(CThostFtdcSettlementInfoField* pSettlementIn
 }
 
 ///请求查询转帐银行响应
-virtual void OnRspQryTransferBank(CThostFtdcTransferBankField* pTransferBank, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryTransferBank(CThostFtdcTransferBankField* pTransferBank, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3065,7 +2891,7 @@ virtual void OnRspQryTransferBank(CThostFtdcTransferBankField* pTransferBank, CT
 }
 
 ///请求查询投资者持仓明细响应
-virtual void OnRspQryInvestorPositionDetail(CThostFtdcInvestorPositionDetailField* pInvestorPositionDetail, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryInvestorPositionDetail(CThostFtdcInvestorPositionDetailField* pInvestorPositionDetail, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3099,7 +2925,7 @@ virtual void OnRspQryInvestorPositionDetail(CThostFtdcInvestorPositionDetailFiel
 }
 
 ///请求查询客户通知响应
-virtual void OnRspQryNotice(CThostFtdcNoticeField* pNotice, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryNotice(CThostFtdcNoticeField* pNotice, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3110,7 +2936,7 @@ virtual void OnRspQryNotice(CThostFtdcNoticeField* pNotice, CThostFtdcRspInfoFie
 }
 
 ///请求查询结算信息确认响应
-virtual void OnRspQrySettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField* pSettlementInfoConfirm, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQrySettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField* pSettlementInfoConfirm, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3122,7 +2948,7 @@ virtual void OnRspQrySettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField*
 }
 
 ///请求查询投资者持仓明细响应
-virtual void OnRspQryInvestorPositionCombineDetail(CThostFtdcInvestorPositionCombineDetailField* pInvestorPositionCombineDetail, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryInvestorPositionCombineDetail(CThostFtdcInvestorPositionCombineDetailField* pInvestorPositionCombineDetail, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3150,7 +2976,7 @@ virtual void OnRspQryInvestorPositionCombineDetail(CThostFtdcInvestorPositionCom
 }
 
 ///查询保证金监管系统经纪公司资金账户密钥响应
-virtual void OnRspQryCFMMCTradingAccountKey(CThostFtdcCFMMCTradingAccountKeyField* pCFMMCTradingAccountKey, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryCFMMCTradingAccountKey(CThostFtdcCFMMCTradingAccountKeyField* pCFMMCTradingAccountKey, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3163,7 +2989,7 @@ virtual void OnRspQryCFMMCTradingAccountKey(CThostFtdcCFMMCTradingAccountKeyFiel
 }
 
 ///请求查询仓单折抵信息响应
-virtual void OnRspQryEWarrantOffset(CThostFtdcEWarrantOffsetField* pEWarrantOffset, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryEWarrantOffset(CThostFtdcEWarrantOffsetField* pEWarrantOffset, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3179,7 +3005,7 @@ virtual void OnRspQryEWarrantOffset(CThostFtdcEWarrantOffsetField* pEWarrantOffs
 }
 
 ///请求查询投资者品种/跨品种保证金响应
-virtual void OnRspQryInvestorProductGroupMargin(CThostFtdcInvestorProductGroupMarginField* pInvestorProductGroupMargin, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryInvestorProductGroupMargin(CThostFtdcInvestorProductGroupMarginField* pInvestorProductGroupMargin, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3214,7 +3040,7 @@ virtual void OnRspQryInvestorProductGroupMargin(CThostFtdcInvestorProductGroupMa
 }
 
 ///请求查询交易所保证金率响应
-virtual void OnRspQryExchangeMarginRate(CThostFtdcExchangeMarginRateField* pExchangeMarginRate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryExchangeMarginRate(CThostFtdcExchangeMarginRateField* pExchangeMarginRate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3229,7 +3055,7 @@ virtual void OnRspQryExchangeMarginRate(CThostFtdcExchangeMarginRateField* pExch
 }
 
 ///请求查询交易所调整保证金率响应
-virtual void OnRspQryExchangeMarginRateAdjust(CThostFtdcExchangeMarginRateAdjustField* pExchangeMarginRateAdjust, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryExchangeMarginRateAdjust(CThostFtdcExchangeMarginRateAdjustField* pExchangeMarginRateAdjust, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3252,7 +3078,7 @@ virtual void OnRspQryExchangeMarginRateAdjust(CThostFtdcExchangeMarginRateAdjust
 }
 
 ///请求查询汇率响应
-virtual void OnRspQryExchangeRate(CThostFtdcExchangeRateField* pExchangeRate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryExchangeRate(CThostFtdcExchangeRateField* pExchangeRate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3265,7 +3091,7 @@ virtual void OnRspQryExchangeRate(CThostFtdcExchangeRateField* pExchangeRate, CT
 }
 
 ///请求查询二级代理操作员银期权限响应
-virtual void OnRspQrySecAgentACIDMap(CThostFtdcSecAgentACIDMapField* pSecAgentACIDMap, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQrySecAgentACIDMap(CThostFtdcSecAgentACIDMapField* pSecAgentACIDMap, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3278,7 +3104,7 @@ virtual void OnRspQrySecAgentACIDMap(CThostFtdcSecAgentACIDMapField* pSecAgentAC
 }
 
 ///请求查询产品报价汇率
-virtual void OnRspQryProductExchRate(CThostFtdcProductExchRateField* pProductExchRate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryProductExchRate(CThostFtdcProductExchRateField* pProductExchRate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3289,7 +3115,7 @@ virtual void OnRspQryProductExchRate(CThostFtdcProductExchRateField* pProductExc
 }
 
 ///请求查询产品组
-virtual void OnRspQryProductGroup(CThostFtdcProductGroupField* pProductGroup, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryProductGroup(CThostFtdcProductGroupField* pProductGroup, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3300,7 +3126,7 @@ virtual void OnRspQryProductGroup(CThostFtdcProductGroupField* pProductGroup, CT
 }
 
 ///请求查询期权交易成本响应
-virtual void OnRspQryOptionInstrTradeCost(CThostFtdcOptionInstrTradeCostField* pOptionInstrTradeCost, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryOptionInstrTradeCost(CThostFtdcOptionInstrTradeCostField* pOptionInstrTradeCost, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3318,7 +3144,7 @@ virtual void OnRspQryOptionInstrTradeCost(CThostFtdcOptionInstrTradeCostField* p
 }
 
 ///请求查询期权合约手续费响应
-virtual void OnRspQryOptionInstrCommRate(CThostFtdcOptionInstrCommRateField* pOptionInstrCommRate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryOptionInstrCommRate(CThostFtdcOptionInstrCommRateField* pOptionInstrCommRate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3339,7 +3165,7 @@ virtual void OnRspQryOptionInstrCommRate(CThostFtdcOptionInstrCommRateField* pOp
 }
 
 ///请求查询执行宣告响应
-virtual void OnRspQryExecOrder(CThostFtdcExecOrderField* pExecOrder, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryExecOrder(CThostFtdcExecOrderField* pExecOrder, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3386,7 +3212,7 @@ virtual void OnRspQryExecOrder(CThostFtdcExecOrderField* pExecOrder, CThostFtdcR
 }
 
 ///请求查询询价响应
-virtual void OnRspQryForQuote(CThostFtdcForQuoteField* pForQuote, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryForQuote(CThostFtdcForQuoteField* pForQuote, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3414,7 +3240,7 @@ virtual void OnRspQryForQuote(CThostFtdcForQuoteField* pForQuote, CThostFtdcRspI
 }
 
 ///请求查询报价响应
-virtual void OnRspQryQuote(CThostFtdcQuoteField* pQuote, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryQuote(CThostFtdcQuoteField* pQuote, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3467,7 +3293,7 @@ virtual void OnRspQryQuote(CThostFtdcQuoteField* pQuote, CThostFtdcRspInfoField*
 }
 
 ///请求查询锁定应答
-virtual void OnRspQryLock(CThostFtdcLockField* pLock, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryLock(CThostFtdcLockField* pLock, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3509,7 +3335,7 @@ virtual void OnRspQryLock(CThostFtdcLockField* pLock, CThostFtdcRspInfoField* pR
 }
 
 ///请求查询锁定证券仓位应答
-virtual void OnRspQryLockPosition(CThostFtdcLockPositionField* pLockPosition, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryLockPosition(CThostFtdcLockPositionField* pLockPosition, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3523,7 +3349,7 @@ virtual void OnRspQryLockPosition(CThostFtdcLockPositionField* pLockPosition, CT
 }
 
 ///请求查询投资者分级
-virtual void OnRspQryInvestorLevel(CThostFtdcInvestorLevelField* pInvestorLevel, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryInvestorLevel(CThostFtdcInvestorLevelField* pInvestorLevel, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3535,7 +3361,7 @@ virtual void OnRspQryInvestorLevel(CThostFtdcInvestorLevelField* pInvestorLevel,
 }
 
 ///请求查询E+1日行权冻结响应
-virtual void OnRspQryExecFreeze(CThostFtdcExecFreezeField* pExecFreeze, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryExecFreeze(CThostFtdcExecFreezeField* pExecFreeze, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3551,7 +3377,7 @@ virtual void OnRspQryExecFreeze(CThostFtdcExecFreezeField* pExecFreeze, CThostFt
 }
 
 ///请求查询组合合约安全系数响应
-virtual void OnRspQryCombInstrumentGuard(CThostFtdcCombInstrumentGuardField* pCombInstrumentGuard, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryCombInstrumentGuard(CThostFtdcCombInstrumentGuardField* pCombInstrumentGuard, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3562,7 +3388,7 @@ virtual void OnRspQryCombInstrumentGuard(CThostFtdcCombInstrumentGuardField* pCo
 }
 
 ///请求查询申请组合响应
-virtual void OnRspQryCombAction(CThostFtdcCombActionField* pCombAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryCombAction(CThostFtdcCombActionField* pCombAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3595,7 +3421,7 @@ virtual void OnRspQryCombAction(CThostFtdcCombActionField* pCombAction, CThostFt
 }
 
 ///请求查询转帐流水响应
-virtual void OnRspQryTransferSerial(CThostFtdcTransferSerialField* pTransferSerial, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryTransferSerial(CThostFtdcTransferSerialField* pTransferSerial, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3631,7 +3457,7 @@ virtual void OnRspQryTransferSerial(CThostFtdcTransferSerialField* pTransferSeri
 }
 
 ///请求查询银期签约关系响应
-virtual void OnRspQryAccountregister(CThostFtdcAccountregisterField* pAccountregister, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryAccountregister(CThostFtdcAccountregisterField* pAccountregister, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -3649,7 +3475,7 @@ virtual void OnRspQryAccountregister(CThostFtdcAccountregisterField* pAccountreg
 	cout << "开销户类别 TThostFtdcOpenOrDestroyType:" << pAccountregister->OpenOrDestroy << endl;
 	cout << "签约日期 TThostFtdcTradeDateType:" << pAccountregister->RegDate << endl;
 	cout << "解约日期 TThostFtdcTradeDateType:" << pAccountregister->OutDate << endl;
-	cout << "交易ID:" << pAccountregister->TThostFtdcTIDType << endlTID;
+	// cout << "交易ID:" << pAccountregister->TThostFtdcTIDType << endlTID;
 	cout << "客户类型 TThostFtdcCustTypeType:" << pAccountregister->CustType << endl;
 	cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pAccountregister->BankAccType << endl;
     }
@@ -3665,66 +3491,64 @@ void CTraderSpi::OnRspError(CThostFtdcRspInfoField* pRspInfo, int nRequestID, bo
 void CTraderSpi::OnRtnOrder(CThostFtdcOrderField* pOrder)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pOrder->BrokerID << endl;
-	cout << "投资者代码 TThostFtdcInvestorIDType:" << pOrder->InvestorID << endl;
-	cout << "合约代码 TThostFtdcInstrumentIDType:" << pOrder->InstrumentID << endl;
-	cout << "报单引用 TThostFtdcOrderRefType:" << pOrder->OrderRef << endl;
-	cout << "用户代码 TThostFtdcUserIDType:" << pOrder->UserID << endl;
-	cout << "报单价格条件 TThostFtdcOrderPriceTypeType:" << pOrder->OrderPriceType << endl;
-	cout << "买卖方向 TThostFtdcDirectionType:" << pOrder->Direction << endl;
-	cout << "组合开平标志 TThostFtdcCombOffsetFlagType:" << pOrder->CombOffsetFlag << endl;
-	cout << "组合投机套保标志 TThostFtdcCombHedgeFlagType:" << pOrder->CombHedgeFlag << endl;
-	cout << "价格 TThostFtdcPriceType:" << pOrder->LimitPrice << endl;
-	cout << "数量 TThostFtdcVolumeType:" << pOrder->VolumeTotalOriginal << endl;
-	cout << "有效期类型 TThostFtdcTimeConditionType:" << pOrder->TimeCondition << endl;
-	cout << "GTD日期:" << pOrder->TThostFtdcDateType << endlGTDDate;
-	cout << "成交量类型 TThostFtdcVolumeConditionType:" << pOrder->VolumeCondition << endl;
-	cout << "最小成交量 TThostFtdcVolumeType:" << pOrder->MinVolume << endl;
-	cout << "触发条件 TThostFtdcContingentConditionType:" << pOrder->ContingentCondition << endl;
-	cout << "止损价 TThostFtdcPriceType:" << pOrder->StopPrice << endl;
-	cout << "强平原因 TThostFtdcForceCloseReasonType:" << pOrder->ForceCloseReason << endl;
-	cout << "自动挂起标志 TThostFtdcBoolType:" << pOrder->IsAutoSuspend << endl;
-	cout << "业务单元 TThostFtdcBusinessUnitType:" << pOrder->BusinessUnit << endl;
-	cout << "请求编号 TThostFtdcRequestIDType:" << pOrder->RequestID << endl;
-	cout << "本地报单编号 TThostFtdcOrderLocalIDType:" << pOrder->OrderLocalID << endl;
-	cout << "交易所代码 TThostFtdcExchangeIDType:" << pOrder->ExchangeID << endl;
-	cout << "会员代码 TThostFtdcParticipantIDType:" << pOrder->ParticipantID << endl;
-	cout << "客户代码 TThostFtdcClientIDType:" << pOrder->ClientID << endl;
-	cout << "合约在交易所的代码 TThostFtdcExchangeInstIDType:" << pOrder->ExchangeInstID << endl;
-	cout << "交易所交易员代码 TThostFtdcTraderIDType:" << pOrder->TraderID << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pOrder->InstallID << endl;
-	cout << "报单提交状态 TThostFtdcOrderSubmitStatusType:" << pOrder->OrderSubmitStatus << endl;
-	cout << "报单提示序号 TThostFtdcSequenceNoType:" << pOrder->NotifySequence << endl;
-	cout << "交易日 TThostFtdcDateType:" << pOrder->TradingDay << endl;
-	cout << "结算编号 TThostFtdcSettlementIDType:" << pOrder->SettlementID << endl;
-	cout << "报单编号 TThostFtdcOrderSysIDType:" << pOrder->OrderSysID << endl;
-	cout << "报单来源 TThostFtdcOrderSourceType:" << pOrder->OrderSource << endl;
-	cout << "报单状态 TThostFtdcOrderStatusType:" << pOrder->OrderStatus << endl;
-	cout << "报单类型 TThostFtdcOrderTypeType:" << pOrder->OrderType << endl;
-	cout << "今成交数量 TThostFtdcVolumeType:" << pOrder->VolumeTraded << endl;
-	cout << "剩余数量 TThostFtdcVolumeType:" << pOrder->VolumeTotal << endl;
-	cout << "报单日期 TThostFtdcDateType:" << pOrder->InsertDate << endl;
-	cout << "委托时间 TThostFtdcTimeType:" << pOrder->InsertTime << endl;
-	cout << "激活时间 TThostFtdcTimeType:" << pOrder->ActiveTime << endl;
-	cout << "挂起时间 TThostFtdcTimeType:" << pOrder->SuspendTime << endl;
-	cout << "最后修改时间 TThostFtdcTimeType:" << pOrder->UpdateTime << endl;
-	cout << "撤销时间 TThostFtdcTimeType:" << pOrder->CancelTime << endl;
-	cout << "最后修改交易所交易员代码 TThostFtdcTraderIDType:" << pOrder->ActiveTraderID << endl;
-	cout << "结算会员编号 TThostFtdcParticipantIDType:" << pOrder->ClearingPartID << endl;
-	cout << "序号 TThostFtdcSequenceNoType:" << pOrder->SequenceNo << endl;
-	cout << "前置编号 TThostFtdcFrontIDType:" << pOrder->FrontID << endl;
-	cout << "会话编号 TThostFtdcSessionIDType:" << pOrder->SessionID << endl;
-	cout << "用户端产品信息 TThostFtdcProductInfoType:" << pOrder->UserProductInfo << endl;
-	cout << "状态信息 TThostFtdcErrorMsgType:" << pOrder->StatusMsg << endl;
-	cout << "用户强评标志 TThostFtdcBoolType:" << pOrder->UserForceClose << endl;
-	cout << "操作用户代码 TThostFtdcUserIDType:" << pOrder->ActiveUserID << endl;
-	cout << "经纪公司报单编号 TThostFtdcSequenceNoType:" << pOrder->BrokerOrderSeq << endl;
-	cout << "相关报单 TThostFtdcOrderSysIDType:" << pOrder->RelativeOrderSysID << endl;
-	cout << "郑商所成交数量 TThostFtdcVolumeType:" << pOrder->ZCETotalTradedVolume << endl;
-	cout << "互换单标志 TThostFtdcBoolType:" << pOrder->IsSwapOrder << endl;
-	cout << "营业部编号 TThostFtdcBranchIDType:" << pOrder->BranchID << endl;
-    }
+    cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pOrder->BrokerID << endl;
+    cout << "投资者代码 TThostFtdcInvestorIDType:" << pOrder->InvestorID << endl;
+    cout << "合约代码 TThostFtdcInstrumentIDType:" << pOrder->InstrumentID << endl;
+    cout << "报单引用 TThostFtdcOrderRefType:" << pOrder->OrderRef << endl;
+    cout << "用户代码 TThostFtdcUserIDType:" << pOrder->UserID << endl;
+    cout << "报单价格条件 TThostFtdcOrderPriceTypeType:" << pOrder->OrderPriceType << endl;
+    cout << "买卖方向 TThostFtdcDirectionType:" << pOrder->Direction << endl;
+    cout << "组合开平标志 TThostFtdcCombOffsetFlagType:" << pOrder->CombOffsetFlag << endl;
+    cout << "组合投机套保标志 TThostFtdcCombHedgeFlagType:" << pOrder->CombHedgeFlag << endl;
+    cout << "价格 TThostFtdcPriceType:" << pOrder->LimitPrice << endl;
+    cout << "数量 TThostFtdcVolumeType:" << pOrder->VolumeTotalOriginal << endl;
+    cout << "有效期类型 TThostFtdcTimeConditionType:" << pOrder->TimeCondition << endl;
+    // cout << "GTD日期:" << pOrder->TThostFtdcDateType << endlGTDDate;
+    cout << "成交量类型 TThostFtdcVolumeConditionType:" << pOrder->VolumeCondition << endl;
+    cout << "最小成交量 TThostFtdcVolumeType:" << pOrder->MinVolume << endl;
+    cout << "触发条件 TThostFtdcContingentConditionType:" << pOrder->ContingentCondition << endl;
+    cout << "止损价 TThostFtdcPriceType:" << pOrder->StopPrice << endl;
+    cout << "强平原因 TThostFtdcForceCloseReasonType:" << pOrder->ForceCloseReason << endl;
+    cout << "自动挂起标志 TThostFtdcBoolType:" << pOrder->IsAutoSuspend << endl;
+    cout << "业务单元 TThostFtdcBusinessUnitType:" << pOrder->BusinessUnit << endl;
+    cout << "请求编号 TThostFtdcRequestIDType:" << pOrder->RequestID << endl;
+    cout << "本地报单编号 TThostFtdcOrderLocalIDType:" << pOrder->OrderLocalID << endl;
+    cout << "交易所代码 TThostFtdcExchangeIDType:" << pOrder->ExchangeID << endl;
+    cout << "会员代码 TThostFtdcParticipantIDType:" << pOrder->ParticipantID << endl;
+    cout << "客户代码 TThostFtdcClientIDType:" << pOrder->ClientID << endl;
+    cout << "合约在交易所的代码 TThostFtdcExchangeInstIDType:" << pOrder->ExchangeInstID << endl;
+    cout << "交易所交易员代码 TThostFtdcTraderIDType:" << pOrder->TraderID << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pOrder->InstallID << endl;
+    cout << "报单提交状态 TThostFtdcOrderSubmitStatusType:" << pOrder->OrderSubmitStatus << endl;
+    cout << "报单提示序号 TThostFtdcSequenceNoType:" << pOrder->NotifySequence << endl;
+    cout << "交易日 TThostFtdcDateType:" << pOrder->TradingDay << endl;
+    cout << "结算编号 TThostFtdcSettlementIDType:" << pOrder->SettlementID << endl;
+    cout << "报单编号 TThostFtdcOrderSysIDType:" << pOrder->OrderSysID << endl;
+    cout << "报单来源 TThostFtdcOrderSourceType:" << pOrder->OrderSource << endl;
+    cout << "报单状态 TThostFtdcOrderStatusType:" << pOrder->OrderStatus << endl;
+    cout << "报单类型 TThostFtdcOrderTypeType:" << pOrder->OrderType << endl;
+    cout << "今成交数量 TThostFtdcVolumeType:" << pOrder->VolumeTraded << endl;
+    cout << "剩余数量 TThostFtdcVolumeType:" << pOrder->VolumeTotal << endl;
+    cout << "报单日期 TThostFtdcDateType:" << pOrder->InsertDate << endl;
+    cout << "委托时间 TThostFtdcTimeType:" << pOrder->InsertTime << endl;
+    cout << "激活时间 TThostFtdcTimeType:" << pOrder->ActiveTime << endl;
+    cout << "挂起时间 TThostFtdcTimeType:" << pOrder->SuspendTime << endl;
+    cout << "最后修改时间 TThostFtdcTimeType:" << pOrder->UpdateTime << endl;
+    cout << "撤销时间 TThostFtdcTimeType:" << pOrder->CancelTime << endl;
+    cout << "最后修改交易所交易员代码 TThostFtdcTraderIDType:" << pOrder->ActiveTraderID << endl;
+    cout << "结算会员编号 TThostFtdcParticipantIDType:" << pOrder->ClearingPartID << endl;
+    cout << "序号 TThostFtdcSequenceNoType:" << pOrder->SequenceNo << endl;
+    cout << "前置编号 TThostFtdcFrontIDType:" << pOrder->FrontID << endl;
+    cout << "会话编号 TThostFtdcSessionIDType:" << pOrder->SessionID << endl;
+    cout << "用户端产品信息 TThostFtdcProductInfoType:" << pOrder->UserProductInfo << endl;
+    cout << "状态信息 TThostFtdcErrorMsgType:" << pOrder->StatusMsg << endl;
+    cout << "用户强评标志 TThostFtdcBoolType:" << pOrder->UserForceClose << endl;
+    cout << "操作用户代码 TThostFtdcUserIDType:" << pOrder->ActiveUserID << endl;
+    cout << "经纪公司报单编号 TThostFtdcSequenceNoType:" << pOrder->BrokerOrderSeq << endl;
+    cout << "相关报单 TThostFtdcOrderSysIDType:" << pOrder->RelativeOrderSysID << endl;
+    cout << "郑商所成交数量 TThostFtdcVolumeType:" << pOrder->ZCETotalTradedVolume << endl;
+    cout << "互换单标志 TThostFtdcBoolType:" << pOrder->IsSwapOrder << endl;
+    cout << "营业部编号 TThostFtdcBranchIDType:" << pOrder->BranchID << endl;
 }
 
 ///成交通知
@@ -3764,10 +3588,10 @@ void CTraderSpi::OnRtnTrade(CThostFtdcTradeField* pTrade)
 }
 
 ///报单录入错误回报
-virtual void OnErrRtnOrderInsert(CThostFtdcInputOrderField* pInputOrder, CThostFtdcRspInfoField* pRspInfo)
+void CTraderSpi::OnErrRtnOrderInsert(CThostFtdcInputOrderField* pInputOrder, CThostFtdcRspInfoField* pRspInfo)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
+    if (!IsErrorRspInfo(pRspInfo)) {
 	cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pInputOrder->BrokerID << endl;
 	cout << "投资者代码 TThostFtdcInvestorIDType:" << pInputOrder->InvestorID << endl;
 	cout << "合约代码 TThostFtdcInstrumentIDType:" << pInputOrder->InstrumentID << endl;
@@ -3796,10 +3620,10 @@ virtual void OnErrRtnOrderInsert(CThostFtdcInputOrderField* pInputOrder, CThostF
 }
 
 ///报单操作错误回报
-virtual void OnErrRtnOrderAction(CThostFtdcOrderActionField* pOrderAction, CThostFtdcRspInfoField* pRspInfo)
+void CTraderSpi::OnErrRtnOrderAction(CThostFtdcOrderActionField* pOrderAction, CThostFtdcRspInfoField* pRspInfo)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
+    if (!IsErrorRspInfo(pRspInfo)) {
 	cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pOrderAction->BrokerID << endl;
 	cout << "投资者代码 TThostFtdcInvestorIDType:" << pOrderAction->InvestorID << endl;
 	cout << "报单操作引用 TThostFtdcOrderActionRefType:" << pOrderAction->OrderActionRef << endl;
@@ -3830,155 +3654,147 @@ virtual void OnErrRtnOrderAction(CThostFtdcOrderActionField* pOrderAction, CThos
 }
 
 ///合约交易状态通知
-virtual void OnRtnInstrumentStatus(CThostFtdcInstrumentStatusField* pInstrumentStatus)
+void CTraderSpi::OnRtnInstrumentStatus(CThostFtdcInstrumentStatusField* pInstrumentStatus)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "交易所代码 TThostFtdcExchangeIDType:" << pInstrumentStatus->ExchangeID << endl;
-	cout << "合约在交易所的代码 TThostFtdcExchangeInstIDType:" << pInstrumentStatus->ExchangeInstID << endl;
-	cout << "结算组代码 TThostFtdcSettlementGroupIDType:" << pInstrumentStatus->SettlementGroupID << endl;
-	cout << "合约代码 TThostFtdcInstrumentIDType:" << pInstrumentStatus->InstrumentID << endl;
-	cout << "合约交易状态 TThostFtdcInstrumentStatusType:" << pInstrumentStatus->InstrumentStatus << endl;
-	cout << "交易阶段编号 TThostFtdcTradingSegmentSNType:" << pInstrumentStatus->TradingSegmentSN << endl;
-	cout << "进入本状态时间 TThostFtdcTimeType:" << pInstrumentStatus->EnterTime << endl;
-	cout << "进入本状态原因 TThostFtdcInstStatusEnterReasonType:" << pInstrumentStatus->EnterReason << endl;
-    }
+    cout << "交易所代码 TThostFtdcExchangeIDType:" << pInstrumentStatus->ExchangeID << endl;
+    cout << "合约在交易所的代码 TThostFtdcExchangeInstIDType:" << pInstrumentStatus->ExchangeInstID << endl;
+    cout << "结算组代码 TThostFtdcSettlementGroupIDType:" << pInstrumentStatus->SettlementGroupID << endl;
+    cout << "合约代码 TThostFtdcInstrumentIDType:" << pInstrumentStatus->InstrumentID << endl;
+    cout << "合约交易状态 TThostFtdcInstrumentStatusType:" << pInstrumentStatus->InstrumentStatus << endl;
+    cout << "交易阶段编号 TThostFtdcTradingSegmentSNType:" << pInstrumentStatus->TradingSegmentSN << endl;
+    cout << "进入本状态时间 TThostFtdcTimeType:" << pInstrumentStatus->EnterTime << endl;
+    cout << "进入本状态原因 TThostFtdcInstStatusEnterReasonType:" << pInstrumentStatus->EnterReason << endl;
 }
 
 ///交易通知
-virtual void OnRtnTradingNotice(CThostFtdcTradingNoticeInfoField* pTradingNoticeInfo)
+void CTraderSpi::OnRtnTradingNotice(CThostFtdcTradingNoticeInfoField* pTradingNoticeInfo)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pTradingNoticeInfo->BrokerID << endl;
-	cout << "投资者代码 TThostFtdcInvestorIDType:" << pTradingNoticeInfo->InvestorID << endl;
-	cout << "发送时间 TThostFtdcTimeType:" << pTradingNoticeInfo->SendTime << endl;
-	cout << "消息正文 TThostFtdcContentType:" << pTradingNoticeInfo->FieldContent << endl;
-	cout << "序列系列号 TThostFtdcSequenceSeriesType:" << pTradingNoticeInfo->SequenceSeries << endl;
-	cout << "序列号 TThostFtdcSequenceNoType:" << pTradingNoticeInfo->SequenceNo << endl;
-    }
+    cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pTradingNoticeInfo->BrokerID << endl;
+    cout << "投资者代码 TThostFtdcInvestorIDType:" << pTradingNoticeInfo->InvestorID << endl;
+    cout << "发送时间 TThostFtdcTimeType:" << pTradingNoticeInfo->SendTime << endl;
+    cout << "消息正文 TThostFtdcContentType:" << pTradingNoticeInfo->FieldContent << endl;
+    cout << "序列系列号 TThostFtdcSequenceSeriesType:" << pTradingNoticeInfo->SequenceSeries << endl;
+    cout << "序列号 TThostFtdcSequenceNoType:" << pTradingNoticeInfo->SequenceNo << endl;
 }
 
 ///提示条件单校验错误
-virtual void OnRtnErrorConditionalOrder(CThostFtdcErrorConditionalOrderField* pErrorConditionalOrder)
+void CTraderSpi::OnRtnErrorConditionalOrder(CThostFtdcErrorConditionalOrderField* pErrorConditionalOrder)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pErrorConditionalOrder->BrokerID << endl;
-	cout << "投资者代码 TThostFtdcInvestorIDType:" << pErrorConditionalOrder->InvestorID << endl;
-	cout << "合约代码 TThostFtdcInstrumentIDType:" << pErrorConditionalOrder->InstrumentID << endl;
-	cout << "报单引用 TThostFtdcOrderRefType:" << pErrorConditionalOrder->OrderRef << endl;
-	cout << "用户代码 TThostFtdcUserIDType:" << pErrorConditionalOrder->UserID << endl;
-	cout << "报单价格条件 TThostFtdcOrderPriceTypeType:" << pErrorConditionalOrder->OrderPriceType << endl;
-	cout << "买卖方向 TThostFtdcDirectionType:" << pErrorConditionalOrder->Direction << endl;
-	cout << "组合开平标志 TThostFtdcCombOffsetFlagType:" << pErrorConditionalOrder->CombOffsetFlag << endl;
-	cout << "组合投机套保标志 TThostFtdcCombHedgeFlagType:" << pErrorConditionalOrder->CombHedgeFlag << endl;
-	cout << "价格 TThostFtdcPriceType:" << pErrorConditionalOrder->LimitPrice << endl;
-	cout << "数量 TThostFtdcVolumeType:" << pErrorConditionalOrder->VolumeTotalOriginal << endl;
-	cout << "有效期类型 TThostFtdcTimeConditionType:" << pErrorConditionalOrder->TimeCondition << endl;
-	cout << "日期 TThostFtdcDateType:" << pErrorConditionalOrder->GTDDate << endl;
-	cout << "成交量类型 TThostFtdcVolumeConditionType:" << pErrorConditionalOrder->VolumeCondition << endl;
-	cout << "最小成交量 TThostFtdcVolumeType:" << pErrorConditionalOrder->MinVolume << endl;
-	cout << "触发条件 TThostFtdcContingentConditionType:" << pErrorConditionalOrder->ContingentCondition << endl;
-	cout << "止损价 TThostFtdcPriceType:" << pErrorConditionalOrder->StopPrice << endl;
-	cout << "强平原因 TThostFtdcForceCloseReasonType:" << pErrorConditionalOrder->ForceCloseReason << endl;
-	cout << "自动挂起标志 TThostFtdcBoolType:" << pErrorConditionalOrder->IsAutoSuspend << endl;
-	cout << "业务单元 TThostFtdcBusinessUnitType:" << pErrorConditionalOrder->BusinessUnit << endl;
-	cout << "请求编号 TThostFtdcRequestIDType:" << pErrorConditionalOrder->RequestID << endl;
-	cout << "本地报单编号 TThostFtdcOrderLocalIDType:" << pErrorConditionalOrder->OrderLocalID << endl;
-	cout << "交易所代码 TThostFtdcExchangeIDType:" << pErrorConditionalOrder->ExchangeID << endl;
-	cout << "会员代码 TThostFtdcParticipantIDType:" << pErrorConditionalOrder->ParticipantID << endl;
-	cout << "客户代码 TThostFtdcClientIDType:" << pErrorConditionalOrder->ClientID << endl;
-	cout << "合约在交易所的代码 TThostFtdcExchangeInstIDType:" << pErrorConditionalOrder->ExchangeInstID << endl;
-	cout << "交易所交易员代码 TThostFtdcTraderIDType:" << pErrorConditionalOrder->TraderID << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pErrorConditionalOrder->InstallID << endl;
-	cout << "报单提交状态 TThostFtdcOrderSubmitStatusType:" << pErrorConditionalOrder->OrderSubmitStatus << endl;
-	cout << "报单提示序号 TThostFtdcSequenceNoType:" << pErrorConditionalOrder->NotifySequence << endl;
-	cout << "交易日 TThostFtdcDateType:" << pErrorConditionalOrder->TradingDay << endl;
-	cout << "结算编号 TThostFtdcSettlementIDType:" << pErrorConditionalOrder->SettlementID << endl;
-	cout << "报单编号 TThostFtdcOrderSysIDType:" << pErrorConditionalOrder->OrderSysID << endl;
-	cout << "报单来源 TThostFtdcOrderSourceType:" << pErrorConditionalOrder->OrderSource << endl;
-	cout << "报单状态 TThostFtdcOrderStatusType:" << pErrorConditionalOrder->OrderStatus << endl;
-	cout << "报单类型 TThostFtdcOrderTypeType:" << pErrorConditionalOrder->OrderType << endl;
-	cout << "今成交数量 TThostFtdcVolumeType:" << pErrorConditionalOrder->VolumeTraded << endl;
-	cout << "剩余数量 TThostFtdcVolumeType:" << pErrorConditionalOrder->VolumeTotal << endl;
-	cout << "报单日期 TThostFtdcDateType:" << pErrorConditionalOrder->InsertDate << endl;
-	cout << "委托时间 TThostFtdcTimeType:" << pErrorConditionalOrder->InsertTime << endl;
-	cout << "激活时间 TThostFtdcTimeType:" << pErrorConditionalOrder->ActiveTime << endl;
-	cout << "挂起时间 TThostFtdcTimeType:" << pErrorConditionalOrder->SuspendTime << endl;
-	cout << "最后修改时间 TThostFtdcTimeType:" << pErrorConditionalOrder->UpdateTime << endl;
-	cout << "撤销时间 TThostFtdcTimeType:" << pErrorConditionalOrder->CancelTime << endl;
-	cout << "最后修改交易所交易员代码 TThostFtdcTraderIDType:" << pErrorConditionalOrder->ActiveTraderID << endl;
-	cout << "结算会员编号 TThostFtdcParticipantIDType:" << pErrorConditionalOrder->ClearingPartID << endl;
-	cout << "序号 TThostFtdcSequenceNoType:" << pErrorConditionalOrder->SequenceNo << endl;
-	cout << "前置编号 TThostFtdcFrontIDType:" << pErrorConditionalOrder->FrontID << endl;
-	cout << "会话编号 TThostFtdcSessionIDType:" << pErrorConditionalOrder->SessionID << endl;
-	cout << "用户端产品信息 TThostFtdcProductInfoType:" << pErrorConditionalOrder->UserProductInfo << endl;
-	cout << "状态信息 TThostFtdcErrorMsgType:" << pErrorConditionalOrder->StatusMsg << endl;
-	cout << "用户强评标志 TThostFtdcBoolType:" << pErrorConditionalOrder->UserForceClose << endl;
-	cout << "操作用户代码 TThostFtdcUserIDType:" << pErrorConditionalOrder->ActiveUserID << endl;
-	cout << "经纪公司报单编号 TThostFtdcSequenceNoType:" << pErrorConditionalOrder->BrokerOrderSeq << endl;
-	cout << "相关报单 TThostFtdcOrderSysIDType:" << pErrorConditionalOrder->RelativeOrderSysID << endl;
-	cout << "郑商所成交数量 TThostFtdcVolumeType:" << pErrorConditionalOrder->ZCETotalTradedVolume << endl;
-	cout << "错误代码 TThostFtdcErrorIDType:" << pErrorConditionalOrder->ErrorID << endl;
-	cout << "错误信息 TThostFtdcErrorMsgType:" << pErrorConditionalOrder->ErrorMsg << endl;
-	cout << "互换单标志 TThostFtdcBoolType:" << pErrorConditionalOrder->IsSwapOrder << endl;
-	cout << "营业部编号 TThostFtdcBranchIDType:" << pErrorConditionalOrder->BranchID << endl;
-    }
+    cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pErrorConditionalOrder->BrokerID << endl;
+    cout << "投资者代码 TThostFtdcInvestorIDType:" << pErrorConditionalOrder->InvestorID << endl;
+    cout << "合约代码 TThostFtdcInstrumentIDType:" << pErrorConditionalOrder->InstrumentID << endl;
+    cout << "报单引用 TThostFtdcOrderRefType:" << pErrorConditionalOrder->OrderRef << endl;
+    cout << "用户代码 TThostFtdcUserIDType:" << pErrorConditionalOrder->UserID << endl;
+    cout << "报单价格条件 TThostFtdcOrderPriceTypeType:" << pErrorConditionalOrder->OrderPriceType << endl;
+    cout << "买卖方向 TThostFtdcDirectionType:" << pErrorConditionalOrder->Direction << endl;
+    cout << "组合开平标志 TThostFtdcCombOffsetFlagType:" << pErrorConditionalOrder->CombOffsetFlag << endl;
+    cout << "组合投机套保标志 TThostFtdcCombHedgeFlagType:" << pErrorConditionalOrder->CombHedgeFlag << endl;
+    cout << "价格 TThostFtdcPriceType:" << pErrorConditionalOrder->LimitPrice << endl;
+    cout << "数量 TThostFtdcVolumeType:" << pErrorConditionalOrder->VolumeTotalOriginal << endl;
+    cout << "有效期类型 TThostFtdcTimeConditionType:" << pErrorConditionalOrder->TimeCondition << endl;
+    cout << "日期 TThostFtdcDateType:" << pErrorConditionalOrder->GTDDate << endl;
+    cout << "成交量类型 TThostFtdcVolumeConditionType:" << pErrorConditionalOrder->VolumeCondition << endl;
+    cout << "最小成交量 TThostFtdcVolumeType:" << pErrorConditionalOrder->MinVolume << endl;
+    cout << "触发条件 TThostFtdcContingentConditionType:" << pErrorConditionalOrder->ContingentCondition << endl;
+    cout << "止损价 TThostFtdcPriceType:" << pErrorConditionalOrder->StopPrice << endl;
+    cout << "强平原因 TThostFtdcForceCloseReasonType:" << pErrorConditionalOrder->ForceCloseReason << endl;
+    cout << "自动挂起标志 TThostFtdcBoolType:" << pErrorConditionalOrder->IsAutoSuspend << endl;
+    cout << "业务单元 TThostFtdcBusinessUnitType:" << pErrorConditionalOrder->BusinessUnit << endl;
+    cout << "请求编号 TThostFtdcRequestIDType:" << pErrorConditionalOrder->RequestID << endl;
+    cout << "本地报单编号 TThostFtdcOrderLocalIDType:" << pErrorConditionalOrder->OrderLocalID << endl;
+    cout << "交易所代码 TThostFtdcExchangeIDType:" << pErrorConditionalOrder->ExchangeID << endl;
+    cout << "会员代码 TThostFtdcParticipantIDType:" << pErrorConditionalOrder->ParticipantID << endl;
+    cout << "客户代码 TThostFtdcClientIDType:" << pErrorConditionalOrder->ClientID << endl;
+    cout << "合约在交易所的代码 TThostFtdcExchangeInstIDType:" << pErrorConditionalOrder->ExchangeInstID << endl;
+    cout << "交易所交易员代码 TThostFtdcTraderIDType:" << pErrorConditionalOrder->TraderID << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pErrorConditionalOrder->InstallID << endl;
+    cout << "报单提交状态 TThostFtdcOrderSubmitStatusType:" << pErrorConditionalOrder->OrderSubmitStatus << endl;
+    cout << "报单提示序号 TThostFtdcSequenceNoType:" << pErrorConditionalOrder->NotifySequence << endl;
+    cout << "交易日 TThostFtdcDateType:" << pErrorConditionalOrder->TradingDay << endl;
+    cout << "结算编号 TThostFtdcSettlementIDType:" << pErrorConditionalOrder->SettlementID << endl;
+    cout << "报单编号 TThostFtdcOrderSysIDType:" << pErrorConditionalOrder->OrderSysID << endl;
+    cout << "报单来源 TThostFtdcOrderSourceType:" << pErrorConditionalOrder->OrderSource << endl;
+    cout << "报单状态 TThostFtdcOrderStatusType:" << pErrorConditionalOrder->OrderStatus << endl;
+    cout << "报单类型 TThostFtdcOrderTypeType:" << pErrorConditionalOrder->OrderType << endl;
+    cout << "今成交数量 TThostFtdcVolumeType:" << pErrorConditionalOrder->VolumeTraded << endl;
+    cout << "剩余数量 TThostFtdcVolumeType:" << pErrorConditionalOrder->VolumeTotal << endl;
+    cout << "报单日期 TThostFtdcDateType:" << pErrorConditionalOrder->InsertDate << endl;
+    cout << "委托时间 TThostFtdcTimeType:" << pErrorConditionalOrder->InsertTime << endl;
+    cout << "激活时间 TThostFtdcTimeType:" << pErrorConditionalOrder->ActiveTime << endl;
+    cout << "挂起时间 TThostFtdcTimeType:" << pErrorConditionalOrder->SuspendTime << endl;
+    cout << "最后修改时间 TThostFtdcTimeType:" << pErrorConditionalOrder->UpdateTime << endl;
+    cout << "撤销时间 TThostFtdcTimeType:" << pErrorConditionalOrder->CancelTime << endl;
+    cout << "最后修改交易所交易员代码 TThostFtdcTraderIDType:" << pErrorConditionalOrder->ActiveTraderID << endl;
+    cout << "结算会员编号 TThostFtdcParticipantIDType:" << pErrorConditionalOrder->ClearingPartID << endl;
+    cout << "序号 TThostFtdcSequenceNoType:" << pErrorConditionalOrder->SequenceNo << endl;
+    cout << "前置编号 TThostFtdcFrontIDType:" << pErrorConditionalOrder->FrontID << endl;
+    cout << "会话编号 TThostFtdcSessionIDType:" << pErrorConditionalOrder->SessionID << endl;
+    cout << "用户端产品信息 TThostFtdcProductInfoType:" << pErrorConditionalOrder->UserProductInfo << endl;
+    cout << "状态信息 TThostFtdcErrorMsgType:" << pErrorConditionalOrder->StatusMsg << endl;
+    cout << "用户强评标志 TThostFtdcBoolType:" << pErrorConditionalOrder->UserForceClose << endl;
+    cout << "操作用户代码 TThostFtdcUserIDType:" << pErrorConditionalOrder->ActiveUserID << endl;
+    cout << "经纪公司报单编号 TThostFtdcSequenceNoType:" << pErrorConditionalOrder->BrokerOrderSeq << endl;
+    cout << "相关报单 TThostFtdcOrderSysIDType:" << pErrorConditionalOrder->RelativeOrderSysID << endl;
+    cout << "郑商所成交数量 TThostFtdcVolumeType:" << pErrorConditionalOrder->ZCETotalTradedVolume << endl;
+    cout << "错误代码 TThostFtdcErrorIDType:" << pErrorConditionalOrder->ErrorID << endl;
+    cout << "错误信息 TThostFtdcErrorMsgType:" << pErrorConditionalOrder->ErrorMsg << endl;
+    cout << "互换单标志 TThostFtdcBoolType:" << pErrorConditionalOrder->IsSwapOrder << endl;
+    cout << "营业部编号 TThostFtdcBranchIDType:" << pErrorConditionalOrder->BranchID << endl;
 }
 
 ///执行宣告通知
-virtual void OnRtnExecOrder(CThostFtdcExecOrderField* pExecOrder)
+void CTraderSpi::OnRtnExecOrder(CThostFtdcExecOrderField* pExecOrder)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pExecOrder->BrokerID << endl;
-	cout << "投资者代码 TThostFtdcInvestorIDType:" << pExecOrder->InvestorID << endl;
-	cout << "合约代码 TThostFtdcInstrumentIDType:" << pExecOrder->InstrumentID << endl;
-	cout << "执行宣告引用 TThostFtdcOrderRefType:" << pExecOrder->ExecOrderRef << endl;
-	cout << "用户代码 TThostFtdcUserIDType:" << pExecOrder->UserID << endl;
-	cout << "数量 TThostFtdcVolumeType:" << pExecOrder->Volume << endl;
-	cout << "请求编号 TThostFtdcRequestIDType:" << pExecOrder->RequestID << endl;
-	cout << "业务单元 TThostFtdcBusinessUnitType:" << pExecOrder->BusinessUnit << endl;
-	cout << "开平标志 TThostFtdcOffsetFlagType:" << pExecOrder->OffsetFlag << endl;
-	cout << "投机套保标志 TThostFtdcHedgeFlagType:" << pExecOrder->HedgeFlag << endl;
-	cout << "执行类型 TThostFtdcActionTypeType:" << pExecOrder->ActionType << endl;
-	cout << "保留头寸申请的持仓方向 TThostFtdcPosiDirectionType:" << pExecOrder->PosiDirection << endl;
-	cout << "期权行权后是否保留期货头寸的标记 TThostFtdcExecOrderPositionFlagType:" << pExecOrder->ReservePositionFlag << endl;
-	cout << "期权行权后生成的头寸是否自动平仓 TThostFtdcExecOrderCloseFlagType:" << pExecOrder->CloseFlag << endl;
-	cout << "本地执行宣告编号 TThostFtdcOrderLocalIDType:" << pExecOrder->ExecOrderLocalID << endl;
-	cout << "交易所代码 TThostFtdcExchangeIDType:" << pExecOrder->ExchangeID << endl;
-	cout << "会员代码 TThostFtdcParticipantIDType:" << pExecOrder->ParticipantID << endl;
-	cout << "客户代码 TThostFtdcClientIDType:" << pExecOrder->ClientID << endl;
-	cout << "合约在交易所的代码 TThostFtdcExchangeInstIDType:" << pExecOrder->ExchangeInstID << endl;
-	cout << "交易所交易员代码 TThostFtdcTraderIDType:" << pExecOrder->TraderID << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pExecOrder->InstallID << endl;
-	cout << "执行宣告提交状态 TThostFtdcOrderSubmitStatusType:" << pExecOrder->OrderSubmitStatus << endl;
-	cout << "报单提示序号 TThostFtdcSequenceNoType:" << pExecOrder->NotifySequence << endl;
-	cout << "交易日 TThostFtdcDateType:" << pExecOrder->TradingDay << endl;
-	cout << "结算编号 TThostFtdcSettlementIDType:" << pExecOrder->SettlementID << endl;
-	cout << "执行宣告编号 TThostFtdcExecOrderSysIDType:" << pExecOrder->ExecOrderSysID << endl;
-	cout << "报单日期 TThostFtdcDateType:" << pExecOrder->InsertDate << endl;
-	cout << "插入时间 TThostFtdcTimeType:" << pExecOrder->InsertTime << endl;
-	cout << "撤销时间 TThostFtdcTimeType:" << pExecOrder->CancelTime << endl;
-	cout << "执行结果 TThostFtdcExecResultType:" << pExecOrder->ExecResult << endl;
-	cout << "结算会员编号 TThostFtdcParticipantIDType:" << pExecOrder->ClearingPartID << endl;
-	cout << "序号 TThostFtdcSequenceNoType:" << pExecOrder->SequenceNo << endl;
-	cout << "前置编号 TThostFtdcFrontIDType:" << pExecOrder->FrontID << endl;
-	cout << "会话编号 TThostFtdcSessionIDType:" << pExecOrder->SessionID << endl;
-	cout << "用户端产品信息 TThostFtdcProductInfoType:" << pExecOrder->UserProductInfo << endl;
-	cout << "状态信息 TThostFtdcErrorMsgType:" << pExecOrder->StatusMsg << endl;
-	cout << "操作用户代码 TThostFtdcUserIDType:" << pExecOrder->ActiveUserID << endl;
-	cout << "经纪公司报单编号 TThostFtdcSequenceNoType:" << pExecOrder->BrokerExecOrderSeq << endl;
-	cout << "营业部编号 TThostFtdcBranchIDType:" << pExecOrder->BranchID << endl;
-    }
+    cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pExecOrder->BrokerID << endl;
+    cout << "投资者代码 TThostFtdcInvestorIDType:" << pExecOrder->InvestorID << endl;
+    cout << "合约代码 TThostFtdcInstrumentIDType:" << pExecOrder->InstrumentID << endl;
+    cout << "执行宣告引用 TThostFtdcOrderRefType:" << pExecOrder->ExecOrderRef << endl;
+    cout << "用户代码 TThostFtdcUserIDType:" << pExecOrder->UserID << endl;
+    cout << "数量 TThostFtdcVolumeType:" << pExecOrder->Volume << endl;
+    cout << "请求编号 TThostFtdcRequestIDType:" << pExecOrder->RequestID << endl;
+    cout << "业务单元 TThostFtdcBusinessUnitType:" << pExecOrder->BusinessUnit << endl;
+    cout << "开平标志 TThostFtdcOffsetFlagType:" << pExecOrder->OffsetFlag << endl;
+    cout << "投机套保标志 TThostFtdcHedgeFlagType:" << pExecOrder->HedgeFlag << endl;
+    cout << "执行类型 TThostFtdcActionTypeType:" << pExecOrder->ActionType << endl;
+    cout << "保留头寸申请的持仓方向 TThostFtdcPosiDirectionType:" << pExecOrder->PosiDirection << endl;
+    cout << "期权行权后是否保留期货头寸的标记 TThostFtdcExecOrderPositionFlagType:" << pExecOrder->ReservePositionFlag << endl;
+    cout << "期权行权后生成的头寸是否自动平仓 TThostFtdcExecOrderCloseFlagType:" << pExecOrder->CloseFlag << endl;
+    cout << "本地执行宣告编号 TThostFtdcOrderLocalIDType:" << pExecOrder->ExecOrderLocalID << endl;
+    cout << "交易所代码 TThostFtdcExchangeIDType:" << pExecOrder->ExchangeID << endl;
+    cout << "会员代码 TThostFtdcParticipantIDType:" << pExecOrder->ParticipantID << endl;
+    cout << "客户代码 TThostFtdcClientIDType:" << pExecOrder->ClientID << endl;
+    cout << "合约在交易所的代码 TThostFtdcExchangeInstIDType:" << pExecOrder->ExchangeInstID << endl;
+    cout << "交易所交易员代码 TThostFtdcTraderIDType:" << pExecOrder->TraderID << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pExecOrder->InstallID << endl;
+    cout << "执行宣告提交状态 TThostFtdcOrderSubmitStatusType:" << pExecOrder->OrderSubmitStatus << endl;
+    cout << "报单提示序号 TThostFtdcSequenceNoType:" << pExecOrder->NotifySequence << endl;
+    cout << "交易日 TThostFtdcDateType:" << pExecOrder->TradingDay << endl;
+    cout << "结算编号 TThostFtdcSettlementIDType:" << pExecOrder->SettlementID << endl;
+    cout << "执行宣告编号 TThostFtdcExecOrderSysIDType:" << pExecOrder->ExecOrderSysID << endl;
+    cout << "报单日期 TThostFtdcDateType:" << pExecOrder->InsertDate << endl;
+    cout << "插入时间 TThostFtdcTimeType:" << pExecOrder->InsertTime << endl;
+    cout << "撤销时间 TThostFtdcTimeType:" << pExecOrder->CancelTime << endl;
+    cout << "执行结果 TThostFtdcExecResultType:" << pExecOrder->ExecResult << endl;
+    cout << "结算会员编号 TThostFtdcParticipantIDType:" << pExecOrder->ClearingPartID << endl;
+    cout << "序号 TThostFtdcSequenceNoType:" << pExecOrder->SequenceNo << endl;
+    cout << "前置编号 TThostFtdcFrontIDType:" << pExecOrder->FrontID << endl;
+    cout << "会话编号 TThostFtdcSessionIDType:" << pExecOrder->SessionID << endl;
+    cout << "用户端产品信息 TThostFtdcProductInfoType:" << pExecOrder->UserProductInfo << endl;
+    cout << "状态信息 TThostFtdcErrorMsgType:" << pExecOrder->StatusMsg << endl;
+    cout << "操作用户代码 TThostFtdcUserIDType:" << pExecOrder->ActiveUserID << endl;
+    cout << "经纪公司报单编号 TThostFtdcSequenceNoType:" << pExecOrder->BrokerExecOrderSeq << endl;
+    cout << "营业部编号 TThostFtdcBranchIDType:" << pExecOrder->BranchID << endl;
 }
 
 ///执行宣告录入错误回报
-virtual void OnErrRtnExecOrderInsert(CThostFtdcInputExecOrderField* pInputExecOrder, CThostFtdcRspInfoField* pRspInfo)
+void CTraderSpi::OnErrRtnExecOrderInsert(CThostFtdcInputExecOrderField* pInputExecOrder, CThostFtdcRspInfoField* pRspInfo)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
+    if (!IsErrorRspInfo(pRspInfo)) {
 	cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pInputExecOrder->BrokerID << endl;
 	cout << "投资者代码 TThostFtdcInvestorIDType:" << pInputExecOrder->InvestorID << endl;
 	cout << "合约代码 TThostFtdcInstrumentIDType:" << pInputExecOrder->InstrumentID << endl;
@@ -3998,10 +3814,10 @@ virtual void OnErrRtnExecOrderInsert(CThostFtdcInputExecOrderField* pInputExecOr
 }
 
 ///执行宣告操作错误回报
-virtual void OnErrRtnExecOrderAction(CThostFtdcExecOrderActionField* pExecOrderAction, CThostFtdcRspInfoField* pRspInfo)
+void CTraderSpi::OnErrRtnExecOrderAction(CThostFtdcExecOrderActionField* pExecOrderAction, CThostFtdcRspInfoField* pRspInfo)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
+    if (!IsErrorRspInfo(pRspInfo)) {
 	cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pExecOrderAction->BrokerID << endl;
 	cout << "投资者代码 TThostFtdcInvestorIDType:" << pExecOrderAction->InvestorID << endl;
 	cout << "执行宣告操作引用 TThostFtdcOrderActionRefType:" << pExecOrderAction->ExecOrderActionRef << endl;
@@ -4031,10 +3847,10 @@ virtual void OnErrRtnExecOrderAction(CThostFtdcExecOrderActionField* pExecOrderA
 }
 
 ///询价录入错误回报
-virtual void OnErrRtnForQuoteInsert(CThostFtdcInputForQuoteField* pInputForQuote, CThostFtdcRspInfoField* pRspInfo)
+void CTraderSpi::OnErrRtnForQuoteInsert(CThostFtdcInputForQuoteField* pInputForQuote, CThostFtdcRspInfoField* pRspInfo)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
+    if (!IsErrorRspInfo(pRspInfo)) {
 	cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pInputForQuote->BrokerID << endl;
 	cout << "投资者代码 TThostFtdcInvestorIDType:" << pInputForQuote->InvestorID << endl;
 	cout << "合约代码 TThostFtdcInstrumentIDType:" << pInputForQuote->InstrumentID << endl;
@@ -4045,63 +3861,61 @@ virtual void OnErrRtnForQuoteInsert(CThostFtdcInputForQuoteField* pInputForQuote
 }
 
 ///报价通知
-virtual void OnRtnQuote(CThostFtdcQuoteField* pQuote)
+void CTraderSpi::OnRtnQuote(CThostFtdcQuoteField* pQuote)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pQuote->BrokerID << endl;
-	cout << "投资者代码 TThostFtdcInvestorIDType:" << pQuote->InvestorID << endl;
-	cout << "合约代码 TThostFtdcInstrumentIDType:" << pQuote->InstrumentID << endl;
-	cout << "报价引用 TThostFtdcOrderRefType:" << pQuote->QuoteRef << endl;
-	cout << "用户代码 TThostFtdcUserIDType:" << pQuote->UserID << endl;
-	cout << "卖价格 TThostFtdcPriceType:" << pQuote->AskPrice << endl;
-	cout << "买价格 TThostFtdcPriceType:" << pQuote->BidPrice << endl;
-	cout << "卖数量 TThostFtdcVolumeType:" << pQuote->AskVolume << endl;
-	cout << "买数量 TThostFtdcVolumeType:" << pQuote->BidVolume << endl;
-	cout << "请求编号 TThostFtdcRequestIDType:" << pQuote->RequestID << endl;
-	cout << "业务单元 TThostFtdcBusinessUnitType:" << pQuote->BusinessUnit << endl;
-	cout << "卖开平标志 TThostFtdcOffsetFlagType:" << pQuote->AskOffsetFlag << endl;
-	cout << "买开平标志 TThostFtdcOffsetFlagType:" << pQuote->BidOffsetFlag << endl;
-	cout << "卖投机套保标志 TThostFtdcHedgeFlagType:" << pQuote->AskHedgeFlag << endl;
-	cout << "买投机套保标志 TThostFtdcHedgeFlagType:" << pQuote->BidHedgeFlag << endl;
-	cout << "本地报价编号 TThostFtdcOrderLocalIDType:" << pQuote->QuoteLocalID << endl;
-	cout << "交易所代码 TThostFtdcExchangeIDType:" << pQuote->ExchangeID << endl;
-	cout << "会员代码 TThostFtdcParticipantIDType:" << pQuote->ParticipantID << endl;
-	cout << "客户代码 TThostFtdcClientIDType:" << pQuote->ClientID << endl;
-	cout << "合约在交易所的代码 TThostFtdcExchangeInstIDType:" << pQuote->ExchangeInstID << endl;
-	cout << "交易所交易员代码 TThostFtdcTraderIDType:" << pQuote->TraderID << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pQuote->InstallID << endl;
-	cout << "报价提示序号 TThostFtdcSequenceNoType:" << pQuote->NotifySequence << endl;
-	cout << "报价提交状态 TThostFtdcOrderSubmitStatusType:" << pQuote->OrderSubmitStatus << endl;
-	cout << "交易日 TThostFtdcDateType:" << pQuote->TradingDay << endl;
-	cout << "结算编号 TThostFtdcSettlementIDType:" << pQuote->SettlementID << endl;
-	cout << "报价编号 TThostFtdcOrderSysIDType:" << pQuote->QuoteSysID << endl;
-	cout << "报单日期 TThostFtdcDateType:" << pQuote->InsertDate << endl;
-	cout << "插入时间 TThostFtdcTimeType:" << pQuote->InsertTime << endl;
-	cout << "撤销时间 TThostFtdcTimeType:" << pQuote->CancelTime << endl;
-	cout << "报价状态 TThostFtdcOrderStatusType:" << pQuote->QuoteStatus << endl;
-	cout << "结算会员编号 TThostFtdcParticipantIDType:" << pQuote->ClearingPartID << endl;
-	cout << "序号 TThostFtdcSequenceNoType:" << pQuote->SequenceNo << endl;
-	cout << "卖方报单编号 TThostFtdcOrderSysIDType:" << pQuote->AskOrderSysID << endl;
-	cout << "买方报单编号 TThostFtdcOrderSysIDType:" << pQuote->BidOrderSysID << endl;
-	cout << "前置编号 TThostFtdcFrontIDType:" << pQuote->FrontID << endl;
-	cout << "会话编号 TThostFtdcSessionIDType:" << pQuote->SessionID << endl;
-	cout << "用户端产品信息 TThostFtdcProductInfoType:" << pQuote->UserProductInfo << endl;
-	cout << "状态信息 TThostFtdcErrorMsgType:" << pQuote->StatusMsg << endl;
-	cout << "操作用户代码 TThostFtdcUserIDType:" << pQuote->ActiveUserID << endl;
-	cout << "经纪公司报价编号 TThostFtdcSequenceNoType:" << pQuote->BrokerQuoteSeq << endl;
-	cout << "衍生卖报单引用 TThostFtdcOrderRefType:" << pQuote->AskOrderRef << endl;
-	cout << "衍生买报单引用 TThostFtdcOrderRefType:" << pQuote->BidOrderRef << endl;
-	cout << "应价编号 TThostFtdcOrderSysIDType:" << pQuote->ForQuoteSysID << endl;
-	cout << "营业部编号 TThostFtdcBranchIDType:" << pQuote->BranchID << endl;
-    }
+    cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pQuote->BrokerID << endl;
+    cout << "投资者代码 TThostFtdcInvestorIDType:" << pQuote->InvestorID << endl;
+    cout << "合约代码 TThostFtdcInstrumentIDType:" << pQuote->InstrumentID << endl;
+    cout << "报价引用 TThostFtdcOrderRefType:" << pQuote->QuoteRef << endl;
+    cout << "用户代码 TThostFtdcUserIDType:" << pQuote->UserID << endl;
+    cout << "卖价格 TThostFtdcPriceType:" << pQuote->AskPrice << endl;
+    cout << "买价格 TThostFtdcPriceType:" << pQuote->BidPrice << endl;
+    cout << "卖数量 TThostFtdcVolumeType:" << pQuote->AskVolume << endl;
+    cout << "买数量 TThostFtdcVolumeType:" << pQuote->BidVolume << endl;
+    cout << "请求编号 TThostFtdcRequestIDType:" << pQuote->RequestID << endl;
+    cout << "业务单元 TThostFtdcBusinessUnitType:" << pQuote->BusinessUnit << endl;
+    cout << "卖开平标志 TThostFtdcOffsetFlagType:" << pQuote->AskOffsetFlag << endl;
+    cout << "买开平标志 TThostFtdcOffsetFlagType:" << pQuote->BidOffsetFlag << endl;
+    cout << "卖投机套保标志 TThostFtdcHedgeFlagType:" << pQuote->AskHedgeFlag << endl;
+    cout << "买投机套保标志 TThostFtdcHedgeFlagType:" << pQuote->BidHedgeFlag << endl;
+    cout << "本地报价编号 TThostFtdcOrderLocalIDType:" << pQuote->QuoteLocalID << endl;
+    cout << "交易所代码 TThostFtdcExchangeIDType:" << pQuote->ExchangeID << endl;
+    cout << "会员代码 TThostFtdcParticipantIDType:" << pQuote->ParticipantID << endl;
+    cout << "客户代码 TThostFtdcClientIDType:" << pQuote->ClientID << endl;
+    cout << "合约在交易所的代码 TThostFtdcExchangeInstIDType:" << pQuote->ExchangeInstID << endl;
+    cout << "交易所交易员代码 TThostFtdcTraderIDType:" << pQuote->TraderID << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pQuote->InstallID << endl;
+    cout << "报价提示序号 TThostFtdcSequenceNoType:" << pQuote->NotifySequence << endl;
+    cout << "报价提交状态 TThostFtdcOrderSubmitStatusType:" << pQuote->OrderSubmitStatus << endl;
+    cout << "交易日 TThostFtdcDateType:" << pQuote->TradingDay << endl;
+    cout << "结算编号 TThostFtdcSettlementIDType:" << pQuote->SettlementID << endl;
+    cout << "报价编号 TThostFtdcOrderSysIDType:" << pQuote->QuoteSysID << endl;
+    cout << "报单日期 TThostFtdcDateType:" << pQuote->InsertDate << endl;
+    cout << "插入时间 TThostFtdcTimeType:" << pQuote->InsertTime << endl;
+    cout << "撤销时间 TThostFtdcTimeType:" << pQuote->CancelTime << endl;
+    cout << "报价状态 TThostFtdcOrderStatusType:" << pQuote->QuoteStatus << endl;
+    cout << "结算会员编号 TThostFtdcParticipantIDType:" << pQuote->ClearingPartID << endl;
+    cout << "序号 TThostFtdcSequenceNoType:" << pQuote->SequenceNo << endl;
+    cout << "卖方报单编号 TThostFtdcOrderSysIDType:" << pQuote->AskOrderSysID << endl;
+    cout << "买方报单编号 TThostFtdcOrderSysIDType:" << pQuote->BidOrderSysID << endl;
+    cout << "前置编号 TThostFtdcFrontIDType:" << pQuote->FrontID << endl;
+    cout << "会话编号 TThostFtdcSessionIDType:" << pQuote->SessionID << endl;
+    cout << "用户端产品信息 TThostFtdcProductInfoType:" << pQuote->UserProductInfo << endl;
+    cout << "状态信息 TThostFtdcErrorMsgType:" << pQuote->StatusMsg << endl;
+    cout << "操作用户代码 TThostFtdcUserIDType:" << pQuote->ActiveUserID << endl;
+    cout << "经纪公司报价编号 TThostFtdcSequenceNoType:" << pQuote->BrokerQuoteSeq << endl;
+    cout << "衍生卖报单引用 TThostFtdcOrderRefType:" << pQuote->AskOrderRef << endl;
+    cout << "衍生买报单引用 TThostFtdcOrderRefType:" << pQuote->BidOrderRef << endl;
+    cout << "应价编号 TThostFtdcOrderSysIDType:" << pQuote->ForQuoteSysID << endl;
+    cout << "营业部编号 TThostFtdcBranchIDType:" << pQuote->BranchID << endl;
 }
 
 ///报价录入错误回报
-virtual void OnErrRtnQuoteInsert(CThostFtdcInputQuoteField* pInputQuote, CThostFtdcRspInfoField* pRspInfo)
+void CTraderSpi::OnErrRtnQuoteInsert(CThostFtdcInputQuoteField* pInputQuote, CThostFtdcRspInfoField* pRspInfo)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
+    if (!IsErrorRspInfo(pRspInfo)) {
 	cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pInputQuote->BrokerID << endl;
 	cout << "投资者代码 TThostFtdcInvestorIDType:" << pInputQuote->InvestorID << endl;
 	cout << "合约代码 TThostFtdcInstrumentIDType:" << pInputQuote->InstrumentID << endl;
@@ -4125,10 +3939,10 @@ virtual void OnErrRtnQuoteInsert(CThostFtdcInputQuoteField* pInputQuote, CThostF
 }
 
 ///报价操作错误回报
-virtual void OnErrRtnQuoteAction(CThostFtdcQuoteActionField* pQuoteAction, CThostFtdcRspInfoField* pRspInfo)
+void CTraderSpi::OnErrRtnQuoteAction(CThostFtdcQuoteActionField* pQuoteAction, CThostFtdcRspInfoField* pRspInfo)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
+    if (!IsErrorRspInfo(pRspInfo)) {
 	cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pQuoteAction->BrokerID << endl;
 	cout << "投资者代码 TThostFtdcInvestorIDType:" << pQuoteAction->InvestorID << endl;
 	cout << "报价操作引用 TThostFtdcOrderActionRefType:" << pQuoteAction->QuoteActionRef << endl;
@@ -4157,130 +3971,120 @@ virtual void OnErrRtnQuoteAction(CThostFtdcQuoteActionField* pQuoteAction, CThos
 }
 
 ///询价通知
-virtual void OnRtnForQuoteRsp(CThostFtdcForQuoteRspField* pForQuoteRsp)
+void CTraderSpi::OnRtnForQuoteRsp(CThostFtdcForQuoteRspField* pForQuoteRsp)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "交易日 TThostFtdcDateType:" << pForQuoteRsp->TradingDay << endl;
-	cout << "合约代码 TThostFtdcInstrumentIDType:" << pForQuoteRsp->InstrumentID << endl;
-	cout << "询价编号 TThostFtdcOrderSysIDType:" << pForQuoteRsp->ForQuoteSysID << endl;
-	cout << "询价时间 TThostFtdcTimeType:" << pForQuoteRsp->ForQuoteTime << endl;
-	cout << "业务日期 TThostFtdcDateType:" << pForQuoteRsp->ActionDay << endl;
-	cout << "交易所代码 TThostFtdcExchangeIDType:" << pForQuoteRsp->ExchangeID << endl;
-    }
+    cout << "交易日 TThostFtdcDateType:" << pForQuoteRsp->TradingDay << endl;
+    cout << "合约代码 TThostFtdcInstrumentIDType:" << pForQuoteRsp->InstrumentID << endl;
+    cout << "询价编号 TThostFtdcOrderSysIDType:" << pForQuoteRsp->ForQuoteSysID << endl;
+    cout << "询价时间 TThostFtdcTimeType:" << pForQuoteRsp->ForQuoteTime << endl;
+    cout << "业务日期 TThostFtdcDateType:" << pForQuoteRsp->ActionDay << endl;
+    cout << "交易所代码 TThostFtdcExchangeIDType:" << pForQuoteRsp->ExchangeID << endl;
 }
 
 ///保证金监控中心用户令牌
-virtual void OnRtnCFMMCTradingAccountToken(CThostFtdcCFMMCTradingAccountTokenField* pCFMMCTradingAccountToken)
+void CTraderSpi::OnRtnCFMMCTradingAccountToken(CThostFtdcCFMMCTradingAccountTokenField* pCFMMCTradingAccountToken)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pCFMMCTradingAccountToken->BrokerID << endl;
-	cout << "经纪公司统一编码 TThostFtdcParticipantIDType:" << pCFMMCTradingAccountToken->ParticipantID << endl;
-	cout << "投资者帐号 TThostFtdcAccountIDType:" << pCFMMCTradingAccountToken->AccountID << endl;
-	cout << "密钥编号 TThostFtdcSequenceNoType:" << pCFMMCTradingAccountToken->KeyID << endl;
-	cout << "动态令牌 TThostFtdcCFMMCTokenType:" << pCFMMCTradingAccountToken->Token << endl;
-    }
+    cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pCFMMCTradingAccountToken->BrokerID << endl;
+    cout << "经纪公司统一编码 TThostFtdcParticipantIDType:" << pCFMMCTradingAccountToken->ParticipantID << endl;
+    cout << "投资者帐号 TThostFtdcAccountIDType:" << pCFMMCTradingAccountToken->AccountID << endl;
+    cout << "密钥编号 TThostFtdcSequenceNoType:" << pCFMMCTradingAccountToken->KeyID << endl;
+    cout << "动态令牌 TThostFtdcCFMMCTokenType:" << pCFMMCTradingAccountToken->Token << endl;
 }
 
 ///锁定通知
-virtual void OnRtnLock(CThostFtdcLockField* pLock)
+void CTraderSpi::OnRtnLock(CThostFtdcLockField* pLock)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pLock->BrokerID << endl;
-	cout << "投资者代码 TThostFtdcInvestorIDType:" << pLock->InvestorID << endl;
-	cout << "合约代码 TThostFtdcInstrumentIDType:" << pLock->InstrumentID << endl;
-	cout << "锁定引用 TThostFtdcOrderRefType:" << pLock->LockRef << endl;
-	cout << "用户代码 TThostFtdcUserIDType:" << pLock->UserID << endl;
-	cout << "数量 TThostFtdcVolumeType:" << pLock->Volume << endl;
-	cout << "请求编号 TThostFtdcRequestIDType:" << pLock->RequestID << endl;
-	cout << "业务单元 TThostFtdcBusinessUnitType:" << pLock->BusinessUnit << endl;
-	cout << "锁定类型 TThostFtdcLockTypeType:" << pLock->LockType << endl;
-	cout << "本地锁定编号 TThostFtdcOrderLocalIDType:" << pLock->LockLocalID << endl;
-	cout << "交易所代码 TThostFtdcExchangeIDType:" << pLock->ExchangeID << endl;
-	cout << "会员代码 TThostFtdcParticipantIDType:" << pLock->ParticipantID << endl;
-	cout << "客户代码 TThostFtdcClientIDType:" << pLock->ClientID << endl;
-	cout << "合约在交易所的代码 TThostFtdcExchangeInstIDType:" << pLock->ExchangeInstID << endl;
-	cout << "交易所交易员代码 TThostFtdcTraderIDType:" << pLock->TraderID << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pLock->InstallID << endl;
-	cout << "执行宣告提交状态 TThostFtdcOrderSubmitStatusType:" << pLock->OrderSubmitStatus << endl;
-	cout << "报单提示序号 TThostFtdcSequenceNoType:" << pLock->NotifySequence << endl;
-	cout << "交易日 TThostFtdcDateType:" << pLock->TradingDay << endl;
-	cout << "结算编号 TThostFtdcSettlementIDType:" << pLock->SettlementID << endl;
-	cout << "锁定编号 TThostFtdcOrderSysIDType:" << pLock->LockSysID << endl;
-	cout << "报单日期 TThostFtdcDateType:" << pLock->InsertDate << endl;
-	cout << "插入时间 TThostFtdcTimeType:" << pLock->InsertTime << endl;
-	cout << "撤销时间 TThostFtdcTimeType:" << pLock->CancelTime << endl;
-	cout << "锁定状态 TThostFtdcOrderActionStatusType:" << pLock->LockStatus << endl;
-	cout << "结算会员编号 TThostFtdcParticipantIDType:" << pLock->ClearingPartID << endl;
-	cout << "序号 TThostFtdcSequenceNoType:" << pLock->SequenceNo << endl;
-	cout << "前置编号 TThostFtdcFrontIDType:" << pLock->FrontID << endl;
-	cout << "会话编号 TThostFtdcSessionIDType:" << pLock->SessionID << endl;
-	cout << "用户端产品信息 TThostFtdcProductInfoType:" << pLock->UserProductInfo << endl;
-	cout << "状态信息 TThostFtdcErrorMsgType:" << pLock->StatusMsg << endl;
-	cout << "操作用户代码 TThostFtdcUserIDType:" << pLock->ActiveUserID << endl;
-	cout << "经纪公司报单编号 TThostFtdcSequenceNoType:" << pLock->BrokerLockSeq << endl;
-	cout << "营业部编号 TThostFtdcBranchIDType:" << pLock->BranchID << endl;
-    }
+    cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pLock->BrokerID << endl;
+    cout << "投资者代码 TThostFtdcInvestorIDType:" << pLock->InvestorID << endl;
+    cout << "合约代码 TThostFtdcInstrumentIDType:" << pLock->InstrumentID << endl;
+    cout << "锁定引用 TThostFtdcOrderRefType:" << pLock->LockRef << endl;
+    cout << "用户代码 TThostFtdcUserIDType:" << pLock->UserID << endl;
+    cout << "数量 TThostFtdcVolumeType:" << pLock->Volume << endl;
+    cout << "请求编号 TThostFtdcRequestIDType:" << pLock->RequestID << endl;
+    cout << "业务单元 TThostFtdcBusinessUnitType:" << pLock->BusinessUnit << endl;
+    cout << "锁定类型 TThostFtdcLockTypeType:" << pLock->LockType << endl;
+    cout << "本地锁定编号 TThostFtdcOrderLocalIDType:" << pLock->LockLocalID << endl;
+    cout << "交易所代码 TThostFtdcExchangeIDType:" << pLock->ExchangeID << endl;
+    cout << "会员代码 TThostFtdcParticipantIDType:" << pLock->ParticipantID << endl;
+    cout << "客户代码 TThostFtdcClientIDType:" << pLock->ClientID << endl;
+    cout << "合约在交易所的代码 TThostFtdcExchangeInstIDType:" << pLock->ExchangeInstID << endl;
+    cout << "交易所交易员代码 TThostFtdcTraderIDType:" << pLock->TraderID << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pLock->InstallID << endl;
+    cout << "执行宣告提交状态 TThostFtdcOrderSubmitStatusType:" << pLock->OrderSubmitStatus << endl;
+    cout << "报单提示序号 TThostFtdcSequenceNoType:" << pLock->NotifySequence << endl;
+    cout << "交易日 TThostFtdcDateType:" << pLock->TradingDay << endl;
+    cout << "结算编号 TThostFtdcSettlementIDType:" << pLock->SettlementID << endl;
+    cout << "锁定编号 TThostFtdcOrderSysIDType:" << pLock->LockSysID << endl;
+    cout << "报单日期 TThostFtdcDateType:" << pLock->InsertDate << endl;
+    cout << "插入时间 TThostFtdcTimeType:" << pLock->InsertTime << endl;
+    cout << "撤销时间 TThostFtdcTimeType:" << pLock->CancelTime << endl;
+    cout << "锁定状态 TThostFtdcOrderActionStatusType:" << pLock->LockStatus << endl;
+    cout << "结算会员编号 TThostFtdcParticipantIDType:" << pLock->ClearingPartID << endl;
+    cout << "序号 TThostFtdcSequenceNoType:" << pLock->SequenceNo << endl;
+    cout << "前置编号 TThostFtdcFrontIDType:" << pLock->FrontID << endl;
+    cout << "会话编号 TThostFtdcSessionIDType:" << pLock->SessionID << endl;
+    cout << "用户端产品信息 TThostFtdcProductInfoType:" << pLock->UserProductInfo << endl;
+    cout << "状态信息 TThostFtdcErrorMsgType:" << pLock->StatusMsg << endl;
+    cout << "操作用户代码 TThostFtdcUserIDType:" << pLock->ActiveUserID << endl;
+    cout << "经纪公司报单编号 TThostFtdcSequenceNoType:" << pLock->BrokerLockSeq << endl;
+    cout << "营业部编号 TThostFtdcBranchIDType:" << pLock->BranchID << endl;
 }
 
 ///锁定错误通知
-virtual void OnErrRtnLockInsert(CThostFtdcInputLockField* pInputLock, CThostFtdcRspInfoField* pRspInfo)
+void CTraderSpi::OnErrRtnLockInsert(CThostFtdcInputLockField* pInputLock, CThostFtdcRspInfoField* pRspInfo)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pInputLock->BrokerID << endl;
-	cout << "投资者代码 TThostFtdcInvestorIDType:" << pInputLock->InvestorID << endl;
-	cout << "合约代码 TThostFtdcInstrumentIDType:" << pInputLock->InstrumentID << endl;
-	cout << "锁定引用 TThostFtdcOrderRefType:" << pInputLock->LockRef << endl;
-	cout << "用户代码 TThostFtdcUserIDType:" << pInputLock->UserID << endl;
-	cout << "数量 TThostFtdcVolumeType:" << pInputLock->Volume << endl;
-	cout << "请求编号 TThostFtdcRequestIDType:" << pInputLock->RequestID << endl;
-	cout << "业务单元 TThostFtdcBusinessUnitType:" << pInputLock->BusinessUnit << endl;
-	cout << "锁定类型 TThostFtdcLockTypeType:" << pInputLock->LockType << endl;
-	cout << "交易所代码 TThostFtdcExchangeIDType:" << pInputLock->ExchangeID << endl;
-    }
+    cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pInputLock->BrokerID << endl;
+    cout << "投资者代码 TThostFtdcInvestorIDType:" << pInputLock->InvestorID << endl;
+    cout << "合约代码 TThostFtdcInstrumentIDType:" << pInputLock->InstrumentID << endl;
+    cout << "锁定引用 TThostFtdcOrderRefType:" << pInputLock->LockRef << endl;
+    cout << "用户代码 TThostFtdcUserIDType:" << pInputLock->UserID << endl;
+    cout << "数量 TThostFtdcVolumeType:" << pInputLock->Volume << endl;
+    cout << "请求编号 TThostFtdcRequestIDType:" << pInputLock->RequestID << endl;
+    cout << "业务单元 TThostFtdcBusinessUnitType:" << pInputLock->BusinessUnit << endl;
+    cout << "锁定类型 TThostFtdcLockTypeType:" << pInputLock->LockType << endl;
+    cout << "交易所代码 TThostFtdcExchangeIDType:" << pInputLock->ExchangeID << endl;
 }
 
 ///申请组合通知
-virtual void OnRtnCombAction(CThostFtdcCombActionField* pCombAction)
+void CTraderSpi::OnRtnCombAction(CThostFtdcCombActionField* pCombAction)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pCombAction->BrokerID << endl;
-	cout << "投资者代码 TThostFtdcInvestorIDType:" << pCombAction->InvestorID << endl;
-	cout << "合约代码 TThostFtdcInstrumentIDType:" << pCombAction->InstrumentID << endl;
-	cout << "组合引用 TThostFtdcOrderRefType:" << pCombAction->CombActionRef << endl;
-	cout << "用户代码 TThostFtdcUserIDType:" << pCombAction->UserID << endl;
-	cout << "买卖方向 TThostFtdcDirectionType:" << pCombAction->Direction << endl;
-	cout << "数量 TThostFtdcVolumeType:" << pCombAction->Volume << endl;
-	cout << "组合指令方向 TThostFtdcCombDirectionType:" << pCombAction->CombDirection << endl;
-	cout << "投机套保标志 TThostFtdcHedgeFlagType:" << pCombAction->HedgeFlag << endl;
-	cout << "本地申请组合编号 TThostFtdcOrderLocalIDType:" << pCombAction->ActionLocalID << endl;
-	cout << "交易所代码 TThostFtdcExchangeIDType:" << pCombAction->ExchangeID << endl;
-	cout << "会员代码 TThostFtdcParticipantIDType:" << pCombAction->ParticipantID << endl;
-	cout << "客户代码 TThostFtdcClientIDType:" << pCombAction->ClientID << endl;
-	cout << "合约在交易所的代码 TThostFtdcExchangeInstIDType:" << pCombAction->ExchangeInstID << endl;
-	cout << "交易所交易员代码 TThostFtdcTraderIDType:" << pCombAction->TraderID << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pCombAction->InstallID << endl;
-	cout << "组合状态 TThostFtdcOrderActionStatusType:" << pCombAction->ActionStatus << endl;
-	cout << "报单提示序号 TThostFtdcSequenceNoType:" << pCombAction->NotifySequence << endl;
-	cout << "交易日 TThostFtdcDateType:" << pCombAction->TradingDay << endl;
-	cout << "结算编号 TThostFtdcSettlementIDType:" << pCombAction->SettlementID << endl;
-	cout << "序号 TThostFtdcSequenceNoType:" << pCombAction->SequenceNo << endl;
-	cout << "前置编号 TThostFtdcFrontIDType:" << pCombAction->FrontID << endl;
-	cout << "会话编号 TThostFtdcSessionIDType:" << pCombAction->SessionID << endl;
-	cout << "用户端产品信息 TThostFtdcProductInfoType:" << pCombAction->UserProductInfo << endl;
-	cout << "状态信息 TThostFtdcErrorMsgType:" << pCombAction->StatusMsg << endl;
-    }
+    cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pCombAction->BrokerID << endl;
+    cout << "投资者代码 TThostFtdcInvestorIDType:" << pCombAction->InvestorID << endl;
+    cout << "合约代码 TThostFtdcInstrumentIDType:" << pCombAction->InstrumentID << endl;
+    cout << "组合引用 TThostFtdcOrderRefType:" << pCombAction->CombActionRef << endl;
+    cout << "用户代码 TThostFtdcUserIDType:" << pCombAction->UserID << endl;
+    cout << "买卖方向 TThostFtdcDirectionType:" << pCombAction->Direction << endl;
+    cout << "数量 TThostFtdcVolumeType:" << pCombAction->Volume << endl;
+    cout << "组合指令方向 TThostFtdcCombDirectionType:" << pCombAction->CombDirection << endl;
+    cout << "投机套保标志 TThostFtdcHedgeFlagType:" << pCombAction->HedgeFlag << endl;
+    cout << "本地申请组合编号 TThostFtdcOrderLocalIDType:" << pCombAction->ActionLocalID << endl;
+    cout << "交易所代码 TThostFtdcExchangeIDType:" << pCombAction->ExchangeID << endl;
+    cout << "会员代码 TThostFtdcParticipantIDType:" << pCombAction->ParticipantID << endl;
+    cout << "客户代码 TThostFtdcClientIDType:" << pCombAction->ClientID << endl;
+    cout << "合约在交易所的代码 TThostFtdcExchangeInstIDType:" << pCombAction->ExchangeInstID << endl;
+    cout << "交易所交易员代码 TThostFtdcTraderIDType:" << pCombAction->TraderID << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pCombAction->InstallID << endl;
+    cout << "组合状态 TThostFtdcOrderActionStatusType:" << pCombAction->ActionStatus << endl;
+    cout << "报单提示序号 TThostFtdcSequenceNoType:" << pCombAction->NotifySequence << endl;
+    cout << "交易日 TThostFtdcDateType:" << pCombAction->TradingDay << endl;
+    cout << "结算编号 TThostFtdcSettlementIDType:" << pCombAction->SettlementID << endl;
+    cout << "序号 TThostFtdcSequenceNoType:" << pCombAction->SequenceNo << endl;
+    cout << "前置编号 TThostFtdcFrontIDType:" << pCombAction->FrontID << endl;
+    cout << "会话编号 TThostFtdcSessionIDType:" << pCombAction->SessionID << endl;
+    cout << "用户端产品信息 TThostFtdcProductInfoType:" << pCombAction->UserProductInfo << endl;
+    cout << "状态信息 TThostFtdcErrorMsgType:" << pCombAction->StatusMsg << endl;
 }
 
 ///申请组合录入错误回报
-virtual void OnErrRtnCombActionInsert(CThostFtdcInputCombActionField* pInputCombAction, CThostFtdcRspInfoField* pRspInfo)
+void CTraderSpi::OnErrRtnCombActionInsert(CThostFtdcInputCombActionField* pInputCombAction, CThostFtdcRspInfoField* pRspInfo)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
+    if (!IsErrorRspInfo(pRspInfo)) {
 	cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pInputCombAction->BrokerID << endl;
 	cout << "投资者代码 TThostFtdcInvestorIDType:" << pInputCombAction->InvestorID << endl;
 	cout << "合约代码 TThostFtdcInstrumentIDType:" << pInputCombAction->InstrumentID << endl;
@@ -4295,7 +4099,7 @@ virtual void OnErrRtnCombActionInsert(CThostFtdcInputCombActionField* pInputComb
 }
 
 ///请求查询签约银行响应
-virtual void OnRspQryContractBank(CThostFtdcContractBankField* pContractBank, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryContractBank(CThostFtdcContractBankField* pContractBank, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -4307,7 +4111,7 @@ virtual void OnRspQryContractBank(CThostFtdcContractBankField* pContractBank, CT
 }
 
 ///请求查询预埋单响应
-virtual void OnRspQryParkedOrder(CThostFtdcParkedOrderField* pParkedOrder, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryParkedOrder(CThostFtdcParkedOrderField* pParkedOrder, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -4344,7 +4148,7 @@ virtual void OnRspQryParkedOrder(CThostFtdcParkedOrderField* pParkedOrder, CThos
 }
 
 ///请求查询预埋撤单响应
-virtual void OnRspQryParkedOrderAction(CThostFtdcParkedOrderActionField* pParkedOrderAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryParkedOrderAction(CThostFtdcParkedOrderActionField* pParkedOrderAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -4371,7 +4175,7 @@ virtual void OnRspQryParkedOrderAction(CThostFtdcParkedOrderActionField* pParked
 }
 
 ///请求查询交易通知响应
-virtual void OnRspQryTradingNotice(CThostFtdcTradingNoticeField* pTradingNotice, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryTradingNotice(CThostFtdcTradingNoticeField* pTradingNotice, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -4387,7 +4191,7 @@ virtual void OnRspQryTradingNotice(CThostFtdcTradingNoticeField* pTradingNotice,
 }
 
 ///请求查询经纪公司交易参数响应
-virtual void OnRspQryBrokerTradingParams(CThostFtdcBrokerTradingParamsField* pBrokerTradingParams, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryBrokerTradingParams(CThostFtdcBrokerTradingParamsField* pBrokerTradingParams, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -4402,7 +4206,7 @@ virtual void OnRspQryBrokerTradingParams(CThostFtdcBrokerTradingParamsField* pBr
 }
 
 ///请求查询经纪公司交易算法响应
-virtual void OnRspQryBrokerTradingAlgos(CThostFtdcBrokerTradingAlgosField* pBrokerTradingAlgos, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQryBrokerTradingAlgos(CThostFtdcBrokerTradingAlgosField* pBrokerTradingAlgos, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -4416,7 +4220,7 @@ virtual void OnRspQryBrokerTradingAlgos(CThostFtdcBrokerTradingAlgosField* pBrok
 }
 
 ///请求查询监控中心用户令牌
-virtual void OnRspQueryCFMMCTradingAccountToken(CThostFtdcQueryCFMMCTradingAccountTokenField* pQueryCFMMCTradingAccountToken, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQueryCFMMCTradingAccountToken(CThostFtdcQueryCFMMCTradingAccountTokenField* pQueryCFMMCTradingAccountToken, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -4426,561 +4230,541 @@ virtual void OnRspQueryCFMMCTradingAccountToken(CThostFtdcQueryCFMMCTradingAccou
 }
 
 ///银行发起银行资金转期货通知
-virtual void OnRtnFromBankToFutureByBank(CThostFtdcRspTransferField* pRspTransfer)
+void CTraderSpi::OnRtnFromBankToFutureByBank(CThostFtdcRspTransferField* pRspTransfer)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspTransfer->TradeCode << endl;
-	cout << "银行代码 TThostFtdcBankIDType:" << pRspTransfer->BankID << endl;
-	cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspTransfer->BankBranchID << endl;
-	cout << "期商代码 TThostFtdcBrokerIDType:" << pRspTransfer->BrokerID << endl;
-	cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspTransfer->BrokerBranchID << endl;
-	cout << "交易日期 TThostFtdcTradeDateType:" << pRspTransfer->TradeDate << endl;
-	cout << "交易时间 TThostFtdcTradeTimeType:" << pRspTransfer->TradeTime << endl;
-	cout << "银行流水号 TThostFtdcBankSerialType:" << pRspTransfer->BankSerial << endl;
-	cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspTransfer->TradingDay << endl;
-	cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspTransfer->PlateSerial << endl;
-	cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspTransfer->LastFragment << endl;
-	cout << "会话号 TThostFtdcSessionIDType:" << pRspTransfer->SessionID << endl;
-	cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspTransfer->CustomerName << endl;
-	cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspTransfer->IdCardType << endl;
-	cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspTransfer->IdentifiedCardNo << endl;
-	cout << "客户类型 TThostFtdcCustTypeType:" << pRspTransfer->CustType << endl;
-	cout << "银行帐号 TThostFtdcBankAccountType:" << pRspTransfer->BankAccount << endl;
-	cout << "银行密码 TThostFtdcPasswordType:" << pRspTransfer->BankPassWord << endl;
-	cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspTransfer->AccountID << endl;
-	cout << "期货密码 TThostFtdcPasswordType:" << pRspTransfer->Password << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pRspTransfer->InstallID << endl;
-	cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspTransfer->FutureSerial << endl;
-	cout << "用户标识 TThostFtdcUserIDType:" << pRspTransfer->UserID << endl;
-	cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspTransfer->VerifyCertNoFlag << endl;
-	cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspTransfer->CurrencyID << endl;
-	cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspTransfer->TradeAmount << endl;
-	cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspTransfer->FutureFetchAmount << endl;
-	cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspTransfer->FeePayFlag << endl;
-	cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspTransfer->CustFee << endl;
-	cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspTransfer->BrokerFee << endl;
-	cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspTransfer->Message << endl;
-	cout << "摘要 TThostFtdcDigestType:" << pRspTransfer->Digest << endl;
-	cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspTransfer->BankAccType << endl;
-	cout << "渠道标志 TThostFtdcDeviceIDType:" << pRspTransfer->DeviceID << endl;
-	cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspTransfer->BankSecuAccType << endl;
-	cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspTransfer->BrokerIDByBank << endl;
-	cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspTransfer->BankSecuAcc << endl;
-	cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspTransfer->BankPwdFlag << endl;
-	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspTransfer->SecuPwdFlag << endl;
-	cout << "交易柜员 TThostFtdcOperNoType:" << pRspTransfer->OperNo << endl;
-	cout << "请求编号 TThostFtdcRequestIDType:" << pRspTransfer->RequestID << endl;
-	cout << "交易ID:" << pRspTransfer->TThostFtdcTIDType << endlTID;
-	cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspTransfer->TransferStatus << endl;
-	cout << "错误代码 TThostFtdcErrorIDType:" << pRspTransfer->ErrorID << endl;
-	cout << "错误信息 TThostFtdcErrorMsgType:" << pRspTransfer->ErrorMsg << endl;
-    }
+    cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspTransfer->TradeCode << endl;
+    cout << "银行代码 TThostFtdcBankIDType:" << pRspTransfer->BankID << endl;
+    cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspTransfer->BankBranchID << endl;
+    cout << "期商代码 TThostFtdcBrokerIDType:" << pRspTransfer->BrokerID << endl;
+    cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspTransfer->BrokerBranchID << endl;
+    cout << "交易日期 TThostFtdcTradeDateType:" << pRspTransfer->TradeDate << endl;
+    cout << "交易时间 TThostFtdcTradeTimeType:" << pRspTransfer->TradeTime << endl;
+    cout << "银行流水号 TThostFtdcBankSerialType:" << pRspTransfer->BankSerial << endl;
+    cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspTransfer->TradingDay << endl;
+    cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspTransfer->PlateSerial << endl;
+    cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspTransfer->LastFragment << endl;
+    cout << "会话号 TThostFtdcSessionIDType:" << pRspTransfer->SessionID << endl;
+    cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspTransfer->CustomerName << endl;
+    cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspTransfer->IdCardType << endl;
+    cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspTransfer->IdentifiedCardNo << endl;
+    cout << "客户类型 TThostFtdcCustTypeType:" << pRspTransfer->CustType << endl;
+    cout << "银行帐号 TThostFtdcBankAccountType:" << pRspTransfer->BankAccount << endl;
+    cout << "银行密码 TThostFtdcPasswordType:" << pRspTransfer->BankPassWord << endl;
+    cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspTransfer->AccountID << endl;
+    cout << "期货密码 TThostFtdcPasswordType:" << pRspTransfer->Password << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pRspTransfer->InstallID << endl;
+    cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspTransfer->FutureSerial << endl;
+    cout << "用户标识 TThostFtdcUserIDType:" << pRspTransfer->UserID << endl;
+    cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspTransfer->VerifyCertNoFlag << endl;
+    cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspTransfer->CurrencyID << endl;
+    cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspTransfer->TradeAmount << endl;
+    cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspTransfer->FutureFetchAmount << endl;
+    cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspTransfer->FeePayFlag << endl;
+    cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspTransfer->CustFee << endl;
+    cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspTransfer->BrokerFee << endl;
+    cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspTransfer->Message << endl;
+    cout << "摘要 TThostFtdcDigestType:" << pRspTransfer->Digest << endl;
+    cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspTransfer->BankAccType << endl;
+    cout << "渠道标志 TThostFtdcDeviceIDType:" << pRspTransfer->DeviceID << endl;
+    cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspTransfer->BankSecuAccType << endl;
+    cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspTransfer->BrokerIDByBank << endl;
+    cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspTransfer->BankSecuAcc << endl;
+    cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspTransfer->BankPwdFlag << endl;
+    cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspTransfer->SecuPwdFlag << endl;
+    cout << "交易柜员 TThostFtdcOperNoType:" << pRspTransfer->OperNo << endl;
+    cout << "请求编号 TThostFtdcRequestIDType:" << pRspTransfer->RequestID << endl;
+    // cout << "交易ID:" << pRspTransfer->TThostFtdcTIDType << endlTID;
+    cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspTransfer->TransferStatus << endl;
+    cout << "错误代码 TThostFtdcErrorIDType:" << pRspTransfer->ErrorID << endl;
+    cout << "错误信息 TThostFtdcErrorMsgType:" << pRspTransfer->ErrorMsg << endl;
 }
 
 ///银行发起期货资金转银行通知
-virtual void OnRtnFromFutureToBankByBank(CThostFtdcRspTransferField* pRspTransfer)
+void CTraderSpi::OnRtnFromFutureToBankByBank(CThostFtdcRspTransferField* pRspTransfer)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspTransfer->TradeCode << endl;
-	cout << "银行代码 TThostFtdcBankIDType:" << pRspTransfer->BankID << endl;
-	cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspTransfer->BankBranchID << endl;
-	cout << "期商代码 TThostFtdcBrokerIDType:" << pRspTransfer->BrokerID << endl;
-	cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspTransfer->BrokerBranchID << endl;
-	cout << "交易日期 TThostFtdcTradeDateType:" << pRspTransfer->TradeDate << endl;
-	cout << "交易时间 TThostFtdcTradeTimeType:" << pRspTransfer->TradeTime << endl;
-	cout << "银行流水号 TThostFtdcBankSerialType:" << pRspTransfer->BankSerial << endl;
-	cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspTransfer->TradingDay << endl;
-	cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspTransfer->PlateSerial << endl;
-	cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspTransfer->LastFragment << endl;
-	cout << "会话号 TThostFtdcSessionIDType:" << pRspTransfer->SessionID << endl;
-	cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspTransfer->CustomerName << endl;
-	cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspTransfer->IdCardType << endl;
-	cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspTransfer->IdentifiedCardNo << endl;
-	cout << "客户类型 TThostFtdcCustTypeType:" << pRspTransfer->CustType << endl;
-	cout << "银行帐号 TThostFtdcBankAccountType:" << pRspTransfer->BankAccount << endl;
-	cout << "银行密码 TThostFtdcPasswordType:" << pRspTransfer->BankPassWord << endl;
-	cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspTransfer->AccountID << endl;
-	cout << "期货密码 TThostFtdcPasswordType:" << pRspTransfer->Password << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pRspTransfer->InstallID << endl;
-	cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspTransfer->FutureSerial << endl;
-	cout << "用户标识 TThostFtdcUserIDType:" << pRspTransfer->UserID << endl;
-	cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspTransfer->VerifyCertNoFlag << endl;
-	cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspTransfer->CurrencyID << endl;
-	cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspTransfer->TradeAmount << endl;
-	cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspTransfer->FutureFetchAmount << endl;
-	cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspTransfer->FeePayFlag << endl;
-	cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspTransfer->CustFee << endl;
-	cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspTransfer->BrokerFee << endl;
-	cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspTransfer->Message << endl;
-	cout << "摘要 TThostFtdcDigestType:" << pRspTransfer->Digest << endl;
-	cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspTransfer->BankAccType << endl;
-	cout << "渠道标志 TThostFtdcDeviceIDType:" << pRspTransfer->DeviceID << endl;
-	cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspTransfer->BankSecuAccType << endl;
-	cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspTransfer->BrokerIDByBank << endl;
-	cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspTransfer->BankSecuAcc << endl;
-	cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspTransfer->BankPwdFlag << endl;
-	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspTransfer->SecuPwdFlag << endl;
-	cout << "交易柜员 TThostFtdcOperNoType:" << pRspTransfer->OperNo << endl;
-	cout << "请求编号 TThostFtdcRequestIDType:" << pRspTransfer->RequestID << endl;
-	cout << "交易ID:" << pRspTransfer->TThostFtdcTIDType << endlTID;
-	cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspTransfer->TransferStatus << endl;
-	cout << "错误代码 TThostFtdcErrorIDType:" << pRspTransfer->ErrorID << endl;
-	cout << "错误信息 TThostFtdcErrorMsgType:" << pRspTransfer->ErrorMsg << endl;
-    }
+    cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspTransfer->TradeCode << endl;
+    cout << "银行代码 TThostFtdcBankIDType:" << pRspTransfer->BankID << endl;
+    cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspTransfer->BankBranchID << endl;
+    cout << "期商代码 TThostFtdcBrokerIDType:" << pRspTransfer->BrokerID << endl;
+    cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspTransfer->BrokerBranchID << endl;
+    cout << "交易日期 TThostFtdcTradeDateType:" << pRspTransfer->TradeDate << endl;
+    cout << "交易时间 TThostFtdcTradeTimeType:" << pRspTransfer->TradeTime << endl;
+    cout << "银行流水号 TThostFtdcBankSerialType:" << pRspTransfer->BankSerial << endl;
+    cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspTransfer->TradingDay << endl;
+    cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspTransfer->PlateSerial << endl;
+    cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspTransfer->LastFragment << endl;
+    cout << "会话号 TThostFtdcSessionIDType:" << pRspTransfer->SessionID << endl;
+    cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspTransfer->CustomerName << endl;
+    cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspTransfer->IdCardType << endl;
+    cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspTransfer->IdentifiedCardNo << endl;
+    cout << "客户类型 TThostFtdcCustTypeType:" << pRspTransfer->CustType << endl;
+    cout << "银行帐号 TThostFtdcBankAccountType:" << pRspTransfer->BankAccount << endl;
+    cout << "银行密码 TThostFtdcPasswordType:" << pRspTransfer->BankPassWord << endl;
+    cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspTransfer->AccountID << endl;
+    cout << "期货密码 TThostFtdcPasswordType:" << pRspTransfer->Password << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pRspTransfer->InstallID << endl;
+    cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspTransfer->FutureSerial << endl;
+    cout << "用户标识 TThostFtdcUserIDType:" << pRspTransfer->UserID << endl;
+    cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspTransfer->VerifyCertNoFlag << endl;
+    cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspTransfer->CurrencyID << endl;
+    cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspTransfer->TradeAmount << endl;
+    cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspTransfer->FutureFetchAmount << endl;
+    cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspTransfer->FeePayFlag << endl;
+    cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspTransfer->CustFee << endl;
+    cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspTransfer->BrokerFee << endl;
+    cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspTransfer->Message << endl;
+    cout << "摘要 TThostFtdcDigestType:" << pRspTransfer->Digest << endl;
+    cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspTransfer->BankAccType << endl;
+    cout << "渠道标志 TThostFtdcDeviceIDType:" << pRspTransfer->DeviceID << endl;
+    cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspTransfer->BankSecuAccType << endl;
+    cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspTransfer->BrokerIDByBank << endl;
+    cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspTransfer->BankSecuAcc << endl;
+    cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspTransfer->BankPwdFlag << endl;
+    cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspTransfer->SecuPwdFlag << endl;
+    cout << "交易柜员 TThostFtdcOperNoType:" << pRspTransfer->OperNo << endl;
+    cout << "请求编号 TThostFtdcRequestIDType:" << pRspTransfer->RequestID << endl;
+    // cout << "交易ID:" << pRspTransfer->TThostFtdcTIDType << endlTID;
+    cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspTransfer->TransferStatus << endl;
+    cout << "错误代码 TThostFtdcErrorIDType:" << pRspTransfer->ErrorID << endl;
+    cout << "错误信息 TThostFtdcErrorMsgType:" << pRspTransfer->ErrorMsg << endl;
 }
 
 ///银行发起冲正银行转期货通知
-virtual void OnRtnRepealFromBankToFutureByBank(CThostFtdcRspRepealField* pRspRepeal)
+void CTraderSpi::OnRtnRepealFromBankToFutureByBank(CThostFtdcRspRepealField* pRspRepeal)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "冲正时间间隔 TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
-	cout << "已经冲正次数 TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
-	cout << "银行冲正标志 TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
-	cout << "期商冲正标志 TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
-	cout << "被冲正平台流水号 TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
-	cout << "被冲正银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
-	cout << "被冲正期货流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
-	cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
-	cout << "银行代码 TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
-	cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
-	cout << "期商代码 TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
-	cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
-	cout << "交易日期 TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
-	cout << "交易时间 TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
-	cout << "银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
-	cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
-	cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
-	cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
-	cout << "会话号 TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
-	cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
-	cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
-	cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
-	cout << "客户类型 TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
-	cout << "银行帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
-	cout << "银行密码 TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
-	cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
-	cout << "期货密码 TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
-	cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
-	cout << "用户标识 TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
-	cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
-	cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
-	cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
-	cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
-	cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
-	cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
-	cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
-	cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
-	cout << "摘要 TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
-	cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
-	cout << "渠道标志 TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
-	cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
-	cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
-	cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
-	cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
-	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
-	cout << "交易柜员 TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
-	cout << "请求编号 TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
-	cout << "交易ID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
-	cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
-	cout << "错误代码 TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
-	cout << "错误信息 TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
-    }
+    cout << "冲正时间间隔 TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
+    cout << "已经冲正次数 TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
+    cout << "银行冲正标志 TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
+    cout << "期商冲正标志 TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
+    cout << "被冲正平台流水号 TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
+    cout << "被冲正银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
+    cout << "被冲正期货流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
+    cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
+    cout << "银行代码 TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
+    cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
+    cout << "期商代码 TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
+    cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
+    cout << "交易日期 TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
+    cout << "交易时间 TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
+    cout << "银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
+    cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
+    cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
+    cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
+    cout << "会话号 TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
+    cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
+    cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
+    cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
+    cout << "客户类型 TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
+    cout << "银行帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
+    cout << "银行密码 TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
+    cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
+    cout << "期货密码 TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
+    cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
+    cout << "用户标识 TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
+    cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
+    cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
+    cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
+    cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
+    cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
+    cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
+    cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
+    cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
+    cout << "摘要 TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
+    cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
+    cout << "渠道标志 TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
+    cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
+    cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
+    cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
+    cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
+    cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
+    cout << "交易柜员 TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
+    cout << "请求编号 TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
+    // cout << "交易ID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
+    cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
+    cout << "错误代码 TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
+    cout << "错误信息 TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
 }
 
 ///银行发起冲正期货转银行通知
-virtual void OnRtnRepealFromFutureToBankByBank(CThostFtdcRspRepealField* pRspRepeal)
+void CTraderSpi::OnRtnRepealFromFutureToBankByBank(CThostFtdcRspRepealField* pRspRepeal)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "冲正时间间隔 TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
-	cout << "已经冲正次数 TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
-	cout << "银行冲正标志 TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
-	cout << "期商冲正标志 TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
-	cout << "被冲正平台流水号 TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
-	cout << "被冲正银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
-	cout << "被冲正期货流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
-	cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
-	cout << "银行代码 TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
-	cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
-	cout << "期商代码 TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
-	cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
-	cout << "交易日期 TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
-	cout << "交易时间 TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
-	cout << "银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
-	cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
-	cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
-	cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
-	cout << "会话号 TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
-	cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
-	cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
-	cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
-	cout << "客户类型 TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
-	cout << "银行帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
-	cout << "银行密码 TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
-	cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
-	cout << "期货密码 TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
-	cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
-	cout << "用户标识 TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
-	cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
-	cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
-	cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
-	cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
-	cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
-	cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
-	cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
-	cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
-	cout << "摘要 TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
-	cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
-	cout << "渠道标 TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
-	cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
-	cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
-	cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
-	cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
-	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
-	cout << "交易柜员 TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
-	cout << "请求编号 TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
-	cout << "交易 TThostFtdcTIDType:" << pRspRepeal->TID << endl;
-	cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
-	cout << "错误代码 TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
-	cout << "错误信息 TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
-    }
+    cout << "冲正时间间隔 TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
+    cout << "已经冲正次数 TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
+    cout << "银行冲正标志 TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
+    cout << "期商冲正标志 TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
+    cout << "被冲正平台流水号 TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
+    cout << "被冲正银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
+    cout << "被冲正期货流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
+    cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
+    cout << "银行代码 TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
+    cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
+    cout << "期商代码 TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
+    cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
+    cout << "交易日期 TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
+    cout << "交易时间 TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
+    cout << "银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
+    cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
+    cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
+    cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
+    cout << "会话号 TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
+    cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
+    cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
+    cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
+    cout << "客户类型 TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
+    cout << "银行帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
+    cout << "银行密码 TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
+    cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
+    cout << "期货密码 TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
+    cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
+    cout << "用户标识 TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
+    cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
+    cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
+    cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
+    cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
+    cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
+    cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
+    cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
+    cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
+    cout << "摘要 TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
+    cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
+    cout << "渠道标 TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
+    cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
+    cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
+    cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
+    cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
+    cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
+    cout << "交易柜员 TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
+    cout << "请求编号 TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
+    cout << "交易 TThostFtdcTIDType:" << pRspRepeal->TID << endl;
+    cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
+    cout << "错误代码 TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
+    cout << "错误信息 TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
 }
 
 ///期货发起银行资金转期货通知
-virtual void OnRtnFromBankToFutureByFuture(CThostFtdcRspTransferField* pRspTransfer)
+void CTraderSpi::OnRtnFromBankToFutureByFuture(CThostFtdcRspTransferField* pRspTransfer)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspTransfer->TradeCode << endl;
-	cout << "银行代码 TThostFtdcBankIDType:" << pRspTransfer->BankID << endl;
-	cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspTransfer->BankBranchID << endl;
-	cout << "期商代码 TThostFtdcBrokerIDType:" << pRspTransfer->BrokerID << endl;
-	cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspTransfer->BrokerBranchID << endl;
-	cout << "交易日期 TThostFtdcTradeDateType:" << pRspTransfer->TradeDate << endl;
-	cout << "交易时间 TThostFtdcTradeTimeType:" << pRspTransfer->TradeTime << endl;
-	cout << "银行流水号 TThostFtdcBankSerialType:" << pRspTransfer->BankSerial << endl;
-	cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspTransfer->TradingDay << endl;
-	cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspTransfer->PlateSerial << endl;
-	cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspTransfer->LastFragment << endl;
-	cout << "会话号 TThostFtdcSessionIDType:" << pRspTransfer->SessionID << endl;
-	cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspTransfer->CustomerName << endl;
-	cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspTransfer->IdCardType << endl;
-	cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspTransfer->IdentifiedCardNo << endl;
-	cout << "客户类型 TThostFtdcCustTypeType:" << pRspTransfer->CustType << endl;
-	cout << "银行帐号 TThostFtdcBankAccountType:" << pRspTransfer->BankAccount << endl;
-	cout << "银行密码 TThostFtdcPasswordType:" << pRspTransfer->BankPassWord << endl;
-	cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspTransfer->AccountID << endl;
-	cout << "期货密码 TThostFtdcPasswordType:" << pRspTransfer->Password << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pRspTransfer->InstallID << endl;
-	cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspTransfer->FutureSerial << endl;
-	cout << "用户标识 TThostFtdcUserIDType:" << pRspTransfer->UserID << endl;
-	cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspTransfer->VerifyCertNoFlag << endl;
-	cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspTransfer->CurrencyID << endl;
-	cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspTransfer->TradeAmount << endl;
-	cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspTransfer->FutureFetchAmount << endl;
-	cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspTransfer->FeePayFlag << endl;
-	cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspTransfer->CustFee << endl;
-	cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspTransfer->BrokerFee << endl;
-	cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspTransfer->Message << endl;
-	cout << "摘要 TThostFtdcDigestType:" << pRspTransfer->Digest << endl;
-	cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspTransfer->BankAccType << endl;
-	cout << "渠道标志 TThostFtdcDeviceIDType:" << pRspTransfer->DeviceID << endl;
-	cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspTransfer->BankSecuAccType << endl;
-	cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspTransfer->BrokerIDByBank << endl;
-	cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspTransfer->BankSecuAcc << endl;
-	cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspTransfer->BankPwdFlag << endl;
-	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspTransfer->SecuPwdFlag << endl;
-	cout << "交易柜员 TThostFtdcOperNoType:" << pRspTransfer->OperNo << endl;
-	cout << "请求编号 TThostFtdcRequestIDType:" << pRspTransfer->RequestID << endl;
-	cout << "交易ID:" << pRspTransfer->TThostFtdcTIDType << endlTID;
-	cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspTransfer->TransferStatus << endl;
-	cout << "错误代码 TThostFtdcErrorIDType:" << pRspTransfer->ErrorID << endl;
-	cout << "错误信息 TThostFtdcErrorMsgType:" << pRspTransfer->ErrorMsg << endl;
-    }
+    cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspTransfer->TradeCode << endl;
+    cout << "银行代码 TThostFtdcBankIDType:" << pRspTransfer->BankID << endl;
+    cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspTransfer->BankBranchID << endl;
+    cout << "期商代码 TThostFtdcBrokerIDType:" << pRspTransfer->BrokerID << endl;
+    cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspTransfer->BrokerBranchID << endl;
+    cout << "交易日期 TThostFtdcTradeDateType:" << pRspTransfer->TradeDate << endl;
+    cout << "交易时间 TThostFtdcTradeTimeType:" << pRspTransfer->TradeTime << endl;
+    cout << "银行流水号 TThostFtdcBankSerialType:" << pRspTransfer->BankSerial << endl;
+    cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspTransfer->TradingDay << endl;
+    cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspTransfer->PlateSerial << endl;
+    cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspTransfer->LastFragment << endl;
+    cout << "会话号 TThostFtdcSessionIDType:" << pRspTransfer->SessionID << endl;
+    cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspTransfer->CustomerName << endl;
+    cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspTransfer->IdCardType << endl;
+    cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspTransfer->IdentifiedCardNo << endl;
+    cout << "客户类型 TThostFtdcCustTypeType:" << pRspTransfer->CustType << endl;
+    cout << "银行帐号 TThostFtdcBankAccountType:" << pRspTransfer->BankAccount << endl;
+    cout << "银行密码 TThostFtdcPasswordType:" << pRspTransfer->BankPassWord << endl;
+    cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspTransfer->AccountID << endl;
+    cout << "期货密码 TThostFtdcPasswordType:" << pRspTransfer->Password << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pRspTransfer->InstallID << endl;
+    cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspTransfer->FutureSerial << endl;
+    cout << "用户标识 TThostFtdcUserIDType:" << pRspTransfer->UserID << endl;
+    cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspTransfer->VerifyCertNoFlag << endl;
+    cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspTransfer->CurrencyID << endl;
+    cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspTransfer->TradeAmount << endl;
+    cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspTransfer->FutureFetchAmount << endl;
+    cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspTransfer->FeePayFlag << endl;
+    cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspTransfer->CustFee << endl;
+    cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspTransfer->BrokerFee << endl;
+    cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspTransfer->Message << endl;
+    cout << "摘要 TThostFtdcDigestType:" << pRspTransfer->Digest << endl;
+    cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspTransfer->BankAccType << endl;
+    cout << "渠道标志 TThostFtdcDeviceIDType:" << pRspTransfer->DeviceID << endl;
+    cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspTransfer->BankSecuAccType << endl;
+    cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspTransfer->BrokerIDByBank << endl;
+    cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspTransfer->BankSecuAcc << endl;
+    cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspTransfer->BankPwdFlag << endl;
+    cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspTransfer->SecuPwdFlag << endl;
+    cout << "交易柜员 TThostFtdcOperNoType:" << pRspTransfer->OperNo << endl;
+    cout << "请求编号 TThostFtdcRequestIDType:" << pRspTransfer->RequestID << endl;
+    // cout << "交易ID:" << pRspTransfer->TThostFtdcTIDType << endlTID;
+    cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspTransfer->TransferStatus << endl;
+    cout << "错误代码 TThostFtdcErrorIDType:" << pRspTransfer->ErrorID << endl;
+    cout << "错误信息 TThostFtdcErrorMsgType:" << pRspTransfer->ErrorMsg << endl;
 }
 
 ///期货发起期货资金转银行通知
-virtual void OnRtnFromFutureToBankByFuture(CThostFtdcRspTransferField* pRspTransfer)
+void CTraderSpi::OnRtnFromFutureToBankByFuture(CThostFtdcRspTransferField* pRspTransfer)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspTransfer->TradeCode << endl;
-	cout << "银行代码 TThostFtdcBankIDType:" << pRspTransfer->BankID << endl;
-	cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspTransfer->BankBranchID << endl;
-	cout << "期商代码 TThostFtdcBrokerIDType:" << pRspTransfer->BrokerID << endl;
-	cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspTransfer->BrokerBranchID << endl;
-	cout << "交易日期 TThostFtdcTradeDateType:" << pRspTransfer->TradeDate << endl;
-	cout << "交易时间 TThostFtdcTradeTimeType:" << pRspTransfer->TradeTime << endl;
-	cout << "银行流水号 TThostFtdcBankSerialType:" << pRspTransfer->BankSerial << endl;
-	cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspTransfer->TradingDay << endl;
-	cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspTransfer->PlateSerial << endl;
-	cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspTransfer->LastFragment << endl;
-	cout << "会话号 TThostFtdcSessionIDType:" << pRspTransfer->SessionID << endl;
-	cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspTransfer->CustomerName << endl;
-	cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspTransfer->IdCardType << endl;
-	cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspTransfer->IdentifiedCardNo << endl;
-	cout << "客户类型 TThostFtdcCustTypeType:" << pRspTransfer->CustType << endl;
-	cout << "银行帐号 TThostFtdcBankAccountType:" << pRspTransfer->BankAccount << endl;
-	cout << "银行密码 TThostFtdcPasswordType:" << pRspTransfer->BankPassWord << endl;
-	cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspTransfer->AccountID << endl;
-	cout << "期货密码 TThostFtdcPasswordType:" << pRspTransfer->Password << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pRspTransfer->InstallID << endl;
-	cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspTransfer->FutureSerial << endl;
-	cout << "用户标识 TThostFtdcUserIDType:" << pRspTransfer->UserID << endl;
-	cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspTransfer->VerifyCertNoFlag << endl;
-	cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspTransfer->CurrencyID << endl;
-	cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspTransfer->TradeAmount << endl;
-	cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspTransfer->FutureFetchAmount << endl;
-	cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspTransfer->FeePayFlag << endl;
-	cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspTransfer->CustFee << endl;
-	cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspTransfer->BrokerFee << endl;
-	cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspTransfer->Message << endl;
-	cout << "摘要 TThostFtdcDigestType:" << pRspTransfer->Digest << endl;
-	cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspTransfer->BankAccType << endl;
-	cout << "渠道标志 TThostFtdcDeviceIDType:" << pRspTransfer->DeviceID << endl;
-	cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspTransfer->BankSecuAccType << endl;
-	cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspTransfer->BrokerIDByBank << endl;
-	cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspTransfer->BankSecuAcc << endl;
-	cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspTransfer->BankPwdFlag << endl;
-	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspTransfer->SecuPwdFlag << endl;
-	cout << "交易柜员 TThostFtdcOperNoType:" << pRspTransfer->OperNo << endl;
-	cout << "请求编号 TThostFtdcRequestIDType:" << pRspTransfer->RequestID << endl;
-	cout << "交易ID:" << pRspTransfer->TThostFtdcTIDType << endlTID;
-	cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspTransfer->TransferStatus << endl;
-	cout << "错误代码 TThostFtdcErrorIDType:" << pRspTransfer->ErrorID << endl;
-	cout << "错误信息 TThostFtdcErrorMsgType:" << pRspTransfer->ErrorMsg << endl;
-    }
+    cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspTransfer->TradeCode << endl;
+    cout << "银行代码 TThostFtdcBankIDType:" << pRspTransfer->BankID << endl;
+    cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspTransfer->BankBranchID << endl;
+    cout << "期商代码 TThostFtdcBrokerIDType:" << pRspTransfer->BrokerID << endl;
+    cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspTransfer->BrokerBranchID << endl;
+    cout << "交易日期 TThostFtdcTradeDateType:" << pRspTransfer->TradeDate << endl;
+    cout << "交易时间 TThostFtdcTradeTimeType:" << pRspTransfer->TradeTime << endl;
+    cout << "银行流水号 TThostFtdcBankSerialType:" << pRspTransfer->BankSerial << endl;
+    cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspTransfer->TradingDay << endl;
+    cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspTransfer->PlateSerial << endl;
+    cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspTransfer->LastFragment << endl;
+    cout << "会话号 TThostFtdcSessionIDType:" << pRspTransfer->SessionID << endl;
+    cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspTransfer->CustomerName << endl;
+    cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspTransfer->IdCardType << endl;
+    cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspTransfer->IdentifiedCardNo << endl;
+    cout << "客户类型 TThostFtdcCustTypeType:" << pRspTransfer->CustType << endl;
+    cout << "银行帐号 TThostFtdcBankAccountType:" << pRspTransfer->BankAccount << endl;
+    cout << "银行密码 TThostFtdcPasswordType:" << pRspTransfer->BankPassWord << endl;
+    cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspTransfer->AccountID << endl;
+    cout << "期货密码 TThostFtdcPasswordType:" << pRspTransfer->Password << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pRspTransfer->InstallID << endl;
+    cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspTransfer->FutureSerial << endl;
+    cout << "用户标识 TThostFtdcUserIDType:" << pRspTransfer->UserID << endl;
+    cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspTransfer->VerifyCertNoFlag << endl;
+    cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspTransfer->CurrencyID << endl;
+    cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspTransfer->TradeAmount << endl;
+    cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspTransfer->FutureFetchAmount << endl;
+    cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspTransfer->FeePayFlag << endl;
+    cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspTransfer->CustFee << endl;
+    cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspTransfer->BrokerFee << endl;
+    cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspTransfer->Message << endl;
+    cout << "摘要 TThostFtdcDigestType:" << pRspTransfer->Digest << endl;
+    cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspTransfer->BankAccType << endl;
+    cout << "渠道标志 TThostFtdcDeviceIDType:" << pRspTransfer->DeviceID << endl;
+    cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspTransfer->BankSecuAccType << endl;
+    cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspTransfer->BrokerIDByBank << endl;
+    cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspTransfer->BankSecuAcc << endl;
+    cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspTransfer->BankPwdFlag << endl;
+    cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspTransfer->SecuPwdFlag << endl;
+    cout << "交易柜员 TThostFtdcOperNoType:" << pRspTransfer->OperNo << endl;
+    cout << "请求编号 TThostFtdcRequestIDType:" << pRspTransfer->RequestID << endl;
+    // cout << "交易ID:" << pRspTransfer->TThostFtdcTIDType << endlTID;
+    cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspTransfer->TransferStatus << endl;
+    cout << "错误代码 TThostFtdcErrorIDType:" << pRspTransfer->ErrorID << endl;
+    cout << "错误信息 TThostFtdcErrorMsgType:" << pRspTransfer->ErrorMsg << endl;
 }
 
 ///系统运行时期货端手工发起冲正银行转期货请求，银行处理完毕后报盘发回的通知
-virtual void OnRtnRepealFromBankToFutureByFutureManual(CThostFtdcRspRepealField* pRspRepeal)
+void CTraderSpi::OnRtnRepealFromBankToFutureByFutureManual(CThostFtdcRspRepealField* pRspRepeal)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "冲正时间间隔 TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
-	cout << "已经冲正次数 TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
-	cout << "银行冲正标志 TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
-	cout << "期商冲正标志 TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
-	cout << "被冲正平台流水号 TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
-	cout << "被冲正银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
-	cout << "被冲正期货流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
-	cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
-	cout << "银行代码 TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
-	cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
-	cout << "期商代码 TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
-	cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
-	cout << "交易日期 TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
-	cout << "交易时间 TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
-	cout << "银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
-	cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
-	cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
-	cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
-	cout << "会话号 TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
-	cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
-	cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
-	cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
-	cout << "客户类型 TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
-	cout << "银行帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
-	cout << "银行密码 TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
-	cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
-	cout << "期货密码 TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
-	cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
-	cout << "用户标识 TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
-	cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
-	cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
-	cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
-	cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
-	cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
-	cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
-	cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
-	cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
-	cout << "摘要 TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
-	cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
-	cout << "渠道标志 TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
-	cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
-	cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
-	cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
-	cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
-	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
-	cout << "交易柜员 TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
-	cout << "请求编号 TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
-	cout << "交易ID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
-	cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
-	cout << "错误代码 TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
-	cout << "错误信息 TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
-    }
+    cout << "冲正时间间隔 TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
+    cout << "已经冲正次数 TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
+    cout << "银行冲正标志 TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
+    cout << "期商冲正标志 TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
+    cout << "被冲正平台流水号 TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
+    cout << "被冲正银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
+    cout << "被冲正期货流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
+    cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
+    cout << "银行代码 TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
+    cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
+    cout << "期商代码 TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
+    cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
+    cout << "交易日期 TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
+    cout << "交易时间 TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
+    cout << "银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
+    cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
+    cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
+    cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
+    cout << "会话号 TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
+    cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
+    cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
+    cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
+    cout << "客户类型 TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
+    cout << "银行帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
+    cout << "银行密码 TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
+    cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
+    cout << "期货密码 TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
+    cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
+    cout << "用户标识 TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
+    cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
+    cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
+    cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
+    cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
+    cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
+    cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
+    cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
+    cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
+    cout << "摘要 TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
+    cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
+    cout << "渠道标志 TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
+    cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
+    cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
+    cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
+    cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
+    cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
+    cout << "交易柜员 TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
+    cout << "请求编号 TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
+    // cout << "交易ID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
+    cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
+    cout << "错误代码 TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
+    cout << "错误信息 TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
 }
 
 ///系统运行时期货端手工发起冲正期货转银行请求，银行处理完毕后报盘发回的通知
-virtual void OnRtnRepealFromFutureToBankByFutureManual(CThostFtdcRspRepealField* pRspRepeal)
+void CTraderSpi::OnRtnRepealFromFutureToBankByFutureManual(CThostFtdcRspRepealField* pRspRepeal)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "冲正时间间隔 TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
-	cout << "已经冲正次数 TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
-	cout << "银行冲正标志 TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
-	cout << "期商冲正标志 TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
-	cout << "被冲正平台流水号 TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
-	cout << "被冲正银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
-	cout << "被冲正期货流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
-	cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
-	cout << "银行代码 TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
-	cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
-	cout << "期商代码 TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
-	cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
-	cout << "交易日期 TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
-	cout << "交易时间 TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
-	cout << "银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
-	cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
-	cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
-	cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
-	cout << "会话号 TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
-	cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
-	cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
-	cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
-	cout << "客户类型 TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
-	cout << "银行帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
-	cout << "银行密码 TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
-	cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
-	cout << "期货密码 TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
-	cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
-	cout << "用户标识 TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
-	cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
-	cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
-	cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
-	cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
-	cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
-	cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
-	cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
-	cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
-	cout << "摘要 TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
-	cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
-	cout << "渠道标志 TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
-	cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
-	cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
-	cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
-	cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
-	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
-	cout << "交易柜员 TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
-	cout << "请求编号 TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
-	cout << "交易ID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
-	cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
-	cout << "错误代码 TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
-	cout << "错误信息 TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
-    }
+    cout << "冲正时间间隔 TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
+    cout << "已经冲正次数 TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
+    cout << "银行冲正标志 TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
+    cout << "期商冲正标志 TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
+    cout << "被冲正平台流水号 TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
+    cout << "被冲正银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
+    cout << "被冲正期货流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
+    cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
+    cout << "银行代码 TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
+    cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
+    cout << "期商代码 TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
+    cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
+    cout << "交易日期 TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
+    cout << "交易时间 TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
+    cout << "银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
+    cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
+    cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
+    cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
+    cout << "会话号 TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
+    cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
+    cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
+    cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
+    cout << "客户类型 TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
+    cout << "银行帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
+    cout << "银行密码 TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
+    cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
+    cout << "期货密码 TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
+    cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
+    cout << "用户标识 TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
+    cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
+    cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
+    cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
+    cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
+    cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
+    cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
+    cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
+    cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
+    cout << "摘要 TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
+    cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
+    cout << "渠道标志 TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
+    cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
+    cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
+    cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
+    cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
+    cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
+    cout << "交易柜员 TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
+    cout << "请求编号 TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
+    // cout << "交易ID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
+    cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
+    cout << "错误代码 TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
+    cout << "错误信息 TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
 }
 
 ///期货发起查询银行余额通知
-virtual void OnRtnQueryBankBalanceByFuture(CThostFtdcNotifyQueryAccountField* pNotifyQueryAccount)
+void CTraderSpi::OnRtnQueryBankBalanceByFuture(CThostFtdcNotifyQueryAccountField* pNotifyQueryAccount)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "业务功能码 TThostFtdcTradeCodeType:" << pNotifyQueryAccount->TradeCode << endl;
-	cout << "银行代码 TThostFtdcBankIDType:" << pNotifyQueryAccount->BankID << endl;
-	cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pNotifyQueryAccount->BankBranchID << endl;
-	cout << "期商代码 TThostFtdcBrokerIDType:" << pNotifyQueryAccount->BrokerID << endl;
-	cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pNotifyQueryAccount->BrokerBranchID << endl;
-	cout << "交易日期 TThostFtdcTradeDateType:" << pNotifyQueryAccount->TradeDate << endl;
-	cout << "交易时间 TThostFtdcTradeTimeType:" << pNotifyQueryAccount->TradeTime << endl;
-	cout << "银行流水号 TThostFtdcBankSerialType:" << pNotifyQueryAccount->BankSerial << endl;
-	cout << "交易系统日期 TThostFtdcTradeDateType:" << pNotifyQueryAccount->TradingDay << endl;
-	cout << "银期平台消息流水号 TThostFtdcSerialType:" << pNotifyQueryAccount->PlateSerial << endl;
-	cout << "最后分片标志 TThostFtdcLastFragmentType:" << pNotifyQueryAccount->LastFragment << endl;
-	cout << "会话号 TThostFtdcSessionIDType:" << pNotifyQueryAccount->SessionID << endl;
-	cout << "客户姓名 TThostFtdcIndividualNameType:" << pNotifyQueryAccount->CustomerName << endl;
-	cout << "证件类型 TThostFtdcIdCardTypeType:" << pNotifyQueryAccount->IdCardType << endl;
-	cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pNotifyQueryAccount->IdentifiedCardNo << endl;
-	cout << "客户类型 TThostFtdcCustTypeType:" << pNotifyQueryAccount->CustType << endl;
-	cout << "银行帐号 TThostFtdcBankAccountType:" << pNotifyQueryAccount->BankAccount << endl;
-	cout << "银行密码 TThostFtdcPasswordType:" << pNotifyQueryAccount->BankPassWord << endl;
-	cout << "投资者帐号 TThostFtdcAccountIDType:" << pNotifyQueryAccount->AccountID << endl;
-	cout << "期货密码 TThostFtdcPasswordType:" << pNotifyQueryAccount->Password << endl;
-	cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pNotifyQueryAccount->FutureSerial << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pNotifyQueryAccount->InstallID << endl;
-	cout << "用户标识 TThostFtdcUserIDType:" << pNotifyQueryAccount->UserID << endl;
-	cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pNotifyQueryAccount->VerifyCertNoFlag << endl;
-	cout << "币种代码 TThostFtdcCurrencyIDType:" << pNotifyQueryAccount->CurrencyID << endl;
-	cout << "摘要 TThostFtdcDigestType:" << pNotifyQueryAccount->Digest << endl;
-	cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pNotifyQueryAccount->BankAccType << endl;
-	cout << "渠道标志 TThostFtdcDeviceIDType:" << pNotifyQueryAccount->DeviceID << endl;
-	cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pNotifyQueryAccount->BankSecuAccType << endl;
-	cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pNotifyQueryAccount->BrokerIDByBank << endl;
-	cout << "期货单位帐号 TThostFtdcBankAccountType:" << pNotifyQueryAccount->BankSecuAcc << endl;
-	cout << "银行密码标志 TThostFtdcPwdFlagType:" << pNotifyQueryAccount->BankPwdFlag << endl;
-	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pNotifyQueryAccount->SecuPwdFlag << endl;
-	cout << "交易柜员 TThostFtdcOperNoType:" << pNotifyQueryAccount->OperNo << endl;
-	cout << "请求编号 TThostFtdcRequestIDType:" << pNotifyQueryAccount->RequestID << endl;
-	cout << "交易 TThostFtdcTIDType:" << pNotifyQueryAccount->TID << endl;
-	cout << "银行可用金额 TThostFtdcTradeAmountType:" << pNotifyQueryAccount->BankUseAmount << endl;
-	cout << "银行可取金额 TThostFtdcTradeAmountType:" << pNotifyQueryAccount->BankFetchAmount << endl;
-	cout << "错误代码 TThostFtdcErrorIDType:" << pNotifyQueryAccount->ErrorID << endl;
-	cout << "错误信息 TThostFtdcErrorMsgType:" << pNotifyQueryAccount->ErrorMsg << endl;
-    }
+    cout << "业务功能码 TThostFtdcTradeCodeType:" << pNotifyQueryAccount->TradeCode << endl;
+    cout << "银行代码 TThostFtdcBankIDType:" << pNotifyQueryAccount->BankID << endl;
+    cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pNotifyQueryAccount->BankBranchID << endl;
+    cout << "期商代码 TThostFtdcBrokerIDType:" << pNotifyQueryAccount->BrokerID << endl;
+    cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pNotifyQueryAccount->BrokerBranchID << endl;
+    cout << "交易日期 TThostFtdcTradeDateType:" << pNotifyQueryAccount->TradeDate << endl;
+    cout << "交易时间 TThostFtdcTradeTimeType:" << pNotifyQueryAccount->TradeTime << endl;
+    cout << "银行流水号 TThostFtdcBankSerialType:" << pNotifyQueryAccount->BankSerial << endl;
+    cout << "交易系统日期 TThostFtdcTradeDateType:" << pNotifyQueryAccount->TradingDay << endl;
+    cout << "银期平台消息流水号 TThostFtdcSerialType:" << pNotifyQueryAccount->PlateSerial << endl;
+    cout << "最后分片标志 TThostFtdcLastFragmentType:" << pNotifyQueryAccount->LastFragment << endl;
+    cout << "会话号 TThostFtdcSessionIDType:" << pNotifyQueryAccount->SessionID << endl;
+    cout << "客户姓名 TThostFtdcIndividualNameType:" << pNotifyQueryAccount->CustomerName << endl;
+    cout << "证件类型 TThostFtdcIdCardTypeType:" << pNotifyQueryAccount->IdCardType << endl;
+    cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pNotifyQueryAccount->IdentifiedCardNo << endl;
+    cout << "客户类型 TThostFtdcCustTypeType:" << pNotifyQueryAccount->CustType << endl;
+    cout << "银行帐号 TThostFtdcBankAccountType:" << pNotifyQueryAccount->BankAccount << endl;
+    cout << "银行密码 TThostFtdcPasswordType:" << pNotifyQueryAccount->BankPassWord << endl;
+    cout << "投资者帐号 TThostFtdcAccountIDType:" << pNotifyQueryAccount->AccountID << endl;
+    cout << "期货密码 TThostFtdcPasswordType:" << pNotifyQueryAccount->Password << endl;
+    cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pNotifyQueryAccount->FutureSerial << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pNotifyQueryAccount->InstallID << endl;
+    cout << "用户标识 TThostFtdcUserIDType:" << pNotifyQueryAccount->UserID << endl;
+    cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pNotifyQueryAccount->VerifyCertNoFlag << endl;
+    cout << "币种代码 TThostFtdcCurrencyIDType:" << pNotifyQueryAccount->CurrencyID << endl;
+    cout << "摘要 TThostFtdcDigestType:" << pNotifyQueryAccount->Digest << endl;
+    cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pNotifyQueryAccount->BankAccType << endl;
+    cout << "渠道标志 TThostFtdcDeviceIDType:" << pNotifyQueryAccount->DeviceID << endl;
+    cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pNotifyQueryAccount->BankSecuAccType << endl;
+    cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pNotifyQueryAccount->BrokerIDByBank << endl;
+    cout << "期货单位帐号 TThostFtdcBankAccountType:" << pNotifyQueryAccount->BankSecuAcc << endl;
+    cout << "银行密码标志 TThostFtdcPwdFlagType:" << pNotifyQueryAccount->BankPwdFlag << endl;
+    cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pNotifyQueryAccount->SecuPwdFlag << endl;
+    cout << "交易柜员 TThostFtdcOperNoType:" << pNotifyQueryAccount->OperNo << endl;
+    cout << "请求编号 TThostFtdcRequestIDType:" << pNotifyQueryAccount->RequestID << endl;
+    cout << "交易 TThostFtdcTIDType:" << pNotifyQueryAccount->TID << endl;
+    cout << "银行可用金额 TThostFtdcTradeAmountType:" << pNotifyQueryAccount->BankUseAmount << endl;
+    cout << "银行可取金额 TThostFtdcTradeAmountType:" << pNotifyQueryAccount->BankFetchAmount << endl;
+    cout << "错误代码 TThostFtdcErrorIDType:" << pNotifyQueryAccount->ErrorID << endl;
+    cout << "错误信息 TThostFtdcErrorMsgType:" << pNotifyQueryAccount->ErrorMsg << endl;
 }
 
 ///期货发起银行资金转期货错误回报
-virtual void OnErrRtnBankToFutureByFuture(CThostFtdcReqTransferField* pReqTransfer, CThostFtdcRspInfoField* pRspInfo)
+void CTraderSpi::OnErrRtnBankToFutureByFuture(CThostFtdcReqTransferField* pReqTransfer, CThostFtdcRspInfoField* pRspInfo)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "业务功能码 TThostFtdcTradeCodeType:" << pReqTransfer->TradeCode << endl;
-	cout << "银行代码 TThostFtdcBankIDType:" << pReqTransfer->BankID << endl;
-	cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pReqTransfer->BankBranchID << endl;
-	cout << "期商代码 TThostFtdcBrokerIDType:" << pReqTransfer->BrokerID << endl;
-	cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pReqTransfer->BrokerBranchID << endl;
-	cout << "交易日期 TThostFtdcTradeDateType:" << pReqTransfer->TradeDate << endl;
-	cout << "交易时间 TThostFtdcTradeTimeType:" << pReqTransfer->TradeTime << endl;
-	cout << "银行流水号 TThostFtdcBankSerialType:" << pReqTransfer->BankSerial << endl;
-	cout << "交易系统日期 TThostFtdcTradeDateType:" << pReqTransfer->TradingDay << endl;
-	cout << "银期平台消息流水号 TThostFtdcSerialType:" << pReqTransfer->PlateSerial << endl;
-	cout << "最后分片标志 TThostFtdcLastFragmentType:" << pReqTransfer->LastFragment << endl;
-	cout << "会话号 TThostFtdcSessionIDType:" << pReqTransfer->SessionID << endl;
-	cout << "客户姓名 TThostFtdcIndividualNameType:" << pReqTransfer->CustomerName << endl;
-	cout << "证件类型 TThostFtdcIdCardTypeType:" << pReqTransfer->IdCardType << endl;
-	cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pReqTransfer->IdentifiedCardNo << endl;
-	cout << "客户类型 TThostFtdcCustTypeType:" << pReqTransfer->CustType << endl;
-	cout << "银行帐号 TThostFtdcBankAccountType:" << pReqTransfer->BankAccount << endl;
-	cout << "银行密码 TThostFtdcPasswordType:" << pReqTransfer->BankPassWord << endl;
-	cout << "投资者帐号 TThostFtdcAccountIDType:" << pReqTransfer->AccountID << endl;
-	cout << "期货密码 TThostFtdcPasswordType:" << pReqTransfer->Password << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pReqTransfer->InstallID << endl;
-	cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pReqTransfer->FutureSerial << endl;
-	cout << "用户标识 TThostFtdcUserIDType:" << pReqTransfer->UserID << endl;
-	cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pReqTransfer->VerifyCertNoFlag << endl;
-	cout << "币种代码 TThostFtdcCurrencyIDType:" << pReqTransfer->CurrencyID << endl;
-	cout << "转帐金额 TThostFtdcTradeAmountType:" << pReqTransfer->TradeAmount << endl;
-	cout << "期货可取金额 TThostFtdcTradeAmountType:" << pReqTransfer->FutureFetchAmount << endl;
-	cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pReqTransfer->FeePayFlag << endl;
-	cout << "应收客户费用 TThostFtdcCustFeeType:" << pReqTransfer->CustFee << endl;
-	cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pReqTransfer->BrokerFee << endl;
-	cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pReqTransfer->Message << endl;
-	cout << "摘要 TThostFtdcDigestType:" << pReqTransfer->Digest << endl;
-	cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pReqTransfer->BankAccType << endl;
-	cout << "渠道标志 TThostFtdcDeviceIDType:" << pReqTransfer->DeviceID << endl;
-	cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pReqTransfer->BankSecuAccType << endl;
-	cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pReqTransfer->BrokerIDByBank << endl;
-	cout << "期货单位帐号 TThostFtdcBankAccountType:" << pReqTransfer->BankSecuAcc << endl;
-	cout << "银行密码标志 TThostFtdcPwdFlagType:" << pReqTransfer->BankPwdFlag << endl;
-	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pReqTransfer->SecuPwdFlag << endl;
-	cout << "交易柜员 TThostFtdcOperNoType:" << pReqTransfer->OperNo << endl;
-	cout << "请求编号 TThostFtdcRequestIDType:" << pReqTransfer->RequestID << endl;
-	cout << "交易ID:" << pReqTransfer->TThostFtdcTIDType << endlTID;
-	cout << "转账交易状态 TThostFtdcTransferStatusType:" << pReqTransfer->TransferStatus << endl;
-    }
+    cout << "业务功能码 TThostFtdcTradeCodeType:" << pReqTransfer->TradeCode << endl;
+    cout << "银行代码 TThostFtdcBankIDType:" << pReqTransfer->BankID << endl;
+    cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pReqTransfer->BankBranchID << endl;
+    cout << "期商代码 TThostFtdcBrokerIDType:" << pReqTransfer->BrokerID << endl;
+    cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pReqTransfer->BrokerBranchID << endl;
+    cout << "交易日期 TThostFtdcTradeDateType:" << pReqTransfer->TradeDate << endl;
+    cout << "交易时间 TThostFtdcTradeTimeType:" << pReqTransfer->TradeTime << endl;
+    cout << "银行流水号 TThostFtdcBankSerialType:" << pReqTransfer->BankSerial << endl;
+    cout << "交易系统日期 TThostFtdcTradeDateType:" << pReqTransfer->TradingDay << endl;
+    cout << "银期平台消息流水号 TThostFtdcSerialType:" << pReqTransfer->PlateSerial << endl;
+    cout << "最后分片标志 TThostFtdcLastFragmentType:" << pReqTransfer->LastFragment << endl;
+    cout << "会话号 TThostFtdcSessionIDType:" << pReqTransfer->SessionID << endl;
+    cout << "客户姓名 TThostFtdcIndividualNameType:" << pReqTransfer->CustomerName << endl;
+    cout << "证件类型 TThostFtdcIdCardTypeType:" << pReqTransfer->IdCardType << endl;
+    cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pReqTransfer->IdentifiedCardNo << endl;
+    cout << "客户类型 TThostFtdcCustTypeType:" << pReqTransfer->CustType << endl;
+    cout << "银行帐号 TThostFtdcBankAccountType:" << pReqTransfer->BankAccount << endl;
+    cout << "银行密码 TThostFtdcPasswordType:" << pReqTransfer->BankPassWord << endl;
+    cout << "投资者帐号 TThostFtdcAccountIDType:" << pReqTransfer->AccountID << endl;
+    cout << "期货密码 TThostFtdcPasswordType:" << pReqTransfer->Password << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pReqTransfer->InstallID << endl;
+    cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pReqTransfer->FutureSerial << endl;
+    cout << "用户标识 TThostFtdcUserIDType:" << pReqTransfer->UserID << endl;
+    cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pReqTransfer->VerifyCertNoFlag << endl;
+    cout << "币种代码 TThostFtdcCurrencyIDType:" << pReqTransfer->CurrencyID << endl;
+    cout << "转帐金额 TThostFtdcTradeAmountType:" << pReqTransfer->TradeAmount << endl;
+    cout << "期货可取金额 TThostFtdcTradeAmountType:" << pReqTransfer->FutureFetchAmount << endl;
+    cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pReqTransfer->FeePayFlag << endl;
+    cout << "应收客户费用 TThostFtdcCustFeeType:" << pReqTransfer->CustFee << endl;
+    cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pReqTransfer->BrokerFee << endl;
+    cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pReqTransfer->Message << endl;
+    cout << "摘要 TThostFtdcDigestType:" << pReqTransfer->Digest << endl;
+    cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pReqTransfer->BankAccType << endl;
+    cout << "渠道标志 TThostFtdcDeviceIDType:" << pReqTransfer->DeviceID << endl;
+    cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pReqTransfer->BankSecuAccType << endl;
+    cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pReqTransfer->BrokerIDByBank << endl;
+    cout << "期货单位帐号 TThostFtdcBankAccountType:" << pReqTransfer->BankSecuAcc << endl;
+    cout << "银行密码标志 TThostFtdcPwdFlagType:" << pReqTransfer->BankPwdFlag << endl;
+    cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pReqTransfer->SecuPwdFlag << endl;
+    cout << "交易柜员 TThostFtdcOperNoType:" << pReqTransfer->OperNo << endl;
+    cout << "请求编号 TThostFtdcRequestIDType:" << pReqTransfer->RequestID << endl;
+    // cout << "交易ID:" << pReqTransfer->TThostFtdcTIDType << endlTID;
+    cout << "转账交易状态 TThostFtdcTransferStatusType:" << pReqTransfer->TransferStatus << endl;
 }
 
 ///期货发起期货资金转银行错误回报
-virtual void OnErrRtnFutureToBankByFuture(CThostFtdcReqTransferField* pReqTransfer, CThostFtdcRspInfoField* pRspInfo)
+void CTraderSpi::OnErrRtnFutureToBankByFuture(CThostFtdcReqTransferField* pReqTransfer, CThostFtdcRspInfoField* pRspInfo)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
+    if (!IsErrorRspInfo(pRspInfo)) {
 	cout << "业务功能码 TThostFtdcTradeCodeType:" << pReqTransfer->TradeCode << endl;
 	cout << "银行代码 TThostFtdcBankIDType:" << pReqTransfer->BankID << endl;
 	cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pReqTransfer->BankBranchID << endl;
@@ -5022,16 +4806,16 @@ virtual void OnErrRtnFutureToBankByFuture(CThostFtdcReqTransferField* pReqTransf
 	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pReqTransfer->SecuPwdFlag << endl;
 	cout << "交易柜员 TThostFtdcOperNoType:" << pReqTransfer->OperNo << endl;
 	cout << "请求编号 TThostFtdcRequestIDType:" << pReqTransfer->RequestID << endl;
-	cout << "交易ID:" << pReqTransfer->TThostFtdcTIDType << endlTID;
+	// cout << "交易ID:" << pReqTransfer->TThostFtdcTIDType << endlTID;
 	cout << "转账交易状态 TThostFtdcTransferStatusType:" << pReqTransfer->TransferStatus << endl;
     }
 }
 
 ///系统运行时期货端手工发起冲正银行转期货错误回报
-virtual void OnErrRtnRepealBankToFutureByFutureManual(CThostFtdcReqRepealField* pReqRepeal, CThostFtdcRspInfoField* pRspInfo)
+void CTraderSpi::OnErrRtnRepealBankToFutureByFutureManual(CThostFtdcReqRepealField* pReqRepeal, CThostFtdcRspInfoField* pRspInfo)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
+    if (!IsErrorRspInfo(pRspInfo)) {
 	cout << "冲正时间间隔 TThostFtdcRepealTimeIntervalType:" << pReqRepeal->RepealTimeInterval << endl;
 	cout << "已经冲正次数 TThostFtdcRepealedTimesType:" << pReqRepeal->RepealedTimes << endl;
 	cout << "银行冲正标志 TThostFtdcBankRepealFlagType:" << pReqRepeal->BankRepealFlag << endl;
@@ -5080,16 +4864,16 @@ virtual void OnErrRtnRepealBankToFutureByFutureManual(CThostFtdcReqRepealField* 
 	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pReqRepeal->SecuPwdFlag << endl;
 	cout << "交易柜员 TThostFtdcOperNoType:" << pReqRepeal->OperNo << endl;
 	cout << "请求编号 TThostFtdcRequestIDType:" << pReqRepeal->RequestID << endl;
-	cout << "交易ID:" << pReqRepeal->TThostFtdcTIDType << endlTID;
+	// cout << "交易ID:" << pReqRepeal->TThostFtdcTIDType << endlTID;
 	cout << "转账交易状态 TThostFtdcTransferStatusType:" << pReqRepeal->TransferStatus << endl;
     }
 }
 
 ///系统运行时期货端手工发起冲正期货转银行错误回报
-virtual void OnErrRtnRepealFutureToBankByFutureManual(CThostFtdcReqRepealField* pReqRepeal, CThostFtdcRspInfoField* pRspInfo)
+void CTraderSpi::OnErrRtnRepealFutureToBankByFutureManual(CThostFtdcReqRepealField* pReqRepeal, CThostFtdcRspInfoField* pRspInfo)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
+    if (!IsErrorRspInfo(pRspInfo)) {
 	cout << "冲正时间间隔 TThostFtdcRepealTimeIntervalType:" << pReqRepeal->RepealTimeInterval << endl;
 	cout << "已经冲正次数 TThostFtdcRepealedTimesType:" << pReqRepeal->RepealedTimes << endl;
 	cout << "银行冲正标志 TThostFtdcBankRepealFlagType:" << pReqRepeal->BankRepealFlag << endl;
@@ -5138,16 +4922,16 @@ virtual void OnErrRtnRepealFutureToBankByFutureManual(CThostFtdcReqRepealField* 
 	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pReqRepeal->SecuPwdFlag << endl;
 	cout << "交易柜员 TThostFtdcOperNoType:" << pReqRepeal->OperNo << endl;
 	cout << "请求编号 TThostFtdcRequestIDType:" << pReqRepeal->RequestID << endl;
-	cout << "交易ID:" << pReqRepeal->TThostFtdcTIDType << endlTID;
+	// cout << "交易ID:" << pReqRepeal->TThostFtdcTIDType << endlTID;
 	cout << "转账交易状态 TThostFtdcTransferStatusType:" << pReqRepeal->TransferStatus << endl;
     }
 }
 
 ///期货发起查询银行余额错误回报
-virtual void OnErrRtnQueryBankBalanceByFuture(CThostFtdcReqQueryAccountField* pReqQueryAccount, CThostFtdcRspInfoField* pRspInfo)
+void CTraderSpi::OnErrRtnQueryBankBalanceByFuture(CThostFtdcReqQueryAccountField* pReqQueryAccount, CThostFtdcRspInfoField* pRspInfo)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
+    if (!IsErrorRspInfo(pRspInfo)) {
 	cout << "业务功能码 TThostFtdcTradeCodeType:" << pReqQueryAccount->TradeCode << endl;
 	cout << "银行代码 TThostFtdcBankIDType:" << pReqQueryAccount->BankID << endl;
 	cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pReqQueryAccount->BankBranchID << endl;
@@ -5183,132 +4967,128 @@ virtual void OnErrRtnQueryBankBalanceByFuture(CThostFtdcReqQueryAccountField* pR
 	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pReqQueryAccount->SecuPwdFlag << endl;
 	cout << "交易柜员 TThostFtdcOperNoType:" << pReqQueryAccount->OperNo << endl;
 	cout << "请求编号 TThostFtdcRequestIDType:" << pReqQueryAccount->RequestID << endl;
-	cout << "交易ID:" << pReqQueryAccount->TThostFtdcTIDType << endlTID;
+	// cout << "交易ID:" << pReqQueryAccount->TThostFtdcTIDType << endlTID;
     }
 }
 
 ///期货发起冲正银行转期货请求，银行处理完毕后报盘发回的通知
-virtual void OnRtnRepealFromBankToFutureByFuture(CThostFtdcRspRepealField* pRspRepeal)
+void CTraderSpi::OnRtnRepealFromBankToFutureByFuture(CThostFtdcRspRepealField* pRspRepeal)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "冲正时间间隔 TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
-	cout << "已经冲正次数 TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
-	cout << "银行冲正标志 TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
-	cout << "期商冲正标志 TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
-	cout << "被冲正平台流水号 TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
-	cout << "被冲正银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
-	cout << "被冲正期货流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
-	cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
-	cout << "银行代码 TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
-	cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
-	cout << "期商代码 TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
-	cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
-	cout << "交易日期 TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
-	cout << "交易时间 TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
-	cout << "银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
-	cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
-	cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
-	cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
-	cout << "会话号 TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
-	cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
-	cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
-	cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
-	cout << "客户类型 TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
-	cout << "银行帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
-	cout << "银行密码 TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
-	cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
-	cout << "期货密码 TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
-	cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
-	cout << "用户标识 TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
-	cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
-	cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
-	cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
-	cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
-	cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
-	cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
-	cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
-	cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
-	cout << "摘要 TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
-	cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
-	cout << "渠道标志 TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
-	cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
-	cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
-	cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
-	cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
-	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
-	cout << "交易柜员 TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
-	cout << "请求编号 TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
-	cout << "交易ID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
-	cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
-	cout << "错误代码 TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
-	cout << "错误信息 TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
-    }
+    cout << "冲正时间间隔 TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
+    cout << "已经冲正次数 TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
+    cout << "银行冲正标志 TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
+    cout << "期商冲正标志 TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
+    cout << "被冲正平台流水号 TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
+    cout << "被冲正银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
+    cout << "被冲正期货流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
+    cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
+    cout << "银行代码 TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
+    cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
+    cout << "期商代码 TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
+    cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
+    cout << "交易日期 TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
+    cout << "交易时间 TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
+    cout << "银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
+    cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
+    cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
+    cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
+    cout << "会话号 TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
+    cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
+    cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
+    cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
+    cout << "客户类型 TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
+    cout << "银行帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
+    cout << "银行密码 TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
+    cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
+    cout << "期货密码 TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
+    cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
+    cout << "用户标识 TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
+    cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
+    cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
+    cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
+    cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
+    cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
+    cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
+    cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
+    cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
+    cout << "摘要 TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
+    cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
+    cout << "渠道标志 TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
+    cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
+    cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
+    cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
+    cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
+    cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
+    cout << "交易柜员 TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
+    cout << "请求编号 TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
+    // cout << "交易ID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
+    cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
+    cout << "错误代码 TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
+    cout << "错误信息 TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
 }
 
 ///期货发起冲正期货转银行请求，银行处理完毕后报盘发回的通知
-virtual void OnRtnRepealFromFutureToBankByFuture(CThostFtdcRspRepealField* pRspRepeal)
+void CTraderSpi::OnRtnRepealFromFutureToBankByFuture(CThostFtdcRspRepealField* pRspRepeal)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "冲正时间间隔 TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
-	cout << "已经冲正次数 TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
-	cout << "银行冲正标志 TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
-	cout << "期商冲正标志 TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
-	cout << "被冲正平台流水号 TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
-	cout << "被冲正银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
-	cout << "被冲正期货流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
-	cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
-	cout << "银行代码 TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
-	cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
-	cout << "期商代码 TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
-	cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
-	cout << "交易日期 TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
-	cout << "交易时间 TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
-	cout << "银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
-	cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
-	cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
-	cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
-	cout << "会话号 TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
-	cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
-	cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
-	cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
-	cout << "客户类型 TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
-	cout << "银行帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
-	cout << "银行密码 TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
-	cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
-	cout << "期货密码 TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
-	cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
-	cout << "用户标识 TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
-	cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
-	cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
-	cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
-	cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
-	cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
-	cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
-	cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
-	cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
-	cout << "摘要 TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
-	cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
-	cout << "渠道标志 TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
-	cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
-	cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
-	cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
-	cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
-	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
-	cout << "交易柜员 TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
-	cout << "请求编号 TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
-	cout << "交易ID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
-	cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
-	cout << "错误代码 TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
-	cout << "错误信息 TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
-    }
+    cout << "冲正时间间隔 TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
+    cout << "已经冲正次数 TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
+    cout << "银行冲正标志 TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
+    cout << "期商冲正标志 TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
+    cout << "被冲正平台流水号 TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
+    cout << "被冲正银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
+    cout << "被冲正期货流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
+    cout << "业务功能码 TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
+    cout << "银行代码 TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
+    cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
+    cout << "期商代码 TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
+    cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
+    cout << "交易日期 TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
+    cout << "交易时间 TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
+    cout << "银行流水号 TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
+    cout << "交易系统日期 TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
+    cout << "银期平台消息流水号 TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
+    cout << "最后分片标志 TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
+    cout << "会话号 TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
+    cout << "客户姓名 TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
+    cout << "证件类型 TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
+    cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
+    cout << "客户类型 TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
+    cout << "银行帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
+    cout << "银行密码 TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
+    cout << "投资者帐号 TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
+    cout << "期货密码 TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
+    cout << "期货公司流水号 TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
+    cout << "用户标识 TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
+    cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
+    cout << "币种代码 TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
+    cout << "转帐金额 TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
+    cout << "期货可取金额 TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
+    cout << "费用支付标志 TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
+    cout << "应收客户费用 TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
+    cout << "应收期货公司费用 TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
+    cout << "发送方给接收方的消息 TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
+    cout << "摘要 TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
+    cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
+    cout << "渠道标志 TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
+    cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
+    cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
+    cout << "期货单位帐号 TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
+    cout << "银行密码标志 TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
+    cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
+    cout << "交易柜员 TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
+    cout << "请求编号 TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
+    // cout << "交易ID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
+    cout << "转账交易状态 TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
+    cout << "错误代码 TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
+    cout << "错误信息 TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
 }
 
 ///期货发起银行资金转期货应答
-virtual void OnRspFromBankToFutureByFuture(CThostFtdcReqTransferField* pReqTransfer, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspFromBankToFutureByFuture(CThostFtdcReqTransferField* pReqTransfer, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -5353,13 +5133,13 @@ virtual void OnRspFromBankToFutureByFuture(CThostFtdcReqTransferField* pReqTrans
 	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pReqTransfer->SecuPwdFlag << endl;
 	cout << "交易柜员 TThostFtdcOperNoType:" << pReqTransfer->OperNo << endl;
 	cout << "请求编号 TThostFtdcRequestIDType:" << pReqTransfer->RequestID << endl;
-	cout << "交易ID:" << pReqTransfer->TThostFtdcTIDType << endlTID;
+	// cout << "交易ID:" << pReqTransfer->TThostFtdcTIDType << endlTID;
 	cout << "转账交易状态 TThostFtdcTransferStatusType:" << pReqTransfer->TransferStatus << endl;
     }
 }
 
 ///期货发起期货资金转银行应答
-virtual void OnRspFromFutureToBankByFuture(CThostFtdcReqTransferField* pReqTransfer, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspFromFutureToBankByFuture(CThostFtdcReqTransferField* pReqTransfer, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -5404,13 +5184,13 @@ virtual void OnRspFromFutureToBankByFuture(CThostFtdcReqTransferField* pReqTrans
 	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pReqTransfer->SecuPwdFlag << endl;
 	cout << "交易柜员 TThostFtdcOperNoType:" << pReqTransfer->OperNo << endl;
 	cout << "请求编号 TThostFtdcRequestIDType:" << pReqTransfer->RequestID << endl;
-	cout << "交易ID:" << pReqTransfer->TThostFtdcTIDType << endlTID;
+	// cout << "交易ID:" << pReqTransfer->TThostFtdcTIDType << endlTID;
 	cout << "转账交易状态 TThostFtdcTransferStatusType:" << pReqTransfer->TransferStatus << endl;
     }
 }
 
 ///期货发起查询银行余额应答
-virtual void OnRspQueryBankAccountMoneyByFuture(CThostFtdcReqQueryAccountField* pReqQueryAccount, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
+void CTraderSpi::OnRspQueryBankAccountMoneyByFuture(CThostFtdcReqQueryAccountField* pReqQueryAccount, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
     if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
@@ -5449,165 +5229,159 @@ virtual void OnRspQueryBankAccountMoneyByFuture(CThostFtdcReqQueryAccountField* 
 	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pReqQueryAccount->SecuPwdFlag << endl;
 	cout << "交易柜员 TThostFtdcOperNoType:" << pReqQueryAccount->OperNo << endl;
 	cout << "请求编号 TThostFtdcRequestIDType:" << pReqQueryAccount->RequestID << endl;
-	cout << "交易ID:" << pReqQueryAccount->TThostFtdcTIDType << endlTID;
+	// cout << "交易ID:" << pReqQueryAccount->TThostFtdcTIDType << endlTID;
     }
 }
 
 ///银行发起银期开户通知
-virtual void OnRtnOpenAccountByBank(CThostFtdcOpenAccountField* pOpenAccount)
+void CTraderSpi::OnRtnOpenAccountByBank(CThostFtdcOpenAccountField* pOpenAccount)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "业务功能码 TThostFtdcTradeCodeType:" << pOpenAccount->TradeCode << endl;
-	cout << "银行代码 TThostFtdcBankIDType:" << pOpenAccount->BankID << endl;
-	cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pOpenAccount->BankBranchID << endl;
-	cout << "期商代码 TThostFtdcBrokerIDType:" << pOpenAccount->BrokerID << endl;
-	cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pOpenAccount->BrokerBranchID << endl;
-	cout << "交易日期 TThostFtdcTradeDateType:" << pOpenAccount->TradeDate << endl;
-	cout << "交易时间 TThostFtdcTradeTimeType:" << pOpenAccount->TradeTime << endl;
-	cout << "银行流水号 TThostFtdcBankSerialType:" << pOpenAccount->BankSerial << endl;
-	cout << "交易系统日期 TThostFtdcTradeDateType:" << pOpenAccount->TradingDay << endl;
-	cout << "银期平台消息流水号 TThostFtdcSerialType:" << pOpenAccount->PlateSerial << endl;
-	cout << "最后分片标志 TThostFtdcLastFragmentType:" << pOpenAccount->LastFragment << endl;
-	cout << "会话号 TThostFtdcSessionIDType:" << pOpenAccount->SessionID << endl;
-	cout << "客户姓名 TThostFtdcIndividualNameType:" << pOpenAccount->CustomerName << endl;
-	cout << "证件类型 TThostFtdcIdCardTypeType:" << pOpenAccount->IdCardType << endl;
-	cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pOpenAccount->IdentifiedCardNo << endl;
-	cout << "性别 TThostFtdcGenderType:" << pOpenAccount->Gender << endl;
-	cout << "国家代码 TThostFtdcCountryCodeType:" << pOpenAccount->CountryCode << endl;
-	cout << "客户类型 TThostFtdcCustTypeType:" << pOpenAccount->CustType << endl;
-	cout << "地址 TThostFtdcAddressType:" << pOpenAccount->Address << endl;
-	cout << "邮编 TThostFtdcZipCodeType:" << pOpenAccount->ZipCode << endl;
-	cout << "电话号码 TThostFtdcTelephoneType:" << pOpenAccount->Telephone << endl;
-	cout << "手机 TThostFtdcMobilePhoneType:" << pOpenAccount->MobilePhone << endl;
-	cout << "传真 TThostFtdcFaxType:" << pOpenAccount->Fax << endl;
-	cout << "电子邮件 TThostFtdcEMailType:" << pOpenAccount->EMail << endl;
-	cout << "资金账户状态 TThostFtdcMoneyAccountStatusType:" << pOpenAccount->MoneyAccountStatus << endl;
-	cout << "银行帐号 TThostFtdcBankAccountType:" << pOpenAccount->BankAccount << endl;
-	cout << "银行密码 TThostFtdcPasswordType:" << pOpenAccount->BankPassWord << endl;
-	cout << "投资者帐号 TThostFtdcAccountIDType:" << pOpenAccount->AccountID << endl;
-	cout << "期货密码 TThostFtdcPasswordType:" << pOpenAccount->Password << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pOpenAccount->InstallID << endl;
-	cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pOpenAccount->VerifyCertNoFlag << endl;
-	cout << "币种代码 TThostFtdcCurrencyIDType:" << pOpenAccount->CurrencyID << endl;
-	cout << "汇钞标志 TThostFtdcCashExchangeCodeType:" << pOpenAccount->CashExchangeCode << endl;
-	cout << "摘要 TThostFtdcDigestType:" << pOpenAccount->Digest << endl;
-	cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pOpenAccount->BankAccType << endl;
-	cout << "渠道标志 TThostFtdcDeviceIDType:" << pOpenAccount->DeviceID << endl;
-	cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pOpenAccount->BankSecuAccType << endl;
-	cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pOpenAccount->BrokerIDByBank << endl;
-	cout << "期货单位帐号 TThostFtdcBankAccountType:" << pOpenAccount->BankSecuAcc << endl;
-	cout << "银行密码标志 TThostFtdcPwdFlagType:" << pOpenAccount->BankPwdFlag << endl;
-	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pOpenAccount->SecuPwdFlag << endl;
-	cout << "交易柜员 TThostFtdcOperNoType:" << pOpenAccount->OperNo << endl;
-	cout << "交易ID:" << pOpenAccount->TThostFtdcTIDType << endlTID;
-	cout << "用户标识 TThostFtdcUserIDType:" << pOpenAccount->UserID << endl;
-	cout << "错误代码 TThostFtdcErrorIDType:" << pOpenAccount->ErrorID << endl;
-	cout << "错误信息 TThostFtdcErrorMsgType:" << pOpenAccount->ErrorMsg << endl;
-    }
+    cout << "业务功能码 TThostFtdcTradeCodeType:" << pOpenAccount->TradeCode << endl;
+    cout << "银行代码 TThostFtdcBankIDType:" << pOpenAccount->BankID << endl;
+    cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pOpenAccount->BankBranchID << endl;
+    cout << "期商代码 TThostFtdcBrokerIDType:" << pOpenAccount->BrokerID << endl;
+    cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pOpenAccount->BrokerBranchID << endl;
+    cout << "交易日期 TThostFtdcTradeDateType:" << pOpenAccount->TradeDate << endl;
+    cout << "交易时间 TThostFtdcTradeTimeType:" << pOpenAccount->TradeTime << endl;
+    cout << "银行流水号 TThostFtdcBankSerialType:" << pOpenAccount->BankSerial << endl;
+    cout << "交易系统日期 TThostFtdcTradeDateType:" << pOpenAccount->TradingDay << endl;
+    cout << "银期平台消息流水号 TThostFtdcSerialType:" << pOpenAccount->PlateSerial << endl;
+    cout << "最后分片标志 TThostFtdcLastFragmentType:" << pOpenAccount->LastFragment << endl;
+    cout << "会话号 TThostFtdcSessionIDType:" << pOpenAccount->SessionID << endl;
+    cout << "客户姓名 TThostFtdcIndividualNameType:" << pOpenAccount->CustomerName << endl;
+    cout << "证件类型 TThostFtdcIdCardTypeType:" << pOpenAccount->IdCardType << endl;
+    cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pOpenAccount->IdentifiedCardNo << endl;
+    cout << "性别 TThostFtdcGenderType:" << pOpenAccount->Gender << endl;
+    cout << "国家代码 TThostFtdcCountryCodeType:" << pOpenAccount->CountryCode << endl;
+    cout << "客户类型 TThostFtdcCustTypeType:" << pOpenAccount->CustType << endl;
+    cout << "地址 TThostFtdcAddressType:" << pOpenAccount->Address << endl;
+    cout << "邮编 TThostFtdcZipCodeType:" << pOpenAccount->ZipCode << endl;
+    cout << "电话号码 TThostFtdcTelephoneType:" << pOpenAccount->Telephone << endl;
+    cout << "手机 TThostFtdcMobilePhoneType:" << pOpenAccount->MobilePhone << endl;
+    cout << "传真 TThostFtdcFaxType:" << pOpenAccount->Fax << endl;
+    cout << "电子邮件 TThostFtdcEMailType:" << pOpenAccount->EMail << endl;
+    cout << "资金账户状态 TThostFtdcMoneyAccountStatusType:" << pOpenAccount->MoneyAccountStatus << endl;
+    cout << "银行帐号 TThostFtdcBankAccountType:" << pOpenAccount->BankAccount << endl;
+    cout << "银行密码 TThostFtdcPasswordType:" << pOpenAccount->BankPassWord << endl;
+    cout << "投资者帐号 TThostFtdcAccountIDType:" << pOpenAccount->AccountID << endl;
+    cout << "期货密码 TThostFtdcPasswordType:" << pOpenAccount->Password << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pOpenAccount->InstallID << endl;
+    cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pOpenAccount->VerifyCertNoFlag << endl;
+    cout << "币种代码 TThostFtdcCurrencyIDType:" << pOpenAccount->CurrencyID << endl;
+    cout << "汇钞标志 TThostFtdcCashExchangeCodeType:" << pOpenAccount->CashExchangeCode << endl;
+    cout << "摘要 TThostFtdcDigestType:" << pOpenAccount->Digest << endl;
+    cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pOpenAccount->BankAccType << endl;
+    cout << "渠道标志 TThostFtdcDeviceIDType:" << pOpenAccount->DeviceID << endl;
+    cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pOpenAccount->BankSecuAccType << endl;
+    cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pOpenAccount->BrokerIDByBank << endl;
+    cout << "期货单位帐号 TThostFtdcBankAccountType:" << pOpenAccount->BankSecuAcc << endl;
+    cout << "银行密码标志 TThostFtdcPwdFlagType:" << pOpenAccount->BankPwdFlag << endl;
+    cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pOpenAccount->SecuPwdFlag << endl;
+    cout << "交易柜员 TThostFtdcOperNoType:" << pOpenAccount->OperNo << endl;
+    // cout << "交易ID:" << pOpenAccount->TThostFtdcTIDType << endlTID;
+    cout << "用户标识 TThostFtdcUserIDType:" << pOpenAccount->UserID << endl;
+    cout << "错误代码 TThostFtdcErrorIDType:" << pOpenAccount->ErrorID << endl;
+    cout << "错误信息 TThostFtdcErrorMsgType:" << pOpenAccount->ErrorMsg << endl;
 }
 
 ///银行发起银期销户通知
-virtual void OnRtnCancelAccountByBank(CThostFtdcCancelAccountField* pCancelAccount)
+void CTraderSpi::OnRtnCancelAccountByBank(CThostFtdcCancelAccountField* pCancelAccount)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "业务功能码 TThostFtdcTradeCodeType:" << pCancelAccount->TradeCode << endl;
-	cout << "银行代码 TThostFtdcBankIDType:" << pCancelAccount->BankID << endl;
-	cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pCancelAccount->BankBranchID << endl;
-	cout << "期商代码 TThostFtdcBrokerIDType:" << pCancelAccount->BrokerID << endl;
-	cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pCancelAccount->BrokerBranchID << endl;
-	cout << "交易日期 TThostFtdcTradeDateType:" << pCancelAccount->TradeDate << endl;
-	cout << "交易时间 TThostFtdcTradeTimeType:" << pCancelAccount->TradeTime << endl;
-	cout << "银行流水号 TThostFtdcBankSerialType:" << pCancelAccount->BankSerial << endl;
-	cout << "交易系统日期 TThostFtdcTradeDateType:" << pCancelAccount->TradingDay << endl;
-	cout << "银期平台消息流水号 TThostFtdcSerialType:" << pCancelAccount->PlateSerial << endl;
-	cout << "最后分片标志 TThostFtdcLastFragmentType:" << pCancelAccount->LastFragment << endl;
-	cout << "会话号 TThostFtdcSessionIDType:" << pCancelAccount->SessionID << endl;
-	cout << "客户姓名 TThostFtdcIndividualNameType:" << pCancelAccount->CustomerName << endl;
-	cout << "证件类型 TThostFtdcIdCardTypeType:" << pCancelAccount->IdCardType << endl;
-	cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pCancelAccount->IdentifiedCardNo << endl;
-	cout << "性别 TThostFtdcGenderType:" << pCancelAccount->Gender << endl;
-	cout << "国家代码 TThostFtdcCountryCodeType:" << pCancelAccount->CountryCode << endl;
-	cout << "客户类型 TThostFtdcCustTypeType:" << pCancelAccount->CustType << endl;
-	cout << "地址 TThostFtdcAddressType:" << pCancelAccount->Address << endl;
-	cout << "邮编 TThostFtdcZipCodeType:" << pCancelAccount->ZipCode << endl;
-	cout << "电话号码 TThostFtdcTelephoneType:" << pCancelAccount->Telephone << endl;
-	cout << "手机 TThostFtdcMobilePhoneType:" << pCancelAccount->MobilePhone << endl;
-	cout << "传真 TThostFtdcFaxType:" << pCancelAccount->Fax << endl;
-	cout << "电子邮件 TThostFtdcEMailType:" << pCancelAccount->EMail << endl;
-	cout << "资金账户状态 TThostFtdcMoneyAccountStatusType:" << pCancelAccount->MoneyAccountStatus << endl;
-	cout << "银行帐号 TThostFtdcBankAccountType:" << pCancelAccount->BankAccount << endl;
-	cout << "银行密码 TThostFtdcPasswordType:" << pCancelAccount->BankPassWord << endl;
-	cout << "投资者帐号 TThostFtdcAccountIDType:" << pCancelAccount->AccountID << endl;
-	cout << "期货密码 TThostFtdcPasswordType:" << pCancelAccount->Password << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pCancelAccount->InstallID << endl;
-	cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pCancelAccount->VerifyCertNoFlag << endl;
-	cout << "币种代码 TThostFtdcCurrencyIDType:" << pCancelAccount->CurrencyID << endl;
-	cout << "汇钞标志 TThostFtdcCashExchangeCodeType:" << pCancelAccount->CashExchangeCode << endl;
-	cout << "摘要 TThostFtdcDigestType:" << pCancelAccount->Digest << endl;
-	cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pCancelAccount->BankAccType << endl;
-	cout << "渠道标志 TThostFtdcDeviceIDType:" << pCancelAccount->DeviceID << endl;
-	cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pCancelAccount->BankSecuAccType << endl;
-	cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pCancelAccount->BrokerIDByBank << endl;
-	cout << "期货单位帐号 TThostFtdcBankAccountType:" << pCancelAccount->BankSecuAcc << endl;
-	cout << "银行密码标志 TThostFtdcPwdFlagType:" << pCancelAccount->BankPwdFlag << endl;
-	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pCancelAccount->SecuPwdFlag << endl;
-	cout << "交易柜员 TThostFtdcOperNoType:" << pCancelAccount->OperNo << endl;
-	cout << "交易ID:" << pCancelAccount->TThostFtdcTIDType << endlTID;
-	cout << "用户标识 TThostFtdcUserIDType:" << pCancelAccount->UserID << endl;
-	cout << "错误代码 TThostFtdcErrorIDType:" << pCancelAccount->ErrorID << endl;
-	cout << "错误信息 TThostFtdcErrorMsgType:" << pCancelAccount->ErrorMsg << endl;
-    }
+    cout << "业务功能码 TThostFtdcTradeCodeType:" << pCancelAccount->TradeCode << endl;
+    cout << "银行代码 TThostFtdcBankIDType:" << pCancelAccount->BankID << endl;
+    cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pCancelAccount->BankBranchID << endl;
+    cout << "期商代码 TThostFtdcBrokerIDType:" << pCancelAccount->BrokerID << endl;
+    cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pCancelAccount->BrokerBranchID << endl;
+    cout << "交易日期 TThostFtdcTradeDateType:" << pCancelAccount->TradeDate << endl;
+    cout << "交易时间 TThostFtdcTradeTimeType:" << pCancelAccount->TradeTime << endl;
+    cout << "银行流水号 TThostFtdcBankSerialType:" << pCancelAccount->BankSerial << endl;
+    cout << "交易系统日期 TThostFtdcTradeDateType:" << pCancelAccount->TradingDay << endl;
+    cout << "银期平台消息流水号 TThostFtdcSerialType:" << pCancelAccount->PlateSerial << endl;
+    cout << "最后分片标志 TThostFtdcLastFragmentType:" << pCancelAccount->LastFragment << endl;
+    cout << "会话号 TThostFtdcSessionIDType:" << pCancelAccount->SessionID << endl;
+    cout << "客户姓名 TThostFtdcIndividualNameType:" << pCancelAccount->CustomerName << endl;
+    cout << "证件类型 TThostFtdcIdCardTypeType:" << pCancelAccount->IdCardType << endl;
+    cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pCancelAccount->IdentifiedCardNo << endl;
+    cout << "性别 TThostFtdcGenderType:" << pCancelAccount->Gender << endl;
+    cout << "国家代码 TThostFtdcCountryCodeType:" << pCancelAccount->CountryCode << endl;
+    cout << "客户类型 TThostFtdcCustTypeType:" << pCancelAccount->CustType << endl;
+    cout << "地址 TThostFtdcAddressType:" << pCancelAccount->Address << endl;
+    cout << "邮编 TThostFtdcZipCodeType:" << pCancelAccount->ZipCode << endl;
+    cout << "电话号码 TThostFtdcTelephoneType:" << pCancelAccount->Telephone << endl;
+    cout << "手机 TThostFtdcMobilePhoneType:" << pCancelAccount->MobilePhone << endl;
+    cout << "传真 TThostFtdcFaxType:" << pCancelAccount->Fax << endl;
+    cout << "电子邮件 TThostFtdcEMailType:" << pCancelAccount->EMail << endl;
+    cout << "资金账户状态 TThostFtdcMoneyAccountStatusType:" << pCancelAccount->MoneyAccountStatus << endl;
+    cout << "银行帐号 TThostFtdcBankAccountType:" << pCancelAccount->BankAccount << endl;
+    cout << "银行密码 TThostFtdcPasswordType:" << pCancelAccount->BankPassWord << endl;
+    cout << "投资者帐号 TThostFtdcAccountIDType:" << pCancelAccount->AccountID << endl;
+    cout << "期货密码 TThostFtdcPasswordType:" << pCancelAccount->Password << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pCancelAccount->InstallID << endl;
+    cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pCancelAccount->VerifyCertNoFlag << endl;
+    cout << "币种代码 TThostFtdcCurrencyIDType:" << pCancelAccount->CurrencyID << endl;
+    cout << "汇钞标志 TThostFtdcCashExchangeCodeType:" << pCancelAccount->CashExchangeCode << endl;
+    cout << "摘要 TThostFtdcDigestType:" << pCancelAccount->Digest << endl;
+    cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pCancelAccount->BankAccType << endl;
+    cout << "渠道标志 TThostFtdcDeviceIDType:" << pCancelAccount->DeviceID << endl;
+    cout << "期货单位帐号类型 TThostFtdcBankAccTypeType:" << pCancelAccount->BankSecuAccType << endl;
+    cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pCancelAccount->BrokerIDByBank << endl;
+    cout << "期货单位帐号 TThostFtdcBankAccountType:" << pCancelAccount->BankSecuAcc << endl;
+    cout << "银行密码标志 TThostFtdcPwdFlagType:" << pCancelAccount->BankPwdFlag << endl;
+    cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pCancelAccount->SecuPwdFlag << endl;
+    cout << "交易柜员 TThostFtdcOperNoType:" << pCancelAccount->OperNo << endl;
+    // cout << "交易ID:" << pCancelAccount->TThostFtdcTIDType << endlTID;
+    cout << "用户标识 TThostFtdcUserIDType:" << pCancelAccount->UserID << endl;
+    cout << "错误代码 TThostFtdcErrorIDType:" << pCancelAccount->ErrorID << endl;
+    cout << "错误信息 TThostFtdcErrorMsgType:" << pCancelAccount->ErrorMsg << endl;
 }
 
 ///银行发起变更银行账号通知
-virtual void OnRtnChangeAccountByBank(CThostFtdcChangeAccountField* pChangeAccount)
+void CTraderSpi::OnRtnChangeAccountByBank(CThostFtdcChangeAccountField* pChangeAccount)
 {
     cout << "--->>> " << __FUNCTION__ << endl;
-    if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-	cout << "业务功能码 TThostFtdcTradeCodeType:" << pChangeAccount->TradeCode << endl;
-	cout << "银行代码 TThostFtdcBankIDType:" << pChangeAccount->BankID << endl;
-	cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pChangeAccount->BankBranchID << endl;
-	cout << "期商代码 TThostFtdcBrokerIDType:" << pChangeAccount->BrokerID << endl;
-	cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pChangeAccount->BrokerBranchID << endl;
-	cout << "交易日期 TThostFtdcTradeDateType:" << pChangeAccount->TradeDate << endl;
-	cout << "交易时间 TThostFtdcTradeTimeType:" << pChangeAccount->TradeTime << endl;
-	cout << "银行流水号 TThostFtdcBankSerialType:" << pChangeAccount->BankSerial << endl;
-	cout << "交易系统日期 TThostFtdcTradeDateType:" << pChangeAccount->TradingDay << endl;
-	cout << "银期平台消息流水号 TThostFtdcSerialType:" << pChangeAccount->PlateSerial << endl;
-	cout << "最后分片标志 TThostFtdcLastFragmentType:" << pChangeAccount->LastFragment << endl;
-	cout << "会话号 TThostFtdcSessionIDType:" << pChangeAccount->SessionID << endl;
-	cout << "客户姓名 TThostFtdcIndividualNameType:" << pChangeAccount->CustomerName << endl;
-	cout << "证件类型 TThostFtdcIdCardTypeType:" << pChangeAccount->IdCardType << endl;
-	cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pChangeAccount->IdentifiedCardNo << endl;
-	cout << "性别 TThostFtdcGenderType:" << pChangeAccount->Gender << endl;
-	cout << "国家代码 TThostFtdcCountryCodeType:" << pChangeAccount->CountryCode << endl;
-	cout << "客户类型 TThostFtdcCustTypeType:" << pChangeAccount->CustType << endl;
-	cout << "地址 TThostFtdcAddressType:" << pChangeAccount->Address << endl;
-	cout << "邮编 TThostFtdcZipCodeType:" << pChangeAccount->ZipCode << endl;
-	cout << "电话号码 TThostFtdcTelephoneType:" << pChangeAccount->Telephone << endl;
-	cout << "手机 TThostFtdcMobilePhoneType:" << pChangeAccount->MobilePhone << endl;
-	cout << "传真 TThostFtdcFaxType:" << pChangeAccount->Fax << endl;
-	cout << "电子邮件 TThostFtdcEMailType:" << pChangeAccount->EMail << endl;
-	cout << "资金账户状态 TThostFtdcMoneyAccountStatusType:" << pChangeAccount->MoneyAccountStatus << endl;
-	cout << "银行帐号 TThostFtdcBankAccountType:" << pChangeAccount->BankAccount << endl;
-	cout << "银行密码 TThostFtdcPasswordType:" << pChangeAccount->BankPassWord << endl;
-	cout << "新银行帐号 TThostFtdcBankAccountType:" << pChangeAccount->NewBankAccount << endl;
-	cout << "新银行密码 TThostFtdcPasswordType:" << pChangeAccount->NewBankPassWord << endl;
-	cout << "投资者帐号 TThostFtdcAccountIDType:" << pChangeAccount->AccountID << endl;
-	cout << "期货密码 TThostFtdcPasswordType:" << pChangeAccount->Password << endl;
-	cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pChangeAccount->BankAccType << endl;
-	cout << "安装编号 TThostFtdcInstallIDType:" << pChangeAccount->InstallID << endl;
-	cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pChangeAccount->VerifyCertNoFlag << endl;
-	cout << "币种代码 TThostFtdcCurrencyIDType:" << pChangeAccount->CurrencyID << endl;
-	cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pChangeAccount->BrokerIDByBank << endl;
-	cout << "银行密码标志 TThostFtdcPwdFlagType:" << pChangeAccount->BankPwdFlag << endl;
-	cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pChangeAccount->SecuPwdFlag << endl;
-	cout << "交易ID:" << pChangeAccount->TThostFtdcTIDType << endlTID;
-	cout << "摘要 TThostFtdcDigestType:" << pChangeAccount->Digest << endl;
-	cout << "错误代码 TThostFtdcErrorIDType:" << pChangeAccount->ErrorID << endl;
-	cout << "错误信息 TThostFtdcErrorMsgType:" << pChangeAccount->ErrorMsg << endl;
-    }
+    cout << "业务功能码 TThostFtdcTradeCodeType:" << pChangeAccount->TradeCode << endl;
+    cout << "银行代码 TThostFtdcBankIDType:" << pChangeAccount->BankID << endl;
+    cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << pChangeAccount->BankBranchID << endl;
+    cout << "期商代码 TThostFtdcBrokerIDType:" << pChangeAccount->BrokerID << endl;
+    cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << pChangeAccount->BrokerBranchID << endl;
+    cout << "交易日期 TThostFtdcTradeDateType:" << pChangeAccount->TradeDate << endl;
+    cout << "交易时间 TThostFtdcTradeTimeType:" << pChangeAccount->TradeTime << endl;
+    cout << "银行流水号 TThostFtdcBankSerialType:" << pChangeAccount->BankSerial << endl;
+    cout << "交易系统日期 TThostFtdcTradeDateType:" << pChangeAccount->TradingDay << endl;
+    cout << "银期平台消息流水号 TThostFtdcSerialType:" << pChangeAccount->PlateSerial << endl;
+    cout << "最后分片标志 TThostFtdcLastFragmentType:" << pChangeAccount->LastFragment << endl;
+    cout << "会话号 TThostFtdcSessionIDType:" << pChangeAccount->SessionID << endl;
+    cout << "客户姓名 TThostFtdcIndividualNameType:" << pChangeAccount->CustomerName << endl;
+    cout << "证件类型 TThostFtdcIdCardTypeType:" << pChangeAccount->IdCardType << endl;
+    cout << "证件号码 TThostFtdcIdentifiedCardNoType:" << pChangeAccount->IdentifiedCardNo << endl;
+    cout << "性别 TThostFtdcGenderType:" << pChangeAccount->Gender << endl;
+    cout << "国家代码 TThostFtdcCountryCodeType:" << pChangeAccount->CountryCode << endl;
+    cout << "客户类型 TThostFtdcCustTypeType:" << pChangeAccount->CustType << endl;
+    cout << "地址 TThostFtdcAddressType:" << pChangeAccount->Address << endl;
+    cout << "邮编 TThostFtdcZipCodeType:" << pChangeAccount->ZipCode << endl;
+    cout << "电话号码 TThostFtdcTelephoneType:" << pChangeAccount->Telephone << endl;
+    cout << "手机 TThostFtdcMobilePhoneType:" << pChangeAccount->MobilePhone << endl;
+    cout << "传真 TThostFtdcFaxType:" << pChangeAccount->Fax << endl;
+    cout << "电子邮件 TThostFtdcEMailType:" << pChangeAccount->EMail << endl;
+    cout << "资金账户状态 TThostFtdcMoneyAccountStatusType:" << pChangeAccount->MoneyAccountStatus << endl;
+    cout << "银行帐号 TThostFtdcBankAccountType:" << pChangeAccount->BankAccount << endl;
+    cout << "银行密码 TThostFtdcPasswordType:" << pChangeAccount->BankPassWord << endl;
+    cout << "新银行帐号 TThostFtdcBankAccountType:" << pChangeAccount->NewBankAccount << endl;
+    cout << "新银行密码 TThostFtdcPasswordType:" << pChangeAccount->NewBankPassWord << endl;
+    cout << "投资者帐号 TThostFtdcAccountIDType:" << pChangeAccount->AccountID << endl;
+    cout << "期货密码 TThostFtdcPasswordType:" << pChangeAccount->Password << endl;
+    cout << "银行帐号类型 TThostFtdcBankAccTypeType:" << pChangeAccount->BankAccType << endl;
+    cout << "安装编号 TThostFtdcInstallIDType:" << pChangeAccount->InstallID << endl;
+    cout << "验证客户证件号码标志 TThostFtdcYesNoIndicatorType:" << pChangeAccount->VerifyCertNoFlag << endl;
+    cout << "币种代码 TThostFtdcCurrencyIDType:" << pChangeAccount->CurrencyID << endl;
+    cout << "期货公司银行编码 TThostFtdcBankCodingForFutureType:" << pChangeAccount->BrokerIDByBank << endl;
+    cout << "银行密码标志 TThostFtdcPwdFlagType:" << pChangeAccount->BankPwdFlag << endl;
+    cout << "期货资金密码核对标志 TThostFtdcPwdFlagType:" << pChangeAccount->SecuPwdFlag << endl;
+    // cout << "交易ID:" << pChangeAccount->TThostFtdcTIDType << endlTID;
+    cout << "摘要 TThostFtdcDigestType:" << pChangeAccount->Digest << endl;
+    cout << "错误代码 TThostFtdcErrorIDType:" << pChangeAccount->ErrorID << endl;
+    cout << "错误信息 TThostFtdcErrorMsgType:" << pChangeAccount->ErrorMsg << endl;
 }
 

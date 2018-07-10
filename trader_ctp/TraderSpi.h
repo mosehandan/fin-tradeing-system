@@ -1,11 +1,11 @@
-#pragma once
+// #pragma once
 #include "FileUtils.h"
 #include "ThostFtdcTraderApi.h"
 
 class CTraderSpi : public CThostFtdcTraderSpi {
 
 private:
-    CThostFtdcTraderApi* userapi;
+    CThostFtdcTraderApi *userapi;
     // map<string,string> config_info;
     string front_id;
     string broker_id;
@@ -17,6 +17,8 @@ public:
     //-------------------------------------------------------------------------------------
     //req:主动函数的请求字典
     //-------------------------------------------------------------------------------------
+
+    CTraderSpi() : nRequestID(0) , user_id("") , passwd("") , broker_id("") , front_id("") ,userapi(NULL){ }
 
     int exit();
 
@@ -164,32 +166,39 @@ public:
 
     void reqQueryBankAccountMoneyByFuture();
 
-public:
-    // ///用户登录请求
-    // inline void ReqUserLogin();
-    // ///投资者结算结果确认
-    // void ReqSettlementInfoConfirm();
-    // ///请求查询合约
-    // void ReqQryInstrument();
-    // ///请求查询资金账户
-    // void ReqQryTradingAccount();
-    // ///请求查询投资者持仓
-    // void ReqQryInvestorPosition();
-    // ///报单录入请求
-    // void ReqOrderInsert();
-    // ///报单操作请求
-    // void ReqOrderAction(CThostFtdcOrderField* pOrder);
+    void TestAllFunction();
 
-    // 是否收到成功的响应
-    inline bool IsErrorRspInfo(CThostFtdcRspInfoField* pRspInfo);
-    // // 是否我的报单回报
-    // inline bool IsMyOrder(CThostFtdcOrderField* pOrder);
-    // // 是否正在交易的报单
-    // inline bool IsTradingOrder(CThostFtdcOrderField* pOrder);
-    // get the config
-    inline void load_config(const Document& d);
-    // connect to server
-    inline virtual void connect();
+    void PrintAllFunction();
+
+    bool IsErrorRspInfo(CThostFtdcRspInfoField* pRspInfo);
+
+    inline void load_config(const Document& d)
+    {
+	broker_id = d["broker_id"].GetString();
+	user_id = d["user_id"].GetString();
+	passwd = d["passwd"].GetString();
+	front_id = d["td_address"].GetString();
+    }
+
+    inline void connect()
+    {
+	if (userapi == nullptr) {
+	    //userapi = CThostFtdcTraderApi::CreateFtdcTraderApi("./log/trader/"); // 创建UserApi
+		userapi = CThostFtdcTraderApi::CreateFtdcTraderApi(); // 创建UserApi
+
+	    if (!userapi) {
+		throw "CtpTrader failed to create api";
+	    }
+	    userapi->RegisterSpi(this);
+	}
+
+	//userapi->RegisterFront(const_cast<char*>(front_id.c_str())); // connect
+	userapi->RegisterFront("tcp://180.169.101.178:41205"); // connect
+        userapi->SubscribePublicTopic(THOST_TERT_QUICK); // need check
+        userapi->SubscribePrivateTopic(THOST_TERT_QUICK); // need check
+	userapi->Init();
+	userapi->Join();
+    }
 
 public:
     ///当客户端与交易后台建立起通信连接时（还未登录前），该方法被调用。
