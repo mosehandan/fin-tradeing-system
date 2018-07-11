@@ -13,7 +13,7 @@ class CTraderSpi : public CThostFtdcTraderSpi {
         int nRequestID;
 
         //TODO:变量初始化
-        string auto_code;
+        string auth_code;
         string user_product_info;
 
         bool connection_status;
@@ -40,7 +40,7 @@ class CTraderSpi : public CThostFtdcTraderSpi {
             , front_id("")
             , userapi(NULL)
             , auth_code("")
-            , user_product_indo("")
+            , user_product_info("")
         {
         }
 
