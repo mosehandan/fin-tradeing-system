@@ -11,8 +11,8 @@
 //inline void CTraderSpi::connect()
 //{
 //	if (userapi == nullptr) {
-//		//userapi = CThostFtdcTraderApi::CreateFtdcTraderApi("./log/trader/"); // ¥¥Ω®UserApi
-//		userapi = CThostFtdcTraderApi::CreateFtdcTraderApi(); // ¥¥Ω®UserApi
+//		//userapi = CThostFtdcTraderApi::CreateFtdcTraderApi("./log/trader/"); // ÂàõÂª∫UserApi
+//		userapi = CThostFtdcTraderApi::CreateFtdcTraderApi(); // ÂàõÂª∫UserApi
 //
 //		if (!userapi) {
 //			throw "CtpTrader failed to create api";
@@ -23,7 +23,7 @@
 
 bool CTraderSpi::IsErrorRspInfo(CThostFtdcRspInfoField* pRspInfo)
 {
-        // »Áπ˚ErrorID != 0, Àµ√˜ ’µΩ¡À¥ÌŒÛµƒœÏ”¶
+        // Â¶ÇÊûúErrorID != 0, ËØ¥ÊòéÊî∂Âà∞‰∫ÜÈîôËØØÁöÑÂìçÂ∫î
         bool bResult = ((pRspInfo) && (pRspInfo->ErrorID != 0));
         if (bResult)
                 cout << "--->>> ErrorID=" << pRspInfo->ErrorID << ", ErrorMsg=" << pRspInfo->ErrorMsg << endl;
@@ -35,7 +35,7 @@ void CTraderSpi::TestAllFunction()
         int fun_number = 0;
         PrintAllFunction();
         while (1) {
-                cout << "«Î ‰»Î“™≤‚ ‘µƒ∫Ø ˝±‡∫≈,0œ‘ æÀ˘”–∫Ø ˝: ";
+                cout << "ËØ∑ËæìÂÖ•Ë¶ÅÊµãËØïÁöÑÂáΩÊï∞ÁºñÂè∑,0ÊòæÁ§∫ÊâÄÊúâÂáΩÊï∞: ";
                 cin >> fun_number;
                 switch (fun_number) {
 
@@ -322,76 +322,76 @@ void CTraderSpi::TestAllFunction()
 void CTraderSpi::PrintAllFunction()
 {
 
-        cout << "ø…π©≤‚ ‘µƒ∫Ø ˝»Áœ¬:" << endl;
-        cout << "1 ”√ªßµ«¬º«Î«Û ReqUserLogin" << endl;
-        cout << "2 µ«≥ˆ«Î«Û ReqUserLogout" << endl;
-        cout << "3 ”√ªßø⁄¡Ó∏¸–¬«Î«Û ReqUserPasswordUpdate" << endl;
-        cout << "4 ◊ Ω’Àªßø⁄¡Ó∏¸–¬«Î«Û ReqTradingAccountPasswordUpdate" << endl;
-        cout << "5 ±®µ•¬º»Î«Î«Û ReqOrderInsert" << endl;
-        cout << "6 ‘§¬Òµ•¬º»Î«Î«Û ReqParkedOrderInsert" << endl;
-        cout << "7 ‘§¬Ò≥∑µ•¬º»Î«Î«Û ReqParkedOrderAction" << endl;
-        cout << "8 ±®µ•≤Ÿ◊˜«Î«Û ReqOrderAction" << endl;
-        cout << "9 ≤È—Ø◊Ó¥Û±®µ• ˝¡ø«Î«Û ReqQueryMaxOrderVolume" << endl;
-        cout << "10 Õ∂◊ ’ﬂΩ·À„Ω·π˚»∑»œ ReqSettlementInfoConfirm" << endl;
-        cout << "11 «Î«Û…æ≥˝‘§¬Òµ• ReqRemoveParkedOrder" << endl;
-        cout << "12 «Î«Û…æ≥˝‘§¬Ò≥∑µ• ReqRemoveParkedOrderAction" << endl;
-        cout << "13 ÷¥–––˚∏Ê¬º»Î«Î«Û ReqExecOrderInsert" << endl;
-        cout << "14 ÷¥–––˚∏Ê≤Ÿ◊˜«Î«Û ReqExecOrderAction" << endl;
-        cout << "15 —Øº€¬º»Î«Î«Û ReqForQuoteInsert" << endl;
-        cout << "16 ±®º€¬º»Î«Î«Û ReqQuoteInsert" << endl;
-        cout << "17 ±®º€≤Ÿ◊˜«Î«Û ReqQuoteAction" << endl;
-        cout << "18 À¯∂®«Î«Û ReqLockInsert" << endl;
-        cout << "19 …Í«Î◊È∫œ¬º»Î«Î«Û ReqCombActionInsert" << endl;
-        cout << "20 «Î«Û≤È—Ø±®µ• ReqQryOrder" << endl;
-        cout << "21 «Î«Û≤È—Ø≥…Ωª ReqQryTrade" << endl;
-        cout << "22 «Î«Û≤È—ØÕ∂◊ ’ﬂ≥÷≤÷ ReqQryInvestorPosition" << endl;
-        cout << "23 «Î«Û≤È—Ø◊ Ω’Àªß ReqQryTradingAccount" << endl;
-        cout << "24 «Î«Û≤È—ØÕ∂◊ ’ﬂ ReqQryInvestor" << endl;
-        cout << "25 «Î«Û≤È—ØΩª“◊±‡¬Î ReqQryTradingCode" << endl;
-        cout << "26 «Î«Û≤È—Ø∫œ‘º±£÷§Ω¬  ReqQryInstrumentMarginRate" << endl;
-        cout << "27 «Î«Û≤È—Ø∫œ‘º ÷–¯∑—¬  ReqQryInstrumentCommissionRate" << endl;
-        cout << "28 «Î«Û≤È—ØΩª“◊À˘ ReqQryExchange" << endl;
-        cout << "29 «Î«Û≤È—Ø≤˙∆∑ ReqQryProduct" << endl;
-        cout << "30 «Î«Û≤È—Ø∫œ‘º ReqQryInstrument" << endl;
-        cout << "31 «Î«Û≤È—Ø––«È ReqQryDepthMarketData" << endl;
-        cout << "32 «Î«Û≤È—ØÕ∂◊ ’ﬂΩ·À„Ω·π˚ ReqQrySettlementInfo" << endl;
-        cout << "33 «Î«Û≤È—Ø◊™’ “¯–– ReqQryTransferBank" << endl;
-        cout << "34 «Î«Û≤È—ØÕ∂◊ ’ﬂ≥÷≤÷√˜œ∏ ReqQryInvestorPositionDetail" << endl;
-        cout << "35 «Î«Û≤È—ØøÕªßÕ®÷™ ReqQryNotice" << endl;
-        cout << "36 «Î«Û≤È—ØΩ·À„–≈œ¢»∑»œ ReqQrySettlementInfoConfirm" << endl;
-        cout << "37 «Î«Û≤È—ØÕ∂◊ ’ﬂ≥÷≤÷√˜œ∏ ReqQryInvestorPositionCombineDetail" << endl;
-        cout << "38 «Î«Û≤È—Ø±£÷§Ωº‡π‹œµÕ≥æ≠ºÕπ´Àæ◊ Ω’Àªß√‹‘ø ReqQryCFMMCTradingAccountKey" << endl;
-        cout << "39 «Î«Û≤È—Ø≤÷µ•’€µ÷–≈œ¢ ReqQryEWarrantOffset" << endl;
-        cout << "40 «Î«Û≤È—ØÕ∂◊ ’ﬂ∆∑÷÷/øÁ∆∑÷÷±£÷§Ω ReqQryInvestorProductGroupMargin" << endl;
-        cout << "41 «Î«Û≤È—ØΩª“◊À˘±£÷§Ω¬  ReqQryExchangeMarginRate" << endl;
-        cout << "42 «Î«Û≤È—ØΩª“◊À˘µ˜’˚±£÷§Ω¬  ReqQryExchangeMarginRateAdjust" << endl;
-        cout << "43 «Î«Û≤È—Øª„¬  ReqQryExchangeRate" << endl;
-        cout << "44 «Î«Û≤È—Ø∂˛º∂¥˙¿Ì≤Ÿ◊˜‘±“¯∆⁄»®œﬁ ReqQrySecAgentACIDMap" << endl;
-        cout << "45 «Î«Û≤È—Ø≤˙∆∑±®º€ª„¬  ReqQryProductExchRate" << endl;
-        cout << "46 «Î«Û≤È—Ø≤˙∆∑◊È ReqQryProductGroup" << endl;
-        cout << "47 «Î«Û≤È—Ø∆⁄»®Ωª“◊≥…±æ ReqQryOptionInstrTradeCost" << endl;
-        cout << "48 «Î«Û≤È—Ø∆⁄»®∫œ‘º ÷–¯∑— ReqQryOptionInstrCommRate" << endl;
-        cout << "49 «Î«Û≤È—Ø÷¥–––˚∏Ê ReqQryExecOrder" << endl;
-        cout << "50 «Î«Û≤È—Ø—Øº€ ReqQryForQuote" << endl;
-        cout << "51 «Î«Û≤È—Ø±®º€ ReqQryQuote" << endl;
-        cout << "52 «Î«Û≤È—ØÀ¯∂® ReqQryLock" << endl;
-        cout << "53 «Î«Û≤È—ØÀ¯∂®÷§»Ø≤÷Œª ReqQryLockPosition" << endl;
-        cout << "54 «Î«Û≤È—ØÕ∂◊ ’ﬂ∑÷º∂ ReqQryInvestorLevel" << endl;
-        cout << "55 «Î«Û≤È—ØE+1»’––»®∂≥Ω· ReqQryExecFreeze" << endl;
-        cout << "56 «Î«Û≤È—Ø◊È∫œ∫œ‘º∞≤»´œµ ˝ ReqQryCombInstrumentGuard" << endl;
-        cout << "57 «Î«Û≤È—Ø…Í«Î◊È∫œ ReqQryCombAction" << endl;
-        cout << "58 «Î«Û≤È—Ø◊™’ ¡˜ÀÆ ReqQryTransferSerial" << endl;
-        cout << "59 «Î«Û≤È—Ø“¯∆⁄«©‘ºπÿœµ ReqQryAccountregister" << endl;
-        cout << "60 «Î«Û≤È—Ø«©‘º“¯–– ReqQryContractBank" << endl;
-        cout << "61 «Î«Û≤È—Ø‘§¬Òµ• ReqQryParkedOrder" << endl;
-        cout << "62 «Î«Û≤È—Ø‘§¬Ò≥∑µ• ReqQryParkedOrderAction" << endl;
-        cout << "63 «Î«Û≤È—ØΩª“◊Õ®÷™ ReqQryTradingNotice" << endl;
-        cout << "64 «Î«Û≤È—Øæ≠ºÕπ´ÀæΩª“◊≤Œ ˝ ReqQryBrokerTradingParams" << endl;
-        cout << "65 «Î«Û≤È—Øæ≠ºÕπ´ÀæΩª“◊À„∑® ReqQryBrokerTradingAlgos" << endl;
-        cout << "66 «Î«Û≤È—Øº‡øÿ÷––ƒ”√ªß¡Ó≈∆ ReqQueryCFMMCTradingAccountToken" << endl;
-        cout << "67 ∆⁄ªı∑¢∆“¯––◊ Ω◊™∆⁄ªı«Î«Û ReqFromBankToFutureByFuture" << endl;
-        cout << "68 ∆⁄ªı∑¢∆∆⁄ªı◊ Ω◊™“¯––«Î«Û ReqFromFutureToBankByFuture" << endl;
-        cout << "69 ∆⁄ªı∑¢∆≤È—Ø“¯––”‡∂Ó«Î«Û ReqQueryBankAccountMoneyByFuture" << endl;
+        cout << "ÂèØ‰æõÊµãËØïÁöÑÂáΩÊï∞Â¶Ç‰∏ã:" << endl;
+        cout << "1 Áî®Êà∑ÁôªÂΩïËØ∑Ê±Ç ReqUserLogin" << endl;
+        cout << "2 ÁôªÂá∫ËØ∑Ê±Ç ReqUserLogout" << endl;
+        cout << "3 Áî®Êà∑Âè£‰ª§Êõ¥Êñ∞ËØ∑Ê±Ç ReqUserPasswordUpdate" << endl;
+        cout << "4 ËµÑÈáëË¥¶Êà∑Âè£‰ª§Êõ¥Êñ∞ËØ∑Ê±Ç ReqTradingAccountPasswordUpdate" << endl;
+        cout << "5 Êä•ÂçïÂΩïÂÖ•ËØ∑Ê±Ç ReqOrderInsert" << endl;
+        cout << "6 È¢ÑÂüãÂçïÂΩïÂÖ•ËØ∑Ê±Ç ReqParkedOrderInsert" << endl;
+        cout << "7 È¢ÑÂüãÊí§ÂçïÂΩïÂÖ•ËØ∑Ê±Ç ReqParkedOrderAction" << endl;
+        cout << "8 Êä•ÂçïÊìç‰ΩúËØ∑Ê±Ç ReqOrderAction" << endl;
+        cout << "9 Êü•ËØ¢ÊúÄÂ§ßÊä•ÂçïÊï∞ÈáèËØ∑Ê±Ç ReqQueryMaxOrderVolume" << endl;
+        cout << "10 ÊäïËµÑËÄÖÁªìÁÆóÁªìÊûúÁ°ÆËÆ§ ReqSettlementInfoConfirm" << endl;
+        cout << "11 ËØ∑Ê±ÇÂà†Èô§È¢ÑÂüãÂçï ReqRemoveParkedOrder" << endl;
+        cout << "12 ËØ∑Ê±ÇÂà†Èô§È¢ÑÂüãÊí§Âçï ReqRemoveParkedOrderAction" << endl;
+        cout << "13 ÊâßË°åÂÆ£ÂëäÂΩïÂÖ•ËØ∑Ê±Ç ReqExecOrderInsert" << endl;
+        cout << "14 ÊâßË°åÂÆ£ÂëäÊìç‰ΩúËØ∑Ê±Ç ReqExecOrderAction" << endl;
+        cout << "15 ËØ¢‰ª∑ÂΩïÂÖ•ËØ∑Ê±Ç ReqForQuoteInsert" << endl;
+        cout << "16 Êä•‰ª∑ÂΩïÂÖ•ËØ∑Ê±Ç ReqQuoteInsert" << endl;
+        cout << "17 Êä•‰ª∑Êìç‰ΩúËØ∑Ê±Ç ReqQuoteAction" << endl;
+        cout << "18 ÈîÅÂÆöËØ∑Ê±Ç ReqLockInsert" << endl;
+        cout << "19 Áî≥ËØ∑ÁªÑÂêàÂΩïÂÖ•ËØ∑Ê±Ç ReqCombActionInsert" << endl;
+        cout << "20 ËØ∑Ê±ÇÊü•ËØ¢Êä•Âçï ReqQryOrder" << endl;
+        cout << "21 ËØ∑Ê±ÇÊü•ËØ¢Êàê‰∫§ ReqQryTrade" << endl;
+        cout << "22 ËØ∑Ê±ÇÊü•ËØ¢ÊäïËµÑËÄÖÊåÅ‰ªì ReqQryInvestorPosition" << endl;
+        cout << "23 ËØ∑Ê±ÇÊü•ËØ¢ËµÑÈáëË¥¶Êà∑ ReqQryTradingAccount" << endl;
+        cout << "24 ËØ∑Ê±ÇÊü•ËØ¢ÊäïËµÑËÄÖ ReqQryInvestor" << endl;
+        cout << "25 ËØ∑Ê±ÇÊü•ËØ¢‰∫§ÊòìÁºñÁ†Å ReqQryTradingCode" << endl;
+        cout << "26 ËØ∑Ê±ÇÊü•ËØ¢ÂêàÁ∫¶‰øùËØÅÈáëÁéá ReqQryInstrumentMarginRate" << endl;
+        cout << "27 ËØ∑Ê±ÇÊü•ËØ¢ÂêàÁ∫¶ÊâãÁª≠Ë¥πÁéá ReqQryInstrumentCommissionRate" << endl;
+        cout << "28 ËØ∑Ê±ÇÊü•ËØ¢‰∫§ÊòìÊâÄ ReqQryExchange" << endl;
+        cout << "29 ËØ∑Ê±ÇÊü•ËØ¢‰∫ßÂìÅ ReqQryProduct" << endl;
+        cout << "30 ËØ∑Ê±ÇÊü•ËØ¢ÂêàÁ∫¶ ReqQryInstrument" << endl;
+        cout << "31 ËØ∑Ê±ÇÊü•ËØ¢Ë°åÊÉÖ ReqQryDepthMarketData" << endl;
+        cout << "32 ËØ∑Ê±ÇÊü•ËØ¢ÊäïËµÑËÄÖÁªìÁÆóÁªìÊûú ReqQrySettlementInfo" << endl;
+        cout << "33 ËØ∑Ê±ÇÊü•ËØ¢ËΩ¨Â∏êÈì∂Ë°å ReqQryTransferBank" << endl;
+        cout << "34 ËØ∑Ê±ÇÊü•ËØ¢ÊäïËµÑËÄÖÊåÅ‰ªìÊòéÁªÜ ReqQryInvestorPositionDetail" << endl;
+        cout << "35 ËØ∑Ê±ÇÊü•ËØ¢ÂÆ¢Êà∑ÈÄöÁü• ReqQryNotice" << endl;
+        cout << "36 ËØ∑Ê±ÇÊü•ËØ¢ÁªìÁÆó‰ø°ÊÅØÁ°ÆËÆ§ ReqQrySettlementInfoConfirm" << endl;
+        cout << "37 ËØ∑Ê±ÇÊü•ËØ¢ÊäïËµÑËÄÖÊåÅ‰ªìÊòéÁªÜ ReqQryInvestorPositionCombineDetail" << endl;
+        cout << "38 ËØ∑Ê±ÇÊü•ËØ¢‰øùËØÅÈáëÁõëÁÆ°Á≥ªÁªüÁªèÁ∫™ÂÖ¨Âè∏ËµÑÈáëË¥¶Êà∑ÂØÜÈí• ReqQryCFMMCTradingAccountKey" << endl;
+        cout << "39 ËØ∑Ê±ÇÊü•ËØ¢‰ªìÂçïÊäòÊäµ‰ø°ÊÅØ ReqQryEWarrantOffset" << endl;
+        cout << "40 ËØ∑Ê±ÇÊü•ËØ¢ÊäïËµÑËÄÖÂìÅÁßç/Ë∑®ÂìÅÁßç‰øùËØÅÈáë ReqQryInvestorProductGroupMargin" << endl;
+        cout << "41 ËØ∑Ê±ÇÊü•ËØ¢‰∫§ÊòìÊâÄ‰øùËØÅÈáëÁéá ReqQryExchangeMarginRate" << endl;
+        cout << "42 ËØ∑Ê±ÇÊü•ËØ¢‰∫§ÊòìÊâÄË∞ÉÊï¥‰øùËØÅÈáëÁéá ReqQryExchangeMarginRateAdjust" << endl;
+        cout << "43 ËØ∑Ê±ÇÊü•ËØ¢Ê±áÁéá ReqQryExchangeRate" << endl;
+        cout << "44 ËØ∑Ê±ÇÊü•ËØ¢‰∫åÁ∫ß‰ª£ÁêÜÊìç‰ΩúÂëòÈì∂ÊúüÊùÉÈôê ReqQrySecAgentACIDMap" << endl;
+        cout << "45 ËØ∑Ê±ÇÊü•ËØ¢‰∫ßÂìÅÊä•‰ª∑Ê±áÁéá ReqQryProductExchRate" << endl;
+        cout << "46 ËØ∑Ê±ÇÊü•ËØ¢‰∫ßÂìÅÁªÑ ReqQryProductGroup" << endl;
+        cout << "47 ËØ∑Ê±ÇÊü•ËØ¢ÊúüÊùÉ‰∫§ÊòìÊàêÊú¨ ReqQryOptionInstrTradeCost" << endl;
+        cout << "48 ËØ∑Ê±ÇÊü•ËØ¢ÊúüÊùÉÂêàÁ∫¶ÊâãÁª≠Ë¥π ReqQryOptionInstrCommRate" << endl;
+        cout << "49 ËØ∑Ê±ÇÊü•ËØ¢ÊâßË°åÂÆ£Âëä ReqQryExecOrder" << endl;
+        cout << "50 ËØ∑Ê±ÇÊü•ËØ¢ËØ¢‰ª∑ ReqQryForQuote" << endl;
+        cout << "51 ËØ∑Ê±ÇÊü•ËØ¢Êä•‰ª∑ ReqQryQuote" << endl;
+        cout << "52 ËØ∑Ê±ÇÊü•ËØ¢ÈîÅÂÆö ReqQryLock" << endl;
+        cout << "53 ËØ∑Ê±ÇÊü•ËØ¢ÈîÅÂÆöËØÅÂà∏‰ªì‰Ωç ReqQryLockPosition" << endl;
+        cout << "54 ËØ∑Ê±ÇÊü•ËØ¢ÊäïËµÑËÄÖÂàÜÁ∫ß ReqQryInvestorLevel" << endl;
+        cout << "55 ËØ∑Ê±ÇÊü•ËØ¢E+1Êó•Ë°åÊùÉÂÜªÁªì ReqQryExecFreeze" << endl;
+        cout << "56 ËØ∑Ê±ÇÊü•ËØ¢ÁªÑÂêàÂêàÁ∫¶ÂÆâÂÖ®Á≥ªÊï∞ ReqQryCombInstrumentGuard" << endl;
+        cout << "57 ËØ∑Ê±ÇÊü•ËØ¢Áî≥ËØ∑ÁªÑÂêà ReqQryCombAction" << endl;
+        cout << "58 ËØ∑Ê±ÇÊü•ËØ¢ËΩ¨Â∏êÊµÅÊ∞¥ ReqQryTransferSerial" << endl;
+        cout << "59 ËØ∑Ê±ÇÊü•ËØ¢Èì∂ÊúüÁ≠æÁ∫¶ÂÖ≥Á≥ª ReqQryAccountregister" << endl;
+        cout << "60 ËØ∑Ê±ÇÊü•ËØ¢Á≠æÁ∫¶Èì∂Ë°å ReqQryContractBank" << endl;
+        cout << "61 ËØ∑Ê±ÇÊü•ËØ¢È¢ÑÂüãÂçï ReqQryParkedOrder" << endl;
+        cout << "62 ËØ∑Ê±ÇÊü•ËØ¢È¢ÑÂüãÊí§Âçï ReqQryParkedOrderAction" << endl;
+        cout << "63 ËØ∑Ê±ÇÊü•ËØ¢‰∫§ÊòìÈÄöÁü• ReqQryTradingNotice" << endl;
+        cout << "64 ËØ∑Ê±ÇÊü•ËØ¢ÁªèÁ∫™ÂÖ¨Âè∏‰∫§ÊòìÂèÇÊï∞ ReqQryBrokerTradingParams" << endl;
+        cout << "65 ËØ∑Ê±ÇÊü•ËØ¢ÁªèÁ∫™ÂÖ¨Âè∏‰∫§ÊòìÁÆóÊ≥ï ReqQryBrokerTradingAlgos" << endl;
+        cout << "66 ËØ∑Ê±ÇÊü•ËØ¢ÁõëÊéß‰∏≠ÂøÉÁî®Êà∑‰ª§Áâå ReqQueryCFMMCTradingAccountToken" << endl;
+        cout << "67 ÊúüË¥ßÂèëËµ∑Èì∂Ë°åËµÑÈáëËΩ¨ÊúüË¥ßËØ∑Ê±Ç ReqFromBankToFutureByFuture" << endl;
+        cout << "68 ÊúüË¥ßÂèëËµ∑ÊúüË¥ßËµÑÈáëËΩ¨Èì∂Ë°åËØ∑Ê±Ç ReqFromFutureToBankByFuture" << endl;
+        cout << "69 ÊúüË¥ßÂèëËµ∑Êü•ËØ¢Èì∂Ë°å‰ΩôÈ¢ùËØ∑Ê±Ç ReqQueryBankAccountMoneyByFuture" << endl;
 }
 
 int CTraderSpi::exit()
@@ -404,1702 +404,1768 @@ int CTraderSpi::exit()
 
 void CTraderSpi::subscribePrivateTopic(int nType)
 {
-        //∏√∫Ø ˝Œ™ ÷∂Ø±‡–¥
+        //ËØ•ÂáΩÊï∞‰∏∫ÊâãÂä®ÁºñÂÜô
         THOST_TE_RESUME_TYPE type;
 
         switch (nType) {
         case 0: {
                 type = THOST_TERT_RESTART;
                 break;
-        };
+        }
 
         case 1: {
                 type = THOST_TERT_RESUME;
                 break;
-        };
+        }
 
         case 2: {
                 type = THOST_TERT_QUICK;
                 break;
-        };
+        }
         }
 
         userapi->SubscribePrivateTopic(type);
-};
+}
 
 void CTraderSpi::subscribePublicTopic(int nType)
 {
-        //∏√∫Ø ˝Œ™ ÷∂Ø±‡–¥
+        //ËØ•ÂáΩÊï∞‰∏∫ÊâãÂä®ÁºñÂÜô
         THOST_TE_RESUME_TYPE type;
 
         switch (nType) {
         case 0: {
                 type = THOST_TERT_RESTART;
                 break;
-        };
+        }
 
         case 1: {
                 type = THOST_TERT_RESUME;
                 break;
-        };
+        }
 
         case 2: {
                 type = THOST_TERT_QUICK;
                 break;
-        };
+        }
         }
 
         userapi->SubscribePublicTopic(type);
-};
+}
 
 void CTraderSpi::reqAuthenticate()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcReqAuthenticateField myreq = CThostFtdcReqAuthenticateField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID, broker_id.c_str());
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        cout << "”√ªß∂À≤˙∆∑–≈œ¢ TThostFtdcProductInfoType:" << endl;
+        cout << "Áî®Êà∑Á´Ø‰∫ßÂìÅ‰ø°ÊÅØ TThostFtdcProductInfoType:" << endl;
         cin >> myreq.UserProductInfo;
-        cout << "»œ÷§¬Î TThostFtdcAuthCodeType:" << endl;
+        cout << "ËÆ§ËØÅÁ†Å TThostFtdcAuthCodeType:" << endl;
         cin >> myreq.AuthCode;
         int i = userapi->ReqAuthenticate(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqUserLogin()
 {
-        if login_failed
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcReqUserLoginField myreq = CThostFtdcReqUserLoginField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "Ωª“◊»’ TThostFtdcDateType:" << endl;
+        cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << endl;
         // cin >> myreq.TradingDay;
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID, broker_id.c_str());
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        cout << "√‹¬Î TThostFtdcPasswordType:" << endl;
+        cout << "ÂØÜÁ†Å TThostFtdcPasswordType:" << endl;
         strcpy(myreq.Password, passwd.c_str());
-        cout << "”√ªß∂À≤˙∆∑–≈œ¢ TThostFtdcProductInfoType:" << endl;
+        cout << "Áî®Êà∑Á´Ø‰∫ßÂìÅ‰ø°ÊÅØ TThostFtdcProductInfoType:" << endl;
         // cin >> myreq.UserProductInfo;
-        cout << "Ω”ø⁄∂À≤˙∆∑–≈œ¢ TThostFtdcProductInfoType:" << endl;
+        cout << "Êé•Âè£Á´Ø‰∫ßÂìÅ‰ø°ÊÅØ TThostFtdcProductInfoType:" << endl;
         // cin >> myreq.InterfaceProductInfo;
-        cout << "–≠“È–≈œ¢ TThostFtdcProtocolInfoType:" << endl;
+        cout << "ÂçèËÆÆ‰ø°ÊÅØ TThostFtdcProtocolInfoType:" << endl;
         // cin >> myreq.ProtocolInfo;
-        cout << "Macµÿ÷∑ TThostFtdcMacAddressType:" << endl;
+        cout << "MacÂú∞ÂùÄ TThostFtdcMacAddressType:" << endl;
         // cin >> myreq.MacAddress;
-        cout << "∂ØÃ¨√‹¬Î TThostFtdcPasswordType:" << endl;
+        cout << "Âä®ÊÄÅÂØÜÁ†Å TThostFtdcPasswordType:" << endl;
         // cin >> myreq.OneTimePassword;
-        cout << "÷’∂ÀIPµÿ÷∑ TThostFtdcIPAddressType:" << endl;
+        cout << "ÁªàÁ´ØIPÂú∞ÂùÄ TThostFtdcIPAddressType:" << endl;
         // cin >> myreq.ClientIPAddress;
         int i = userapi->ReqUserLogin(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqUserLogout()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcUserLogoutField myreq = CThostFtdcUserLogoutField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
         int i = userapi->ReqUserLogout(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqUserPasswordUpdate()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcUserPasswordUpdateField myreq = CThostFtdcUserPasswordUpdateField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        cout << "‘≠¿¥µƒø⁄¡Ó TThostFtdcPasswordType:" << endl;
+        cout << "ÂéüÊù•ÁöÑÂè£‰ª§ TThostFtdcPasswordType:" << endl;
         cin >> myreq.OldPassword;
-        cout << "–¬µƒø⁄¡Ó TThostFtdcPasswordType:" << endl;
+        cout << "Êñ∞ÁöÑÂè£‰ª§ TThostFtdcPasswordType:" << endl;
         cin >> myreq.NewPassword;
         int i = userapi->ReqUserPasswordUpdate(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqTradingAccountPasswordUpdate()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcTradingAccountPasswordUpdateField myreq = CThostFtdcTradingAccountPasswordUpdateField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:";
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:";
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << endl;
         cin >> myreq.AccountID;
-        cout << "‘≠¿¥µƒø⁄¡Ó TThostFtdcPasswordType:" << endl;
+        cout << "ÂéüÊù•ÁöÑÂè£‰ª§ TThostFtdcPasswordType:" << endl;
         cin >> myreq.OldPassword;
-        cout << "–¬µƒø⁄¡Ó TThostFtdcPasswordType:" << endl;
+        cout << "Êñ∞ÁöÑÂè£‰ª§ TThostFtdcPasswordType:" << endl;
         cin >> myreq.NewPassword;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << endl;
         cin >> myreq.CurrencyID;
         int i = userapi->ReqTradingAccountPasswordUpdate(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqOrderInsert()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcInputOrderField myreq = CThostFtdcInputOrderField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "±®µ•“˝”√ TThostFtdcOrderRefType:" << endl;
+        cout << "Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << endl;
         cin >> myreq.OrderRef;
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        cout << "±®µ•º€∏ÒÃıº˛ TThostFtdcOrderPriceTypeType:" << endl;
+        cout << "Êä•Âçï‰ª∑Ê†ºÊù°‰ª∂ TThostFtdcOrderPriceTypeType:" << endl;
         cin >> myreq.OrderPriceType;
-        cout << "¬Ú¬Ù∑ΩœÚ TThostFtdcDirectionType:" << endl;
+        cout << "‰π∞ÂçñÊñπÂêë TThostFtdcDirectionType:" << endl;
         cin >> myreq.Direction;
-        cout << "◊È∫œø™∆Ω±Í÷æ TThostFtdcCombOffsetFlagType:" << endl;
+        cout << "ÁªÑÂêàÂºÄÂπ≥Ê†áÂøó TThostFtdcCombOffsetFlagType:" << endl;
         cin >> myreq.CombOffsetFlag;
-        cout << "◊È∫œÕ∂ª˙Ã◊±£±Í÷æ TThostFtdcCombHedgeFlagType:" << endl;
+        cout << "ÁªÑÂêàÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcCombHedgeFlagType:" << endl;
         cin >> myreq.CombHedgeFlag;
-        cout << "º€∏Ò TThostFtdcPriceType:" << endl;
+        cout << "‰ª∑Ê†º TThostFtdcPriceType:" << endl;
         cin >> myreq.LimitPrice;
-        cout << " ˝¡ø TThostFtdcVolumeType:" << endl;
+        cout << "Êï∞Èáè TThostFtdcVolumeType:" << endl;
         cin >> myreq.VolumeTotalOriginal;
-        cout << "”––ß∆⁄¿‡–Õ TThostFtdcTimeConditionType:" << endl;
+        cout << "ÊúâÊïàÊúüÁ±ªÂûã TThostFtdcTimeConditionType:" << endl;
         cin >> myreq.TimeCondition;
-        cout << "GTD»’∆⁄ TThostFtdcDateType:" << endl;
+        cout << "GTDÊó•Êúü TThostFtdcDateType:" << endl;
         cin >> myreq.GTDDate;
-        cout << "≥…Ωª¡ø¿‡–Õ TThostFtdcVolumeConditionType:" << endl;
+        cout << "Êàê‰∫§ÈáèÁ±ªÂûã TThostFtdcVolumeConditionType:" << endl;
         cin >> myreq.VolumeCondition;
-        cout << "◊Ó–°≥…Ωª¡ø TThostFtdcVolumeType:" << endl;
+        cout << "ÊúÄÂ∞èÊàê‰∫§Èáè TThostFtdcVolumeType:" << endl;
         cin >> myreq.MinVolume;
-        cout << "¥•∑¢Ãıº˛ TThostFtdcContingentConditionType:" << endl;
+        cout << "Ëß¶ÂèëÊù°‰ª∂ TThostFtdcContingentConditionType:" << endl;
         cin >> myreq.ContingentCondition;
-        cout << "÷πÀº€ TThostFtdcPriceType:" << endl;
+        cout << "Ê≠¢Êçü‰ª∑ TThostFtdcPriceType:" << endl;
         cin >> myreq.StopPrice;
-        cout << "«ø∆Ω‘≠“Ú TThostFtdcForceCloseReasonType:" << endl;
+        cout << "Âº∫Âπ≥ÂéüÂõ† TThostFtdcForceCloseReasonType:" << endl;
         cin >> myreq.ForceCloseReason;
-        cout << "◊‘∂Øπ“∆±Í÷æ TThostFtdcBoolType:" << endl;
+        cout << "Ëá™Âä®ÊåÇËµ∑Ê†áÂøó TThostFtdcBoolType:" << endl;
         cin >> myreq.IsAutoSuspend;
-        cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << endl;
+        cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << endl;
         cin >> myreq.BusinessUnit;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << endl;
         cin >> myreq.RequestID;
-        cout << "”√ªß«ø∆¿±Í÷æ TThostFtdcBoolType:" << endl;
+        cout << "Áî®Êà∑Âº∫ËØÑÊ†áÂøó TThostFtdcBoolType:" << endl;
         cin >> myreq.UserForceClose;
-        cout << "ª•ªªµ•±Í÷æ TThostFtdcBoolType:" << endl;
+        cout << "‰∫íÊç¢ÂçïÊ†áÂøó TThostFtdcBoolType:" << endl;
         cin >> myreq.IsSwapOrder;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqOrderInsert(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqParkedOrderInsert()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcParkedOrderField myreq = CThostFtdcParkedOrderField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "±®µ•“˝”√ TThostFtdcOrderRefType:" << endl;
+        cout << "Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << endl;
         cin >> myreq.OrderRef;
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        cout << "±®µ•º€∏ÒÃıº˛ TThostFtdcOrderPriceTypeType:" << endl;
+        cout << "Êä•Âçï‰ª∑Ê†ºÊù°‰ª∂ TThostFtdcOrderPriceTypeType:" << endl;
         cin >> myreq.OrderPriceType;
-        cout << "¬Ú¬Ù∑ΩœÚ TThostFtdcDirectionType:" << endl;
+        cout << "‰π∞ÂçñÊñπÂêë TThostFtdcDirectionType:" << endl;
         cin >> myreq.Direction;
-        cout << "◊È∫œø™∆Ω±Í÷æ TThostFtdcCombOffsetFlagType:" << endl;
+        cout << "ÁªÑÂêàÂºÄÂπ≥Ê†áÂøó TThostFtdcCombOffsetFlagType:" << endl;
         cin >> myreq.CombOffsetFlag;
-        cout << "◊È∫œÕ∂ª˙Ã◊±£±Í÷æ TThostFtdcCombHedgeFlagType:" << endl;
+        cout << "ÁªÑÂêàÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcCombHedgeFlagType:" << endl;
         cin >> myreq.CombHedgeFlag;
-        cout << "º€∏Ò TThostFtdcPriceType:" << endl;
+        cout << "‰ª∑Ê†º TThostFtdcPriceType:" << endl;
         cin >> myreq.LimitPrice;
-        cout << " ˝¡ø TThostFtdcVolumeType:" << endl;
+        cout << "Êï∞Èáè TThostFtdcVolumeType:" << endl;
         cin >> myreq.VolumeTotalOriginal;
-        cout << "”––ß∆⁄¿‡–Õ TThostFtdcTimeConditionType:" << endl;
+        cout << "ÊúâÊïàÊúüÁ±ªÂûã TThostFtdcTimeConditionType:" << endl;
         cin >> myreq.TimeCondition;
-        cout << "GTD»’∆⁄ TThostFtdcDateType:" << endl;
+        cout << "GTDÊó•Êúü TThostFtdcDateType:" << endl;
         cin >> myreq.GTDDate;
-        cout << "≥…Ωª¡ø¿‡–Õ TThostFtdcVolumeConditionType:" << endl;
+        cout << "Êàê‰∫§ÈáèÁ±ªÂûã TThostFtdcVolumeConditionType:" << endl;
         cin >> myreq.VolumeCondition;
-        cout << "◊Ó–°≥…Ωª¡ø TThostFtdcVolumeType:" << endl;
+        cout << "ÊúÄÂ∞èÊàê‰∫§Èáè TThostFtdcVolumeType:" << endl;
         cin >> myreq.MinVolume;
-        cout << "¥•∑¢Ãıº˛ TThostFtdcContingentConditionType:" << endl;
+        cout << "Ëß¶ÂèëÊù°‰ª∂ TThostFtdcContingentConditionType:" << endl;
         cin >> myreq.ContingentCondition;
-        cout << "÷πÀº€ TThostFtdcPriceType:" << endl;
+        cout << "Ê≠¢Êçü‰ª∑ TThostFtdcPriceType:" << endl;
         cin >> myreq.StopPrice;
-        cout << "«ø∆Ω‘≠“Ú TThostFtdcForceCloseReasonType:" << endl;
+        cout << "Âº∫Âπ≥ÂéüÂõ† TThostFtdcForceCloseReasonType:" << endl;
         cin >> myreq.ForceCloseReason;
-        cout << "◊‘∂Øπ“∆±Í÷æ TThostFtdcBoolType:" << endl;
+        cout << "Ëá™Âä®ÊåÇËµ∑Ê†áÂøó TThostFtdcBoolType:" << endl;
         cin >> myreq.IsAutoSuspend;
-        cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << endl;
+        cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << endl;
         cin >> myreq.BusinessUnit;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << endl;
         cin >> myreq.RequestID;
-        cout << "”√ªß«ø∆¿±Í÷æ TThostFtdcBoolType:" << endl;
+        cout << "Áî®Êà∑Âº∫ËØÑÊ†áÂøó TThostFtdcBoolType:" << endl;
         cin >> myreq.UserForceClose;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
-        cout << "‘§¬Ò±®µ•±‡∫≈ TThostFtdcParkedOrderIDType:" << endl;
+        cout << "È¢ÑÂüãÊä•ÂçïÁºñÂè∑ TThostFtdcParkedOrderIDType:" << endl;
         cin >> myreq.ParkedOrderID;
-        cout << "”√ªß¿‡–Õ TThostFtdcUserTypeType:" << endl;
+        cout << "Áî®Êà∑Á±ªÂûã TThostFtdcUserTypeType:" << endl;
         cin >> myreq.UserType;
-        cout << "‘§¬Òµ•◊¥Ã¨ TThostFtdcParkedOrderStatusType:" << endl;
+        cout << "È¢ÑÂüãÂçïÁä∂ÊÄÅ TThostFtdcParkedOrderStatusType:" << endl;
         cin >> myreq.Status;
-        cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << endl;
+        cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << endl;
         cin >> myreq.ErrorID;
-        cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << endl;
+        cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << endl;
         cin >> myreq.ErrorMsg;
-        cout << "ª•ªªµ•±Í÷æ TThostFtdcBoolType:" << endl;
+        cout << "‰∫íÊç¢ÂçïÊ†áÂøó TThostFtdcBoolType:" << endl;
         cin >> myreq.IsSwapOrder;
         int i = userapi->ReqParkedOrderInsert(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqParkedOrderAction()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcParkedOrderActionField myreq = CThostFtdcParkedOrderActionField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "±®µ•≤Ÿ◊˜“˝”√ TThostFtdcOrderActionRefType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "Êä•ÂçïÊìç‰ΩúÂºïÁî® TThostFtdcOrderActionRefType:" << endl;
         cin >> myreq.OrderActionRef;
-        cout << "±®µ•“˝”√ TThostFtdcOrderRefType:" << endl;
+        cout << "Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << endl;
         cin >> myreq.OrderRef;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << endl;
         cin >> myreq.RequestID;
-        cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << endl;
+        cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << endl;
         cin >> myreq.FrontID;
-        cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << endl;
+        cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << endl;
         cin >> myreq.SessionID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
-        cout << "±®µ•±‡∫≈ TThostFtdcOrderSysIDType:" << endl;
+        cout << "Êä•ÂçïÁºñÂè∑ TThostFtdcOrderSysIDType:" << endl;
         cin >> myreq.OrderSysID;
-        cout << "≤Ÿ◊˜±Í÷æ TThostFtdcActionFlagType:" << endl;
+        cout << "Êìç‰ΩúÊ†áÂøó TThostFtdcActionFlagType:" << endl;
         cin >> myreq.ActionFlag;
-        cout << "º€∏Ò TThostFtdcPriceType:" << endl;
+        cout << "‰ª∑Ê†º TThostFtdcPriceType:" << endl;
         cin >> myreq.LimitPrice;
-        cout << " ˝¡ø±‰ªØ TThostFtdcVolumeType:" << endl;
+        cout << "Êï∞ÈáèÂèòÂåñ TThostFtdcVolumeType:" << endl;
         cin >> myreq.VolumeChange;
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "‘§¬Ò≥∑µ•µ•±‡∫≈ TThostFtdcParkedOrderActionIDType:" << endl;
+        cout << "È¢ÑÂüãÊí§ÂçïÂçïÁºñÂè∑ TThostFtdcParkedOrderActionIDType:" << endl;
         cin >> myreq.ParkedOrderActionID;
-        cout << "”√ªß¿‡–Õ TThostFtdcUserTypeType:" << endl;
+        cout << "Áî®Êà∑Á±ªÂûã TThostFtdcUserTypeType:" << endl;
         cin >> myreq.UserType;
-        cout << "‘§¬Ò≥∑µ•◊¥Ã¨ TThostFtdcParkedOrderStatusType:" << endl;
+        cout << "È¢ÑÂüãÊí§ÂçïÁä∂ÊÄÅ TThostFtdcParkedOrderStatusType:" << endl;
         cin >> myreq.Status;
-        cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << endl;
+        cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << endl;
         cin >> myreq.ErrorID;
-        cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << endl;
+        cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << endl;
         cin >> myreq.ErrorMsg;
         int i = userapi->ReqParkedOrderAction(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqOrderAction()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcInputOrderActionField myreq = CThostFtdcInputOrderActionField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "±®µ•≤Ÿ◊˜“˝”√ TThostFtdcOrderActionRefType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "Êä•ÂçïÊìç‰ΩúÂºïÁî® TThostFtdcOrderActionRefType:" << endl;
         cin >> myreq.OrderActionRef;
-        cout << "±®µ•“˝”√ TThostFtdcOrderRefType:" << endl;
+        cout << "Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << endl;
         cin >> myreq.OrderRef;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << endl;
         cin >> myreq.RequestID;
-        cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << endl;
+        cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << endl;
         cin >> myreq.FrontID;
-        cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << endl;
+        cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << endl;
         cin >> myreq.SessionID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
-        cout << "±®µ•±‡∫≈ TThostFtdcOrderSysIDType:" << endl;
+        cout << "Êä•ÂçïÁºñÂè∑ TThostFtdcOrderSysIDType:" << endl;
         cin >> myreq.OrderSysID;
-        cout << "≤Ÿ◊˜±Í÷æ TThostFtdcActionFlagType:" << endl;
+        cout << "Êìç‰ΩúÊ†áÂøó TThostFtdcActionFlagType:" << endl;
         cin >> myreq.ActionFlag;
-        cout << "º€∏Ò TThostFtdcPriceType:" << endl;
+        cout << "‰ª∑Ê†º TThostFtdcPriceType:" << endl;
         cin >> myreq.LimitPrice;
-        cout << " ˝¡ø±‰ªØ TThostFtdcVolumeType:" << endl;
+        cout << "Êï∞ÈáèÂèòÂåñ TThostFtdcVolumeType:" << endl;
         cin >> myreq.VolumeChange;
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
         int i = userapi->ReqOrderAction(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQueryMaxOrderVolume()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQueryMaxOrderVolumeField myreq = CThostFtdcQueryMaxOrderVolumeField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "¬Ú¬Ù∑ΩœÚ TThostFtdcDirectionType:" << endl;
+        cout << "‰π∞ÂçñÊñπÂêë TThostFtdcDirectionType:" << endl;
         cin >> myreq.Direction;
-        cout << "ø™∆Ω±Í÷æ TThostFtdcOffsetFlagType:" << endl;
+        cout << "ÂºÄÂπ≥Ê†áÂøó TThostFtdcOffsetFlagType:" << endl;
         cin >> myreq.OffsetFlag;
-        cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << endl;
+        cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << endl;
         cin >> myreq.HedgeFlag;
-        cout << "◊Ó¥Û‘ –Ì±®µ• ˝¡ø TThostFtdcVolumeType:" << endl;
+        cout << "ÊúÄÂ§ßÂÖÅËÆ∏Êä•ÂçïÊï∞Èáè TThostFtdcVolumeType:" << endl;
         cin >> myreq.MaxVolume;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqQueryMaxOrderVolume(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqSettlementInfoConfirm()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcSettlementInfoConfirmField myreq = CThostFtdcSettlementInfoConfirmField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "»∑»œ»’∆⁄ TThostFtdcDateType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID,user_id.c_str());
+        cout << "Á°ÆËÆ§Êó•Êúü TThostFtdcDateType:" << endl;
         // cin >> myreq.ConfirmDate;
-        cout << "»∑»œ ±º‰ TThostFtdcTimeType:" << endl;
+        cout << "Á°ÆËÆ§Êó∂Èó¥ TThostFtdcTimeType:" << endl;
         // cin >> myreq.ConfirmTime;
         int i = userapi->ReqSettlementInfoConfirm(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqRemoveParkedOrder()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcRemoveParkedOrderField myreq = CThostFtdcRemoveParkedOrderField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "‘§¬Ò±®µ•±‡∫≈ TThostFtdcParkedOrderIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "È¢ÑÂüãÊä•ÂçïÁºñÂè∑ TThostFtdcParkedOrderIDType:" << endl;
         cin >> myreq.ParkedOrderID;
         int i = userapi->ReqRemoveParkedOrder(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqRemoveParkedOrderAction()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcRemoveParkedOrderActionField myreq = CThostFtdcRemoveParkedOrderActionField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "‘§¬Ò≥∑µ•±‡∫≈ TThostFtdcParkedOrderActionIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "È¢ÑÂüãÊí§ÂçïÁºñÂè∑ TThostFtdcParkedOrderActionIDType:" << endl;
         cin >> myreq.ParkedOrderActionID;
         int i = userapi->ReqRemoveParkedOrderAction(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqExecOrderInsert()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcInputExecOrderField myreq = CThostFtdcInputExecOrderField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "÷¥–––˚∏Ê“˝”√ TThostFtdcOrderRefType:" << endl;
+        cout << "ÊâßË°åÂÆ£ÂëäÂºïÁî® TThostFtdcOrderRefType:" << endl;
         cin >> myreq.ExecOrderRef;
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        cout << " ˝¡ø TThostFtdcVolumeType:" << endl;
+        cout << "Êï∞Èáè TThostFtdcVolumeType:" << endl;
         cin >> myreq.Volume;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << endl;
         cin >> myreq.RequestID;
-        cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << endl;
+        cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << endl;
         cin >> myreq.BusinessUnit;
-        cout << "ø™∆Ω±Í÷æ TThostFtdcOffsetFlagType:" << endl;
+        cout << "ÂºÄÂπ≥Ê†áÂøó TThostFtdcOffsetFlagType:" << endl;
         cin >> myreq.OffsetFlag;
-        cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << endl;
+        cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << endl;
         cin >> myreq.HedgeFlag;
-        cout << "÷¥––¿‡–Õ TThostFtdcActionTypeType:" << endl;
+        cout << "ÊâßË°åÁ±ªÂûã TThostFtdcActionTypeType:" << endl;
         cin >> myreq.ActionType;
-        cout << "±£¡ÙÕ∑¥Á…Í«Îµƒ≥÷≤÷∑ΩœÚ TThostFtdcPosiDirectionType:" << endl;
+        cout << "‰øùÁïôÂ§¥ÂØ∏Áî≥ËØ∑ÁöÑÊåÅ‰ªìÊñπÂêë TThostFtdcPosiDirectionType:" << endl;
         cin >> myreq.PosiDirection;
-        cout << "∆⁄»®––»®∫Û «∑Ò±£¡Ù∆⁄ªıÕ∑¥Áµƒ±Íº« TThostFtdcExecOrderPositionFlagType:" << endl;
+        cout << "ÊúüÊùÉË°åÊùÉÂêéÊòØÂê¶‰øùÁïôÊúüË¥ßÂ§¥ÂØ∏ÁöÑÊ†áËÆ∞ TThostFtdcExecOrderPositionFlagType:" << endl;
         cin >> myreq.ReservePositionFlag;
-        cout << "∆⁄»®––»®∫Û…˙≥…µƒÕ∑¥Á «∑Ò◊‘∂Ø∆Ω≤÷ TThostFtdcExecOrderCloseFlagType:" << endl;
+        cout << "ÊúüÊùÉË°åÊùÉÂêéÁîüÊàêÁöÑÂ§¥ÂØ∏ÊòØÂê¶Ëá™Âä®Âπ≥‰ªì TThostFtdcExecOrderCloseFlagType:" << endl;
         cin >> myreq.CloseFlag;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqExecOrderInsert(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqExecOrderAction()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcInputExecOrderActionField myreq = CThostFtdcInputExecOrderActionField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "÷¥–––˚∏Ê≤Ÿ◊˜“˝”√ TThostFtdcOrderActionRefType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÊâßË°åÂÆ£ÂëäÊìç‰ΩúÂºïÁî® TThostFtdcOrderActionRefType:" << endl;
         cin >> myreq.ExecOrderActionRef;
-        cout << "÷¥–––˚∏Ê“˝”√ TThostFtdcOrderRefType:" << endl;
+        cout << "ÊâßË°åÂÆ£ÂëäÂºïÁî® TThostFtdcOrderRefType:" << endl;
         cin >> myreq.ExecOrderRef;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << endl;
         cin >> myreq.RequestID;
-        cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << endl;
+        cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << endl;
         cin >> myreq.FrontID;
-        cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << endl;
+        cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << endl;
         cin >> myreq.SessionID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
-        cout << "÷¥–––˚∏Ê≤Ÿ◊˜±‡∫≈ TThostFtdcExecOrderSysIDType:" << endl;
+        cout << "ÊâßË°åÂÆ£ÂëäÊìç‰ΩúÁºñÂè∑ TThostFtdcExecOrderSysIDType:" << endl;
         cin >> myreq.ExecOrderSysID;
-        cout << "≤Ÿ◊˜±Í÷æ TThostFtdcActionFlagType:" << endl;
+        cout << "Êìç‰ΩúÊ†áÂøó TThostFtdcActionFlagType:" << endl;
         cin >> myreq.ActionFlag;
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
         int i = userapi->ReqExecOrderAction(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqForQuoteInsert()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcInputForQuoteField myreq = CThostFtdcInputForQuoteField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "—Øº€“˝”√ TThostFtdcOrderRefType:" << endl;
+        cout << "ËØ¢‰ª∑ÂºïÁî® TThostFtdcOrderRefType:" << endl;
         cin >> myreq.ForQuoteRef;
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqForQuoteInsert(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQuoteInsert()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcInputQuoteField myreq = CThostFtdcInputQuoteField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "±®º€“˝”√ TThostFtdcOrderRefType:" << endl;
+        cout << "Êä•‰ª∑ÂºïÁî® TThostFtdcOrderRefType:" << endl;
         cin >> myreq.QuoteRef;
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        cout << "¬Ùº€∏Ò TThostFtdcPriceType:" << endl;
+        cout << "Âçñ‰ª∑Ê†º TThostFtdcPriceType:" << endl;
         cin >> myreq.AskPrice;
-        cout << "¬Úº€∏Ò TThostFtdcPriceType:" << endl;
+        cout << "‰π∞‰ª∑Ê†º TThostFtdcPriceType:" << endl;
         cin >> myreq.BidPrice;
-        cout << "¬Ù ˝¡ø TThostFtdcVolumeType:" << endl;
+        cout << "ÂçñÊï∞Èáè TThostFtdcVolumeType:" << endl;
         cin >> myreq.AskVolume;
-        cout << "¬Ú ˝¡ø TThostFtdcVolumeType:" << endl;
+        cout << "‰π∞Êï∞Èáè TThostFtdcVolumeType:" << endl;
         cin >> myreq.BidVolume;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << endl;
         cin >> myreq.RequestID;
-        cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << endl;
+        cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << endl;
         cin >> myreq.BusinessUnit;
-        cout << "¬Ùø™∆Ω±Í÷æ TThostFtdcOffsetFlagType:" << endl;
+        cout << "ÂçñÂºÄÂπ≥Ê†áÂøó TThostFtdcOffsetFlagType:" << endl;
         cin >> myreq.AskOffsetFlag;
-        cout << "¬Úø™∆Ω±Í÷æ TThostFtdcOffsetFlagType:" << endl;
+        cout << "‰π∞ÂºÄÂπ≥Ê†áÂøó TThostFtdcOffsetFlagType:" << endl;
         cin >> myreq.BidOffsetFlag;
-        cout << "¬ÙÕ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << endl;
+        cout << "ÂçñÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << endl;
         cin >> myreq.AskHedgeFlag;
-        cout << "¬ÚÕ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << endl;
+        cout << "‰π∞ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << endl;
         cin >> myreq.BidHedgeFlag;
-        cout << "—‹…˙¬Ù±®µ•“˝”√ TThostFtdcOrderRefType:" << endl;
+        cout << "Ë°çÁîüÂçñÊä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << endl;
         cin >> myreq.AskOrderRef;
-        cout << "—‹…˙¬Ú±®µ•“˝”√ TThostFtdcOrderRefType:" << endl;
+        cout << "Ë°çÁîü‰π∞Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << endl;
         cin >> myreq.BidOrderRef;
-        cout << "”¶º€±‡∫≈ TThostFtdcOrderSysIDType:" << endl;
+        cout << "Â∫î‰ª∑ÁºñÂè∑ TThostFtdcOrderSysIDType:" << endl;
         cin >> myreq.ForQuoteSysID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqQuoteInsert(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQuoteAction()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcInputQuoteActionField myreq = CThostFtdcInputQuoteActionField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "±®º€≤Ÿ◊˜“˝”√ TThostFtdcOrderActionRefType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "Êä•‰ª∑Êìç‰ΩúÂºïÁî® TThostFtdcOrderActionRefType:" << endl;
         cin >> myreq.QuoteActionRef;
-        cout << "±®º€“˝”√ TThostFtdcOrderRefType:" << endl;
+        cout << "Êä•‰ª∑ÂºïÁî® TThostFtdcOrderRefType:" << endl;
         cin >> myreq.QuoteRef;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << endl;
         cin >> myreq.RequestID;
-        cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << endl;
+        cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << endl;
         cin >> myreq.FrontID;
-        cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << endl;
+        cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << endl;
         cin >> myreq.SessionID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
-        cout << "±®º€≤Ÿ◊˜±‡∫≈ TThostFtdcOrderSysIDType:" << endl;
+        cout << "Êä•‰ª∑Êìç‰ΩúÁºñÂè∑ TThostFtdcOrderSysIDType:" << endl;
         cin >> myreq.QuoteSysID;
-        cout << "≤Ÿ◊˜±Í÷æ TThostFtdcActionFlagType:" << endl;
+        cout << "Êìç‰ΩúÊ†áÂøó TThostFtdcActionFlagType:" << endl;
         cin >> myreq.ActionFlag;
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
         int i = userapi->ReqQuoteAction(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqLockInsert()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcInputLockField myreq = CThostFtdcInputLockField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "À¯∂®“˝”√ TThostFtdcOrderRefType:" << endl;
+        cout << "ÈîÅÂÆöÂºïÁî® TThostFtdcOrderRefType:" << endl;
         cin >> myreq.LockRef;
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        cout << " ˝¡ø TThostFtdcVolumeType:" << endl;
+        cout << "Êï∞Èáè TThostFtdcVolumeType:" << endl;
         cin >> myreq.Volume;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << endl;
         cin >> myreq.RequestID;
-        cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << endl;
+        cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << endl;
         cin >> myreq.BusinessUnit;
-        cout << "À¯∂®¿‡–Õ TThostFtdcLockTypeType:" << endl;
+        cout << "ÈîÅÂÆöÁ±ªÂûã TThostFtdcLockTypeType:" << endl;
         cin >> myreq.LockType;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqLockInsert(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqCombActionInsert()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcInputCombActionField myreq = CThostFtdcInputCombActionField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "◊È∫œ“˝”√ TThostFtdcOrderRefType:" << endl;
+        cout << "ÁªÑÂêàÂºïÁî® TThostFtdcOrderRefType:" << endl;
         cin >> myreq.CombActionRef;
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        cout << "¬Ú¬Ù∑ΩœÚ TThostFtdcDirectionType:" << endl;
+        cout << "‰π∞ÂçñÊñπÂêë TThostFtdcDirectionType:" << endl;
         cin >> myreq.Direction;
-        cout << " ˝¡ø TThostFtdcVolumeType:" << endl;
+        cout << "Êï∞Èáè TThostFtdcVolumeType:" << endl;
         cin >> myreq.Volume;
-        cout << "◊È∫œ÷∏¡Ó∑ΩœÚ TThostFtdcCombDirectionType:" << endl;
+        cout << "ÁªÑÂêàÊåá‰ª§ÊñπÂêë TThostFtdcCombDirectionType:" << endl;
         cin >> myreq.CombDirection;
-        cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << endl;
+        cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << endl;
         cin >> myreq.HedgeFlag;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqCombActionInsert(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryOrder()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryOrderField myreq = CThostFtdcQryOrderField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
-        cout << "±®µ•±‡∫≈ TThostFtdcOrderSysIDType:" << endl;
+        cout << "Êä•ÂçïÁºñÂè∑ TThostFtdcOrderSysIDType:" << endl;
         cin >> myreq.OrderSysID;
-        cout << "ø™ º ±º‰ TThostFtdcTimeType:" << endl;
+        cout << "ÂºÄÂßãÊó∂Èó¥ TThostFtdcTimeType:" << endl;
         cin >> myreq.InsertTimeStart;
-        cout << "Ω· ¯ ±º‰ TThostFtdcTimeType:" << endl;
+        cout << "ÁªìÊùüÊó∂Èó¥ TThostFtdcTimeType:" << endl;
         cin >> myreq.InsertTimeEnd;
         int i = userapi->ReqQryOrder(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryTrade()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryTradeField myreq = CThostFtdcQryTradeField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
-        cout << "≥…Ωª±‡∫≈ TThostFtdcTradeIDType:" << endl;
+        cout << "Êàê‰∫§ÁºñÂè∑ TThostFtdcTradeIDType:" << endl;
         cin >> myreq.TradeID;
-        cout << "ø™ º ±º‰ TThostFtdcTimeType:" << endl;
+        cout << "ÂºÄÂßãÊó∂Èó¥ TThostFtdcTimeType:" << endl;
         cin >> myreq.TradeTimeStart;
-        cout << "Ω· ¯ ±º‰ TThostFtdcTimeType:" << endl;
+        cout << "ÁªìÊùüÊó∂Èó¥ TThostFtdcTimeType:" << endl;
         cin >> myreq.TradeTimeEnd;
         int i = userapi->ReqQryTrade(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryInvestorPosition()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryInvestorPositionField myreq = CThostFtdcQryInvestorPositionField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         // cin >> myreq.InstrumentID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         // cin >> myreq.ExchangeID;
         int i = userapi->ReqQryInvestorPosition(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryTradingAccount()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryTradingAccountField myreq = CThostFtdcQryTradingAccountField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
-        // strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        // cin >> myreq.InvestorID;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
+        strcpy(myreq.BrokerID,broker_id.c_str());
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << endl;
         // cin >> myreq.CurrencyID;
-        cout << "“µŒÒ¿‡–Õ TThostFtdcBizTypeType:" << endl;
+        cout << "‰∏öÂä°Á±ªÂûã TThostFtdcBizTypeType:" << endl;
         // cin >> myreq.BizType;
         int i = userapi->ReqQryTradingAccount(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryInvestor()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryInvestorField myreq = CThostFtdcQryInvestorField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
         int i = userapi->ReqQryInvestor(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryTradingCode()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryTradingCodeField myreq = CThostFtdcQryTradingCodeField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
-        cout << "øÕªß¥˙¬Î TThostFtdcClientIDType:" << endl;
+        cout << "ÂÆ¢Êà∑‰ª£Á†Å TThostFtdcClientIDType:" << endl;
         cin >> myreq.ClientID;
-        cout << "Ωª“◊±‡¬Î¿‡–Õ TThostFtdcClientIDTypeType:" << endl;
+        cout << "‰∫§ÊòìÁºñÁ†ÅÁ±ªÂûã TThostFtdcClientIDTypeType:" << endl;
         cin >> myreq.ClientIDType;
         int i = userapi->ReqQryTradingCode(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryInstrumentMarginRate()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryInstrumentMarginRateField myreq = CThostFtdcQryInstrumentMarginRateField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << endl;
+        cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << endl;
         cin >> myreq.HedgeFlag;
         int i = userapi->ReqQryInstrumentMarginRate(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryInstrumentCommissionRate()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryInstrumentCommissionRateField myreq = CThostFtdcQryInstrumentCommissionRateField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqQryInstrumentCommissionRate(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryExchange()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryExchangeField myreq = CThostFtdcQryExchangeField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqQryExchange(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryProduct()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryProductField myreq = CThostFtdcQryProductField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "≤˙∆∑¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "‰∫ßÂìÅ‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.ProductID;
-        cout << "≤˙∆∑¿‡–Õ TThostFtdcProductClassType:" << endl;
+        cout << "‰∫ßÂìÅÁ±ªÂûã TThostFtdcProductClassType:" << endl;
         cin >> myreq.ProductClass;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqQryProduct(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryInstrument()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryInstrumentField myreq = CThostFtdcQryInstrumentField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
-        cout << "∫œ‘º‘⁄Ωª“◊À˘µƒ¥˙¬Î TThostFtdcExchangeInstIDType:" << endl;
+        cout << "ÂêàÁ∫¶Âú®‰∫§ÊòìÊâÄÁöÑ‰ª£Á†Å TThostFtdcExchangeInstIDType:" << endl;
         cin >> myreq.ExchangeInstID;
-        cout << "≤˙∆∑¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "‰∫ßÂìÅ‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.ProductID;
         int i = userapi->ReqQryInstrument(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryDepthMarketData()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryDepthMarketDataField myreq = CThostFtdcQryDepthMarketDataField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqQryDepthMarketData(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQrySettlementInfo()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQrySettlementInfoField myreq = CThostFtdcQrySettlementInfoField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "Ωª“◊»’ TThostFtdcDateType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << endl;
         cin >> myreq.TradingDay;
         int i = userapi->ReqQrySettlementInfo(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryTransferBank()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryTransferBankField myreq = CThostFtdcQryTransferBankField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << endl;
         cin >> myreq.BankID;
-        cout << "“¯––∑÷÷––ƒ¥˙¬Î TThostFtdcBankBrchIDType:" << endl;
+        cout << "Èì∂Ë°åÂàÜ‰∏≠ÂøÉ‰ª£Á†Å TThostFtdcBankBrchIDType:" << endl;
         cin >> myreq.BankBrchID;
         int i = userapi->ReqQryTransferBank(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryInvestorPositionDetail()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryInvestorPositionDetailField myreq = CThostFtdcQryInvestorPositionDetailField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqQryInvestorPositionDetail(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryNotice()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryNoticeField myreq = CThostFtdcQryNoticeField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
         int i = userapi->ReqQryNotice(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQrySettlementInfoConfirm()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQrySettlementInfoConfirmField myreq = CThostFtdcQrySettlementInfoConfirmField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
         int i = userapi->ReqQrySettlementInfoConfirm(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryInvestorPositionCombineDetail()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryInvestorPositionCombineDetailField myreq = CThostFtdcQryInvestorPositionCombineDetailField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "◊È∫œ≥÷≤÷∫œ‘º±‡¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÁªÑÂêàÊåÅ‰ªìÂêàÁ∫¶ÁºñÁ†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.CombInstrumentID;
         int i = userapi->ReqQryInvestorPositionCombineDetail(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryCFMMCTradingAccountKey()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryCFMMCTradingAccountKeyField myreq = CThostFtdcQryCFMMCTradingAccountKeyField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
         int i = userapi->ReqQryCFMMCTradingAccountKey(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryEWarrantOffset()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryEWarrantOffsetField myreq = CThostFtdcQryEWarrantOffsetField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
         int i = userapi->ReqQryEWarrantOffset(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryInvestorProductGroupMargin()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryInvestorProductGroupMarginField myreq = CThostFtdcQryInvestorProductGroupMarginField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∆∑÷÷/øÁ∆∑÷÷±Í æ TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂìÅÁßç/Ë∑®ÂìÅÁßçÊ†áÁ§∫ TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.ProductGroupID;
-        cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << endl;
+        cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << endl;
         cin >> myreq.HedgeFlag;
         int i = userapi->ReqQryInvestorProductGroupMargin(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryExchangeMarginRate()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryExchangeMarginRateField myreq = CThostFtdcQryExchangeMarginRateField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << endl;
+        cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << endl;
         cin >> myreq.HedgeFlag;
         int i = userapi->ReqQryExchangeMarginRate(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryExchangeMarginRateAdjust()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryExchangeMarginRateAdjustField myreq = CThostFtdcQryExchangeMarginRateAdjustField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << endl;
+        cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << endl;
         cin >> myreq.HedgeFlag;
         int i = userapi->ReqQryExchangeMarginRateAdjust(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryExchangeRate()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryExchangeRateField myreq = CThostFtdcQryExchangeRateField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "‘¥±“÷÷ TThostFtdcCurrencyIDType:" << endl;
+        cout << "Ê∫êÂ∏ÅÁßç TThostFtdcCurrencyIDType:" << endl;
         cin >> myreq.FromCurrencyID;
-        cout << "ƒø±Í±“÷÷ TThostFtdcCurrencyIDType:" << endl;
+        cout << "ÁõÆÊ†áÂ∏ÅÁßç TThostFtdcCurrencyIDType:" << endl;
         cin >> myreq.ToCurrencyID;
         int i = userapi->ReqQryExchangeRate(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQrySecAgentACIDMap()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQrySecAgentACIDMapField myreq = CThostFtdcQrySecAgentACIDMapField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        cout << "◊ Ω’Àªß TThostFtdcAccountIDType:" << endl;
+        cout << "ËµÑÈáëË¥¶Êà∑ TThostFtdcAccountIDType:" << endl;
         cin >> myreq.AccountID;
-        cout << "±“÷÷ TThostFtdcCurrencyIDType:" << endl;
+        cout << "Â∏ÅÁßç TThostFtdcCurrencyIDType:" << endl;
         cin >> myreq.CurrencyID;
         int i = userapi->ReqQrySecAgentACIDMap(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryProductExchRate()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryProductExchRateField myreq = CThostFtdcQryProductExchRateField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "≤˙∆∑¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "‰∫ßÂìÅ‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.ProductID;
         int i = userapi->ReqQryProductExchRate(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryProductGroup()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryProductGroupField myreq = CThostFtdcQryProductGroupField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "≤˙∆∑¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "‰∫ßÂìÅ‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.ProductID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqQryProductGroup(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryOptionInstrTradeCost()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryOptionInstrTradeCostField myreq = CThostFtdcQryOptionInstrTradeCostField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << endl;
+        cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << endl;
         cin >> myreq.HedgeFlag;
-        cout << "∆⁄»®∫œ‘º±®º€ TThostFtdcPriceType:" << endl;
+        cout << "ÊúüÊùÉÂêàÁ∫¶Êä•‰ª∑ TThostFtdcPriceType:" << endl;
         cin >> myreq.InputPrice;
-        cout << "±Íµƒº€∏Ò,ÃÓ0‘Ú”√◊ÚΩ·À„º€ TThostFtdcPriceType:" << endl;
+        cout << "Ê†áÁöÑ‰ª∑Ê†º,Â°´0ÂàôÁî®Êò®ÁªìÁÆó‰ª∑ TThostFtdcPriceType:" << endl;
         cin >> myreq.UnderlyingPrice;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqQryOptionInstrTradeCost(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryOptionInstrCommRate()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryOptionInstrCommRateField myreq = CThostFtdcQryOptionInstrCommRateField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqQryOptionInstrCommRate(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryExecOrder()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryExecOrderField myreq = CThostFtdcQryExecOrderField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
-        cout << "÷¥–––˚∏Ê±‡∫≈ TThostFtdcExecOrderSysIDType:" << endl;
+        cout << "ÊâßË°åÂÆ£ÂëäÁºñÂè∑ TThostFtdcExecOrderSysIDType:" << endl;
         cin >> myreq.ExecOrderSysID;
-        cout << "ø™ º ±º‰ TThostFtdcTimeType:" << endl;
+        cout << "ÂºÄÂßãÊó∂Èó¥ TThostFtdcTimeType:" << endl;
         cin >> myreq.InsertTimeStart;
-        cout << "Ω· ¯ ±º‰ TThostFtdcTimeType:" << endl;
+        cout << "ÁªìÊùüÊó∂Èó¥ TThostFtdcTimeType:" << endl;
         cin >> myreq.InsertTimeEnd;
         int i = userapi->ReqQryExecOrder(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryForQuote()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryForQuoteField myreq = CThostFtdcQryForQuoteField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
-        cout << "ø™ º ±º‰ TThostFtdcTimeType:" << endl;
+        cout << "ÂºÄÂßãÊó∂Èó¥ TThostFtdcTimeType:" << endl;
         cin >> myreq.InsertTimeStart;
-        cout << "Ω· ¯ ±º‰ TThostFtdcTimeType:" << endl;
+        cout << "ÁªìÊùüÊó∂Èó¥ TThostFtdcTimeType:" << endl;
         cin >> myreq.InsertTimeEnd;
         int i = userapi->ReqQryForQuote(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryQuote()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryQuoteField myreq = CThostFtdcQryQuoteField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
-        cout << "±®º€±‡∫≈ TThostFtdcOrderSysIDType:" << endl;
+        cout << "Êä•‰ª∑ÁºñÂè∑ TThostFtdcOrderSysIDType:" << endl;
         cin >> myreq.QuoteSysID;
-        cout << "ø™ º ±º‰ TThostFtdcTimeType:" << endl;
+        cout << "ÂºÄÂßãÊó∂Èó¥ TThostFtdcTimeType:" << endl;
         cin >> myreq.InsertTimeStart;
-        cout << "Ω· ¯ ±º‰ TThostFtdcTimeType:" << endl;
+        cout << "ÁªìÊùüÊó∂Èó¥ TThostFtdcTimeType:" << endl;
         cin >> myreq.InsertTimeEnd;
         int i = userapi->ReqQryQuote(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryLock()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryLockField myreq = CThostFtdcQryLockField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
-        cout << "À¯∂®±‡∫≈ TThostFtdcOrderSysIDType:" << endl;
+        cout << "ÈîÅÂÆöÁºñÂè∑ TThostFtdcOrderSysIDType:" << endl;
         cin >> myreq.LockSysID;
-        cout << "ø™ º ±º‰ TThostFtdcTimeType:" << endl;
+        cout << "ÂºÄÂßãÊó∂Èó¥ TThostFtdcTimeType:" << endl;
         cin >> myreq.InsertTimeStart;
-        cout << "Ω· ¯ ±º‰ TThostFtdcTimeType:" << endl;
+        cout << "ÁªìÊùüÊó∂Èó¥ TThostFtdcTimeType:" << endl;
         cin >> myreq.InsertTimeEnd;
         int i = userapi->ReqQryLock(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryLockPosition()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryLockPositionField myreq = CThostFtdcQryLockPositionField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqQryLockPosition(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryInvestorLevel()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryInvestorLevelField myreq = CThostFtdcQryInvestorLevelField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqQryInvestorLevel(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryExecFreeze()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryExecFreezeField myreq = CThostFtdcQryExecFreezeField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqQryExecFreeze(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryCombInstrumentGuard()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryCombInstrumentGuardField myreq = CThostFtdcQryCombInstrumentGuardField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
         int i = userapi->ReqQryCombInstrumentGuard(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryCombAction()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryCombActionField myreq = CThostFtdcQryCombActionField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqQryCombAction(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryTransferSerial()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryTransferSerialField myreq = CThostFtdcQryTransferSerialField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << endl;
         cin >> myreq.AccountID;
-        cout << "“¯––±‡¬Î TThostFtdcBankIDType:" << endl;
+        cout << "Èì∂Ë°åÁºñÁ†Å TThostFtdcBankIDType:" << endl;
         cin >> myreq.BankID;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << endl;
         cin >> myreq.CurrencyID;
         int i = userapi->ReqQryTransferSerial(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryAccountregister()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryAccountregisterField myreq = CThostFtdcQryAccountregisterField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << endl;
         cin >> myreq.AccountID;
-        cout << "“¯––±‡¬Î TThostFtdcBankIDType:" << endl;
+        cout << "Èì∂Ë°åÁºñÁ†Å TThostFtdcBankIDType:" << endl;
         cin >> myreq.BankID;
-        cout << "“¯––∑÷÷ßª˙ππ±‡¬Î TThostFtdcBankBrchIDType:" << endl;
+        cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑÁºñÁ†Å TThostFtdcBankBrchIDType:" << endl;
         cin >> myreq.BankBranchID;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << endl;
         cin >> myreq.CurrencyID;
         int i = userapi->ReqQryAccountregister(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryContractBank()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryContractBankField myreq = CThostFtdcQryContractBankField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << endl;
         cin >> myreq.BankID;
-        cout << "“¯––∑÷÷––ƒ¥˙¬Î TThostFtdcBankBrchIDType:" << endl;
+        cout << "Èì∂Ë°åÂàÜ‰∏≠ÂøÉ‰ª£Á†Å TThostFtdcBankBrchIDType:" << endl;
         cin >> myreq.BankBrchID;
         int i = userapi->ReqQryContractBank(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryParkedOrder()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryParkedOrderField myreq = CThostFtdcQryParkedOrderField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqQryParkedOrder(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryParkedOrderAction()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryParkedOrderActionField myreq = CThostFtdcQryParkedOrderActionField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         int i = userapi->ReqQryParkedOrderAction(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryTradingNotice()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryTradingNoticeField myreq = CThostFtdcQryTradingNoticeField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
         int i = userapi->ReqQryTradingNotice(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryBrokerTradingParams()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryBrokerTradingParamsField myreq = CThostFtdcQryBrokerTradingParamsField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << endl;
         cin >> myreq.CurrencyID;
         int i = userapi->ReqQryBrokerTradingParams(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQryBrokerTradingAlgos()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQryBrokerTradingAlgosField myreq = CThostFtdcQryBrokerTradingAlgosField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
         int i = userapi->ReqQryBrokerTradingAlgos(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQueryCFMMCTradingAccountToken()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcQueryCFMMCTradingAccountTokenField myreq = CThostFtdcQueryCFMMCTradingAccountTokenField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << endl;
-        cin >> myreq.InvestorID;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << endl;
+        strcpy(myreq.InvestorID, user_id.c_str());
         int i = userapi->ReqQueryCFMMCTradingAccountToken(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqFromBankToFutureByFuture()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcReqTransferField myreq = CThostFtdcReqTransferField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << endl;
+        cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << endl;
         cin >> myreq.TradeCode;
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << endl;
         cin >> myreq.BankID;
-        cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << endl;
+        cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << endl;
         cin >> myreq.BankBranchID;
-        cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID,broker_id.c_str());
-        cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << endl;
+        cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << endl;
         cin >> myreq.BrokerBranchID;
-        cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << endl;
+        cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << endl;
         cin >> myreq.TradeDate;
-        cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << endl;
+        cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << endl;
         cin >> myreq.TradeTime;
-        cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << endl;
+        cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << endl;
         cin >> myreq.BankSerial;
-        // cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType	TradingDa:" << endl;
+        // cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType	TradingDa:" << endl;
         // cin >> myreq.;
-        cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << endl;
+        cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << endl;
         cin >> myreq.PlateSerial;
-        cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << endl;
+        cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << endl;
         cin >> myreq.LastFragment;
-        cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << endl;
+        cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << endl;
         cin >> myreq.SessionID;
-        cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << endl;
+        cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << endl;
         cin >> myreq.CustomerName;
-        cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << endl;
+        cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << endl;
         cin >> myreq.IdCardType;
-        cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << endl;
+        cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << endl;
         cin >> myreq.IdentifiedCardNo;
-        cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << endl;
+        cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << endl;
         cin >> myreq.CustType;
-        cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << endl;
         cin >> myreq.BankAccount;
-        cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << endl;
         cin >> myreq.BankPassWord;
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << endl;
         cin >> myreq.AccountID;
-        cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << endl;
+        cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << endl;
         strcpy(myreq.Password, passwd.c_str());
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << endl;
         cin >> myreq.InstallID;
-        cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << endl;
         cin >> myreq.FutureSerial;
-        cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << endl;
+        cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << endl;
+        cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << endl;
         cin >> myreq.VerifyCertNoFlag;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << endl;
         cin >> myreq.CurrencyID;
-        cout << "◊™’ Ω∂Ó TThostFtdcTradeAmountType:" << endl;
+        cout << "ËΩ¨Â∏êÈáëÈ¢ù TThostFtdcTradeAmountType:" << endl;
         cin >> myreq.TradeAmount;
-        cout << "∆⁄ªıø…»°Ω∂Ó TThostFtdcTradeAmountType:" << endl;
+        cout << "ÊúüË¥ßÂèØÂèñÈáëÈ¢ù TThostFtdcTradeAmountType:" << endl;
         cin >> myreq.FutureFetchAmount;
-        cout << "∑—”√÷ß∏∂±Í÷æ TThostFtdcFeePayFlagType:" << endl;
+        cout << "Ë¥πÁî®ÊîØ‰ªòÊ†áÂøó TThostFtdcFeePayFlagType:" << endl;
         cin >> myreq.FeePayFlag;
-        cout << "”¶ ’øÕªß∑—”√ TThostFtdcCustFeeType:" << endl;
+        cout << "Â∫îÊî∂ÂÆ¢Êà∑Ë¥πÁî® TThostFtdcCustFeeType:" << endl;
         cin >> myreq.CustFee;
-        cout << "”¶ ’∆⁄ªıπ´Àæ∑—”√ TThostFtdcFutureFeeType:" << endl;
+        cout << "Â∫îÊî∂ÊúüË¥ßÂÖ¨Âè∏Ë¥πÁî® TThostFtdcFutureFeeType:" << endl;
         cin >> myreq.BrokerFee;
-        cout << "∑¢ÀÕ∑Ω∏¯Ω” ’∑Ωµƒœ˚œ¢ TThostFtdcAddInfoType:" << endl;
+        cout << "ÂèëÈÄÅÊñπÁªôÊé•Êî∂ÊñπÁöÑÊ∂àÊÅØ TThostFtdcAddInfoType:" << endl;
         cin >> myreq.Message;
-        cout << "’™“™ TThostFtdcDigestType:" << endl;
+        cout << "ÊëòË¶Å TThostFtdcDigestType:" << endl;
         cin >> myreq.Digest;
-        cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << endl;
         cin >> myreq.BankAccType;
-        cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << endl;
+        cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << endl;
         cin >> myreq.DeviceID;
-        cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << endl;
         cin >> myreq.BankSecuAccType;
-        cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << endl;
         cin >> myreq.BrokerIDByBank;
-        cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << endl;
         cin >> myreq.BankSecuAcc;
-        cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << endl;
         cin >> myreq.BankPwdFlag;
-        cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << endl;
+        cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << endl;
         cin >> myreq.SecuPwdFlag;
-        cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << endl;
+        cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << endl;
         cin >> myreq.OperNo;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << endl;
         cin >> myreq.RequestID;
-        cout << "Ωª“◊ID TThostFtdcTIDType:" << endl;
+        cout << "‰∫§ÊòìID TThostFtdcTIDType:" << endl;
         cin >> myreq.TID;
-        cout << "◊™’ÀΩª“◊◊¥Ã¨ TThostFtdcTransferStatusType:" << endl;
+        cout << "ËΩ¨Ë¥¶‰∫§ÊòìÁä∂ÊÄÅ TThostFtdcTransferStatusType:" << endl;
         cin >> myreq.TransferStatus;
         int i = userapi->ReqFromBankToFutureByFuture(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqFromFutureToBankByFuture()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcReqTransferField myreq = CThostFtdcReqTransferField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << endl;
+        cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << endl;
         cin >> myreq.TradeCode;
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << endl;
         cin >> myreq.BankID;
-        cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << endl;
+        cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << endl;
         cin >> myreq.BankBranchID;
-        cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         cin >> myreq.BrokerID;
-        cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << endl;
+        cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << endl;
         cin >> myreq.BrokerBranchID;
-        cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << endl;
+        cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << endl;
         cin >> myreq.TradeDate;
-        cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << endl;
+        cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << endl;
         cin >> myreq.TradeTime;
-        cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << endl;
+        cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << endl;
         cin >> myreq.BankSerial;
-        // cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType	TradingDa:" << endl;
+        // cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType	TradingDa:" << endl;
         // cin >> myreq.;
-        cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << endl;
+        cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << endl;
         cin >> myreq.PlateSerial;
-        cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << endl;
+        cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << endl;
         cin >> myreq.LastFragment;
-        cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << endl;
+        cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << endl;
         cin >> myreq.SessionID;
-        cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << endl;
+        cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << endl;
         cin >> myreq.CustomerName;
-        cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << endl;
+        cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << endl;
         cin >> myreq.IdCardType;
-        cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << endl;
+        cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << endl;
         cin >> myreq.IdentifiedCardNo;
-        cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << endl;
+        cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << endl;
         cin >> myreq.CustType;
-        cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << endl;
         cin >> myreq.BankAccount;
-        cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << endl;
         cin >> myreq.BankPassWord;
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << endl;
         cin >> myreq.AccountID;
-        cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << endl;
+        cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << endl;
         strcpy(myreq.Password, passwd.c_str());
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << endl;
         cin >> myreq.InstallID;
-        cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << endl;
         cin >> myreq.FutureSerial;
-        cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << endl;
+        cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << endl;
+        cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << endl;
         cin >> myreq.VerifyCertNoFlag;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << endl;
         cin >> myreq.CurrencyID;
-        cout << "◊™’ Ω∂Ó TThostFtdcTradeAmountType:" << endl;
+        cout << "ËΩ¨Â∏êÈáëÈ¢ù TThostFtdcTradeAmountType:" << endl;
         cin >> myreq.TradeAmount;
-        cout << "∆⁄ªıø…»°Ω∂Ó TThostFtdcTradeAmountType:" << endl;
+        cout << "ÊúüË¥ßÂèØÂèñÈáëÈ¢ù TThostFtdcTradeAmountType:" << endl;
         cin >> myreq.FutureFetchAmount;
-        cout << "∑—”√÷ß∏∂±Í÷æ TThostFtdcFeePayFlagType:" << endl;
+        cout << "Ë¥πÁî®ÊîØ‰ªòÊ†áÂøó TThostFtdcFeePayFlagType:" << endl;
         cin >> myreq.FeePayFlag;
-        cout << "”¶ ’øÕªß∑—”√ TThostFtdcCustFeeType:" << endl;
+        cout << "Â∫îÊî∂ÂÆ¢Êà∑Ë¥πÁî® TThostFtdcCustFeeType:" << endl;
         cin >> myreq.CustFee;
-        cout << "”¶ ’∆⁄ªıπ´Àæ∑—”√ TThostFtdcFutureFeeType:" << endl;
+        cout << "Â∫îÊî∂ÊúüË¥ßÂÖ¨Âè∏Ë¥πÁî® TThostFtdcFutureFeeType:" << endl;
         cin >> myreq.BrokerFee;
-        cout << "∑¢ÀÕ∑Ω∏¯Ω” ’∑Ωµƒœ˚œ¢ TThostFtdcAddInfoType:" << endl;
+        cout << "ÂèëÈÄÅÊñπÁªôÊé•Êî∂ÊñπÁöÑÊ∂àÊÅØ TThostFtdcAddInfoType:" << endl;
         cin >> myreq.Message;
-        cout << "’™“™ TThostFtdcDigestType:" << endl;
+        cout << "ÊëòË¶Å TThostFtdcDigestType:" << endl;
         cin >> myreq.Digest;
-        cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << endl;
         cin >> myreq.BankAccType;
-        cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << endl;
+        cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << endl;
         cin >> myreq.DeviceID;
-        cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << endl;
         cin >> myreq.BankSecuAccType;
-        cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << endl;
         cin >> myreq.BrokerIDByBank;
-        cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << endl;
         cin >> myreq.BankSecuAcc;
-        cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << endl;
         cin >> myreq.BankPwdFlag;
-        cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << endl;
+        cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << endl;
         cin >> myreq.SecuPwdFlag;
-        cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << endl;
+        cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << endl;
         cin >> myreq.OperNo;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << endl;
         cin >> myreq.RequestID;
-        cout << "Ωª“◊ID TThostFtdcTIDType:" << endl;
+        cout << "‰∫§ÊòìID TThostFtdcTIDType:" << endl;
         cin >> myreq.TID;
-        cout << "◊™’ÀΩª“◊◊¥Ã¨ TThostFtdcTransferStatusType:" << endl;
+        cout << "ËΩ¨Ë¥¶‰∫§ÊòìÁä∂ÊÄÅ TThostFtdcTransferStatusType:" << endl;
         cin >> myreq.TransferStatus;
         int i = userapi->ReqFromFutureToBankByFuture(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
+}
 
 void CTraderSpi::reqQueryBankAccountMoneyByFuture()
 {
+        cout << "--->>> " << __FUNCTION__ << endl;
         CThostFtdcReqQueryAccountField myreq = CThostFtdcReqQueryAccountField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << endl;
+        cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << endl;
         cin >> myreq.TradeCode;
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << endl;
         cin >> myreq.BankID;
-        cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << endl;
+        cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << endl;
         cin >> myreq.BankBranchID;
-        cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << endl;
+        cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << endl;
         cin >> myreq.BrokerID;
-        cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << endl;
+        cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << endl;
         cin >> myreq.BrokerBranchID;
-        cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << endl;
+        cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << endl;
         cin >> myreq.TradeDate;
-        cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << endl;
+        cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << endl;
         cin >> myreq.TradeTime;
-        cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << endl;
+        cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << endl;
         cin >> myreq.BankSerial;
-        cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << endl;
+        cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << endl;
         cin >> myreq.TradingDay;
-        cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << endl;
+        cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << endl;
         cin >> myreq.PlateSerial;
-        cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << endl;
+        cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << endl;
         cin >> myreq.LastFragment;
-        cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << endl;
+        cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << endl;
         cin >> myreq.SessionID;
-        cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << endl;
+        cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << endl;
         cin >> myreq.CustomerName;
-        cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << endl;
+        cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << endl;
         cin >> myreq.IdCardType;
-        cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << endl;
+        cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << endl;
         cin >> myreq.IdentifiedCardNo;
-        cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << endl;
+        cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << endl;
         cin >> myreq.CustType;
-        cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << endl;
         cin >> myreq.BankAccount;
-        cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << endl;
         cin >> myreq.BankPassWord;
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << endl;
         cin >> myreq.AccountID;
-        cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << endl;
+        cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << endl;
         strcpy(myreq.Password, passwd.c_str());
-        cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << endl;
         cin >> myreq.FutureSerial;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << endl;
         cin >> myreq.InstallID;
-        cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << endl;
+        cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << endl;
+        cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << endl;
         cin >> myreq.VerifyCertNoFlag;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << endl;
         cin >> myreq.CurrencyID;
-        cout << "’™“™ TThostFtdcDigestType:" << endl;
+        cout << "ÊëòË¶Å TThostFtdcDigestType:" << endl;
         cin >> myreq.Digest;
-        cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << endl;
         cin >> myreq.BankAccType;
-        cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << endl;
+        cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << endl;
         cin >> myreq.DeviceID;
-        cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << endl;
         cin >> myreq.BankSecuAccType;
-        cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << endl;
         cin >> myreq.BrokerIDByBank;
-        cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << endl;
         cin >> myreq.BankSecuAcc;
-        cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << endl;
         cin >> myreq.BankPwdFlag;
-        cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << endl;
+        cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << endl;
         cin >> myreq.SecuPwdFlag;
-        cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << endl;
+        cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << endl;
         cin >> myreq.OperNo;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << endl;
         cin >> myreq.RequestID;
-        cout << "Ωª“◊ID TThostFtdcTIDType:" << endl;
+        cout << "‰∫§ÊòìID TThostFtdcTIDType:" << endl;
         cin >> myreq.TID;
         int i = userapi->ReqQueryBankAccountMoneyByFuture(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
-};
-///µ±øÕªß∂À”ÎΩª“◊∫ÛÃ®Ω®¡¢∆Õ®–≈¡¨Ω” ±£®ªπŒ¥µ«¬º«∞£©£¨∏√∑Ω∑®±ªµ˜”√°£
+}
+///ÂΩìÂÆ¢Êà∑Á´Ø‰∏é‰∫§ÊòìÂêéÂè∞Âª∫Á´ãËµ∑ÈÄö‰ø°ËøûÊé•Êó∂ÔºàËøòÊú™ÁôªÂΩïÂâçÔºâÔºåËØ•ÊñπÊ≥ïË¢´Ë∞ÉÁî®„ÄÇ
 void CTraderSpi::OnFrontConnected()
 {
-        cout << "--->>> "
-             << "OnFrontConnected" << endl;
+        cout << "--->>> " << __FUNCTION__ << endl;
         // user login request
 
         connection_status = true;
-        if (require_auth) {
-                authenticate();
-        } else {
-
-                reqUserLogin();
-        }
+        // if (require_auth) {
+        //         reqAuthenticate();
+        // } else {
+        //
+        //         reqUserLogin();
+        // }
 }
 
-///µ±øÕªß∂À”ÎΩª“◊∫ÛÃ®Õ®–≈¡¨Ω”∂œø™ ±£¨∏√∑Ω∑®±ªµ˜”√°£µ±∑¢…˙’‚∏ˆ«Èøˆ∫Û£¨APIª·◊‘∂Ø÷ÿ–¬¡¨Ω”£¨øÕªß∂Àø…≤ª◊ˆ¥¶¿Ì°£
-///@param nReason ¥ÌŒÛ‘≠“Ú
-///        0x1001 Õ¯¬Á∂¡ ß∞‹
-///        0x1002 Õ¯¬Á–¥ ß∞‹
-///        0x2001 Ω” ’–ƒÃ¯≥¨ ±
-///        0x2002 ∑¢ÀÕ–ƒÃ¯ ß∞‹
-///        0x2003  ’µΩ¥ÌŒÛ±®Œƒ
+///ÂΩìÂÆ¢Êà∑Á´Ø‰∏é‰∫§ÊòìÂêéÂè∞ÈÄö‰ø°ËøûÊé•Êñ≠ÂºÄÊó∂ÔºåËØ•ÊñπÊ≥ïË¢´Ë∞ÉÁî®„ÄÇÂΩìÂèëÁîüËøô‰∏™ÊÉÖÂÜµÂêéÔºåAPI‰ºöËá™Âä®ÈáçÊñ∞ËøûÊé•ÔºåÂÆ¢Êà∑Á´ØÂèØ‰∏çÂÅöÂ§ÑÁêÜ„ÄÇ
+///@param nReason ÈîôËØØÂéüÂõ†
+///        0x1001 ÁΩëÁªúËØªÂ§±Ë¥•
+///        0x1002 ÁΩëÁªúÂÜôÂ§±Ë¥•
+///        0x2001 Êé•Êî∂ÂøÉË∑≥Ë∂ÖÊó∂
+///        0x2002 ÂèëÈÄÅÂøÉË∑≥Â§±Ë¥•
+///        0x2003 Êî∂Âà∞ÈîôËØØÊä•Êñá
 void CTraderSpi::OnFrontDisconnected(int nReason)
 {
-        cout << "--->>> "
-             << "OnFrontDisconnected"
-             << "--->>> Reason = " << hex << nReason << endl;
+        cout << "--->>> " << __FUNCTION__ << endl;
+        cout << "--->>> Reason = " << hex << nReason << endl;
 }
 
-///–ƒÃ¯≥¨ ±æØ∏Ê°£µ±≥§ ±º‰Œ¥ ’µΩ±®Œƒ ±£¨∏√∑Ω∑®±ªµ˜”√°£
-///@param nTimeLapse æ‡¿Î…œ¥ŒΩ” ’±®Œƒµƒ ±º‰
+///ÂøÉË∑≥Ë∂ÖÊó∂Ë≠¶Âëä„ÄÇÂΩìÈïøÊó∂Èó¥Êú™Êî∂Âà∞Êä•ÊñáÊó∂ÔºåËØ•ÊñπÊ≥ïË¢´Ë∞ÉÁî®„ÄÇ
+///@param nTimeLapse Ë∑ùÁ¶ª‰∏äÊ¨°Êé•Êî∂Êä•ÊñáÁöÑÊó∂Èó¥
 void CTraderSpi::OnHeartBeatWarning(int nTimeLapse)
 {
-        cout << "--->>> "
-             << "OnHeartBeatWarning"
-             << "--->>> nTimerLapse = " << nTimeLapse << endl;
+        cout << "--->>> " << __FUNCTION__ << endl;
+        cout << "--->>> nTimerLapse = " << nTimeLapse << endl;
 }
 
-///øÕªß∂À»œ÷§œÏ”¶
+///ÂÆ¢Êà∑Á´ØËÆ§ËØÅÂìçÂ∫î
 void CTraderSpi::OnRspAuthenticate(CThostFtdcRspAuthenticateField* pRspAuthenticateField, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pRspAuthenticateField->BrokerID << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pRspAuthenticateField->UserID << endl;
-                cout << "”√ªß∂À≤˙∆∑–≈œ¢ TThostFtdcProductInfoType:" << pRspAuthenticateField->UserProductInfo << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pRspAuthenticateField->BrokerID << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pRspAuthenticateField->UserID << endl;
+                cout << "Áî®Êà∑Á´Ø‰∫ßÂìÅ‰ø°ÊÅØ TThostFtdcProductInfoType:" << pRspAuthenticateField->UserProductInfo << endl;
 
                 auth_status = true;
                 //TODO:LOGIN
-                // reqUserLogin
+                reqUserLogin();
         }
 }
 
-///µ«¬º«Î«ÛœÏ”¶
+///ÁôªÂΩïËØ∑Ê±ÇÂìçÂ∫î
 void CTraderSpi::OnRspUserLogin(CThostFtdcRspUserLoginField* pRspUserLogin, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "Ωª“◊»’ TThostFtdcDateType:" << pRspUserLogin->TradingDay << endl;
-                cout << "µ«¬º≥…π¶ ±º‰ TThostFtdcTimeType:" << pRspUserLogin->LoginTime << endl;
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pRspUserLogin->BrokerID << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pRspUserLogin->UserID << endl;
-                cout << "Ωª“◊œµÕ≥√˚≥∆ TThostFtdcSystemNameType:" << pRspUserLogin->SystemName << endl;
-                cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pRspUserLogin->FrontID << endl;
-                cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pRspUserLogin->SessionID << endl;
-                cout << "◊Ó¥Û±®µ•“˝”√ TThostFtdcOrderRefType:" << pRspUserLogin->MaxOrderRef << endl;
-                cout << "…œ∆⁄À˘ ±º‰ TThostFtdcTimeType:" << pRspUserLogin->SHFETime << endl;
-                cout << "¥Û…ÃÀ˘ ±º‰ TThostFtdcTimeType:" << pRspUserLogin->DCETime << endl;
-                cout << "÷£…ÃÀ˘ ±º‰ TThostFtdcTimeType:" << pRspUserLogin->CZCETime << endl;
-                cout << "÷–ΩÀ˘ ±º‰ TThostFtdcTimeType:" << pRspUserLogin->FFEXTime << endl;
-                cout << "ƒ‹‘¥÷––ƒ ±º‰ TThostFtdcTimeType:" << pRspUserLogin->INETime << endl;
+                cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pRspUserLogin->TradingDay << endl;
+                cout << "ÁôªÂΩïÊàêÂäüÊó∂Èó¥ TThostFtdcTimeType:" << pRspUserLogin->LoginTime << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pRspUserLogin->BrokerID << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pRspUserLogin->UserID << endl;
+                cout << "‰∫§ÊòìÁ≥ªÁªüÂêçÁß∞ TThostFtdcSystemNameType:" << pRspUserLogin->SystemName << endl;
+                cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pRspUserLogin->FrontID << endl;
+                cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pRspUserLogin->SessionID << endl;
+                cout << "ÊúÄÂ§ßÊä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pRspUserLogin->MaxOrderRef << endl;
+                cout << "‰∏äÊúüÊâÄÊó∂Èó¥ TThostFtdcTimeType:" << pRspUserLogin->SHFETime << endl;
+                cout << "Â§ßÂïÜÊâÄÊó∂Èó¥ TThostFtdcTimeType:" << pRspUserLogin->DCETime << endl;
+                cout << "ÈÉëÂïÜÊâÄÊó∂Èó¥ TThostFtdcTimeType:" << pRspUserLogin->CZCETime << endl;
+                cout << "‰∏≠ÈáëÊâÄÊó∂Èó¥ TThostFtdcTimeType:" << pRspUserLogin->FFEXTime << endl;
+                cout << "ËÉΩÊ∫ê‰∏≠ÂøÉÊó∂Èó¥ TThostFtdcTimeType:" << pRspUserLogin->INETime << endl;
 
                 front_id = pRspUserLogin->FrontID;
                 session_id = pRspUserLogin->SessionID;
@@ -2108,3294 +2174,3293 @@ void CTraderSpi::OnRspUserLogin(CThostFtdcRspUserLoginField* pRspUserLogin, CTho
 
                 // iNextOrderRef++;
                 // sprintf(ORDER_REF, "%d", iNextOrderRef);
-                ///ªÒ»°µ±«∞Ωª“◊»’
+                ///Ëé∑ÂèñÂΩìÂâç‰∫§ÊòìÊó•
                 // cout << "--->>> call api function GetTradingDay = " << userapi->GetTradingDay() << endl;
-                ///Õ∂◊ ’ﬂΩ·À„Ω·π˚»∑»œ
-                reqSettlementInfoConfirm();
+                ///ÊäïËµÑËÄÖÁªìÁÆóÁªìÊûúÁ°ÆËÆ§
+                // reqSettlementInfoConfirm();
         }
 
-        TestAllFunction();
+        // TestAllFunction();
 }
 
-///µ«≥ˆ«Î«ÛœÏ”¶
+///ÁôªÂá∫ËØ∑Ê±ÇÂìçÂ∫î
 void CTraderSpi::OnRspUserLogout(CThostFtdcUserLogoutField* pUserLogout, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pUserLogout->BrokerID << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pUserLogout->UserID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pUserLogout->BrokerID << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pUserLogout->UserID << endl;
         }
 }
 
-///”√ªßø⁄¡Ó∏¸–¬«Î«ÛœÏ”¶
+///Áî®Êà∑Âè£‰ª§Êõ¥Êñ∞ËØ∑Ê±ÇÂìçÂ∫î
 void CTraderSpi::OnRspUserPasswordUpdate(CThostFtdcUserPasswordUpdateField* pUserPasswordUpdate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pUserPasswordUpdate->BrokerID << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pUserPasswordUpdate->UserID << endl;
-                cout << "‘≠¿¥µƒø⁄¡Ó TThostFtdcPasswordType:" << pUserPasswordUpdate->OldPassword << endl;
-                cout << "–¬µƒø⁄¡Ó TThostFtdcPasswordType:" << pUserPasswordUpdate->NewPassword << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pUserPasswordUpdate->BrokerID << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pUserPasswordUpdate->UserID << endl;
+                cout << "ÂéüÊù•ÁöÑÂè£‰ª§ TThostFtdcPasswordType:" << pUserPasswordUpdate->OldPassword << endl;
+                cout << "Êñ∞ÁöÑÂè£‰ª§ TThostFtdcPasswordType:" << pUserPasswordUpdate->NewPassword << endl;
         }
 }
 
-///◊ Ω’Àªßø⁄¡Ó∏¸–¬«Î«ÛœÏ”¶
+///ËµÑÈáëË¥¶Êà∑Âè£‰ª§Êõ¥Êñ∞ËØ∑Ê±ÇÂìçÂ∫î
 void CTraderSpi::OnRspTradingAccountPasswordUpdate(CThostFtdcTradingAccountPasswordUpdateField* pTradingAccountPasswordUpdate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pTradingAccountPasswordUpdate->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pTradingAccountPasswordUpdate->AccountID << endl;
-                cout << "‘≠¿¥µƒø⁄¡Ó TThostFtdcPasswordType:" << pTradingAccountPasswordUpdate->OldPassword << endl;
-                cout << "–¬µƒø⁄¡Ó TThostFtdcPasswordType:" << pTradingAccountPasswordUpdate->NewPassword << endl;
-                cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pTradingAccountPasswordUpdate->CurrencyID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pTradingAccountPasswordUpdate->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pTradingAccountPasswordUpdate->AccountID << endl;
+                cout << "ÂéüÊù•ÁöÑÂè£‰ª§ TThostFtdcPasswordType:" << pTradingAccountPasswordUpdate->OldPassword << endl;
+                cout << "Êñ∞ÁöÑÂè£‰ª§ TThostFtdcPasswordType:" << pTradingAccountPasswordUpdate->NewPassword << endl;
+                cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pTradingAccountPasswordUpdate->CurrencyID << endl;
         }
 }
 
-///±®µ•¬º»Î«Î«ÛœÏ”¶
+///Êä•ÂçïÂΩïÂÖ•ËØ∑Ê±ÇÂìçÂ∫î
 void CTraderSpi::OnRspOrderInsert(CThostFtdcInputOrderField* pInputOrder, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInputOrder->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInputOrder->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInputOrder->InstrumentID << endl;
-                cout << "±®µ•“˝”√ TThostFtdcOrderRefType:" << pInputOrder->OrderRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pInputOrder->UserID << endl;
-                cout << "±®µ•º€∏ÒÃıº˛ TThostFtdcOrderPriceTypeType:" << pInputOrder->OrderPriceType << endl;
-                cout << "¬Ú¬Ù∑ΩœÚ TThostFtdcDirectionType:" << pInputOrder->Direction << endl;
-                cout << "◊È∫œø™∆Ω±Í÷æ TThostFtdcCombOffsetFlagType:" << pInputOrder->CombOffsetFlag << endl;
-                cout << "◊È∫œÕ∂ª˙Ã◊±£±Í÷æ TThostFtdcCombHedgeFlagType:" << pInputOrder->CombHedgeFlag << endl;
-                cout << "º€∏Ò TThostFtdcPriceType:" << pInputOrder->LimitPrice << endl;
-                cout << " ˝¡ø TThostFtdcVolumeType:" << pInputOrder->VolumeTotalOriginal << endl;
-                cout << "”––ß∆⁄¿‡–Õ TThostFtdcTimeConditionType:" << pInputOrder->TimeCondition << endl;
-                cout << "GTD»’∆⁄ pInputOrder->TThostFtdcDateType:" << pInputOrder->GTDDate << endl;
-                cout << "≥…Ωª¡ø¿‡–Õ TThostFtdcVolumeConditionType:" << pInputOrder->VolumeCondition << endl;
-                cout << "◊Ó–°≥…Ωª¡ø TThostFtdcVolumeType:" << pInputOrder->MinVolume << endl;
-                cout << "¥•∑¢Ãıº˛ TThostFtdcContingentConditionType:" << pInputOrder->ContingentCondition << endl;
-                cout << "÷πÀº€ TThostFtdcPriceType:" << pInputOrder->StopPrice << endl;
-                cout << "«ø∆Ω‘≠“Ú TThostFtdcForceCloseReasonType:" << pInputOrder->ForceCloseReason << endl;
-                cout << "◊‘∂Øπ“∆±Í÷æ TThostFtdcBoolType:" << pInputOrder->IsAutoSuspend << endl;
-                cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pInputOrder->BusinessUnit << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pInputOrder->RequestID << endl;
-                cout << "”√ªß«ø∆¿±Í÷æ TThostFtdcBoolType:" << pInputOrder->UserForceClose << endl;
-                cout << "ª•ªªµ•±Í÷æ TThostFtdcBoolType:" << pInputOrder->IsSwapOrder << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInputOrder->ExchangeID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInputOrder->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInputOrder->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInputOrder->InstrumentID << endl;
+                cout << "Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pInputOrder->OrderRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pInputOrder->UserID << endl;
+                cout << "Êä•Âçï‰ª∑Ê†ºÊù°‰ª∂ TThostFtdcOrderPriceTypeType:" << pInputOrder->OrderPriceType << endl;
+                cout << "‰π∞ÂçñÊñπÂêë TThostFtdcDirectionType:" << pInputOrder->Direction << endl;
+                cout << "ÁªÑÂêàÂºÄÂπ≥Ê†áÂøó TThostFtdcCombOffsetFlagType:" << pInputOrder->CombOffsetFlag << endl;
+                cout << "ÁªÑÂêàÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcCombHedgeFlagType:" << pInputOrder->CombHedgeFlag << endl;
+                cout << "‰ª∑Ê†º TThostFtdcPriceType:" << pInputOrder->LimitPrice << endl;
+                cout << "Êï∞Èáè TThostFtdcVolumeType:" << pInputOrder->VolumeTotalOriginal << endl;
+                cout << "ÊúâÊïàÊúüÁ±ªÂûã TThostFtdcTimeConditionType:" << pInputOrder->TimeCondition << endl;
+                cout << "GTDÊó•Êúü pInputOrder->TThostFtdcDateType:" << pInputOrder->GTDDate << endl;
+                cout << "Êàê‰∫§ÈáèÁ±ªÂûã TThostFtdcVolumeConditionType:" << pInputOrder->VolumeCondition << endl;
+                cout << "ÊúÄÂ∞èÊàê‰∫§Èáè TThostFtdcVolumeType:" << pInputOrder->MinVolume << endl;
+                cout << "Ëß¶ÂèëÊù°‰ª∂ TThostFtdcContingentConditionType:" << pInputOrder->ContingentCondition << endl;
+                cout << "Ê≠¢Êçü‰ª∑ TThostFtdcPriceType:" << pInputOrder->StopPrice << endl;
+                cout << "Âº∫Âπ≥ÂéüÂõ† TThostFtdcForceCloseReasonType:" << pInputOrder->ForceCloseReason << endl;
+                cout << "Ëá™Âä®ÊåÇËµ∑Ê†áÂøó TThostFtdcBoolType:" << pInputOrder->IsAutoSuspend << endl;
+                cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pInputOrder->BusinessUnit << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pInputOrder->RequestID << endl;
+                cout << "Áî®Êà∑Âº∫ËØÑÊ†áÂøó TThostFtdcBoolType:" << pInputOrder->UserForceClose << endl;
+                cout << "‰∫íÊç¢ÂçïÊ†áÂøó TThostFtdcBoolType:" << pInputOrder->IsSwapOrder << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInputOrder->ExchangeID << endl;
         }
 }
 
-///‘§¬Òµ•¬º»Î«Î«ÛœÏ”¶
+///È¢ÑÂüãÂçïÂΩïÂÖ•ËØ∑Ê±ÇÂìçÂ∫î
 void CTraderSpi::OnRspParkedOrderInsert(CThostFtdcParkedOrderField* pParkedOrder, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pParkedOrder->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pParkedOrder->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pParkedOrder->InstrumentID << endl;
-                cout << "±®µ•“˝”√ TThostFtdcOrderRefType:" << pParkedOrder->OrderRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pParkedOrder->UserID << endl;
-                cout << "±®µ•º€∏ÒÃıº˛ TThostFtdcOrderPriceTypeType:" << pParkedOrder->OrderPriceType << endl;
-                cout << "¬Ú¬Ù∑ΩœÚ TThostFtdcDirectionType:" << pParkedOrder->Direction << endl;
-                cout << "◊È∫œø™∆Ω±Í÷æ TThostFtdcCombOffsetFlagType:" << pParkedOrder->CombOffsetFlag << endl;
-                cout << "◊È∫œÕ∂ª˙Ã◊±£±Í÷æ TThostFtdcCombHedgeFlagType:" << pParkedOrder->CombHedgeFlag << endl;
-                cout << "º€∏Ò TThostFtdcPriceType:" << pParkedOrder->LimitPrice << endl;
-                cout << " ˝¡ø TThostFtdcVolumeType:" << pParkedOrder->VolumeTotalOriginal << endl;
-                cout << "”––ß∆⁄¿‡–Õ TThostFtdcTimeConditionType:" << pParkedOrder->TimeCondition << endl;
-                // cout << "GTD»’∆⁄:" << pParkedOrder->TThostFtdcDateType << endlGTDDate;
-                cout << "≥…Ωª¡ø¿‡–Õ TThostFtdcVolumeConditionType:" << pParkedOrder->VolumeCondition << endl;
-                cout << "◊Ó–°≥…Ωª¡ø TThostFtdcVolumeType:" << pParkedOrder->MinVolume << endl;
-                cout << "¥•∑¢Ãıº˛ TThostFtdcContingentConditionType:" << pParkedOrder->ContingentCondition << endl;
-                cout << "÷πÀº€ TThostFtdcPriceType:" << pParkedOrder->StopPrice << endl;
-                cout << "«ø∆Ω‘≠“Ú TThostFtdcForceCloseReasonType:" << pParkedOrder->ForceCloseReason << endl;
-                cout << "◊‘∂Øπ“∆±Í÷æ TThostFtdcBoolType:" << pParkedOrder->IsAutoSuspend << endl;
-                cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pParkedOrder->BusinessUnit << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pParkedOrder->RequestID << endl;
-                cout << "”√ªß«ø∆¿±Í÷æ TThostFtdcBoolType:" << pParkedOrder->UserForceClose << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pParkedOrder->ExchangeID << endl;
-                cout << "‘§¬Ò±®µ•±‡∫≈ TThostFtdcParkedOrderIDType:" << pParkedOrder->ParkedOrderID << endl;
-                cout << "”√ªß¿‡–Õ TThostFtdcUserTypeType:" << pParkedOrder->UserType << endl;
-                cout << "‘§¬Òµ•◊¥Ã¨ TThostFtdcParkedOrderStatusType:" << pParkedOrder->Status << endl;
-                cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pParkedOrder->ErrorID << endl;
-                cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pParkedOrder->ErrorMsg << endl;
-                cout << "ª•ªªµ•±Í÷æ TThostFtdcBoolType:" << pParkedOrder->IsSwapOrder << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pParkedOrder->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pParkedOrder->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pParkedOrder->InstrumentID << endl;
+                cout << "Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pParkedOrder->OrderRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pParkedOrder->UserID << endl;
+                cout << "Êä•Âçï‰ª∑Ê†ºÊù°‰ª∂ TThostFtdcOrderPriceTypeType:" << pParkedOrder->OrderPriceType << endl;
+                cout << "‰π∞ÂçñÊñπÂêë TThostFtdcDirectionType:" << pParkedOrder->Direction << endl;
+                cout << "ÁªÑÂêàÂºÄÂπ≥Ê†áÂøó TThostFtdcCombOffsetFlagType:" << pParkedOrder->CombOffsetFlag << endl;
+                cout << "ÁªÑÂêàÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcCombHedgeFlagType:" << pParkedOrder->CombHedgeFlag << endl;
+                cout << "‰ª∑Ê†º TThostFtdcPriceType:" << pParkedOrder->LimitPrice << endl;
+                cout << "Êï∞Èáè TThostFtdcVolumeType:" << pParkedOrder->VolumeTotalOriginal << endl;
+                cout << "ÊúâÊïàÊúüÁ±ªÂûã TThostFtdcTimeConditionType:" << pParkedOrder->TimeCondition << endl;
+                // cout << "GTDÊó•Êúü:" << pParkedOrder->TThostFtdcDateType << endlGTDDate;
+                cout << "Êàê‰∫§ÈáèÁ±ªÂûã TThostFtdcVolumeConditionType:" << pParkedOrder->VolumeCondition << endl;
+                cout << "ÊúÄÂ∞èÊàê‰∫§Èáè TThostFtdcVolumeType:" << pParkedOrder->MinVolume << endl;
+                cout << "Ëß¶ÂèëÊù°‰ª∂ TThostFtdcContingentConditionType:" << pParkedOrder->ContingentCondition << endl;
+                cout << "Ê≠¢Êçü‰ª∑ TThostFtdcPriceType:" << pParkedOrder->StopPrice << endl;
+                cout << "Âº∫Âπ≥ÂéüÂõ† TThostFtdcForceCloseReasonType:" << pParkedOrder->ForceCloseReason << endl;
+                cout << "Ëá™Âä®ÊåÇËµ∑Ê†áÂøó TThostFtdcBoolType:" << pParkedOrder->IsAutoSuspend << endl;
+                cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pParkedOrder->BusinessUnit << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pParkedOrder->RequestID << endl;
+                cout << "Áî®Êà∑Âº∫ËØÑÊ†áÂøó TThostFtdcBoolType:" << pParkedOrder->UserForceClose << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pParkedOrder->ExchangeID << endl;
+                cout << "È¢ÑÂüãÊä•ÂçïÁºñÂè∑ TThostFtdcParkedOrderIDType:" << pParkedOrder->ParkedOrderID << endl;
+                cout << "Áî®Êà∑Á±ªÂûã TThostFtdcUserTypeType:" << pParkedOrder->UserType << endl;
+                cout << "È¢ÑÂüãÂçïÁä∂ÊÄÅ TThostFtdcParkedOrderStatusType:" << pParkedOrder->Status << endl;
+                cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pParkedOrder->ErrorID << endl;
+                cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pParkedOrder->ErrorMsg << endl;
+                cout << "‰∫íÊç¢ÂçïÊ†áÂøó TThostFtdcBoolType:" << pParkedOrder->IsSwapOrder << endl;
         }
 }
 
-///‘§¬Ò≥∑µ•¬º»Î«Î«ÛœÏ”¶
+///È¢ÑÂüãÊí§ÂçïÂΩïÂÖ•ËØ∑Ê±ÇÂìçÂ∫î
 void CTraderSpi::OnRspParkedOrderAction(CThostFtdcParkedOrderActionField* pParkedOrderAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pParkedOrderAction->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pParkedOrderAction->InvestorID << endl;
-                cout << "±®µ•≤Ÿ◊˜“˝”√ TThostFtdcOrderActionRefType:" << pParkedOrderAction->OrderActionRef << endl;
-                cout << "±®µ•“˝”√ TThostFtdcOrderRefType:" << pParkedOrderAction->OrderRef << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pParkedOrderAction->RequestID << endl;
-                cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pParkedOrderAction->FrontID << endl;
-                cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pParkedOrderAction->SessionID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pParkedOrderAction->ExchangeID << endl;
-                cout << "±®µ•±‡∫≈ TThostFtdcOrderSysIDType:" << pParkedOrderAction->OrderSysID << endl;
-                cout << "≤Ÿ◊˜±Í÷æ TThostFtdcActionFlagType:" << pParkedOrderAction->ActionFlag << endl;
-                cout << "º€∏Ò TThostFtdcPriceType:" << pParkedOrderAction->LimitPrice << endl;
-                cout << " ˝¡ø±‰ªØ TThostFtdcVolumeType:" << pParkedOrderAction->VolumeChange << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pParkedOrderAction->UserID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pParkedOrderAction->InstrumentID << endl;
-                cout << "‘§¬Ò≥∑µ•µ•±‡∫≈ TThostFtdcParkedOrderActionIDType:" << pParkedOrderAction->ParkedOrderActionID << endl;
-                cout << "”√ªß¿‡–Õ TThostFtdcUserTypeType:" << pParkedOrderAction->UserType << endl;
-                cout << "‘§¬Ò≥∑µ•◊¥Ã¨ TThostFtdcParkedOrderStatusType:" << pParkedOrderAction->Status << endl;
-                cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pParkedOrderAction->ErrorID << endl;
-                cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pParkedOrderAction->ErrorMsg << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pParkedOrderAction->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pParkedOrderAction->InvestorID << endl;
+                cout << "Êä•ÂçïÊìç‰ΩúÂºïÁî® TThostFtdcOrderActionRefType:" << pParkedOrderAction->OrderActionRef << endl;
+                cout << "Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pParkedOrderAction->OrderRef << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pParkedOrderAction->RequestID << endl;
+                cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pParkedOrderAction->FrontID << endl;
+                cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pParkedOrderAction->SessionID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pParkedOrderAction->ExchangeID << endl;
+                cout << "Êä•ÂçïÁºñÂè∑ TThostFtdcOrderSysIDType:" << pParkedOrderAction->OrderSysID << endl;
+                cout << "Êìç‰ΩúÊ†áÂøó TThostFtdcActionFlagType:" << pParkedOrderAction->ActionFlag << endl;
+                cout << "‰ª∑Ê†º TThostFtdcPriceType:" << pParkedOrderAction->LimitPrice << endl;
+                cout << "Êï∞ÈáèÂèòÂåñ TThostFtdcVolumeType:" << pParkedOrderAction->VolumeChange << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pParkedOrderAction->UserID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pParkedOrderAction->InstrumentID << endl;
+                cout << "È¢ÑÂüãÊí§ÂçïÂçïÁºñÂè∑ TThostFtdcParkedOrderActionIDType:" << pParkedOrderAction->ParkedOrderActionID << endl;
+                cout << "Áî®Êà∑Á±ªÂûã TThostFtdcUserTypeType:" << pParkedOrderAction->UserType << endl;
+                cout << "È¢ÑÂüãÊí§ÂçïÁä∂ÊÄÅ TThostFtdcParkedOrderStatusType:" << pParkedOrderAction->Status << endl;
+                cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pParkedOrderAction->ErrorID << endl;
+                cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pParkedOrderAction->ErrorMsg << endl;
         }
 }
 
-///±®µ•≤Ÿ◊˜«Î«ÛœÏ”¶
+///Êä•ÂçïÊìç‰ΩúËØ∑Ê±ÇÂìçÂ∫î
 void CTraderSpi::OnRspOrderAction(CThostFtdcInputOrderActionField* pInputOrderAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInputOrderAction->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInputOrderAction->InvestorID << endl;
-                cout << "±®µ•≤Ÿ◊˜“˝”√ TThostFtdcOrderActionRefType:" << pInputOrderAction->OrderActionRef << endl;
-                cout << "±®µ•“˝”√ TThostFtdcOrderRefType:" << pInputOrderAction->OrderRef << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pInputOrderAction->RequestID << endl;
-                cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pInputOrderAction->FrontID << endl;
-                cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pInputOrderAction->SessionID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInputOrderAction->ExchangeID << endl;
-                cout << "±®µ•±‡∫≈ TThostFtdcOrderSysIDType:" << pInputOrderAction->OrderSysID << endl;
-                cout << "≤Ÿ◊˜±Í÷æ TThostFtdcActionFlagType:" << pInputOrderAction->ActionFlag << endl;
-                cout << "º€∏Ò TThostFtdcPriceType:" << pInputOrderAction->LimitPrice << endl;
-                cout << " ˝¡ø±‰ªØ TThostFtdcVolumeType:" << pInputOrderAction->VolumeChange << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pInputOrderAction->UserID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInputOrderAction->InstrumentID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInputOrderAction->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInputOrderAction->InvestorID << endl;
+                cout << "Êä•ÂçïÊìç‰ΩúÂºïÁî® TThostFtdcOrderActionRefType:" << pInputOrderAction->OrderActionRef << endl;
+                cout << "Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pInputOrderAction->OrderRef << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pInputOrderAction->RequestID << endl;
+                cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pInputOrderAction->FrontID << endl;
+                cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pInputOrderAction->SessionID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInputOrderAction->ExchangeID << endl;
+                cout << "Êä•ÂçïÁºñÂè∑ TThostFtdcOrderSysIDType:" << pInputOrderAction->OrderSysID << endl;
+                cout << "Êìç‰ΩúÊ†áÂøó TThostFtdcActionFlagType:" << pInputOrderAction->ActionFlag << endl;
+                cout << "‰ª∑Ê†º TThostFtdcPriceType:" << pInputOrderAction->LimitPrice << endl;
+                cout << "Êï∞ÈáèÂèòÂåñ TThostFtdcVolumeType:" << pInputOrderAction->VolumeChange << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pInputOrderAction->UserID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInputOrderAction->InstrumentID << endl;
         }
 }
 
-///≤È—Ø◊Ó¥Û±®µ• ˝¡øœÏ”¶
+///Êü•ËØ¢ÊúÄÂ§ßÊä•ÂçïÊï∞ÈáèÂìçÂ∫î
 void CTraderSpi::OnRspQueryMaxOrderVolume(CThostFtdcQueryMaxOrderVolumeField* pQueryMaxOrderVolume, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pQueryMaxOrderVolume->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pQueryMaxOrderVolume->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pQueryMaxOrderVolume->InstrumentID << endl;
-                cout << "¬Ú¬Ù∑ΩœÚ TThostFtdcDirectionType:" << pQueryMaxOrderVolume->Direction << endl;
-                cout << "ø™∆Ω±Í÷æ TThostFtdcOffsetFlagType:" << pQueryMaxOrderVolume->OffsetFlag << endl;
-                cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pQueryMaxOrderVolume->HedgeFlag << endl;
-                cout << "◊Ó¥Û‘ –Ì±®µ• ˝¡ø TThostFtdcVolumeType:" << pQueryMaxOrderVolume->MaxVolume << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pQueryMaxOrderVolume->ExchangeID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pQueryMaxOrderVolume->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pQueryMaxOrderVolume->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pQueryMaxOrderVolume->InstrumentID << endl;
+                cout << "‰π∞ÂçñÊñπÂêë TThostFtdcDirectionType:" << pQueryMaxOrderVolume->Direction << endl;
+                cout << "ÂºÄÂπ≥Ê†áÂøó TThostFtdcOffsetFlagType:" << pQueryMaxOrderVolume->OffsetFlag << endl;
+                cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pQueryMaxOrderVolume->HedgeFlag << endl;
+                cout << "ÊúÄÂ§ßÂÖÅËÆ∏Êä•ÂçïÊï∞Èáè TThostFtdcVolumeType:" << pQueryMaxOrderVolume->MaxVolume << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pQueryMaxOrderVolume->ExchangeID << endl;
         }
 }
 
-///Õ∂◊ ’ﬂΩ·À„Ω·π˚»∑»œœÏ”¶
+///ÊäïËµÑËÄÖÁªìÁÆóÁªìÊûúÁ°ÆËÆ§ÂìçÂ∫î
 void CTraderSpi::OnRspSettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField* pSettlementInfoConfirm, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pSettlementInfoConfirm->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pSettlementInfoConfirm->InvestorID << endl;
-                cout << "»∑»œ»’∆⁄ TThostFtdcDateType:" << pSettlementInfoConfirm->ConfirmDate << endl;
-                cout << "»∑»œ ±º‰ TThostFtdcTimeType:" << pSettlementInfoConfirm->ConfirmTime << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pSettlementInfoConfirm->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pSettlementInfoConfirm->InvestorID << endl;
+                cout << "Á°ÆËÆ§Êó•Êúü TThostFtdcDateType:" << pSettlementInfoConfirm->ConfirmDate << endl;
+                cout << "Á°ÆËÆ§Êó∂Èó¥ TThostFtdcTimeType:" << pSettlementInfoConfirm->ConfirmTime << endl;
         }
 }
 
-///…æ≥˝‘§¬Òµ•œÏ”¶
+///Âà†Èô§È¢ÑÂüãÂçïÂìçÂ∫î
 void CTraderSpi::OnRspRemoveParkedOrder(CThostFtdcRemoveParkedOrderField* pRemoveParkedOrder, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pRemoveParkedOrder->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pRemoveParkedOrder->InvestorID << endl;
-                cout << "‘§¬Ò±®µ•±‡∫≈ TThostFtdcParkedOrderIDType:" << pRemoveParkedOrder->ParkedOrderID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pRemoveParkedOrder->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pRemoveParkedOrder->InvestorID << endl;
+                cout << "È¢ÑÂüãÊä•ÂçïÁºñÂè∑ TThostFtdcParkedOrderIDType:" << pRemoveParkedOrder->ParkedOrderID << endl;
         }
 }
 
-///…æ≥˝‘§¬Ò≥∑µ•œÏ”¶
+///Âà†Èô§È¢ÑÂüãÊí§ÂçïÂìçÂ∫î
 void CTraderSpi::OnRspRemoveParkedOrderAction(CThostFtdcRemoveParkedOrderActionField* pRemoveParkedOrderAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pRemoveParkedOrderAction->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pRemoveParkedOrderAction->InvestorID << endl;
-                cout << "‘§¬Ò≥∑µ•±‡∫≈ TThostFtdcParkedOrderActionIDType:" << pRemoveParkedOrderAction->ParkedOrderActionID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pRemoveParkedOrderAction->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pRemoveParkedOrderAction->InvestorID << endl;
+                cout << "È¢ÑÂüãÊí§ÂçïÁºñÂè∑ TThostFtdcParkedOrderActionIDType:" << pRemoveParkedOrderAction->ParkedOrderActionID << endl;
         }
 }
 
-///÷¥–––˚∏Ê¬º»Î«Î«ÛœÏ”¶
+///ÊâßË°åÂÆ£ÂëäÂΩïÂÖ•ËØ∑Ê±ÇÂìçÂ∫î
 void CTraderSpi::OnRspExecOrderInsert(CThostFtdcInputExecOrderField* pInputExecOrder, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInputExecOrder->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInputExecOrder->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInputExecOrder->InstrumentID << endl;
-                cout << "÷¥–––˚∏Ê“˝”√ TThostFtdcOrderRefType:" << pInputExecOrder->ExecOrderRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pInputExecOrder->UserID << endl;
-                cout << " ˝¡ø TThostFtdcVolumeType:" << pInputExecOrder->Volume << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pInputExecOrder->RequestID << endl;
-                cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pInputExecOrder->BusinessUnit << endl;
-                cout << "ø™∆Ω±Í÷æ TThostFtdcOffsetFlagType:" << pInputExecOrder->OffsetFlag << endl;
-                cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pInputExecOrder->HedgeFlag << endl;
-                cout << "÷¥––¿‡–Õ TThostFtdcActionTypeType:" << pInputExecOrder->ActionType << endl;
-                cout << "±£¡ÙÕ∑¥Á…Í«Îµƒ≥÷≤÷∑ΩœÚ TThostFtdcPosiDirectionType:" << pInputExecOrder->PosiDirection << endl;
-                cout << "∆⁄»®––»®∫Û «∑Ò±£¡Ù∆⁄ªıÕ∑¥Áµƒ±Íº« TThostFtdcExecOrderPositionFlagType:" << pInputExecOrder->ReservePositionFlag << endl;
-                cout << "∆⁄»®––»®∫Û…˙≥…µƒÕ∑¥Á «∑Ò◊‘∂Ø∆Ω≤÷ TThostFtdcExecOrderCloseFlagType:" << pInputExecOrder->CloseFlag << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInputExecOrder->ExchangeID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInputExecOrder->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInputExecOrder->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInputExecOrder->InstrumentID << endl;
+                cout << "ÊâßË°åÂÆ£ÂëäÂºïÁî® TThostFtdcOrderRefType:" << pInputExecOrder->ExecOrderRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pInputExecOrder->UserID << endl;
+                cout << "Êï∞Èáè TThostFtdcVolumeType:" << pInputExecOrder->Volume << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pInputExecOrder->RequestID << endl;
+                cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pInputExecOrder->BusinessUnit << endl;
+                cout << "ÂºÄÂπ≥Ê†áÂøó TThostFtdcOffsetFlagType:" << pInputExecOrder->OffsetFlag << endl;
+                cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pInputExecOrder->HedgeFlag << endl;
+                cout << "ÊâßË°åÁ±ªÂûã TThostFtdcActionTypeType:" << pInputExecOrder->ActionType << endl;
+                cout << "‰øùÁïôÂ§¥ÂØ∏Áî≥ËØ∑ÁöÑÊåÅ‰ªìÊñπÂêë TThostFtdcPosiDirectionType:" << pInputExecOrder->PosiDirection << endl;
+                cout << "ÊúüÊùÉË°åÊùÉÂêéÊòØÂê¶‰øùÁïôÊúüË¥ßÂ§¥ÂØ∏ÁöÑÊ†áËÆ∞ TThostFtdcExecOrderPositionFlagType:" << pInputExecOrder->ReservePositionFlag << endl;
+                cout << "ÊúüÊùÉË°åÊùÉÂêéÁîüÊàêÁöÑÂ§¥ÂØ∏ÊòØÂê¶Ëá™Âä®Âπ≥‰ªì TThostFtdcExecOrderCloseFlagType:" << pInputExecOrder->CloseFlag << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInputExecOrder->ExchangeID << endl;
         }
 }
 
-///÷¥–––˚∏Ê≤Ÿ◊˜«Î«ÛœÏ”¶
+///ÊâßË°åÂÆ£ÂëäÊìç‰ΩúËØ∑Ê±ÇÂìçÂ∫î
 void CTraderSpi::OnRspExecOrderAction(CThostFtdcInputExecOrderActionField* pInputExecOrderAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInputExecOrderAction->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInputExecOrderAction->InvestorID << endl;
-                cout << "÷¥–––˚∏Ê≤Ÿ◊˜“˝”√ TThostFtdcOrderActionRefType:" << pInputExecOrderAction->ExecOrderActionRef << endl;
-                cout << "÷¥–––˚∏Ê“˝”√ TThostFtdcOrderRefType:" << pInputExecOrderAction->ExecOrderRef << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pInputExecOrderAction->RequestID << endl;
-                cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pInputExecOrderAction->FrontID << endl;
-                cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pInputExecOrderAction->SessionID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInputExecOrderAction->ExchangeID << endl;
-                cout << "÷¥–––˚∏Ê≤Ÿ◊˜±‡∫≈ TThostFtdcExecOrderSysIDType:" << pInputExecOrderAction->ExecOrderSysID << endl;
-                cout << "≤Ÿ◊˜±Í÷æ TThostFtdcActionFlagType:" << pInputExecOrderAction->ActionFlag << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pInputExecOrderAction->UserID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInputExecOrderAction->InstrumentID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInputExecOrderAction->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInputExecOrderAction->InvestorID << endl;
+                cout << "ÊâßË°åÂÆ£ÂëäÊìç‰ΩúÂºïÁî® TThostFtdcOrderActionRefType:" << pInputExecOrderAction->ExecOrderActionRef << endl;
+                cout << "ÊâßË°åÂÆ£ÂëäÂºïÁî® TThostFtdcOrderRefType:" << pInputExecOrderAction->ExecOrderRef << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pInputExecOrderAction->RequestID << endl;
+                cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pInputExecOrderAction->FrontID << endl;
+                cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pInputExecOrderAction->SessionID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInputExecOrderAction->ExchangeID << endl;
+                cout << "ÊâßË°åÂÆ£ÂëäÊìç‰ΩúÁºñÂè∑ TThostFtdcExecOrderSysIDType:" << pInputExecOrderAction->ExecOrderSysID << endl;
+                cout << "Êìç‰ΩúÊ†áÂøó TThostFtdcActionFlagType:" << pInputExecOrderAction->ActionFlag << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pInputExecOrderAction->UserID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInputExecOrderAction->InstrumentID << endl;
         }
 }
 
-///—Øº€¬º»Î«Î«ÛœÏ”¶
+///ËØ¢‰ª∑ÂΩïÂÖ•ËØ∑Ê±ÇÂìçÂ∫î
 void CTraderSpi::OnRspForQuoteInsert(CThostFtdcInputForQuoteField* pInputForQuote, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInputForQuote->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInputForQuote->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInputForQuote->InstrumentID << endl;
-                cout << "—Øº€“˝”√ TThostFtdcOrderRefType:" << pInputForQuote->ForQuoteRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pInputForQuote->UserID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInputForQuote->ExchangeID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInputForQuote->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInputForQuote->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInputForQuote->InstrumentID << endl;
+                cout << "ËØ¢‰ª∑ÂºïÁî® TThostFtdcOrderRefType:" << pInputForQuote->ForQuoteRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pInputForQuote->UserID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInputForQuote->ExchangeID << endl;
         }
 }
 
-///±®º€¬º»Î«Î«ÛœÏ”¶
+///Êä•‰ª∑ÂΩïÂÖ•ËØ∑Ê±ÇÂìçÂ∫î
 void CTraderSpi::OnRspQuoteInsert(CThostFtdcInputQuoteField* pInputQuote, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInputQuote->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInputQuote->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInputQuote->InstrumentID << endl;
-                cout << "±®º€“˝”√ TThostFtdcOrderRefType:" << pInputQuote->QuoteRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pInputQuote->UserID << endl;
-                cout << "¬Ùº€∏Ò TThostFtdcPriceType:" << pInputQuote->AskPrice << endl;
-                cout << "¬Úº€∏Ò TThostFtdcPriceType:" << pInputQuote->BidPrice << endl;
-                cout << "¬Ù ˝¡ø TThostFtdcVolumeType:" << pInputQuote->AskVolume << endl;
-                cout << "¬Ú ˝¡ø TThostFtdcVolumeType:" << pInputQuote->BidVolume << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pInputQuote->RequestID << endl;
-                cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pInputQuote->BusinessUnit << endl;
-                cout << "¬Ùø™∆Ω±Í÷æ TThostFtdcOffsetFlagType:" << pInputQuote->AskOffsetFlag << endl;
-                cout << "¬Úø™∆Ω±Í÷æ TThostFtdcOffsetFlagType:" << pInputQuote->BidOffsetFlag << endl;
-                cout << "¬ÙÕ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pInputQuote->AskHedgeFlag << endl;
-                cout << "¬ÚÕ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pInputQuote->BidHedgeFlag << endl;
-                cout << "—‹…˙¬Ù±®µ•“˝”√ TThostFtdcOrderRefType:" << pInputQuote->AskOrderRef << endl;
-                cout << "—‹…˙¬Ú±®µ•“˝”√ TThostFtdcOrderRefType:" << pInputQuote->BidOrderRef << endl;
-                cout << "”¶º€±‡∫≈ TThostFtdcOrderSysIDType:" << pInputQuote->ForQuoteSysID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInputQuote->ExchangeID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInputQuote->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInputQuote->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInputQuote->InstrumentID << endl;
+                cout << "Êä•‰ª∑ÂºïÁî® TThostFtdcOrderRefType:" << pInputQuote->QuoteRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pInputQuote->UserID << endl;
+                cout << "Âçñ‰ª∑Ê†º TThostFtdcPriceType:" << pInputQuote->AskPrice << endl;
+                cout << "‰π∞‰ª∑Ê†º TThostFtdcPriceType:" << pInputQuote->BidPrice << endl;
+                cout << "ÂçñÊï∞Èáè TThostFtdcVolumeType:" << pInputQuote->AskVolume << endl;
+                cout << "‰π∞Êï∞Èáè TThostFtdcVolumeType:" << pInputQuote->BidVolume << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pInputQuote->RequestID << endl;
+                cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pInputQuote->BusinessUnit << endl;
+                cout << "ÂçñÂºÄÂπ≥Ê†áÂøó TThostFtdcOffsetFlagType:" << pInputQuote->AskOffsetFlag << endl;
+                cout << "‰π∞ÂºÄÂπ≥Ê†áÂøó TThostFtdcOffsetFlagType:" << pInputQuote->BidOffsetFlag << endl;
+                cout << "ÂçñÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pInputQuote->AskHedgeFlag << endl;
+                cout << "‰π∞ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pInputQuote->BidHedgeFlag << endl;
+                cout << "Ë°çÁîüÂçñÊä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pInputQuote->AskOrderRef << endl;
+                cout << "Ë°çÁîü‰π∞Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pInputQuote->BidOrderRef << endl;
+                cout << "Â∫î‰ª∑ÁºñÂè∑ TThostFtdcOrderSysIDType:" << pInputQuote->ForQuoteSysID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInputQuote->ExchangeID << endl;
         }
 }
 
-///±®º€≤Ÿ◊˜«Î«ÛœÏ”¶
+///Êä•‰ª∑Êìç‰ΩúËØ∑Ê±ÇÂìçÂ∫î
 void CTraderSpi::OnRspQuoteAction(CThostFtdcInputQuoteActionField* pInputQuoteAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInputQuoteAction->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInputQuoteAction->InvestorID << endl;
-                cout << "±®º€≤Ÿ◊˜“˝”√ TThostFtdcOrderActionRefType:" << pInputQuoteAction->QuoteActionRef << endl;
-                cout << "±®º€“˝”√ TThostFtdcOrderRefType:" << pInputQuoteAction->QuoteRef << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pInputQuoteAction->RequestID << endl;
-                cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pInputQuoteAction->FrontID << endl;
-                cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pInputQuoteAction->SessionID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInputQuoteAction->ExchangeID << endl;
-                cout << "±®º€≤Ÿ◊˜±‡∫≈ TThostFtdcOrderSysIDType:" << pInputQuoteAction->QuoteSysID << endl;
-                cout << "≤Ÿ◊˜±Í÷æ TThostFtdcActionFlagType:" << pInputQuoteAction->ActionFlag << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pInputQuoteAction->UserID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInputQuoteAction->InstrumentID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInputQuoteAction->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInputQuoteAction->InvestorID << endl;
+                cout << "Êä•‰ª∑Êìç‰ΩúÂºïÁî® TThostFtdcOrderActionRefType:" << pInputQuoteAction->QuoteActionRef << endl;
+                cout << "Êä•‰ª∑ÂºïÁî® TThostFtdcOrderRefType:" << pInputQuoteAction->QuoteRef << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pInputQuoteAction->RequestID << endl;
+                cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pInputQuoteAction->FrontID << endl;
+                cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pInputQuoteAction->SessionID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInputQuoteAction->ExchangeID << endl;
+                cout << "Êä•‰ª∑Êìç‰ΩúÁºñÂè∑ TThostFtdcOrderSysIDType:" << pInputQuoteAction->QuoteSysID << endl;
+                cout << "Êìç‰ΩúÊ†áÂøó TThostFtdcActionFlagType:" << pInputQuoteAction->ActionFlag << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pInputQuoteAction->UserID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInputQuoteAction->InstrumentID << endl;
         }
 }
 
-///À¯∂®”¶¥
+///ÈîÅÂÆöÂ∫îÁ≠î
 void CTraderSpi::OnRspLockInsert(CThostFtdcInputLockField* pInputLock, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInputLock->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInputLock->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInputLock->InstrumentID << endl;
-                cout << "À¯∂®“˝”√ TThostFtdcOrderRefType:" << pInputLock->LockRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pInputLock->UserID << endl;
-                cout << " ˝¡ø TThostFtdcVolumeType:" << pInputLock->Volume << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pInputLock->RequestID << endl;
-                cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pInputLock->BusinessUnit << endl;
-                cout << "À¯∂®¿‡–Õ TThostFtdcLockTypeType:" << pInputLock->LockType << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInputLock->ExchangeID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInputLock->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInputLock->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInputLock->InstrumentID << endl;
+                cout << "ÈîÅÂÆöÂºïÁî® TThostFtdcOrderRefType:" << pInputLock->LockRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pInputLock->UserID << endl;
+                cout << "Êï∞Èáè TThostFtdcVolumeType:" << pInputLock->Volume << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pInputLock->RequestID << endl;
+                cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pInputLock->BusinessUnit << endl;
+                cout << "ÈîÅÂÆöÁ±ªÂûã TThostFtdcLockTypeType:" << pInputLock->LockType << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInputLock->ExchangeID << endl;
         }
 }
 
-///…Í«Î◊È∫œ¬º»Î«Î«ÛœÏ”¶
+///Áî≥ËØ∑ÁªÑÂêàÂΩïÂÖ•ËØ∑Ê±ÇÂìçÂ∫î
 void CTraderSpi::OnRspCombActionInsert(CThostFtdcInputCombActionField* pInputCombAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInputCombAction->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInputCombAction->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInputCombAction->InstrumentID << endl;
-                cout << "◊È∫œ“˝”√ TThostFtdcOrderRefType:" << pInputCombAction->CombActionRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pInputCombAction->UserID << endl;
-                cout << "¬Ú¬Ù∑ΩœÚ TThostFtdcDirectionType:" << pInputCombAction->Direction << endl;
-                cout << " ˝¡ø TThostFtdcVolumeType:" << pInputCombAction->Volume << endl;
-                cout << "◊È∫œ÷∏¡Ó∑ΩœÚ TThostFtdcCombDirectionType:" << pInputCombAction->CombDirection << endl;
-                cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pInputCombAction->HedgeFlag << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInputCombAction->ExchangeID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInputCombAction->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInputCombAction->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInputCombAction->InstrumentID << endl;
+                cout << "ÁªÑÂêàÂºïÁî® TThostFtdcOrderRefType:" << pInputCombAction->CombActionRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pInputCombAction->UserID << endl;
+                cout << "‰π∞ÂçñÊñπÂêë TThostFtdcDirectionType:" << pInputCombAction->Direction << endl;
+                cout << "Êï∞Èáè TThostFtdcVolumeType:" << pInputCombAction->Volume << endl;
+                cout << "ÁªÑÂêàÊåá‰ª§ÊñπÂêë TThostFtdcCombDirectionType:" << pInputCombAction->CombDirection << endl;
+                cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pInputCombAction->HedgeFlag << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInputCombAction->ExchangeID << endl;
         }
 }
 
-///«Î«Û≤È—Ø±®µ•œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢Êä•ÂçïÂìçÂ∫î
 void CTraderSpi::OnRspQryOrder(CThostFtdcOrderField* pOrder, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pOrder->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pOrder->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pOrder->InstrumentID << endl;
-                cout << "±®µ•“˝”√ TThostFtdcOrderRefType:" << pOrder->OrderRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pOrder->UserID << endl;
-                cout << "±®µ•º€∏ÒÃıº˛ TThostFtdcOrderPriceTypeType:" << pOrder->OrderPriceType << endl;
-                cout << "¬Ú¬Ù∑ΩœÚ TThostFtdcDirectionType:" << pOrder->Direction << endl;
-                cout << "◊È∫œø™∆Ω±Í÷æ TThostFtdcCombOffsetFlagType:" << pOrder->CombOffsetFlag << endl;
-                cout << "◊È∫œÕ∂ª˙Ã◊±£±Í÷æ TThostFtdcCombHedgeFlagType:" << pOrder->CombHedgeFlag << endl;
-                cout << "º€∏Ò TThostFtdcPriceType:" << pOrder->LimitPrice << endl;
-                cout << " ˝¡ø TThostFtdcVolumeType:" << pOrder->VolumeTotalOriginal << endl;
-                cout << "”––ß∆⁄¿‡–Õ TThostFtdcTimeConditionType:" << pOrder->TimeCondition << endl;
-                // cout << "GTD»’∆⁄:" << pOrder->TThostFtdcDateType << endlGTDDate;
-                cout << "≥…Ωª¡ø¿‡–Õ TThostFtdcVolumeConditionType:" << pOrder->VolumeCondition << endl;
-                cout << "◊Ó–°≥…Ωª¡ø TThostFtdcVolumeType:" << pOrder->MinVolume << endl;
-                cout << "¥•∑¢Ãıº˛ TThostFtdcContingentConditionType:" << pOrder->ContingentCondition << endl;
-                cout << "÷πÀº€ TThostFtdcPriceType:" << pOrder->StopPrice << endl;
-                cout << "«ø∆Ω‘≠“Ú TThostFtdcForceCloseReasonType:" << pOrder->ForceCloseReason << endl;
-                cout << "◊‘∂Øπ“∆±Í÷æ TThostFtdcBoolType:" << pOrder->IsAutoSuspend << endl;
-                cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pOrder->BusinessUnit << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pOrder->RequestID << endl;
-                cout << "±æµÿ±®µ•±‡∫≈ TThostFtdcOrderLocalIDType:" << pOrder->OrderLocalID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pOrder->ExchangeID << endl;
-                cout << "ª·‘±¥˙¬Î TThostFtdcParticipantIDType:" << pOrder->ParticipantID << endl;
-                cout << "øÕªß¥˙¬Î TThostFtdcClientIDType:" << pOrder->ClientID << endl;
-                cout << "∫œ‘º‘⁄Ωª“◊À˘µƒ¥˙¬Î TThostFtdcExchangeInstIDType:" << pOrder->ExchangeInstID << endl;
-                cout << "Ωª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pOrder->TraderID << endl;
-                cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pOrder->InstallID << endl;
-                cout << "±®µ•Ã·Ωª◊¥Ã¨ TThostFtdcOrderSubmitStatusType:" << pOrder->OrderSubmitStatus << endl;
-                cout << "±®µ•Ã· æ–Ú∫≈ TThostFtdcSequenceNoType:" << pOrder->NotifySequence << endl;
-                cout << "Ωª“◊»’ TThostFtdcDateType:" << pOrder->TradingDay << endl;
-                cout << "Ω·À„±‡∫≈ TThostFtdcSettlementIDType:" << pOrder->SettlementID << endl;
-                cout << "±®µ•±‡∫≈ TThostFtdcOrderSysIDType:" << pOrder->OrderSysID << endl;
-                cout << "±®µ•¿¥‘¥ TThostFtdcOrderSourceType:" << pOrder->OrderSource << endl;
-                cout << "±®µ•◊¥Ã¨ TThostFtdcOrderStatusType:" << pOrder->OrderStatus << endl;
-                cout << "±®µ•¿‡–Õ TThostFtdcOrderTypeType:" << pOrder->OrderType << endl;
-                cout << "ΩÒ≥…Ωª ˝¡ø TThostFtdcVolumeType:" << pOrder->VolumeTraded << endl;
-                cout << " £”‡ ˝¡ø TThostFtdcVolumeType:" << pOrder->VolumeTotal << endl;
-                cout << "±®µ•»’∆⁄ TThostFtdcDateType:" << pOrder->InsertDate << endl;
-                cout << "ŒØÕ– ±º‰ TThostFtdcTimeType:" << pOrder->InsertTime << endl;
-                cout << "º§ªÓ ±º‰ TThostFtdcTimeType:" << pOrder->ActiveTime << endl;
-                cout << "π“∆ ±º‰ TThostFtdcTimeType:" << pOrder->SuspendTime << endl;
-                cout << "◊Ó∫Û–ﬁ∏ƒ ±º‰ TThostFtdcTimeType:" << pOrder->UpdateTime << endl;
-                cout << "≥∑œ˙ ±º‰ TThostFtdcTimeType:" << pOrder->CancelTime << endl;
-                cout << "◊Ó∫Û–ﬁ∏ƒΩª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pOrder->ActiveTraderID << endl;
-                cout << "Ω·À„ª·‘±±‡∫≈ TThostFtdcParticipantIDType:" << pOrder->ClearingPartID << endl;
-                cout << "–Ú∫≈ TThostFtdcSequenceNoType:" << pOrder->SequenceNo << endl;
-                cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pOrder->FrontID << endl;
-                cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pOrder->SessionID << endl;
-                cout << "”√ªß∂À≤˙∆∑–≈œ¢ TThostFtdcProductInfoType:" << pOrder->UserProductInfo << endl;
-                cout << "◊¥Ã¨–≈œ¢ TThostFtdcErrorMsgType:" << pOrder->StatusMsg << endl;
-                cout << "”√ªß«ø∆¿±Í÷æ TThostFtdcBoolType:" << pOrder->UserForceClose << endl;
-                cout << "≤Ÿ◊˜”√ªß¥˙¬Î TThostFtdcUserIDType:" << pOrder->ActiveUserID << endl;
-                cout << "æ≠ºÕπ´Àæ±®µ•±‡∫≈ TThostFtdcSequenceNoType:" << pOrder->BrokerOrderSeq << endl;
-                cout << "œ‡πÿ±®µ• TThostFtdcOrderSysIDType:" << pOrder->RelativeOrderSysID << endl;
-                cout << "÷£…ÃÀ˘≥…Ωª ˝¡ø TThostFtdcVolumeType:" << pOrder->ZCETotalTradedVolume << endl;
-                cout << "ª•ªªµ•±Í÷æ TThostFtdcBoolType:" << pOrder->IsSwapOrder << endl;
-                cout << "”™“µ≤ø±‡∫≈ TThostFtdcBranchIDType:" << pOrder->BranchID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pOrder->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pOrder->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pOrder->InstrumentID << endl;
+                cout << "Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pOrder->OrderRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pOrder->UserID << endl;
+                cout << "Êä•Âçï‰ª∑Ê†ºÊù°‰ª∂ TThostFtdcOrderPriceTypeType:" << pOrder->OrderPriceType << endl;
+                cout << "‰π∞ÂçñÊñπÂêë TThostFtdcDirectionType:" << pOrder->Direction << endl;
+                cout << "ÁªÑÂêàÂºÄÂπ≥Ê†áÂøó TThostFtdcCombOffsetFlagType:" << pOrder->CombOffsetFlag << endl;
+                cout << "ÁªÑÂêàÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcCombHedgeFlagType:" << pOrder->CombHedgeFlag << endl;
+                cout << "‰ª∑Ê†º TThostFtdcPriceType:" << pOrder->LimitPrice << endl;
+                cout << "Êï∞Èáè TThostFtdcVolumeType:" << pOrder->VolumeTotalOriginal << endl;
+                cout << "ÊúâÊïàÊúüÁ±ªÂûã TThostFtdcTimeConditionType:" << pOrder->TimeCondition << endl;
+                // cout << "GTDÊó•Êúü:" << pOrder->TThostFtdcDateType << endlGTDDate;
+                cout << "Êàê‰∫§ÈáèÁ±ªÂûã TThostFtdcVolumeConditionType:" << pOrder->VolumeCondition << endl;
+                cout << "ÊúÄÂ∞èÊàê‰∫§Èáè TThostFtdcVolumeType:" << pOrder->MinVolume << endl;
+                cout << "Ëß¶ÂèëÊù°‰ª∂ TThostFtdcContingentConditionType:" << pOrder->ContingentCondition << endl;
+                cout << "Ê≠¢Êçü‰ª∑ TThostFtdcPriceType:" << pOrder->StopPrice << endl;
+                cout << "Âº∫Âπ≥ÂéüÂõ† TThostFtdcForceCloseReasonType:" << pOrder->ForceCloseReason << endl;
+                cout << "Ëá™Âä®ÊåÇËµ∑Ê†áÂøó TThostFtdcBoolType:" << pOrder->IsAutoSuspend << endl;
+                cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pOrder->BusinessUnit << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pOrder->RequestID << endl;
+                cout << "Êú¨Âú∞Êä•ÂçïÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pOrder->OrderLocalID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pOrder->ExchangeID << endl;
+                cout << "‰ºöÂëò‰ª£Á†Å TThostFtdcParticipantIDType:" << pOrder->ParticipantID << endl;
+                cout << "ÂÆ¢Êà∑‰ª£Á†Å TThostFtdcClientIDType:" << pOrder->ClientID << endl;
+                cout << "ÂêàÁ∫¶Âú®‰∫§ÊòìÊâÄÁöÑ‰ª£Á†Å TThostFtdcExchangeInstIDType:" << pOrder->ExchangeInstID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pOrder->TraderID << endl;
+                cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pOrder->InstallID << endl;
+                cout << "Êä•ÂçïÊèê‰∫§Áä∂ÊÄÅ TThostFtdcOrderSubmitStatusType:" << pOrder->OrderSubmitStatus << endl;
+                cout << "Êä•ÂçïÊèêÁ§∫Â∫èÂè∑ TThostFtdcSequenceNoType:" << pOrder->NotifySequence << endl;
+                cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pOrder->TradingDay << endl;
+                cout << "ÁªìÁÆóÁºñÂè∑ TThostFtdcSettlementIDType:" << pOrder->SettlementID << endl;
+                cout << "Êä•ÂçïÁºñÂè∑ TThostFtdcOrderSysIDType:" << pOrder->OrderSysID << endl;
+                cout << "Êä•ÂçïÊù•Ê∫ê TThostFtdcOrderSourceType:" << pOrder->OrderSource << endl;
+                cout << "Êä•ÂçïÁä∂ÊÄÅ TThostFtdcOrderStatusType:" << pOrder->OrderStatus << endl;
+                cout << "Êä•ÂçïÁ±ªÂûã TThostFtdcOrderTypeType:" << pOrder->OrderType << endl;
+                cout << "‰ªäÊàê‰∫§Êï∞Èáè TThostFtdcVolumeType:" << pOrder->VolumeTraded << endl;
+                cout << "Ââ©‰ΩôÊï∞Èáè TThostFtdcVolumeType:" << pOrder->VolumeTotal << endl;
+                cout << "Êä•ÂçïÊó•Êúü TThostFtdcDateType:" << pOrder->InsertDate << endl;
+                cout << "ÂßîÊâòÊó∂Èó¥ TThostFtdcTimeType:" << pOrder->InsertTime << endl;
+                cout << "ÊøÄÊ¥ªÊó∂Èó¥ TThostFtdcTimeType:" << pOrder->ActiveTime << endl;
+                cout << "ÊåÇËµ∑Êó∂Èó¥ TThostFtdcTimeType:" << pOrder->SuspendTime << endl;
+                cout << "ÊúÄÂêé‰øÆÊîπÊó∂Èó¥ TThostFtdcTimeType:" << pOrder->UpdateTime << endl;
+                cout << "Êí§ÈîÄÊó∂Èó¥ TThostFtdcTimeType:" << pOrder->CancelTime << endl;
+                cout << "ÊúÄÂêé‰øÆÊîπ‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pOrder->ActiveTraderID << endl;
+                cout << "ÁªìÁÆó‰ºöÂëòÁºñÂè∑ TThostFtdcParticipantIDType:" << pOrder->ClearingPartID << endl;
+                cout << "Â∫èÂè∑ TThostFtdcSequenceNoType:" << pOrder->SequenceNo << endl;
+                cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pOrder->FrontID << endl;
+                cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pOrder->SessionID << endl;
+                cout << "Áî®Êà∑Á´Ø‰∫ßÂìÅ‰ø°ÊÅØ TThostFtdcProductInfoType:" << pOrder->UserProductInfo << endl;
+                cout << "Áä∂ÊÄÅ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pOrder->StatusMsg << endl;
+                cout << "Áî®Êà∑Âº∫ËØÑÊ†áÂøó TThostFtdcBoolType:" << pOrder->UserForceClose << endl;
+                cout << "Êìç‰ΩúÁî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pOrder->ActiveUserID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏Êä•ÂçïÁºñÂè∑ TThostFtdcSequenceNoType:" << pOrder->BrokerOrderSeq << endl;
+                cout << "Áõ∏ÂÖ≥Êä•Âçï TThostFtdcOrderSysIDType:" << pOrder->RelativeOrderSysID << endl;
+                cout << "ÈÉëÂïÜÊâÄÊàê‰∫§Êï∞Èáè TThostFtdcVolumeType:" << pOrder->ZCETotalTradedVolume << endl;
+                cout << "‰∫íÊç¢ÂçïÊ†áÂøó TThostFtdcBoolType:" << pOrder->IsSwapOrder << endl;
+                cout << "Ëê•‰∏öÈÉ®ÁºñÂè∑ TThostFtdcBranchIDType:" << pOrder->BranchID << endl;
         }
 }
 
-///«Î«Û≤È—Ø≥…ΩªœÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢Êàê‰∫§ÂìçÂ∫î
 void CTraderSpi::OnRspQryTrade(CThostFtdcTradeField* pTrade, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pTrade->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pTrade->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pTrade->InstrumentID << endl;
-                cout << "±®µ•“˝”√ TThostFtdcOrderRefType:" << pTrade->OrderRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pTrade->UserID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pTrade->ExchangeID << endl;
-                cout << "≥…Ωª±‡∫≈ TThostFtdcTradeIDType:" << pTrade->TradeID << endl;
-                cout << "¬Ú¬Ù∑ΩœÚ TThostFtdcDirectionType:" << pTrade->Direction << endl;
-                cout << "±®µ•±‡∫≈ TThostFtdcOrderSysIDType:" << pTrade->OrderSysID << endl;
-                cout << "ª·‘±¥˙¬Î TThostFtdcParticipantIDType:" << pTrade->ParticipantID << endl;
-                cout << "øÕªß¥˙¬Î TThostFtdcClientIDType:" << pTrade->ClientID << endl;
-                cout << "Ωª“◊Ω«…´ TThostFtdcTradingRoleType:" << pTrade->TradingRole << endl;
-                cout << "∫œ‘º‘⁄Ωª“◊À˘µƒ¥˙¬Î TThostFtdcExchangeInstIDType:" << pTrade->ExchangeInstID << endl;
-                cout << "ø™∆Ω±Í÷æ TThostFtdcOffsetFlagType:" << pTrade->OffsetFlag << endl;
-                cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pTrade->HedgeFlag << endl;
-                cout << "º€∏Ò TThostFtdcPriceType:" << pTrade->Price << endl;
-                cout << " ˝¡ø TThostFtdcVolumeType:" << pTrade->Volume << endl;
-                cout << "≥…Ωª ±∆⁄ TThostFtdcDateType:" << pTrade->TradeDate << endl;
-                cout << "≥…Ωª ±º‰ TThostFtdcTimeType:" << pTrade->TradeTime << endl;
-                cout << "≥…Ωª¿‡–Õ TThostFtdcTradeTypeType:" << pTrade->TradeType << endl;
-                cout << "≥…Ωªº€¿¥‘¥ TThostFtdcPriceSourceType:" << pTrade->PriceSource << endl;
-                cout << "Ωª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pTrade->TraderID << endl;
-                cout << "±æµÿ±®µ•±‡∫≈ TThostFtdcOrderLocalIDType:" << pTrade->OrderLocalID << endl;
-                cout << "Ω·À„ª·‘±±‡∫≈ TThostFtdcParticipantIDType:" << pTrade->ClearingPartID << endl;
-                cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pTrade->BusinessUnit << endl;
-                cout << "–Ú∫≈ TThostFtdcSequenceNoType:" << pTrade->SequenceNo << endl;
-                cout << "Ωª“◊»’ TThostFtdcDateType:" << pTrade->TradingDay << endl;
-                cout << "Ω·À„±‡∫≈ TThostFtdcSettlementIDType:" << pTrade->SettlementID << endl;
-                cout << "æ≠ºÕπ´Àæ±®µ•±‡∫≈ TThostFtdcSequenceNoType:" << pTrade->BrokerOrderSeq << endl;
-                cout << "≥…Ωª¿¥‘¥ TThostFtdcTradeSourceType:" << pTrade->TradeSource << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pTrade->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pTrade->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pTrade->InstrumentID << endl;
+                cout << "Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pTrade->OrderRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pTrade->UserID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pTrade->ExchangeID << endl;
+                cout << "Êàê‰∫§ÁºñÂè∑ TThostFtdcTradeIDType:" << pTrade->TradeID << endl;
+                cout << "‰π∞ÂçñÊñπÂêë TThostFtdcDirectionType:" << pTrade->Direction << endl;
+                cout << "Êä•ÂçïÁºñÂè∑ TThostFtdcOrderSysIDType:" << pTrade->OrderSysID << endl;
+                cout << "‰ºöÂëò‰ª£Á†Å TThostFtdcParticipantIDType:" << pTrade->ParticipantID << endl;
+                cout << "ÂÆ¢Êà∑‰ª£Á†Å TThostFtdcClientIDType:" << pTrade->ClientID << endl;
+                cout << "‰∫§ÊòìËßíËâ≤ TThostFtdcTradingRoleType:" << pTrade->TradingRole << endl;
+                cout << "ÂêàÁ∫¶Âú®‰∫§ÊòìÊâÄÁöÑ‰ª£Á†Å TThostFtdcExchangeInstIDType:" << pTrade->ExchangeInstID << endl;
+                cout << "ÂºÄÂπ≥Ê†áÂøó TThostFtdcOffsetFlagType:" << pTrade->OffsetFlag << endl;
+                cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pTrade->HedgeFlag << endl;
+                cout << "‰ª∑Ê†º TThostFtdcPriceType:" << pTrade->Price << endl;
+                cout << "Êï∞Èáè TThostFtdcVolumeType:" << pTrade->Volume << endl;
+                cout << "Êàê‰∫§Êó∂Êúü TThostFtdcDateType:" << pTrade->TradeDate << endl;
+                cout << "Êàê‰∫§Êó∂Èó¥ TThostFtdcTimeType:" << pTrade->TradeTime << endl;
+                cout << "Êàê‰∫§Á±ªÂûã TThostFtdcTradeTypeType:" << pTrade->TradeType << endl;
+                cout << "Êàê‰∫§‰ª∑Êù•Ê∫ê TThostFtdcPriceSourceType:" << pTrade->PriceSource << endl;
+                cout << "‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pTrade->TraderID << endl;
+                cout << "Êú¨Âú∞Êä•ÂçïÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pTrade->OrderLocalID << endl;
+                cout << "ÁªìÁÆó‰ºöÂëòÁºñÂè∑ TThostFtdcParticipantIDType:" << pTrade->ClearingPartID << endl;
+                cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pTrade->BusinessUnit << endl;
+                cout << "Â∫èÂè∑ TThostFtdcSequenceNoType:" << pTrade->SequenceNo << endl;
+                cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pTrade->TradingDay << endl;
+                cout << "ÁªìÁÆóÁºñÂè∑ TThostFtdcSettlementIDType:" << pTrade->SettlementID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏Êä•ÂçïÁºñÂè∑ TThostFtdcSequenceNoType:" << pTrade->BrokerOrderSeq << endl;
+                cout << "Êàê‰∫§Êù•Ê∫ê TThostFtdcTradeSourceType:" << pTrade->TradeSource << endl;
         }
 }
 
-///«Î«Û≤È—ØÕ∂◊ ’ﬂ≥÷≤÷œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ÊäïËµÑËÄÖÊåÅ‰ªìÂìçÂ∫î
 void CTraderSpi::OnRspQryInvestorPosition(CThostFtdcInvestorPositionField* pInvestorPosition, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInvestorPosition->InstrumentID << endl;
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInvestorPosition->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInvestorPosition->InvestorID << endl;
-                cout << "≥÷≤÷∂‡ø’∑ΩœÚ TThostFtdcPosiDirectionType:" << pInvestorPosition->PosiDirection << endl;
-                cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pInvestorPosition->HedgeFlag << endl;
-                cout << "≥÷≤÷»’∆⁄ TThostFtdcPositionDateType:" << pInvestorPosition->PositionDate << endl;
-                cout << "…œ»’≥÷≤÷ TThostFtdcVolumeType:" << pInvestorPosition->YdPosition << endl;
-                cout << "ΩÒ»’≥÷≤÷ TThostFtdcVolumeType:" << pInvestorPosition->Position << endl;
-                cout << "∂‡Õ∑∂≥Ω· TThostFtdcVolumeType:" << pInvestorPosition->LongFrozen << endl;
-                cout << "ø’Õ∑∂≥Ω· TThostFtdcVolumeType:" << pInvestorPosition->ShortFrozen << endl;
-                cout << "ø™≤÷∂≥Ω·Ω∂Ó TThostFtdcMoneyType:" << pInvestorPosition->LongFrozenAmount << endl;
-                cout << "ø™≤÷∂≥Ω·Ω∂Ó TThostFtdcMoneyType:" << pInvestorPosition->ShortFrozenAmount << endl;
-                cout << "ø™≤÷¡ø TThostFtdcVolumeType:" << pInvestorPosition->OpenVolume << endl;
-                cout << "∆Ω≤÷¡ø TThostFtdcVolumeType:" << pInvestorPosition->CloseVolume << endl;
-                cout << "ø™≤÷Ω∂Ó TThostFtdcMoneyType:" << pInvestorPosition->OpenAmount << endl;
-                cout << "∆Ω≤÷Ω∂Ó TThostFtdcMoneyType:" << pInvestorPosition->CloseAmount << endl;
-                cout << "≥÷≤÷≥…±æ TThostFtdcMoneyType:" << pInvestorPosition->PositionCost << endl;
-                cout << "…œ¥Œ’º”√µƒ±£÷§Ω TThostFtdcMoneyType:" << pInvestorPosition->PreMargin << endl;
-                cout << "’º”√µƒ±£÷§Ω TThostFtdcMoneyType:" << pInvestorPosition->UseMargin << endl;
-                cout << "∂≥Ω·µƒ±£÷§Ω TThostFtdcMoneyType:" << pInvestorPosition->FrozenMargin << endl;
-                cout << "∂≥Ω·µƒ◊ Ω TThostFtdcMoneyType:" << pInvestorPosition->FrozenCash << endl;
-                cout << "∂≥Ω·µƒ ÷–¯∑— TThostFtdcMoneyType:" << pInvestorPosition->FrozenCommission << endl;
-                cout << "◊ Ω≤Ó∂Ó TThostFtdcMoneyType:" << pInvestorPosition->CashIn << endl;
-                cout << " ÷–¯∑— TThostFtdcMoneyType:" << pInvestorPosition->Commission << endl;
-                cout << "∆Ω≤÷”Øø˜ TThostFtdcMoneyType:" << pInvestorPosition->CloseProfit << endl;
-                cout << "≥÷≤÷”Øø˜ TThostFtdcMoneyType:" << pInvestorPosition->PositionProfit << endl;
-                cout << "…œ¥ŒΩ·À„º€ TThostFtdcPriceType:" << pInvestorPosition->PreSettlementPrice << endl;
-                cout << "±æ¥ŒΩ·À„º€ TThostFtdcPriceType:" << pInvestorPosition->SettlementPrice << endl;
-                cout << "Ωª“◊»’ TThostFtdcDateType:" << pInvestorPosition->TradingDay << endl;
-                cout << "Ω·À„±‡∫≈ TThostFtdcSettlementIDType:" << pInvestorPosition->SettlementID << endl;
-                cout << "ø™≤÷≥…±æ TThostFtdcMoneyType:" << pInvestorPosition->OpenCost << endl;
-                cout << "Ωª“◊À˘±£÷§Ω TThostFtdcMoneyType:" << pInvestorPosition->ExchangeMargin << endl;
-                cout << "◊È∫œ≥…Ωª–Œ≥…µƒ≥÷≤÷ TThostFtdcVolumeType:" << pInvestorPosition->CombPosition << endl;
-                cout << "◊È∫œ∂‡Õ∑∂≥Ω· TThostFtdcVolumeType:" << pInvestorPosition->CombLongFrozen << endl;
-                cout << "◊È∫œø’Õ∑∂≥Ω· TThostFtdcVolumeType:" << pInvestorPosition->CombShortFrozen << endl;
-                cout << "÷»’∂¢ –∆Ω≤÷”Øø˜ TThostFtdcMoneyType:" << pInvestorPosition->CloseProfitByDate << endl;
-                cout << "÷± ∂‘≥Â∆Ω≤÷”Øø˜ TThostFtdcMoneyType:" << pInvestorPosition->CloseProfitByTrade << endl;
-                cout << "ΩÒ»’≥÷≤÷ TThostFtdcVolumeType:" << pInvestorPosition->TodayPosition << endl;
-                cout << "±£÷§Ω¬  TThostFtdcRatioType:" << pInvestorPosition->MarginRateByMoney << endl;
-                cout << "±£÷§Ω¬ ∞¥ ÷ ˝ TThostFtdcRatioType:" << pInvestorPosition->MarginRateByVolume << endl;
-                cout << "÷¥––∂≥Ω· TThostFtdcVolumeType:" << pInvestorPosition->StrikeFrozen << endl;
-                cout << "÷¥––∂≥Ω·Ω∂Ó TThostFtdcMoneyType:" << pInvestorPosition->StrikeFrozenAmount << endl;
-                cout << "∑≈∆˙÷¥––∂≥Ω· TThostFtdcVolumeType:" << pInvestorPosition->AbandonFrozen << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInvestorPosition->ExchangeID << endl;
-                cout << "÷¥––∂≥Ω·µƒ◊Ú≤÷ TThostFtdcVolumeType:" << pInvestorPosition->YdStrikeFrozen << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInvestorPosition->InstrumentID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInvestorPosition->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInvestorPosition->InvestorID << endl;
+                cout << "ÊåÅ‰ªìÂ§öÁ©∫ÊñπÂêë TThostFtdcPosiDirectionType:" << pInvestorPosition->PosiDirection << endl;
+                cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pInvestorPosition->HedgeFlag << endl;
+                cout << "ÊåÅ‰ªìÊó•Êúü TThostFtdcPositionDateType:" << pInvestorPosition->PositionDate << endl;
+                cout << "‰∏äÊó•ÊåÅ‰ªì TThostFtdcVolumeType:" << pInvestorPosition->YdPosition << endl;
+                cout << "‰ªäÊó•ÊåÅ‰ªì TThostFtdcVolumeType:" << pInvestorPosition->Position << endl;
+                cout << "Â§öÂ§¥ÂÜªÁªì TThostFtdcVolumeType:" << pInvestorPosition->LongFrozen << endl;
+                cout << "Á©∫Â§¥ÂÜªÁªì TThostFtdcVolumeType:" << pInvestorPosition->ShortFrozen << endl;
+                cout << "ÂºÄ‰ªìÂÜªÁªìÈáëÈ¢ù TThostFtdcMoneyType:" << pInvestorPosition->LongFrozenAmount << endl;
+                cout << "ÂºÄ‰ªìÂÜªÁªìÈáëÈ¢ù TThostFtdcMoneyType:" << pInvestorPosition->ShortFrozenAmount << endl;
+                cout << "ÂºÄ‰ªìÈáè TThostFtdcVolumeType:" << pInvestorPosition->OpenVolume << endl;
+                cout << "Âπ≥‰ªìÈáè TThostFtdcVolumeType:" << pInvestorPosition->CloseVolume << endl;
+                cout << "ÂºÄ‰ªìÈáëÈ¢ù TThostFtdcMoneyType:" << pInvestorPosition->OpenAmount << endl;
+                cout << "Âπ≥‰ªìÈáëÈ¢ù TThostFtdcMoneyType:" << pInvestorPosition->CloseAmount << endl;
+                cout << "ÊåÅ‰ªìÊàêÊú¨ TThostFtdcMoneyType:" << pInvestorPosition->PositionCost << endl;
+                cout << "‰∏äÊ¨°Âç†Áî®ÁöÑ‰øùËØÅÈáë TThostFtdcMoneyType:" << pInvestorPosition->PreMargin << endl;
+                cout << "Âç†Áî®ÁöÑ‰øùËØÅÈáë TThostFtdcMoneyType:" << pInvestorPosition->UseMargin << endl;
+                cout << "ÂÜªÁªìÁöÑ‰øùËØÅÈáë TThostFtdcMoneyType:" << pInvestorPosition->FrozenMargin << endl;
+                cout << "ÂÜªÁªìÁöÑËµÑÈáë TThostFtdcMoneyType:" << pInvestorPosition->FrozenCash << endl;
+                cout << "ÂÜªÁªìÁöÑÊâãÁª≠Ë¥π TThostFtdcMoneyType:" << pInvestorPosition->FrozenCommission << endl;
+                cout << "ËµÑÈáëÂ∑ÆÈ¢ù TThostFtdcMoneyType:" << pInvestorPosition->CashIn << endl;
+                cout << "ÊâãÁª≠Ë¥π TThostFtdcMoneyType:" << pInvestorPosition->Commission << endl;
+                cout << "Âπ≥‰ªìÁõà‰∫è TThostFtdcMoneyType:" << pInvestorPosition->CloseProfit << endl;
+                cout << "ÊåÅ‰ªìÁõà‰∫è TThostFtdcMoneyType:" << pInvestorPosition->PositionProfit << endl;
+                cout << "‰∏äÊ¨°ÁªìÁÆó‰ª∑ TThostFtdcPriceType:" << pInvestorPosition->PreSettlementPrice << endl;
+                cout << "Êú¨Ê¨°ÁªìÁÆó‰ª∑ TThostFtdcPriceType:" << pInvestorPosition->SettlementPrice << endl;
+                cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pInvestorPosition->TradingDay << endl;
+                cout << "ÁªìÁÆóÁºñÂè∑ TThostFtdcSettlementIDType:" << pInvestorPosition->SettlementID << endl;
+                cout << "ÂºÄ‰ªìÊàêÊú¨ TThostFtdcMoneyType:" << pInvestorPosition->OpenCost << endl;
+                cout << "‰∫§ÊòìÊâÄ‰øùËØÅÈáë TThostFtdcMoneyType:" << pInvestorPosition->ExchangeMargin << endl;
+                cout << "ÁªÑÂêàÊàê‰∫§ÂΩ¢ÊàêÁöÑÊåÅ‰ªì TThostFtdcVolumeType:" << pInvestorPosition->CombPosition << endl;
+                cout << "ÁªÑÂêàÂ§öÂ§¥ÂÜªÁªì TThostFtdcVolumeType:" << pInvestorPosition->CombLongFrozen << endl;
+                cout << "ÁªÑÂêàÁ©∫Â§¥ÂÜªÁªì TThostFtdcVolumeType:" << pInvestorPosition->CombShortFrozen << endl;
+                cout << "ÈÄêÊó•ÁõØÂ∏ÇÂπ≥‰ªìÁõà‰∫è TThostFtdcMoneyType:" << pInvestorPosition->CloseProfitByDate << endl;
+                cout << "ÈÄêÁ¨îÂØπÂÜ≤Âπ≥‰ªìÁõà‰∫è TThostFtdcMoneyType:" << pInvestorPosition->CloseProfitByTrade << endl;
+                cout << "‰ªäÊó•ÊåÅ‰ªì TThostFtdcVolumeType:" << pInvestorPosition->TodayPosition << endl;
+                cout << "‰øùËØÅÈáëÁéá TThostFtdcRatioType:" << pInvestorPosition->MarginRateByMoney << endl;
+                cout << "‰øùËØÅÈáëÁéáÊåâÊâãÊï∞ TThostFtdcRatioType:" << pInvestorPosition->MarginRateByVolume << endl;
+                cout << "ÊâßË°åÂÜªÁªì TThostFtdcVolumeType:" << pInvestorPosition->StrikeFrozen << endl;
+                cout << "ÊâßË°åÂÜªÁªìÈáëÈ¢ù TThostFtdcMoneyType:" << pInvestorPosition->StrikeFrozenAmount << endl;
+                cout << "ÊîæÂºÉÊâßË°åÂÜªÁªì TThostFtdcVolumeType:" << pInvestorPosition->AbandonFrozen << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInvestorPosition->ExchangeID << endl;
+                cout << "ÊâßË°åÂÜªÁªìÁöÑÊò®‰ªì TThostFtdcVolumeType:" << pInvestorPosition->YdStrikeFrozen << endl;
         }
 }
 
-///«Î«Û≤È—Ø◊ Ω’ÀªßœÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ËµÑÈáëË¥¶Êà∑ÂìçÂ∫î
 void CTraderSpi::OnRspQryTradingAccount(CThostFtdcTradingAccountField* pTradingAccount, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
-        cout << "--->>> "
-             << "OnRspQryTradingAccount" << endl;
+        cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pTradingAccount->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pTradingAccount->AccountID << endl;
-                cout << "…œ¥Œ÷ —∫Ω∂Ó TThostFtdcMoneyType:" << pTradingAccount->PreMortgage << endl;
-                cout << "…œ¥Œ–≈”√∂Ó∂» TThostFtdcMoneyType:" << pTradingAccount->PreCredit << endl;
-                cout << "…œ¥Œ¥ÊøÓ∂Ó TThostFtdcMoneyType:" << pTradingAccount->PreDeposit << endl;
-                cout << "…œ¥ŒΩ·À„◊º±∏Ω TThostFtdcMoneyType:" << pTradingAccount->PreBalance << endl;
-                cout << "…œ¥Œ’º”√µƒ±£÷§Ω TThostFtdcMoneyType:" << pTradingAccount->PreMargin << endl;
-                cout << "¿˚œ¢ª˘ ˝ TThostFtdcMoneyType:" << pTradingAccount->InterestBase << endl;
-                cout << "¿˚œ¢ ’»Î TThostFtdcMoneyType:" << pTradingAccount->Interest << endl;
-                cout << "»ÎΩΩ∂Ó TThostFtdcMoneyType:" << pTradingAccount->Deposit << endl;
-                cout << "≥ˆΩΩ∂Ó TThostFtdcMoneyType:" << pTradingAccount->Withdraw << endl;
-                cout << "∂≥Ω·µƒ±£÷§Ω TThostFtdcMoneyType:" << pTradingAccount->FrozenMargin << endl;
-                cout << "∂≥Ω·µƒ◊ Ω TThostFtdcMoneyType:" << pTradingAccount->FrozenCash << endl;
-                cout << "∂≥Ω·µƒ ÷–¯∑— TThostFtdcMoneyType:" << pTradingAccount->FrozenCommission << endl;
-                cout << "µ±«∞±£÷§Ω◊‹∂Ó TThostFtdcMoneyType:" << pTradingAccount->CurrMargin << endl;
-                cout << "◊ Ω≤Ó∂Ó TThostFtdcMoneyType:" << pTradingAccount->CashIn << endl;
-                cout << " ÷–¯∑— TThostFtdcMoneyType:" << pTradingAccount->Commission << endl;
-                cout << "∆Ω≤÷”Øø˜ TThostFtdcMoneyType:" << pTradingAccount->CloseProfit << endl;
-                cout << "≥÷≤÷”Øø˜ TThostFtdcMoneyType:" << pTradingAccount->PositionProfit << endl;
-                cout << "∆⁄ªıΩ·À„◊º±∏Ω TThostFtdcMoneyType:" << pTradingAccount->Balance << endl;
-                cout << "ø…”√◊ Ω TThostFtdcMoneyType:" << pTradingAccount->Available << endl;
-                cout << "ø…»°◊ Ω TThostFtdcMoneyType:" << pTradingAccount->WithdrawQuota << endl;
-                cout << "ª˘±æ◊º±∏Ω TThostFtdcMoneyType:" << pTradingAccount->Reserve << endl;
-                cout << "Ωª“◊»’ TThostFtdcDateType:" << pTradingAccount->TradingDay << endl;
-                cout << "Ω·À„±‡∫≈ TThostFtdcSettlementIDType:" << pTradingAccount->SettlementID << endl;
-                cout << "–≈”√∂Ó∂» TThostFtdcMoneyType:" << pTradingAccount->Credit << endl;
-                cout << "÷ —∫Ω∂Ó TThostFtdcMoneyType:" << pTradingAccount->Mortgage << endl;
-                cout << "Ωª“◊À˘±£÷§Ω TThostFtdcMoneyType:" << pTradingAccount->ExchangeMargin << endl;
-                cout << "Õ∂◊ ’ﬂΩª∏Ó±£÷§Ω TThostFtdcMoneyType:" << pTradingAccount->DeliveryMargin << endl;
-                cout << "Ωª“◊À˘Ωª∏Ó±£÷§Ω TThostFtdcMoneyType:" << pTradingAccount->ExchangeDeliveryMargin << endl;
-                cout << "±£µ◊∆⁄ªıΩ·À„◊º±∏Ω TThostFtdcMoneyType:" << pTradingAccount->ReserveBalance << endl;
-                cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pTradingAccount->CurrencyID << endl;
-                cout << "…œ¥Œªı±“÷ »ÎΩ∂Ó TThostFtdcMoneyType:" << pTradingAccount->PreFundMortgageIn << endl;
-                cout << "…œ¥Œªı±“÷ ≥ˆΩ∂Ó TThostFtdcMoneyType:" << pTradingAccount->PreFundMortgageOut << endl;
-                cout << "ªı±“÷ »ÎΩ∂Ó TThostFtdcMoneyType:" << pTradingAccount->FundMortgageIn << endl;
-                cout << "ªı±“÷ ≥ˆΩ∂Ó TThostFtdcMoneyType:" << pTradingAccount->FundMortgageOut << endl;
-                cout << "ªı±“÷ —∫”‡∂Ó TThostFtdcMoneyType:" << pTradingAccount->FundMortgageAvailable << endl;
-                cout << "ø…÷ —∫ªı±“Ω∂Ó TThostFtdcMoneyType:" << pTradingAccount->MortgageableFund << endl;
-                cout << "Ãÿ ‚≤˙∆∑’º”√±£÷§Ω TThostFtdcMoneyType:" << pTradingAccount->SpecProductMargin << endl;
-                cout << "Ãÿ ‚≤˙∆∑∂≥Ω·±£÷§Ω TThostFtdcMoneyType:" << pTradingAccount->SpecProductFrozenMargin << endl;
-                cout << "Ãÿ ‚≤˙∆∑ ÷–¯∑— TThostFtdcMoneyType:" << pTradingAccount->SpecProductCommission << endl;
-                cout << "Ãÿ ‚≤˙∆∑∂≥Ω· ÷–¯∑— TThostFtdcMoneyType:" << pTradingAccount->SpecProductFrozenCommission << endl;
-                cout << "Ãÿ ‚≤˙∆∑≥÷≤÷”Øø˜ TThostFtdcMoneyType:" << pTradingAccount->SpecProductPositionProfit << endl;
-                cout << "Ãÿ ‚≤˙∆∑∆Ω≤÷”Øø˜ TThostFtdcMoneyType:" << pTradingAccount->SpecProductCloseProfit << endl;
-                cout << "∏˘æ›≥÷≤÷”Øø˜À„∑®º∆À„µƒÃÿ ‚≤˙∆∑≥÷≤÷”Øø˜ TThostFtdcMoneyType:" << pTradingAccount->SpecProductPositionProfitByAlg << endl;
-                cout << "Ãÿ ‚≤˙∆∑Ωª“◊À˘±£÷§Ω TThostFtdcMoneyType:" << pTradingAccount->SpecProductExchangeMargin << endl;
-                cout << "“µŒÒ¿‡–Õ TThostFtdcBizTypeType:" << pTradingAccount->BizType << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pTradingAccount->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pTradingAccount->AccountID << endl;
+                cout << "‰∏äÊ¨°Ë¥®ÊäºÈáëÈ¢ù TThostFtdcMoneyType:" << pTradingAccount->PreMortgage << endl;
+                cout << "‰∏äÊ¨°‰ø°Áî®È¢ùÂ∫¶ TThostFtdcMoneyType:" << pTradingAccount->PreCredit << endl;
+                cout << "‰∏äÊ¨°Â≠òÊ¨æÈ¢ù TThostFtdcMoneyType:" << pTradingAccount->PreDeposit << endl;
+                cout << "‰∏äÊ¨°ÁªìÁÆóÂáÜÂ§áÈáë TThostFtdcMoneyType:" << pTradingAccount->PreBalance << endl;
+                cout << "‰∏äÊ¨°Âç†Áî®ÁöÑ‰øùËØÅÈáë TThostFtdcMoneyType:" << pTradingAccount->PreMargin << endl;
+                cout << "Âà©ÊÅØÂü∫Êï∞ TThostFtdcMoneyType:" << pTradingAccount->InterestBase << endl;
+                cout << "Âà©ÊÅØÊî∂ÂÖ• TThostFtdcMoneyType:" << pTradingAccount->Interest << endl;
+                cout << "ÂÖ•ÈáëÈáëÈ¢ù TThostFtdcMoneyType:" << pTradingAccount->Deposit << endl;
+                cout << "Âá∫ÈáëÈáëÈ¢ù TThostFtdcMoneyType:" << pTradingAccount->Withdraw << endl;
+                cout << "ÂÜªÁªìÁöÑ‰øùËØÅÈáë TThostFtdcMoneyType:" << pTradingAccount->FrozenMargin << endl;
+                cout << "ÂÜªÁªìÁöÑËµÑÈáë TThostFtdcMoneyType:" << pTradingAccount->FrozenCash << endl;
+                cout << "ÂÜªÁªìÁöÑÊâãÁª≠Ë¥π TThostFtdcMoneyType:" << pTradingAccount->FrozenCommission << endl;
+                cout << "ÂΩìÂâç‰øùËØÅÈáëÊÄªÈ¢ù TThostFtdcMoneyType:" << pTradingAccount->CurrMargin << endl;
+                cout << "ËµÑÈáëÂ∑ÆÈ¢ù TThostFtdcMoneyType:" << pTradingAccount->CashIn << endl;
+                cout << "ÊâãÁª≠Ë¥π TThostFtdcMoneyType:" << pTradingAccount->Commission << endl;
+                cout << "Âπ≥‰ªìÁõà‰∫è TThostFtdcMoneyType:" << pTradingAccount->CloseProfit << endl;
+                cout << "ÊåÅ‰ªìÁõà‰∫è TThostFtdcMoneyType:" << pTradingAccount->PositionProfit << endl;
+                cout << "ÊúüË¥ßÁªìÁÆóÂáÜÂ§áÈáë TThostFtdcMoneyType:" << pTradingAccount->Balance << endl;
+                cout << "ÂèØÁî®ËµÑÈáë TThostFtdcMoneyType:" << pTradingAccount->Available << endl;
+                cout << "ÂèØÂèñËµÑÈáë TThostFtdcMoneyType:" << pTradingAccount->WithdrawQuota << endl;
+                cout << "Âü∫Êú¨ÂáÜÂ§áÈáë TThostFtdcMoneyType:" << pTradingAccount->Reserve << endl;
+                cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pTradingAccount->TradingDay << endl;
+                cout << "ÁªìÁÆóÁºñÂè∑ TThostFtdcSettlementIDType:" << pTradingAccount->SettlementID << endl;
+                cout << "‰ø°Áî®È¢ùÂ∫¶ TThostFtdcMoneyType:" << pTradingAccount->Credit << endl;
+                cout << "Ë¥®ÊäºÈáëÈ¢ù TThostFtdcMoneyType:" << pTradingAccount->Mortgage << endl;
+                cout << "‰∫§ÊòìÊâÄ‰øùËØÅÈáë TThostFtdcMoneyType:" << pTradingAccount->ExchangeMargin << endl;
+                cout << "ÊäïËµÑËÄÖ‰∫§Ââ≤‰øùËØÅÈáë TThostFtdcMoneyType:" << pTradingAccount->DeliveryMargin << endl;
+                cout << "‰∫§ÊòìÊâÄ‰∫§Ââ≤‰øùËØÅÈáë TThostFtdcMoneyType:" << pTradingAccount->ExchangeDeliveryMargin << endl;
+                cout << "‰øùÂ∫ïÊúüË¥ßÁªìÁÆóÂáÜÂ§áÈáë TThostFtdcMoneyType:" << pTradingAccount->ReserveBalance << endl;
+                cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pTradingAccount->CurrencyID << endl;
+                cout << "‰∏äÊ¨°Ë¥ßÂ∏ÅË¥®ÂÖ•ÈáëÈ¢ù TThostFtdcMoneyType:" << pTradingAccount->PreFundMortgageIn << endl;
+                cout << "‰∏äÊ¨°Ë¥ßÂ∏ÅË¥®Âá∫ÈáëÈ¢ù TThostFtdcMoneyType:" << pTradingAccount->PreFundMortgageOut << endl;
+                cout << "Ë¥ßÂ∏ÅË¥®ÂÖ•ÈáëÈ¢ù TThostFtdcMoneyType:" << pTradingAccount->FundMortgageIn << endl;
+                cout << "Ë¥ßÂ∏ÅË¥®Âá∫ÈáëÈ¢ù TThostFtdcMoneyType:" << pTradingAccount->FundMortgageOut << endl;
+                cout << "Ë¥ßÂ∏ÅË¥®Êäº‰ΩôÈ¢ù TThostFtdcMoneyType:" << pTradingAccount->FundMortgageAvailable << endl;
+                cout << "ÂèØË¥®ÊäºË¥ßÂ∏ÅÈáëÈ¢ù TThostFtdcMoneyType:" << pTradingAccount->MortgageableFund << endl;
+                cout << "ÁâπÊÆä‰∫ßÂìÅÂç†Áî®‰øùËØÅÈáë TThostFtdcMoneyType:" << pTradingAccount->SpecProductMargin << endl;
+                cout << "ÁâπÊÆä‰∫ßÂìÅÂÜªÁªì‰øùËØÅÈáë TThostFtdcMoneyType:" << pTradingAccount->SpecProductFrozenMargin << endl;
+                cout << "ÁâπÊÆä‰∫ßÂìÅÊâãÁª≠Ë¥π TThostFtdcMoneyType:" << pTradingAccount->SpecProductCommission << endl;
+                cout << "ÁâπÊÆä‰∫ßÂìÅÂÜªÁªìÊâãÁª≠Ë¥π TThostFtdcMoneyType:" << pTradingAccount->SpecProductFrozenCommission << endl;
+                cout << "ÁâπÊÆä‰∫ßÂìÅÊåÅ‰ªìÁõà‰∫è TThostFtdcMoneyType:" << pTradingAccount->SpecProductPositionProfit << endl;
+                cout << "ÁâπÊÆä‰∫ßÂìÅÂπ≥‰ªìÁõà‰∫è TThostFtdcMoneyType:" << pTradingAccount->SpecProductCloseProfit << endl;
+                cout << "Ê†πÊçÆÊåÅ‰ªìÁõà‰∫èÁÆóÊ≥ïËÆ°ÁÆóÁöÑÁâπÊÆä‰∫ßÂìÅÊåÅ‰ªìÁõà‰∫è TThostFtdcMoneyType:" << pTradingAccount->SpecProductPositionProfitByAlg << endl;
+                cout << "ÁâπÊÆä‰∫ßÂìÅ‰∫§ÊòìÊâÄ‰øùËØÅÈáë TThostFtdcMoneyType:" << pTradingAccount->SpecProductExchangeMargin << endl;
+                cout << "‰∏öÂä°Á±ªÂûã TThostFtdcBizTypeType:" << pTradingAccount->BizType << endl;
         }
 }
 
-///«Î«Û≤È—ØÕ∂◊ ’ﬂœÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ÊäïËµÑËÄÖÂìçÂ∫î
 void CTraderSpi::OnRspQryInvestor(CThostFtdcInvestorField* pInvestor, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInvestor->InvestorID << endl;
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInvestor->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ∑÷◊È¥˙¬Î TThostFtdcInvestorIDType:" << pInvestor->InvestorGroupID << endl;
-                cout << "Õ∂◊ ’ﬂ√˚≥∆ TThostFtdcPartyNameType:" << pInvestor->InvestorName << endl;
-                cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pInvestor->IdentifiedCardType << endl;
-                cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pInvestor->IdentifiedCardNo << endl;
-                cout << " «∑ÒªÓ‘æ TThostFtdcBoolType:" << pInvestor->IsActive << endl;
-                cout << "¡™œµµÁª∞ TThostFtdcTelephoneType:" << pInvestor->Telephone << endl;
-                cout << "Õ®—∂µÿ÷∑ TThostFtdcAddressType:" << pInvestor->Address << endl;
-                cout << "ø™ªß»’∆⁄ TThostFtdcDateType:" << pInvestor->OpenDate << endl;
-                cout << " ÷ª˙ TThostFtdcMobileType:" << pInvestor->Mobile << endl;
-                cout << " ÷–¯∑—¬ ƒ£∞Â¥˙¬Î TThostFtdcInvestorIDType:" << pInvestor->CommModelID << endl;
-                cout << "±£÷§Ω¬ ƒ£∞Â¥˙¬Î TThostFtdcInvestorIDType:" << pInvestor->MarginModelID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInvestor->InvestorID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInvestor->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖÂàÜÁªÑ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInvestor->InvestorGroupID << endl;
+                cout << "ÊäïËµÑËÄÖÂêçÁß∞ TThostFtdcPartyNameType:" << pInvestor->InvestorName << endl;
+                cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pInvestor->IdentifiedCardType << endl;
+                cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pInvestor->IdentifiedCardNo << endl;
+                cout << "ÊòØÂê¶Ê¥ªË∑É TThostFtdcBoolType:" << pInvestor->IsActive << endl;
+                cout << "ËÅîÁ≥ªÁîµËØù TThostFtdcTelephoneType:" << pInvestor->Telephone << endl;
+                cout << "ÈÄöËÆØÂú∞ÂùÄ TThostFtdcAddressType:" << pInvestor->Address << endl;
+                cout << "ÂºÄÊà∑Êó•Êúü TThostFtdcDateType:" << pInvestor->OpenDate << endl;
+                cout << "ÊâãÊú∫ TThostFtdcMobileType:" << pInvestor->Mobile << endl;
+                cout << "ÊâãÁª≠Ë¥πÁéáÊ®°Êùø‰ª£Á†Å TThostFtdcInvestorIDType:" << pInvestor->CommModelID << endl;
+                cout << "‰øùËØÅÈáëÁéáÊ®°Êùø‰ª£Á†Å TThostFtdcInvestorIDType:" << pInvestor->MarginModelID << endl;
         }
 }
 
-///«Î«Û≤È—ØΩª“◊±‡¬ÎœÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢‰∫§ÊòìÁºñÁ†ÅÂìçÂ∫î
 void CTraderSpi::OnRspQryTradingCode(CThostFtdcTradingCodeField* pTradingCode, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pTradingCode->InvestorID << endl;
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pTradingCode->BrokerID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pTradingCode->ExchangeID << endl;
-                cout << "øÕªß¥˙¬Î TThostFtdcClientIDType:" << pTradingCode->ClientID << endl;
-                cout << " «∑ÒªÓ‘æ TThostFtdcBoolType:" << pTradingCode->IsActive << endl;
-                cout << "Ωª“◊±‡¬Î¿‡–Õ TThostFtdcClientIDTypeType:" << pTradingCode->ClientIDType << endl;
-                cout << "”™“µ≤ø±‡∫≈ TThostFtdcBranchIDType:" << pTradingCode->BranchID << endl;
-                cout << "“µŒÒ¿‡–Õ TThostFtdcBizTypeType:" << pTradingCode->BizType << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pTradingCode->InvestorID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pTradingCode->BrokerID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pTradingCode->ExchangeID << endl;
+                cout << "ÂÆ¢Êà∑‰ª£Á†Å TThostFtdcClientIDType:" << pTradingCode->ClientID << endl;
+                cout << "ÊòØÂê¶Ê¥ªË∑É TThostFtdcBoolType:" << pTradingCode->IsActive << endl;
+                cout << "‰∫§ÊòìÁºñÁ†ÅÁ±ªÂûã TThostFtdcClientIDTypeType:" << pTradingCode->ClientIDType << endl;
+                cout << "Ëê•‰∏öÈÉ®ÁºñÂè∑ TThostFtdcBranchIDType:" << pTradingCode->BranchID << endl;
+                cout << "‰∏öÂä°Á±ªÂûã TThostFtdcBizTypeType:" << pTradingCode->BizType << endl;
         }
 }
 
-///«Î«Û≤È—Ø∫œ‘º±£÷§Ω¬ œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ÂêàÁ∫¶‰øùËØÅÈáëÁéáÂìçÂ∫î
 void CTraderSpi::OnRspQryInstrumentMarginRate(CThostFtdcInstrumentMarginRateField* pInstrumentMarginRate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInstrumentMarginRate->InstrumentID << endl;
-                cout << "Õ∂◊ ’ﬂ∑∂Œß TThostFtdcInvestorRangeType:" << pInstrumentMarginRate->InvestorRange << endl;
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInstrumentMarginRate->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInstrumentMarginRate->InvestorID << endl;
-                cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pInstrumentMarginRate->HedgeFlag << endl;
-                cout << "∂‡Õ∑±£÷§Ω¬  TThostFtdcRatioType:" << pInstrumentMarginRate->LongMarginRatioByMoney << endl;
-                cout << "∂‡Õ∑±£÷§Ω∑— TThostFtdcMoneyType:" << pInstrumentMarginRate->LongMarginRatioByVolume << endl;
-                cout << "ø’Õ∑±£÷§Ω¬  TThostFtdcRatioType:" << pInstrumentMarginRate->ShortMarginRatioByMoney << endl;
-                cout << "ø’Õ∑±£÷§Ω∑— TThostFtdcMoneyType:" << pInstrumentMarginRate->ShortMarginRatioByVolume << endl;
-                cout << " «∑Òœ‡∂‘Ωª“◊À˘ ’»° TThostFtdcBoolType:" << pInstrumentMarginRate->IsRelative << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInstrumentMarginRate->InstrumentID << endl;
+                cout << "ÊäïËµÑËÄÖËåÉÂõ¥ TThostFtdcInvestorRangeType:" << pInstrumentMarginRate->InvestorRange << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInstrumentMarginRate->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInstrumentMarginRate->InvestorID << endl;
+                cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pInstrumentMarginRate->HedgeFlag << endl;
+                cout << "Â§öÂ§¥‰øùËØÅÈáëÁéá TThostFtdcRatioType:" << pInstrumentMarginRate->LongMarginRatioByMoney << endl;
+                cout << "Â§öÂ§¥‰øùËØÅÈáëË¥π TThostFtdcMoneyType:" << pInstrumentMarginRate->LongMarginRatioByVolume << endl;
+                cout << "Á©∫Â§¥‰øùËØÅÈáëÁéá TThostFtdcRatioType:" << pInstrumentMarginRate->ShortMarginRatioByMoney << endl;
+                cout << "Á©∫Â§¥‰øùËØÅÈáëË¥π TThostFtdcMoneyType:" << pInstrumentMarginRate->ShortMarginRatioByVolume << endl;
+                cout << "ÊòØÂê¶Áõ∏ÂØπ‰∫§ÊòìÊâÄÊî∂Âèñ TThostFtdcBoolType:" << pInstrumentMarginRate->IsRelative << endl;
         }
 }
 
-///«Î«Û≤È—Ø∫œ‘º ÷–¯∑—¬ œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ÂêàÁ∫¶ÊâãÁª≠Ë¥πÁéáÂìçÂ∫î
 void CTraderSpi::OnRspQryInstrumentCommissionRate(CThostFtdcInstrumentCommissionRateField* pInstrumentCommissionRate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInstrumentCommissionRate->InstrumentID << endl;
-                cout << "Õ∂◊ ’ﬂ∑∂Œß TThostFtdcInvestorRangeType:" << pInstrumentCommissionRate->InvestorRange << endl;
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInstrumentCommissionRate->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInstrumentCommissionRate->InvestorID << endl;
-                cout << "ø™≤÷ ÷–¯∑—¬  TThostFtdcRatioType:" << pInstrumentCommissionRate->OpenRatioByMoney << endl;
-                cout << "ø™≤÷ ÷–¯∑— TThostFtdcRatioType:" << pInstrumentCommissionRate->OpenRatioByVolume << endl;
-                cout << "∆Ω≤÷ ÷–¯∑—¬  TThostFtdcRatioType:" << pInstrumentCommissionRate->CloseRatioByMoney << endl;
-                cout << "∆Ω≤÷ ÷–¯∑— TThostFtdcRatioType:" << pInstrumentCommissionRate->CloseRatioByVolume << endl;
-                cout << "∆ΩΩÒ ÷–¯∑—¬  TThostFtdcRatioType:" << pInstrumentCommissionRate->CloseTodayRatioByMoney << endl;
-                cout << "∆ΩΩÒ ÷–¯∑— TThostFtdcRatioType:" << pInstrumentCommissionRate->CloseTodayRatioByVolume << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInstrumentCommissionRate->ExchangeID << endl;
-                cout << "“µŒÒ¿‡–Õ TThostFtdcBizTypeType:" << pInstrumentCommissionRate->BizType << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInstrumentCommissionRate->InstrumentID << endl;
+                cout << "ÊäïËµÑËÄÖËåÉÂõ¥ TThostFtdcInvestorRangeType:" << pInstrumentCommissionRate->InvestorRange << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInstrumentCommissionRate->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInstrumentCommissionRate->InvestorID << endl;
+                cout << "ÂºÄ‰ªìÊâãÁª≠Ë¥πÁéá TThostFtdcRatioType:" << pInstrumentCommissionRate->OpenRatioByMoney << endl;
+                cout << "ÂºÄ‰ªìÊâãÁª≠Ë¥π TThostFtdcRatioType:" << pInstrumentCommissionRate->OpenRatioByVolume << endl;
+                cout << "Âπ≥‰ªìÊâãÁª≠Ë¥πÁéá TThostFtdcRatioType:" << pInstrumentCommissionRate->CloseRatioByMoney << endl;
+                cout << "Âπ≥‰ªìÊâãÁª≠Ë¥π TThostFtdcRatioType:" << pInstrumentCommissionRate->CloseRatioByVolume << endl;
+                cout << "Âπ≥‰ªäÊâãÁª≠Ë¥πÁéá TThostFtdcRatioType:" << pInstrumentCommissionRate->CloseTodayRatioByMoney << endl;
+                cout << "Âπ≥‰ªäÊâãÁª≠Ë¥π TThostFtdcRatioType:" << pInstrumentCommissionRate->CloseTodayRatioByVolume << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInstrumentCommissionRate->ExchangeID << endl;
+                cout << "‰∏öÂä°Á±ªÂûã TThostFtdcBizTypeType:" << pInstrumentCommissionRate->BizType << endl;
         }
 }
 
-///«Î«Û≤È—ØΩª“◊À˘œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢‰∫§ÊòìÊâÄÂìçÂ∫î
 void CTraderSpi::OnRspQryExchange(CThostFtdcExchangeField* pExchange, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pExchange->ExchangeID << endl;
-                cout << "Ωª“◊À˘√˚≥∆ TThostFtdcExchangeNameType:" << pExchange->ExchangeName << endl;
-                cout << "Ωª“◊À˘ Ù–‘ TThostFtdcExchangePropertyType:" << pExchange->ExchangeProperty << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pExchange->ExchangeID << endl;
+                cout << "‰∫§ÊòìÊâÄÂêçÁß∞ TThostFtdcExchangeNameType:" << pExchange->ExchangeName << endl;
+                cout << "‰∫§ÊòìÊâÄÂ±ûÊÄß TThostFtdcExchangePropertyType:" << pExchange->ExchangeProperty << endl;
         }
 }
 
-///«Î«Û≤È—Ø≤˙∆∑œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢‰∫ßÂìÅÂìçÂ∫î
 void CTraderSpi::OnRspQryProduct(CThostFtdcProductField* pProduct, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "≤˙∆∑¥˙¬Î TThostFtdcInstrumentIDType:" << pProduct->ProductID << endl;
-                cout << "≤˙∆∑√˚≥∆ TThostFtdcProductNameType:" << pProduct->ProductName << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pProduct->ExchangeID << endl;
-                cout << "≤˙∆∑¿‡–Õ TThostFtdcProductClassType:" << pProduct->ProductClass << endl;
-                cout << "∫œ‘º ˝¡ø≥À ˝ TThostFtdcVolumeMultipleType:" << pProduct->VolumeMultiple << endl;
-                cout << "◊Ó–°±‰∂Øº€Œª TThostFtdcPriceType:" << pProduct->PriceTick << endl;
-                cout << " –º€µ•◊Ó¥Ûœ¬µ•¡ø TThostFtdcVolumeType:" << pProduct->MaxMarketOrderVolume << endl;
-                cout << " –º€µ•◊Ó–°œ¬µ•¡ø TThostFtdcVolumeType:" << pProduct->MinMarketOrderVolume << endl;
-                cout << "œﬁº€µ•◊Ó¥Ûœ¬µ•¡ø TThostFtdcVolumeType:" << pProduct->MaxLimitOrderVolume << endl;
-                cout << "œﬁº€µ•◊Ó–°œ¬µ•¡ø TThostFtdcVolumeType:" << pProduct->MinLimitOrderVolume << endl;
-                cout << "≥÷≤÷¿‡–Õ TThostFtdcPositionTypeType:" << pProduct->PositionType << endl;
-                cout << "≥÷≤÷»’∆⁄¿‡–Õ TThostFtdcPositionDateTypeType:" << pProduct->PositionDateType << endl;
-                cout << "∆Ω≤÷¥¶¿Ì¿‡–Õ TThostFtdcCloseDealTypeType:" << pProduct->CloseDealType << endl;
-                cout << "Ωª“◊±“÷÷¿‡–Õ TThostFtdcCurrencyIDType:" << pProduct->TradeCurrencyID << endl;
-                cout << "÷ —∫◊ Ωø…”√∑∂Œß TThostFtdcMortgageFundUseRangeType:" << pProduct->MortgageFundUseRange << endl;
-                cout << "Ωª“◊À˘≤˙∆∑¥˙¬Î TThostFtdcInstrumentIDType:" << pProduct->ExchangeProductID << endl;
-                cout << "∫œ‘ºª˘¥°…Ã∆∑≥À ˝ TThostFtdcUnderlyingMultipleType:" << pProduct->UnderlyingMultiple << endl;
+                cout << "‰∫ßÂìÅ‰ª£Á†Å TThostFtdcInstrumentIDType:" << pProduct->ProductID << endl;
+                cout << "‰∫ßÂìÅÂêçÁß∞ TThostFtdcProductNameType:" << pProduct->ProductName << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pProduct->ExchangeID << endl;
+                cout << "‰∫ßÂìÅÁ±ªÂûã TThostFtdcProductClassType:" << pProduct->ProductClass << endl;
+                cout << "ÂêàÁ∫¶Êï∞Èáè‰πòÊï∞ TThostFtdcVolumeMultipleType:" << pProduct->VolumeMultiple << endl;
+                cout << "ÊúÄÂ∞èÂèòÂä®‰ª∑‰Ωç TThostFtdcPriceType:" << pProduct->PriceTick << endl;
+                cout << "Â∏Ç‰ª∑ÂçïÊúÄÂ§ß‰∏ãÂçïÈáè TThostFtdcVolumeType:" << pProduct->MaxMarketOrderVolume << endl;
+                cout << "Â∏Ç‰ª∑ÂçïÊúÄÂ∞è‰∏ãÂçïÈáè TThostFtdcVolumeType:" << pProduct->MinMarketOrderVolume << endl;
+                cout << "Èôê‰ª∑ÂçïÊúÄÂ§ß‰∏ãÂçïÈáè TThostFtdcVolumeType:" << pProduct->MaxLimitOrderVolume << endl;
+                cout << "Èôê‰ª∑ÂçïÊúÄÂ∞è‰∏ãÂçïÈáè TThostFtdcVolumeType:" << pProduct->MinLimitOrderVolume << endl;
+                cout << "ÊåÅ‰ªìÁ±ªÂûã TThostFtdcPositionTypeType:" << pProduct->PositionType << endl;
+                cout << "ÊåÅ‰ªìÊó•ÊúüÁ±ªÂûã TThostFtdcPositionDateTypeType:" << pProduct->PositionDateType << endl;
+                cout << "Âπ≥‰ªìÂ§ÑÁêÜÁ±ªÂûã TThostFtdcCloseDealTypeType:" << pProduct->CloseDealType << endl;
+                cout << "‰∫§ÊòìÂ∏ÅÁßçÁ±ªÂûã TThostFtdcCurrencyIDType:" << pProduct->TradeCurrencyID << endl;
+                cout << "Ë¥®ÊäºËµÑÈáëÂèØÁî®ËåÉÂõ¥ TThostFtdcMortgageFundUseRangeType:" << pProduct->MortgageFundUseRange << endl;
+                cout << "‰∫§ÊòìÊâÄ‰∫ßÂìÅ‰ª£Á†Å TThostFtdcInstrumentIDType:" << pProduct->ExchangeProductID << endl;
+                cout << "ÂêàÁ∫¶Âü∫Á°ÄÂïÜÂìÅ‰πòÊï∞ TThostFtdcUnderlyingMultipleType:" << pProduct->UnderlyingMultiple << endl;
         }
 }
 
-///«Î«Û≤È—Ø∫œ‘ºœÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ÂêàÁ∫¶ÂìçÂ∫î
 void CTraderSpi::OnRspQryInstrument(CThostFtdcInstrumentField* pInstrument, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> "
              << "OnRspQryInstrument" << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInstrument->InstrumentID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInstrument->ExchangeID << endl;
-                cout << "∫œ‘º√˚≥∆ TThostFtdcInstrumentNameType:" << pInstrument->InstrumentName << endl;
-                cout << "∫œ‘º‘⁄Ωª“◊À˘µƒ¥˙¬Î TThostFtdcExchangeInstIDType:" << pInstrument->ExchangeInstID << endl;
-                cout << "≤˙∆∑¥˙¬Î TThostFtdcInstrumentIDType:" << pInstrument->ProductID << endl;
-                cout << "≤˙∆∑¿‡–Õ TThostFtdcProductClassType:" << pInstrument->ProductClass << endl;
-                cout << "Ωª∏ÓƒÍ∑› TThostFtdcYearType:" << pInstrument->DeliveryYear << endl;
-                cout << "Ωª∏Ó‘¬ TThostFtdcMonthType:" << pInstrument->DeliveryMonth << endl;
-                cout << " –º€µ•◊Ó¥Ûœ¬µ•¡ø TThostFtdcVolumeType:" << pInstrument->MaxMarketOrderVolume << endl;
-                cout << " –º€µ•◊Ó–°œ¬µ•¡ø TThostFtdcVolumeType:" << pInstrument->MinMarketOrderVolume << endl;
-                cout << "œﬁº€µ•◊Ó¥Ûœ¬µ•¡ø TThostFtdcVolumeType:" << pInstrument->MaxLimitOrderVolume << endl;
-                cout << "œﬁº€µ•◊Ó–°œ¬µ•¡ø TThostFtdcVolumeType:" << pInstrument->MinLimitOrderVolume << endl;
-                cout << "∫œ‘º ˝¡ø≥À ˝ TThostFtdcVolumeMultipleType:" << pInstrument->VolumeMultiple << endl;
-                cout << "◊Ó–°±‰∂Øº€Œª TThostFtdcPriceType:" << pInstrument->PriceTick << endl;
-                cout << "¥¥Ω®»’ TThostFtdcDateType:" << pInstrument->CreateDate << endl;
-                cout << "…œ –»’ TThostFtdcDateType:" << pInstrument->OpenDate << endl;
-                cout << "µΩ∆⁄»’ TThostFtdcDateType:" << pInstrument->ExpireDate << endl;
-                cout << "ø™ ºΩª∏Ó»’ TThostFtdcDateType:" << pInstrument->StartDelivDate << endl;
-                cout << "Ω· ¯Ωª∏Ó»’ TThostFtdcDateType:" << pInstrument->EndDelivDate << endl;
-                cout << "∫œ‘º…˙√¸÷‹∆⁄◊¥Ã¨ TThostFtdcInstLifePhaseType:" << pInstrument->InstLifePhase << endl;
-                cout << "µ±«∞ «∑ÒΩª“◊ TThostFtdcBoolType:" << pInstrument->IsTrading << endl;
-                cout << "≥÷≤÷¿‡–Õ TThostFtdcPositionTypeType:" << pInstrument->PositionType << endl;
-                cout << "≥÷≤÷»’∆⁄¿‡–Õ TThostFtdcPositionDateTypeType:" << pInstrument->PositionDateType << endl;
-                cout << "∂‡Õ∑±£÷§Ω¬  TThostFtdcRatioType:" << pInstrument->LongMarginRatio << endl;
-                cout << "ø’Õ∑±£÷§Ω¬  TThostFtdcRatioType:" << pInstrument->ShortMarginRatio << endl;
-                cout << " «∑Ò π”√¥Û∂Óµ•±ﬂ±£÷§ΩÀ„∑® TThostFtdcMaxMarginSideAlgorithmType:" << pInstrument->MaxMarginSideAlgorithm << endl;
-                cout << "ª˘¥°…Ã∆∑¥˙¬Î TThostFtdcInstrumentIDType:" << pInstrument->UnderlyingInstrID << endl;
-                cout << "÷¥––º€ TThostFtdcPriceType:" << pInstrument->StrikePrice << endl;
-                cout << "∆⁄»®¿‡–Õ TThostFtdcOptionsTypeType:" << pInstrument->OptionsType << endl;
-                cout << "∫œ‘ºª˘¥°…Ã∆∑≥À ˝ TThostFtdcUnderlyingMultipleType:" << pInstrument->UnderlyingMultiple << endl;
-                cout << "◊È∫œ¿‡–Õ TThostFtdcCombinationTypeType:" << pInstrument->CombinationType << endl;
-                cout << "◊Ó–°¬Úœ¬µ•µ•Œª TThostFtdcVolumeType:" << pInstrument->MinBuyVolume << endl;
-                cout << "◊Ó–°¬Ùœ¬µ•µ•Œª TThostFtdcVolumeType:" << pInstrument->MinSellVolume << endl;
-                cout << "∫œ‘º±Í ∂¬Î TThostFtdcInstrumentCodeType:" << pInstrument->InstrumentCode << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInstrument->InstrumentID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInstrument->ExchangeID << endl;
+                cout << "ÂêàÁ∫¶ÂêçÁß∞ TThostFtdcInstrumentNameType:" << pInstrument->InstrumentName << endl;
+                cout << "ÂêàÁ∫¶Âú®‰∫§ÊòìÊâÄÁöÑ‰ª£Á†Å TThostFtdcExchangeInstIDType:" << pInstrument->ExchangeInstID << endl;
+                cout << "‰∫ßÂìÅ‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInstrument->ProductID << endl;
+                cout << "‰∫ßÂìÅÁ±ªÂûã TThostFtdcProductClassType:" << pInstrument->ProductClass << endl;
+                cout << "‰∫§Ââ≤Âπ¥‰ªΩ TThostFtdcYearType:" << pInstrument->DeliveryYear << endl;
+                cout << "‰∫§Ââ≤Êúà TThostFtdcMonthType:" << pInstrument->DeliveryMonth << endl;
+                cout << "Â∏Ç‰ª∑ÂçïÊúÄÂ§ß‰∏ãÂçïÈáè TThostFtdcVolumeType:" << pInstrument->MaxMarketOrderVolume << endl;
+                cout << "Â∏Ç‰ª∑ÂçïÊúÄÂ∞è‰∏ãÂçïÈáè TThostFtdcVolumeType:" << pInstrument->MinMarketOrderVolume << endl;
+                cout << "Èôê‰ª∑ÂçïÊúÄÂ§ß‰∏ãÂçïÈáè TThostFtdcVolumeType:" << pInstrument->MaxLimitOrderVolume << endl;
+                cout << "Èôê‰ª∑ÂçïÊúÄÂ∞è‰∏ãÂçïÈáè TThostFtdcVolumeType:" << pInstrument->MinLimitOrderVolume << endl;
+                cout << "ÂêàÁ∫¶Êï∞Èáè‰πòÊï∞ TThostFtdcVolumeMultipleType:" << pInstrument->VolumeMultiple << endl;
+                cout << "ÊúÄÂ∞èÂèòÂä®‰ª∑‰Ωç TThostFtdcPriceType:" << pInstrument->PriceTick << endl;
+                cout << "ÂàõÂª∫Êó• TThostFtdcDateType:" << pInstrument->CreateDate << endl;
+                cout << "‰∏äÂ∏ÇÊó• TThostFtdcDateType:" << pInstrument->OpenDate << endl;
+                cout << "Âà∞ÊúüÊó• TThostFtdcDateType:" << pInstrument->ExpireDate << endl;
+                cout << "ÂºÄÂßã‰∫§Ââ≤Êó• TThostFtdcDateType:" << pInstrument->StartDelivDate << endl;
+                cout << "ÁªìÊùü‰∫§Ââ≤Êó• TThostFtdcDateType:" << pInstrument->EndDelivDate << endl;
+                cout << "ÂêàÁ∫¶ÁîüÂëΩÂë®ÊúüÁä∂ÊÄÅ TThostFtdcInstLifePhaseType:" << pInstrument->InstLifePhase << endl;
+                cout << "ÂΩìÂâçÊòØÂê¶‰∫§Êòì TThostFtdcBoolType:" << pInstrument->IsTrading << endl;
+                cout << "ÊåÅ‰ªìÁ±ªÂûã TThostFtdcPositionTypeType:" << pInstrument->PositionType << endl;
+                cout << "ÊåÅ‰ªìÊó•ÊúüÁ±ªÂûã TThostFtdcPositionDateTypeType:" << pInstrument->PositionDateType << endl;
+                cout << "Â§öÂ§¥‰øùËØÅÈáëÁéá TThostFtdcRatioType:" << pInstrument->LongMarginRatio << endl;
+                cout << "Á©∫Â§¥‰øùËØÅÈáëÁéá TThostFtdcRatioType:" << pInstrument->ShortMarginRatio << endl;
+                cout << "ÊòØÂê¶‰ΩøÁî®Â§ßÈ¢ùÂçïËæπ‰øùËØÅÈáëÁÆóÊ≥ï TThostFtdcMaxMarginSideAlgorithmType:" << pInstrument->MaxMarginSideAlgorithm << endl;
+                cout << "Âü∫Á°ÄÂïÜÂìÅ‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInstrument->UnderlyingInstrID << endl;
+                cout << "ÊâßË°å‰ª∑ TThostFtdcPriceType:" << pInstrument->StrikePrice << endl;
+                cout << "ÊúüÊùÉÁ±ªÂûã TThostFtdcOptionsTypeType:" << pInstrument->OptionsType << endl;
+                cout << "ÂêàÁ∫¶Âü∫Á°ÄÂïÜÂìÅ‰πòÊï∞ TThostFtdcUnderlyingMultipleType:" << pInstrument->UnderlyingMultiple << endl;
+                cout << "ÁªÑÂêàÁ±ªÂûã TThostFtdcCombinationTypeType:" << pInstrument->CombinationType << endl;
+                cout << "ÊúÄÂ∞è‰π∞‰∏ãÂçïÂçï‰Ωç TThostFtdcVolumeType:" << pInstrument->MinBuyVolume << endl;
+                cout << "ÊúÄÂ∞èÂçñ‰∏ãÂçïÂçï‰Ωç TThostFtdcVolumeType:" << pInstrument->MinSellVolume << endl;
+                cout << "ÂêàÁ∫¶Ê†áËØÜÁ†Å TThostFtdcInstrumentCodeType:" << pInstrument->InstrumentCode << endl;
         }
 }
 
-///«Î«Û≤È—Ø––«ÈœÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢Ë°åÊÉÖÂìçÂ∫î
 void CTraderSpi::OnRspQryDepthMarketData(CThostFtdcDepthMarketDataField* pDepthMarketData, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "Ωª“◊»’ TThostFtdcDateType:" << pDepthMarketData->TradingDay << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pDepthMarketData->InstrumentID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pDepthMarketData->ExchangeID << endl;
-                cout << "∫œ‘º‘⁄Ωª“◊À˘µƒ¥˙¬Î TThostFtdcExchangeInstIDType:" << pDepthMarketData->ExchangeInstID << endl;
-                cout << "◊Ó–¬º€ TThostFtdcPriceType:" << pDepthMarketData->LastPrice << endl;
-                cout << "…œ¥ŒΩ·À„º€ TThostFtdcPriceType:" << pDepthMarketData->PreSettlementPrice << endl;
-                cout << "◊Ú ’≈Ã TThostFtdcPriceType:" << pDepthMarketData->PreClosePrice << endl;
-                cout << "◊Ú≥÷≤÷¡ø TThostFtdcLargeVolumeType:" << pDepthMarketData->PreOpenInterest << endl;
-                cout << "ΩÒø™≈Ã TThostFtdcPriceType:" << pDepthMarketData->OpenPrice << endl;
-                cout << "◊Ó∏ﬂº€ TThostFtdcPriceType:" << pDepthMarketData->HighestPrice << endl;
-                cout << "◊ÓµÕº€ TThostFtdcPriceType:" << pDepthMarketData->LowestPrice << endl;
-                cout << " ˝¡ø TThostFtdcVolumeType:" << pDepthMarketData->Volume << endl;
-                cout << "≥…ΩªΩ∂Ó TThostFtdcMoneyType:" << pDepthMarketData->Turnover << endl;
-                cout << "≥÷≤÷¡ø TThostFtdcLargeVolumeType:" << pDepthMarketData->OpenInterest << endl;
-                cout << "ΩÒ ’≈Ã TThostFtdcPriceType:" << pDepthMarketData->ClosePrice << endl;
-                cout << "±æ¥ŒΩ·À„º€ TThostFtdcPriceType:" << pDepthMarketData->SettlementPrice << endl;
-                cout << "’«Õ£∞Âº€ TThostFtdcPriceType:" << pDepthMarketData->UpperLimitPrice << endl;
-                cout << "µ¯Õ£∞Âº€ TThostFtdcPriceType:" << pDepthMarketData->LowerLimitPrice << endl;
-                cout << "◊Ú–È µ∂» TThostFtdcRatioType:" << pDepthMarketData->PreDelta << endl;
-                cout << "ΩÒ–È µ∂» TThostFtdcRatioType:" << pDepthMarketData->CurrDelta << endl;
-                cout << "◊Ó∫Û–ﬁ∏ƒ ±º‰ TThostFtdcTimeType:" << pDepthMarketData->UpdateTime << endl;
-                cout << "◊Ó∫Û–ﬁ∏ƒ∫¡√Î TThostFtdcMillisecType:" << pDepthMarketData->UpdateMillisec << endl;
-                cout << "…Í¬Úº€“ª TThostFtdcPriceType:" << pDepthMarketData->BidPrice1 << endl;
-                cout << "…Í¬Ú¡ø“ª TThostFtdcVolumeType:" << pDepthMarketData->BidVolume1 << endl;
-                cout << "…Í¬Ùº€“ª TThostFtdcPriceType:" << pDepthMarketData->AskPrice1 << endl;
-                cout << "…Í¬Ù¡ø“ª TThostFtdcVolumeType:" << pDepthMarketData->AskVolume1 << endl;
-                cout << "…Í¬Úº€∂˛ TThostFtdcPriceType:" << pDepthMarketData->BidPrice2 << endl;
-                cout << "…Í¬Ú¡ø∂˛ TThostFtdcVolumeType:" << pDepthMarketData->BidVolume2 << endl;
-                cout << "…Í¬Ùº€∂˛ TThostFtdcPriceType:" << pDepthMarketData->AskPrice2 << endl;
-                cout << "…Í¬Ù¡ø∂˛ TThostFtdcVolumeType:" << pDepthMarketData->AskVolume2 << endl;
-                cout << "…Í¬Úº€»˝ TThostFtdcPriceType:" << pDepthMarketData->BidPrice3 << endl;
-                cout << "…Í¬Ú¡ø»˝ TThostFtdcVolumeType:" << pDepthMarketData->BidVolume3 << endl;
-                cout << "…Í¬Ùº€»˝ TThostFtdcPriceType:" << pDepthMarketData->AskPrice3 << endl;
-                cout << "…Í¬Ù¡ø»˝ TThostFtdcVolumeType:" << pDepthMarketData->AskVolume3 << endl;
-                cout << "…Í¬Úº€Àƒ TThostFtdcPriceType:" << pDepthMarketData->BidPrice4 << endl;
-                cout << "…Í¬Ú¡øÀƒ TThostFtdcVolumeType:" << pDepthMarketData->BidVolume4 << endl;
-                cout << "…Í¬Ùº€Àƒ TThostFtdcPriceType:" << pDepthMarketData->AskPrice4 << endl;
-                cout << "…Í¬Ù¡øÀƒ TThostFtdcVolumeType:" << pDepthMarketData->AskVolume4 << endl;
-                cout << "…Í¬Úº€ŒÂ TThostFtdcPriceType:" << pDepthMarketData->BidPrice5 << endl;
-                cout << "…Í¬Ú¡øŒÂ TThostFtdcVolumeType:" << pDepthMarketData->BidVolume5 << endl;
-                cout << "…Í¬Ùº€ŒÂ TThostFtdcPriceType:" << pDepthMarketData->AskPrice5 << endl;
-                cout << "…Í¬Ù¡øŒÂ TThostFtdcVolumeType:" << pDepthMarketData->AskVolume5 << endl;
-                cout << "µ±»’æ˘º€ TThostFtdcPriceType:" << pDepthMarketData->AveragePrice << endl;
-                cout << "“µŒÒ»’∆⁄ TThostFtdcDateType:" << pDepthMarketData->ActionDay << endl;
+                cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pDepthMarketData->TradingDay << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pDepthMarketData->InstrumentID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pDepthMarketData->ExchangeID << endl;
+                cout << "ÂêàÁ∫¶Âú®‰∫§ÊòìÊâÄÁöÑ‰ª£Á†Å TThostFtdcExchangeInstIDType:" << pDepthMarketData->ExchangeInstID << endl;
+                cout << "ÊúÄÊñ∞‰ª∑ TThostFtdcPriceType:" << pDepthMarketData->LastPrice << endl;
+                cout << "‰∏äÊ¨°ÁªìÁÆó‰ª∑ TThostFtdcPriceType:" << pDepthMarketData->PreSettlementPrice << endl;
+                cout << "Êò®Êî∂Áõò TThostFtdcPriceType:" << pDepthMarketData->PreClosePrice << endl;
+                cout << "Êò®ÊåÅ‰ªìÈáè TThostFtdcLargeVolumeType:" << pDepthMarketData->PreOpenInterest << endl;
+                cout << "‰ªäÂºÄÁõò TThostFtdcPriceType:" << pDepthMarketData->OpenPrice << endl;
+                cout << "ÊúÄÈ´ò‰ª∑ TThostFtdcPriceType:" << pDepthMarketData->HighestPrice << endl;
+                cout << "ÊúÄ‰Ωé‰ª∑ TThostFtdcPriceType:" << pDepthMarketData->LowestPrice << endl;
+                cout << "Êï∞Èáè TThostFtdcVolumeType:" << pDepthMarketData->Volume << endl;
+                cout << "Êàê‰∫§ÈáëÈ¢ù TThostFtdcMoneyType:" << pDepthMarketData->Turnover << endl;
+                cout << "ÊåÅ‰ªìÈáè TThostFtdcLargeVolumeType:" << pDepthMarketData->OpenInterest << endl;
+                cout << "‰ªäÊî∂Áõò TThostFtdcPriceType:" << pDepthMarketData->ClosePrice << endl;
+                cout << "Êú¨Ê¨°ÁªìÁÆó‰ª∑ TThostFtdcPriceType:" << pDepthMarketData->SettlementPrice << endl;
+                cout << "Ê∂®ÂÅúÊùø‰ª∑ TThostFtdcPriceType:" << pDepthMarketData->UpperLimitPrice << endl;
+                cout << "Ë∑åÂÅúÊùø‰ª∑ TThostFtdcPriceType:" << pDepthMarketData->LowerLimitPrice << endl;
+                cout << "Êò®ËôöÂÆûÂ∫¶ TThostFtdcRatioType:" << pDepthMarketData->PreDelta << endl;
+                cout << "‰ªäËôöÂÆûÂ∫¶ TThostFtdcRatioType:" << pDepthMarketData->CurrDelta << endl;
+                cout << "ÊúÄÂêé‰øÆÊîπÊó∂Èó¥ TThostFtdcTimeType:" << pDepthMarketData->UpdateTime << endl;
+                cout << "ÊúÄÂêé‰øÆÊîπÊØ´Áßí TThostFtdcMillisecType:" << pDepthMarketData->UpdateMillisec << endl;
+                cout << "Áî≥‰π∞‰ª∑‰∏Ä TThostFtdcPriceType:" << pDepthMarketData->BidPrice1 << endl;
+                cout << "Áî≥‰π∞Èáè‰∏Ä TThostFtdcVolumeType:" << pDepthMarketData->BidVolume1 << endl;
+                cout << "Áî≥Âçñ‰ª∑‰∏Ä TThostFtdcPriceType:" << pDepthMarketData->AskPrice1 << endl;
+                cout << "Áî≥ÂçñÈáè‰∏Ä TThostFtdcVolumeType:" << pDepthMarketData->AskVolume1 << endl;
+                cout << "Áî≥‰π∞‰ª∑‰∫å TThostFtdcPriceType:" << pDepthMarketData->BidPrice2 << endl;
+                cout << "Áî≥‰π∞Èáè‰∫å TThostFtdcVolumeType:" << pDepthMarketData->BidVolume2 << endl;
+                cout << "Áî≥Âçñ‰ª∑‰∫å TThostFtdcPriceType:" << pDepthMarketData->AskPrice2 << endl;
+                cout << "Áî≥ÂçñÈáè‰∫å TThostFtdcVolumeType:" << pDepthMarketData->AskVolume2 << endl;
+                cout << "Áî≥‰π∞‰ª∑‰∏â TThostFtdcPriceType:" << pDepthMarketData->BidPrice3 << endl;
+                cout << "Áî≥‰π∞Èáè‰∏â TThostFtdcVolumeType:" << pDepthMarketData->BidVolume3 << endl;
+                cout << "Áî≥Âçñ‰ª∑‰∏â TThostFtdcPriceType:" << pDepthMarketData->AskPrice3 << endl;
+                cout << "Áî≥ÂçñÈáè‰∏â TThostFtdcVolumeType:" << pDepthMarketData->AskVolume3 << endl;
+                cout << "Áî≥‰π∞‰ª∑Âõõ TThostFtdcPriceType:" << pDepthMarketData->BidPrice4 << endl;
+                cout << "Áî≥‰π∞ÈáèÂõõ TThostFtdcVolumeType:" << pDepthMarketData->BidVolume4 << endl;
+                cout << "Áî≥Âçñ‰ª∑Âõõ TThostFtdcPriceType:" << pDepthMarketData->AskPrice4 << endl;
+                cout << "Áî≥ÂçñÈáèÂõõ TThostFtdcVolumeType:" << pDepthMarketData->AskVolume4 << endl;
+                cout << "Áî≥‰π∞‰ª∑‰∫î TThostFtdcPriceType:" << pDepthMarketData->BidPrice5 << endl;
+                cout << "Áî≥‰π∞Èáè‰∫î TThostFtdcVolumeType:" << pDepthMarketData->BidVolume5 << endl;
+                cout << "Áî≥Âçñ‰ª∑‰∫î TThostFtdcPriceType:" << pDepthMarketData->AskPrice5 << endl;
+                cout << "Áî≥ÂçñÈáè‰∫î TThostFtdcVolumeType:" << pDepthMarketData->AskVolume5 << endl;
+                cout << "ÂΩìÊó•Âùá‰ª∑ TThostFtdcPriceType:" << pDepthMarketData->AveragePrice << endl;
+                cout << "‰∏öÂä°Êó•Êúü TThostFtdcDateType:" << pDepthMarketData->ActionDay << endl;
         }
 }
 
-///«Î«Û≤È—ØÕ∂◊ ’ﬂΩ·À„Ω·π˚œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ÊäïËµÑËÄÖÁªìÁÆóÁªìÊûúÂìçÂ∫î
 void CTraderSpi::OnRspQrySettlementInfo(CThostFtdcSettlementInfoField* pSettlementInfo, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "Ωª“◊»’ TThostFtdcDateType:" << pSettlementInfo->TradingDay << endl;
-                cout << "Ω·À„±‡∫≈ TThostFtdcSettlementIDType:" << pSettlementInfo->SettlementID << endl;
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pSettlementInfo->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pSettlementInfo->InvestorID << endl;
-                cout << "–Ú∫≈ TThostFtdcSequenceNoType:" << pSettlementInfo->SequenceNo << endl;
-                cout << "œ˚œ¢’˝Œƒ TThostFtdcContentType:" << pSettlementInfo->Content << endl;
+                cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pSettlementInfo->TradingDay << endl;
+                cout << "ÁªìÁÆóÁºñÂè∑ TThostFtdcSettlementIDType:" << pSettlementInfo->SettlementID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pSettlementInfo->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pSettlementInfo->InvestorID << endl;
+                cout << "Â∫èÂè∑ TThostFtdcSequenceNoType:" << pSettlementInfo->SequenceNo << endl;
+                cout << "Ê∂àÊÅØÊ≠£Êñá TThostFtdcContentType:" << pSettlementInfo->Content << endl;
         }
 }
 
-///«Î«Û≤È—Ø◊™’ “¯––œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ËΩ¨Â∏êÈì∂Ë°åÂìçÂ∫î
 void CTraderSpi::OnRspQryTransferBank(CThostFtdcTransferBankField* pTransferBank, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pTransferBank->BankID << endl;
-                cout << "“¯––∑÷÷––ƒ¥˙¬Î TThostFtdcBankBrchIDType:" << pTransferBank->BankBrchID << endl;
-                cout << "“¯––√˚≥∆ TThostFtdcBankNameType:" << pTransferBank->BankName << endl;
-                cout << " «∑ÒªÓ‘æ TThostFtdcBoolType:" << pTransferBank->IsActive << endl;
+                cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pTransferBank->BankID << endl;
+                cout << "Èì∂Ë°åÂàÜ‰∏≠ÂøÉ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pTransferBank->BankBrchID << endl;
+                cout << "Èì∂Ë°åÂêçÁß∞ TThostFtdcBankNameType:" << pTransferBank->BankName << endl;
+                cout << "ÊòØÂê¶Ê¥ªË∑É TThostFtdcBoolType:" << pTransferBank->IsActive << endl;
         }
 }
 
-///«Î«Û≤È—ØÕ∂◊ ’ﬂ≥÷≤÷√˜œ∏œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ÊäïËµÑËÄÖÊåÅ‰ªìÊòéÁªÜÂìçÂ∫î
 void CTraderSpi::OnRspQryInvestorPositionDetail(CThostFtdcInvestorPositionDetailField* pInvestorPositionDetail, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInvestorPositionDetail->InstrumentID << endl;
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInvestorPositionDetail->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInvestorPositionDetail->InvestorID << endl;
-                cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pInvestorPositionDetail->HedgeFlag << endl;
-                cout << "¬Ú¬Ù TThostFtdcDirectionType:" << pInvestorPositionDetail->Direction << endl;
-                cout << "ø™≤÷»’∆⁄ TThostFtdcDateType:" << pInvestorPositionDetail->OpenDate << endl;
-                cout << "≥…Ωª±‡∫≈ TThostFtdcTradeIDType:" << pInvestorPositionDetail->TradeID << endl;
-                cout << " ˝¡ø TThostFtdcVolumeType:" << pInvestorPositionDetail->Volume << endl;
-                cout << "ø™≤÷º€ TThostFtdcPriceType:" << pInvestorPositionDetail->OpenPrice << endl;
-                cout << "Ωª“◊»’ TThostFtdcDateType:" << pInvestorPositionDetail->TradingDay << endl;
-                cout << "Ω·À„±‡∫≈ TThostFtdcSettlementIDType:" << pInvestorPositionDetail->SettlementID << endl;
-                cout << "≥…Ωª¿‡–Õ TThostFtdcTradeTypeType:" << pInvestorPositionDetail->TradeType << endl;
-                cout << "◊È∫œ∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInvestorPositionDetail->CombInstrumentID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInvestorPositionDetail->ExchangeID << endl;
-                cout << "÷»’∂¢ –∆Ω≤÷”Øø˜ TThostFtdcMoneyType:" << pInvestorPositionDetail->CloseProfitByDate << endl;
-                cout << "÷± ∂‘≥Â∆Ω≤÷”Øø˜ TThostFtdcMoneyType:" << pInvestorPositionDetail->CloseProfitByTrade << endl;
-                cout << "÷»’∂¢ –≥÷≤÷”Øø˜ TThostFtdcMoneyType:" << pInvestorPositionDetail->PositionProfitByDate << endl;
-                cout << "÷± ∂‘≥Â≥÷≤÷”Øø˜ TThostFtdcMoneyType:" << pInvestorPositionDetail->PositionProfitByTrade << endl;
-                cout << "Õ∂◊ ’ﬂ±£÷§Ω TThostFtdcMoneyType:" << pInvestorPositionDetail->Margin << endl;
-                cout << "Ωª“◊À˘±£÷§Ω TThostFtdcMoneyType:" << pInvestorPositionDetail->ExchMargin << endl;
-                cout << "±£÷§Ω¬  TThostFtdcRatioType:" << pInvestorPositionDetail->MarginRateByMoney << endl;
-                cout << "±£÷§Ω¬ ∞¥ ÷ ˝ TThostFtdcRatioType:" << pInvestorPositionDetail->MarginRateByVolume << endl;
-                cout << "◊ÚΩ·À„º€ TThostFtdcPriceType:" << pInvestorPositionDetail->LastSettlementPrice << endl;
-                cout << "Ω·À„º€ TThostFtdcPriceType:" << pInvestorPositionDetail->SettlementPrice << endl;
-                cout << "∆Ω≤÷¡ø TThostFtdcVolumeType:" << pInvestorPositionDetail->CloseVolume << endl;
-                cout << "∆Ω≤÷Ω∂Ó TThostFtdcMoneyType:" << pInvestorPositionDetail->CloseAmount << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInvestorPositionDetail->InstrumentID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInvestorPositionDetail->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInvestorPositionDetail->InvestorID << endl;
+                cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pInvestorPositionDetail->HedgeFlag << endl;
+                cout << "‰π∞Âçñ TThostFtdcDirectionType:" << pInvestorPositionDetail->Direction << endl;
+                cout << "ÂºÄ‰ªìÊó•Êúü TThostFtdcDateType:" << pInvestorPositionDetail->OpenDate << endl;
+                cout << "Êàê‰∫§ÁºñÂè∑ TThostFtdcTradeIDType:" << pInvestorPositionDetail->TradeID << endl;
+                cout << "Êï∞Èáè TThostFtdcVolumeType:" << pInvestorPositionDetail->Volume << endl;
+                cout << "ÂºÄ‰ªì‰ª∑ TThostFtdcPriceType:" << pInvestorPositionDetail->OpenPrice << endl;
+                cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pInvestorPositionDetail->TradingDay << endl;
+                cout << "ÁªìÁÆóÁºñÂè∑ TThostFtdcSettlementIDType:" << pInvestorPositionDetail->SettlementID << endl;
+                cout << "Êàê‰∫§Á±ªÂûã TThostFtdcTradeTypeType:" << pInvestorPositionDetail->TradeType << endl;
+                cout << "ÁªÑÂêàÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInvestorPositionDetail->CombInstrumentID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInvestorPositionDetail->ExchangeID << endl;
+                cout << "ÈÄêÊó•ÁõØÂ∏ÇÂπ≥‰ªìÁõà‰∫è TThostFtdcMoneyType:" << pInvestorPositionDetail->CloseProfitByDate << endl;
+                cout << "ÈÄêÁ¨îÂØπÂÜ≤Âπ≥‰ªìÁõà‰∫è TThostFtdcMoneyType:" << pInvestorPositionDetail->CloseProfitByTrade << endl;
+                cout << "ÈÄêÊó•ÁõØÂ∏ÇÊåÅ‰ªìÁõà‰∫è TThostFtdcMoneyType:" << pInvestorPositionDetail->PositionProfitByDate << endl;
+                cout << "ÈÄêÁ¨îÂØπÂÜ≤ÊåÅ‰ªìÁõà‰∫è TThostFtdcMoneyType:" << pInvestorPositionDetail->PositionProfitByTrade << endl;
+                cout << "ÊäïËµÑËÄÖ‰øùËØÅÈáë TThostFtdcMoneyType:" << pInvestorPositionDetail->Margin << endl;
+                cout << "‰∫§ÊòìÊâÄ‰øùËØÅÈáë TThostFtdcMoneyType:" << pInvestorPositionDetail->ExchMargin << endl;
+                cout << "‰øùËØÅÈáëÁéá TThostFtdcRatioType:" << pInvestorPositionDetail->MarginRateByMoney << endl;
+                cout << "‰øùËØÅÈáëÁéáÊåâÊâãÊï∞ TThostFtdcRatioType:" << pInvestorPositionDetail->MarginRateByVolume << endl;
+                cout << "Êò®ÁªìÁÆó‰ª∑ TThostFtdcPriceType:" << pInvestorPositionDetail->LastSettlementPrice << endl;
+                cout << "ÁªìÁÆó‰ª∑ TThostFtdcPriceType:" << pInvestorPositionDetail->SettlementPrice << endl;
+                cout << "Âπ≥‰ªìÈáè TThostFtdcVolumeType:" << pInvestorPositionDetail->CloseVolume << endl;
+                cout << "Âπ≥‰ªìÈáëÈ¢ù TThostFtdcMoneyType:" << pInvestorPositionDetail->CloseAmount << endl;
         }
 }
 
-///«Î«Û≤È—ØøÕªßÕ®÷™œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ÂÆ¢Êà∑ÈÄöÁü•ÂìçÂ∫î
 void CTraderSpi::OnRspQryNotice(CThostFtdcNoticeField* pNotice, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pNotice->BrokerID << endl;
-                cout << "œ˚œ¢’˝Œƒ TThostFtdcContentType:" << pNotice->Content << endl;
-                cout << "æ≠ºÕπ´ÀæÕ®÷™ƒ⁄»›–Ú¡–∫≈ TThostFtdcSequenceLabelType:" << pNotice->SequenceLabel << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pNotice->BrokerID << endl;
+                cout << "Ê∂àÊÅØÊ≠£Êñá TThostFtdcContentType:" << pNotice->Content << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏ÈÄöÁü•ÂÜÖÂÆπÂ∫èÂàóÂè∑ TThostFtdcSequenceLabelType:" << pNotice->SequenceLabel << endl;
         }
 }
 
-///«Î«Û≤È—ØΩ·À„–≈œ¢»∑»œœÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ÁªìÁÆó‰ø°ÊÅØÁ°ÆËÆ§ÂìçÂ∫î
 void CTraderSpi::OnRspQrySettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField* pSettlementInfoConfirm, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pSettlementInfoConfirm->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pSettlementInfoConfirm->InvestorID << endl;
-                cout << "»∑»œ»’∆⁄ TThostFtdcDateType:" << pSettlementInfoConfirm->ConfirmDate << endl;
-                cout << "»∑»œ ±º‰ TThostFtdcTimeType:" << pSettlementInfoConfirm->ConfirmTime << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pSettlementInfoConfirm->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pSettlementInfoConfirm->InvestorID << endl;
+                cout << "Á°ÆËÆ§Êó•Êúü TThostFtdcDateType:" << pSettlementInfoConfirm->ConfirmDate << endl;
+                cout << "Á°ÆËÆ§Êó∂Èó¥ TThostFtdcTimeType:" << pSettlementInfoConfirm->ConfirmTime << endl;
         }
 }
 
-///«Î«Û≤È—ØÕ∂◊ ’ﬂ≥÷≤÷√˜œ∏œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ÊäïËµÑËÄÖÊåÅ‰ªìÊòéÁªÜÂìçÂ∫î
 void CTraderSpi::OnRspQryInvestorPositionCombineDetail(CThostFtdcInvestorPositionCombineDetailField* pInvestorPositionCombineDetail, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "Ωª“◊»’ TThostFtdcDateType:" << pInvestorPositionCombineDetail->TradingDay << endl;
-                cout << "ø™≤÷»’∆⁄ TThostFtdcDateType:" << pInvestorPositionCombineDetail->OpenDate << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInvestorPositionCombineDetail->ExchangeID << endl;
-                cout << "Ω·À„±‡∫≈ TThostFtdcSettlementIDType:" << pInvestorPositionCombineDetail->SettlementID << endl;
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInvestorPositionCombineDetail->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInvestorPositionCombineDetail->InvestorID << endl;
-                cout << "◊È∫œ±‡∫≈ TThostFtdcTradeIDType:" << pInvestorPositionCombineDetail->ComTradeID << endl;
-                cout << "¥È∫œ±‡∫≈ TThostFtdcTradeIDType:" << pInvestorPositionCombineDetail->TradeID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInvestorPositionCombineDetail->InstrumentID << endl;
-                cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pInvestorPositionCombineDetail->HedgeFlag << endl;
-                cout << "¬Ú¬Ù TThostFtdcDirectionType:" << pInvestorPositionCombineDetail->Direction << endl;
-                cout << "≥÷≤÷¡ø TThostFtdcVolumeType:" << pInvestorPositionCombineDetail->TotalAmt << endl;
-                cout << "Õ∂◊ ’ﬂ±£÷§Ω TThostFtdcMoneyType:" << pInvestorPositionCombineDetail->Margin << endl;
-                cout << "Ωª“◊À˘±£÷§Ω TThostFtdcMoneyType:" << pInvestorPositionCombineDetail->ExchMargin << endl;
-                cout << "±£÷§Ω¬  TThostFtdcRatioType:" << pInvestorPositionCombineDetail->MarginRateByMoney << endl;
-                cout << "±£÷§Ω¬ ∞¥ ÷ ˝ TThostFtdcRatioType:" << pInvestorPositionCombineDetail->MarginRateByVolume << endl;
-                cout << "µ•Õ»±‡∫≈ TThostFtdcLegIDType:" << pInvestorPositionCombineDetail->LegID << endl;
-                cout << "µ•Õ»≥À ˝ TThostFtdcLegMultipleType:" << pInvestorPositionCombineDetail->LegMultiple << endl;
-                cout << "◊È∫œ≥÷≤÷∫œ‘º±‡¬Î TThostFtdcInstrumentIDType:" << pInvestorPositionCombineDetail->CombInstrumentID << endl;
-                cout << "≥…Ωª◊È∫≈ TThostFtdcTradeGroupIDType:" << pInvestorPositionCombineDetail->TradeGroupID << endl;
+                cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pInvestorPositionCombineDetail->TradingDay << endl;
+                cout << "ÂºÄ‰ªìÊó•Êúü TThostFtdcDateType:" << pInvestorPositionCombineDetail->OpenDate << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInvestorPositionCombineDetail->ExchangeID << endl;
+                cout << "ÁªìÁÆóÁºñÂè∑ TThostFtdcSettlementIDType:" << pInvestorPositionCombineDetail->SettlementID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInvestorPositionCombineDetail->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInvestorPositionCombineDetail->InvestorID << endl;
+                cout << "ÁªÑÂêàÁºñÂè∑ TThostFtdcTradeIDType:" << pInvestorPositionCombineDetail->ComTradeID << endl;
+                cout << "ÊíÆÂêàÁºñÂè∑ TThostFtdcTradeIDType:" << pInvestorPositionCombineDetail->TradeID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInvestorPositionCombineDetail->InstrumentID << endl;
+                cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pInvestorPositionCombineDetail->HedgeFlag << endl;
+                cout << "‰π∞Âçñ TThostFtdcDirectionType:" << pInvestorPositionCombineDetail->Direction << endl;
+                cout << "ÊåÅ‰ªìÈáè TThostFtdcVolumeType:" << pInvestorPositionCombineDetail->TotalAmt << endl;
+                cout << "ÊäïËµÑËÄÖ‰øùËØÅÈáë TThostFtdcMoneyType:" << pInvestorPositionCombineDetail->Margin << endl;
+                cout << "‰∫§ÊòìÊâÄ‰øùËØÅÈáë TThostFtdcMoneyType:" << pInvestorPositionCombineDetail->ExchMargin << endl;
+                cout << "‰øùËØÅÈáëÁéá TThostFtdcRatioType:" << pInvestorPositionCombineDetail->MarginRateByMoney << endl;
+                cout << "‰øùËØÅÈáëÁéáÊåâÊâãÊï∞ TThostFtdcRatioType:" << pInvestorPositionCombineDetail->MarginRateByVolume << endl;
+                cout << "ÂçïËÖøÁºñÂè∑ TThostFtdcLegIDType:" << pInvestorPositionCombineDetail->LegID << endl;
+                cout << "ÂçïËÖø‰πòÊï∞ TThostFtdcLegMultipleType:" << pInvestorPositionCombineDetail->LegMultiple << endl;
+                cout << "ÁªÑÂêàÊåÅ‰ªìÂêàÁ∫¶ÁºñÁ†Å TThostFtdcInstrumentIDType:" << pInvestorPositionCombineDetail->CombInstrumentID << endl;
+                cout << "Êàê‰∫§ÁªÑÂè∑ TThostFtdcTradeGroupIDType:" << pInvestorPositionCombineDetail->TradeGroupID << endl;
         }
 }
 
-///≤È—Ø±£÷§Ωº‡π‹œµÕ≥æ≠ºÕπ´Àæ◊ Ω’Àªß√‹‘øœÏ”¶
+///Êü•ËØ¢‰øùËØÅÈáëÁõëÁÆ°Á≥ªÁªüÁªèÁ∫™ÂÖ¨Âè∏ËµÑÈáëË¥¶Êà∑ÂØÜÈí•ÂìçÂ∫î
 void CTraderSpi::OnRspQryCFMMCTradingAccountKey(CThostFtdcCFMMCTradingAccountKeyField* pCFMMCTradingAccountKey, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pCFMMCTradingAccountKey->BrokerID << endl;
-                cout << "æ≠ºÕπ´ÀæÕ≥“ª±‡¬Î TThostFtdcParticipantIDType:" << pCFMMCTradingAccountKey->ParticipantID << endl;
-                cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pCFMMCTradingAccountKey->AccountID << endl;
-                cout << "√‹‘ø±‡∫≈ TThostFtdcSequenceNoType:" << pCFMMCTradingAccountKey->KeyID << endl;
-                cout << "∂ØÃ¨√‹‘ø TThostFtdcCFMMCKeyType:" << pCFMMCTradingAccountKey->CurrentKey << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pCFMMCTradingAccountKey->BrokerID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏Áªü‰∏ÄÁºñÁ†Å TThostFtdcParticipantIDType:" << pCFMMCTradingAccountKey->ParticipantID << endl;
+                cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pCFMMCTradingAccountKey->AccountID << endl;
+                cout << "ÂØÜÈí•ÁºñÂè∑ TThostFtdcSequenceNoType:" << pCFMMCTradingAccountKey->KeyID << endl;
+                cout << "Âä®ÊÄÅÂØÜÈí• TThostFtdcCFMMCKeyType:" << pCFMMCTradingAccountKey->CurrentKey << endl;
         }
 }
 
-///«Î«Û≤È—Ø≤÷µ•’€µ÷–≈œ¢œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢‰ªìÂçïÊäòÊäµ‰ø°ÊÅØÂìçÂ∫î
 void CTraderSpi::OnRspQryEWarrantOffset(CThostFtdcEWarrantOffsetField* pEWarrantOffset, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pEWarrantOffset->TradingDay << endl;
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pEWarrantOffset->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pEWarrantOffset->InvestorID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pEWarrantOffset->ExchangeID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pEWarrantOffset->InstrumentID << endl;
-                cout << "¬Ú¬Ù∑ΩœÚ TThostFtdcDirectionType:" << pEWarrantOffset->Direction << endl;
-                cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pEWarrantOffset->HedgeFlag << endl;
-                cout << " ˝¡ø TThostFtdcVolumeType:" << pEWarrantOffset->Volume << endl;
+                cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pEWarrantOffset->TradingDay << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pEWarrantOffset->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pEWarrantOffset->InvestorID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pEWarrantOffset->ExchangeID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pEWarrantOffset->InstrumentID << endl;
+                cout << "‰π∞ÂçñÊñπÂêë TThostFtdcDirectionType:" << pEWarrantOffset->Direction << endl;
+                cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pEWarrantOffset->HedgeFlag << endl;
+                cout << "Êï∞Èáè TThostFtdcVolumeType:" << pEWarrantOffset->Volume << endl;
         }
 }
 
-///«Î«Û≤È—ØÕ∂◊ ’ﬂ∆∑÷÷/øÁ∆∑÷÷±£÷§ΩœÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ÊäïËµÑËÄÖÂìÅÁßç/Ë∑®ÂìÅÁßç‰øùËØÅÈáëÂìçÂ∫î
 void CTraderSpi::OnRspQryInvestorProductGroupMargin(CThostFtdcInvestorProductGroupMarginField* pInvestorProductGroupMargin, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "∆∑÷÷øÁ∆∑÷÷±Í æ TThostFtdcInstrumentIDType:" << pInvestorProductGroupMargin->ProductGroupID << endl;
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInvestorProductGroupMargin->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInvestorProductGroupMargin->InvestorID << endl;
-                cout << "Ωª“◊»’ TThostFtdcDateType:" << pInvestorProductGroupMargin->TradingDay << endl;
-                cout << "Ω·À„±‡∫≈ TThostFtdcSettlementIDType:" << pInvestorProductGroupMargin->SettlementID << endl;
-                cout << "∂≥Ω·µƒ±£÷§Ω TThostFtdcMoneyType:" << pInvestorProductGroupMargin->FrozenMargin << endl;
-                cout << "∂‡Õ∑∂≥Ω·µƒ±£÷§Ω TThostFtdcMoneyType:" << pInvestorProductGroupMargin->LongFrozenMargin << endl;
-                cout << "ø’Õ∑∂≥Ω·µƒ±£÷§Ω TThostFtdcMoneyType:" << pInvestorProductGroupMargin->ShortFrozenMargin << endl;
-                cout << "’º”√µƒ±£÷§Ω TThostFtdcMoneyType:" << pInvestorProductGroupMargin->UseMargin << endl;
-                cout << "∂‡Õ∑±£÷§Ω TThostFtdcMoneyType:" << pInvestorProductGroupMargin->LongUseMargin << endl;
-                cout << "ø’Õ∑±£÷§Ω TThostFtdcMoneyType:" << pInvestorProductGroupMargin->ShortUseMargin << endl;
-                cout << "Ωª“◊À˘±£÷§Ω TThostFtdcMoneyType:" << pInvestorProductGroupMargin->ExchMargin << endl;
-                cout << "Ωª“◊À˘∂‡Õ∑±£÷§Ω TThostFtdcMoneyType:" << pInvestorProductGroupMargin->LongExchMargin << endl;
-                cout << "Ωª“◊À˘ø’Õ∑±£÷§Ω TThostFtdcMoneyType:" << pInvestorProductGroupMargin->ShortExchMargin << endl;
-                cout << "∆Ω≤÷”Øø˜ TThostFtdcMoneyType:" << pInvestorProductGroupMargin->CloseProfit << endl;
-                cout << "∂≥Ω·µƒ ÷–¯∑— TThostFtdcMoneyType:" << pInvestorProductGroupMargin->FrozenCommission << endl;
-                cout << " ÷–¯∑— TThostFtdcMoneyType:" << pInvestorProductGroupMargin->Commission << endl;
-                cout << "∂≥Ω·µƒ◊ Ω TThostFtdcMoneyType:" << pInvestorProductGroupMargin->FrozenCash << endl;
-                cout << "◊ Ω≤Ó∂Ó TThostFtdcMoneyType:" << pInvestorProductGroupMargin->CashIn << endl;
-                cout << "≥÷≤÷”Øø˜ TThostFtdcMoneyType:" << pInvestorProductGroupMargin->PositionProfit << endl;
-                cout << "’€µ÷◊‹Ω∂Ó TThostFtdcMoneyType:" << pInvestorProductGroupMargin->OffsetAmount << endl;
-                cout << "∂‡Õ∑’€µ÷◊‹Ω∂Ó TThostFtdcMoneyType:" << pInvestorProductGroupMargin->LongOffsetAmount << endl;
-                cout << "ø’Õ∑’€µ÷◊‹Ω∂Ó TThostFtdcMoneyType:" << pInvestorProductGroupMargin->ShortOffsetAmount << endl;
-                cout << "Ωª“◊À˘’€µ÷◊‹Ω∂Ó TThostFtdcMoneyType:" << pInvestorProductGroupMargin->ExchOffsetAmount << endl;
-                cout << "Ωª“◊À˘∂‡Õ∑’€µ÷◊‹Ω∂Ó TThostFtdcMoneyType:" << pInvestorProductGroupMargin->LongExchOffsetAmount << endl;
-                cout << "Ωª“◊À˘ø’Õ∑’€µ÷◊‹Ω∂Ó TThostFtdcMoneyType:" << pInvestorProductGroupMargin->ShortExchOffsetAmount << endl;
-                cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pInvestorProductGroupMargin->HedgeFlag << endl;
+                cout << "ÂìÅÁßçË∑®ÂìÅÁßçÊ†áÁ§∫ TThostFtdcInstrumentIDType:" << pInvestorProductGroupMargin->ProductGroupID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInvestorProductGroupMargin->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInvestorProductGroupMargin->InvestorID << endl;
+                cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pInvestorProductGroupMargin->TradingDay << endl;
+                cout << "ÁªìÁÆóÁºñÂè∑ TThostFtdcSettlementIDType:" << pInvestorProductGroupMargin->SettlementID << endl;
+                cout << "ÂÜªÁªìÁöÑ‰øùËØÅÈáë TThostFtdcMoneyType:" << pInvestorProductGroupMargin->FrozenMargin << endl;
+                cout << "Â§öÂ§¥ÂÜªÁªìÁöÑ‰øùËØÅÈáë TThostFtdcMoneyType:" << pInvestorProductGroupMargin->LongFrozenMargin << endl;
+                cout << "Á©∫Â§¥ÂÜªÁªìÁöÑ‰øùËØÅÈáë TThostFtdcMoneyType:" << pInvestorProductGroupMargin->ShortFrozenMargin << endl;
+                cout << "Âç†Áî®ÁöÑ‰øùËØÅÈáë TThostFtdcMoneyType:" << pInvestorProductGroupMargin->UseMargin << endl;
+                cout << "Â§öÂ§¥‰øùËØÅÈáë TThostFtdcMoneyType:" << pInvestorProductGroupMargin->LongUseMargin << endl;
+                cout << "Á©∫Â§¥‰øùËØÅÈáë TThostFtdcMoneyType:" << pInvestorProductGroupMargin->ShortUseMargin << endl;
+                cout << "‰∫§ÊòìÊâÄ‰øùËØÅÈáë TThostFtdcMoneyType:" << pInvestorProductGroupMargin->ExchMargin << endl;
+                cout << "‰∫§ÊòìÊâÄÂ§öÂ§¥‰øùËØÅÈáë TThostFtdcMoneyType:" << pInvestorProductGroupMargin->LongExchMargin << endl;
+                cout << "‰∫§ÊòìÊâÄÁ©∫Â§¥‰øùËØÅÈáë TThostFtdcMoneyType:" << pInvestorProductGroupMargin->ShortExchMargin << endl;
+                cout << "Âπ≥‰ªìÁõà‰∫è TThostFtdcMoneyType:" << pInvestorProductGroupMargin->CloseProfit << endl;
+                cout << "ÂÜªÁªìÁöÑÊâãÁª≠Ë¥π TThostFtdcMoneyType:" << pInvestorProductGroupMargin->FrozenCommission << endl;
+                cout << "ÊâãÁª≠Ë¥π TThostFtdcMoneyType:" << pInvestorProductGroupMargin->Commission << endl;
+                cout << "ÂÜªÁªìÁöÑËµÑÈáë TThostFtdcMoneyType:" << pInvestorProductGroupMargin->FrozenCash << endl;
+                cout << "ËµÑÈáëÂ∑ÆÈ¢ù TThostFtdcMoneyType:" << pInvestorProductGroupMargin->CashIn << endl;
+                cout << "ÊåÅ‰ªìÁõà‰∫è TThostFtdcMoneyType:" << pInvestorProductGroupMargin->PositionProfit << endl;
+                cout << "ÊäòÊäµÊÄªÈáëÈ¢ù TThostFtdcMoneyType:" << pInvestorProductGroupMargin->OffsetAmount << endl;
+                cout << "Â§öÂ§¥ÊäòÊäµÊÄªÈáëÈ¢ù TThostFtdcMoneyType:" << pInvestorProductGroupMargin->LongOffsetAmount << endl;
+                cout << "Á©∫Â§¥ÊäòÊäµÊÄªÈáëÈ¢ù TThostFtdcMoneyType:" << pInvestorProductGroupMargin->ShortOffsetAmount << endl;
+                cout << "‰∫§ÊòìÊâÄÊäòÊäµÊÄªÈáëÈ¢ù TThostFtdcMoneyType:" << pInvestorProductGroupMargin->ExchOffsetAmount << endl;
+                cout << "‰∫§ÊòìÊâÄÂ§öÂ§¥ÊäòÊäµÊÄªÈáëÈ¢ù TThostFtdcMoneyType:" << pInvestorProductGroupMargin->LongExchOffsetAmount << endl;
+                cout << "‰∫§ÊòìÊâÄÁ©∫Â§¥ÊäòÊäµÊÄªÈáëÈ¢ù TThostFtdcMoneyType:" << pInvestorProductGroupMargin->ShortExchOffsetAmount << endl;
+                cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pInvestorProductGroupMargin->HedgeFlag << endl;
         }
 }
 
-///«Î«Û≤È—ØΩª“◊À˘±£÷§Ω¬ œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢‰∫§ÊòìÊâÄ‰øùËØÅÈáëÁéáÂìçÂ∫î
 void CTraderSpi::OnRspQryExchangeMarginRate(CThostFtdcExchangeMarginRateField* pExchangeMarginRate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pExchangeMarginRate->BrokerID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pExchangeMarginRate->InstrumentID << endl;
-                cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pExchangeMarginRate->HedgeFlag << endl;
-                cout << "∂‡Õ∑±£÷§Ω¬  TThostFtdcRatioType:" << pExchangeMarginRate->LongMarginRatioByMoney << endl;
-                cout << "∂‡Õ∑±£÷§Ω∑— TThostFtdcMoneyType:" << pExchangeMarginRate->LongMarginRatioByVolume << endl;
-                cout << "ø’Õ∑±£÷§Ω¬  TThostFtdcRatioType:" << pExchangeMarginRate->ShortMarginRatioByMoney << endl;
-                cout << "ø’Õ∑±£÷§Ω∑— TThostFtdcMoneyType:" << pExchangeMarginRate->ShortMarginRatioByVolume << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pExchangeMarginRate->BrokerID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pExchangeMarginRate->InstrumentID << endl;
+                cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pExchangeMarginRate->HedgeFlag << endl;
+                cout << "Â§öÂ§¥‰øùËØÅÈáëÁéá TThostFtdcRatioType:" << pExchangeMarginRate->LongMarginRatioByMoney << endl;
+                cout << "Â§öÂ§¥‰øùËØÅÈáëË¥π TThostFtdcMoneyType:" << pExchangeMarginRate->LongMarginRatioByVolume << endl;
+                cout << "Á©∫Â§¥‰øùËØÅÈáëÁéá TThostFtdcRatioType:" << pExchangeMarginRate->ShortMarginRatioByMoney << endl;
+                cout << "Á©∫Â§¥‰øùËØÅÈáëË¥π TThostFtdcMoneyType:" << pExchangeMarginRate->ShortMarginRatioByVolume << endl;
         }
 }
 
-///«Î«Û≤È—ØΩª“◊À˘µ˜’˚±£÷§Ω¬ œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢‰∫§ÊòìÊâÄË∞ÉÊï¥‰øùËØÅÈáëÁéáÂìçÂ∫î
 void CTraderSpi::OnRspQryExchangeMarginRateAdjust(CThostFtdcExchangeMarginRateAdjustField* pExchangeMarginRateAdjust, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pExchangeMarginRateAdjust->BrokerID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pExchangeMarginRateAdjust->InstrumentID << endl;
-                cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pExchangeMarginRateAdjust->HedgeFlag << endl;
-                cout << "∏˙ÀÊΩª“◊À˘Õ∂◊ ’ﬂ∂‡Õ∑±£÷§Ω¬  TThostFtdcRatioType:" << pExchangeMarginRateAdjust->LongMarginRatioByMoney << endl;
-                cout << "∏˙ÀÊΩª“◊À˘Õ∂◊ ’ﬂ∂‡Õ∑±£÷§Ω∑— TThostFtdcMoneyType:" << pExchangeMarginRateAdjust->LongMarginRatioByVolume << endl;
-                cout << "∏˙ÀÊΩª“◊À˘Õ∂◊ ’ﬂø’Õ∑±£÷§Ω¬  TThostFtdcRatioType:" << pExchangeMarginRateAdjust->ShortMarginRatioByMoney << endl;
-                cout << "∏˙ÀÊΩª“◊À˘Õ∂◊ ’ﬂø’Õ∑±£÷§Ω∑— TThostFtdcMoneyType:" << pExchangeMarginRateAdjust->ShortMarginRatioByVolume << endl;
-                cout << "Ωª“◊À˘∂‡Õ∑±£÷§Ω¬  TThostFtdcRatioType:" << pExchangeMarginRateAdjust->ExchLongMarginRatioByMoney << endl;
-                cout << "Ωª“◊À˘∂‡Õ∑±£÷§Ω∑— TThostFtdcMoneyType:" << pExchangeMarginRateAdjust->ExchLongMarginRatioByVolume << endl;
-                cout << "Ωª“◊À˘ø’Õ∑±£÷§Ω¬  TThostFtdcRatioType:" << pExchangeMarginRateAdjust->ExchShortMarginRatioByMoney << endl;
-                cout << "Ωª“◊À˘ø’Õ∑±£÷§Ω∑— TThostFtdcMoneyType:" << pExchangeMarginRateAdjust->ExchShortMarginRatioByVolume << endl;
-                cout << "≤ª∏˙ÀÊΩª“◊À˘Õ∂◊ ’ﬂ∂‡Õ∑±£÷§Ω¬  TThostFtdcRatioType:" << pExchangeMarginRateAdjust->NoLongMarginRatioByMoney << endl;
-                cout << "≤ª∏˙ÀÊΩª“◊À˘Õ∂◊ ’ﬂ∂‡Õ∑±£÷§Ω∑— TThostFtdcMoneyType:" << pExchangeMarginRateAdjust->NoLongMarginRatioByVolume << endl;
-                cout << "≤ª∏˙ÀÊΩª“◊À˘Õ∂◊ ’ﬂø’Õ∑±£÷§Ω¬  TThostFtdcRatioType:" << pExchangeMarginRateAdjust->NoShortMarginRatioByMoney << endl;
-                cout << "≤ª∏˙ÀÊΩª“◊À˘Õ∂◊ ’ﬂø’Õ∑±£÷§Ω∑— TThostFtdcMoneyType:" << pExchangeMarginRateAdjust->NoShortMarginRatioByVolume << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pExchangeMarginRateAdjust->BrokerID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pExchangeMarginRateAdjust->InstrumentID << endl;
+                cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pExchangeMarginRateAdjust->HedgeFlag << endl;
+                cout << "Ë∑üÈöè‰∫§ÊòìÊâÄÊäïËµÑËÄÖÂ§öÂ§¥‰øùËØÅÈáëÁéá TThostFtdcRatioType:" << pExchangeMarginRateAdjust->LongMarginRatioByMoney << endl;
+                cout << "Ë∑üÈöè‰∫§ÊòìÊâÄÊäïËµÑËÄÖÂ§öÂ§¥‰øùËØÅÈáëË¥π TThostFtdcMoneyType:" << pExchangeMarginRateAdjust->LongMarginRatioByVolume << endl;
+                cout << "Ë∑üÈöè‰∫§ÊòìÊâÄÊäïËµÑËÄÖÁ©∫Â§¥‰øùËØÅÈáëÁéá TThostFtdcRatioType:" << pExchangeMarginRateAdjust->ShortMarginRatioByMoney << endl;
+                cout << "Ë∑üÈöè‰∫§ÊòìÊâÄÊäïËµÑËÄÖÁ©∫Â§¥‰øùËØÅÈáëË¥π TThostFtdcMoneyType:" << pExchangeMarginRateAdjust->ShortMarginRatioByVolume << endl;
+                cout << "‰∫§ÊòìÊâÄÂ§öÂ§¥‰øùËØÅÈáëÁéá TThostFtdcRatioType:" << pExchangeMarginRateAdjust->ExchLongMarginRatioByMoney << endl;
+                cout << "‰∫§ÊòìÊâÄÂ§öÂ§¥‰øùËØÅÈáëË¥π TThostFtdcMoneyType:" << pExchangeMarginRateAdjust->ExchLongMarginRatioByVolume << endl;
+                cout << "‰∫§ÊòìÊâÄÁ©∫Â§¥‰øùËØÅÈáëÁéá TThostFtdcRatioType:" << pExchangeMarginRateAdjust->ExchShortMarginRatioByMoney << endl;
+                cout << "‰∫§ÊòìÊâÄÁ©∫Â§¥‰øùËØÅÈáëË¥π TThostFtdcMoneyType:" << pExchangeMarginRateAdjust->ExchShortMarginRatioByVolume << endl;
+                cout << "‰∏çË∑üÈöè‰∫§ÊòìÊâÄÊäïËµÑËÄÖÂ§öÂ§¥‰øùËØÅÈáëÁéá TThostFtdcRatioType:" << pExchangeMarginRateAdjust->NoLongMarginRatioByMoney << endl;
+                cout << "‰∏çË∑üÈöè‰∫§ÊòìÊâÄÊäïËµÑËÄÖÂ§öÂ§¥‰øùËØÅÈáëË¥π TThostFtdcMoneyType:" << pExchangeMarginRateAdjust->NoLongMarginRatioByVolume << endl;
+                cout << "‰∏çË∑üÈöè‰∫§ÊòìÊâÄÊäïËµÑËÄÖÁ©∫Â§¥‰øùËØÅÈáëÁéá TThostFtdcRatioType:" << pExchangeMarginRateAdjust->NoShortMarginRatioByMoney << endl;
+                cout << "‰∏çË∑üÈöè‰∫§ÊòìÊâÄÊäïËµÑËÄÖÁ©∫Â§¥‰øùËØÅÈáëË¥π TThostFtdcMoneyType:" << pExchangeMarginRateAdjust->NoShortMarginRatioByVolume << endl;
         }
 }
 
-///«Î«Û≤È—Øª„¬ œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢Ê±áÁéáÂìçÂ∫î
 void CTraderSpi::OnRspQryExchangeRate(CThostFtdcExchangeRateField* pExchangeRate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pExchangeRate->BrokerID << endl;
-                cout << "‘¥±“÷÷ TThostFtdcCurrencyIDType:" << pExchangeRate->FromCurrencyID << endl;
-                cout << "‘¥±“÷÷µ•Œª ˝¡ø TThostFtdcCurrencyUnitType:" << pExchangeRate->FromCurrencyUnit << endl;
-                cout << "ƒø±Í±“÷÷ TThostFtdcCurrencyIDType:" << pExchangeRate->ToCurrencyID << endl;
-                cout << "ª„¬  TThostFtdcExchangeRateType:" << pExchangeRate->ExchangeRate << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pExchangeRate->BrokerID << endl;
+                cout << "Ê∫êÂ∏ÅÁßç TThostFtdcCurrencyIDType:" << pExchangeRate->FromCurrencyID << endl;
+                cout << "Ê∫êÂ∏ÅÁßçÂçï‰ΩçÊï∞Èáè TThostFtdcCurrencyUnitType:" << pExchangeRate->FromCurrencyUnit << endl;
+                cout << "ÁõÆÊ†áÂ∏ÅÁßç TThostFtdcCurrencyIDType:" << pExchangeRate->ToCurrencyID << endl;
+                cout << "Ê±áÁéá TThostFtdcExchangeRateType:" << pExchangeRate->ExchangeRate << endl;
         }
 }
 
-///«Î«Û≤È—Ø∂˛º∂¥˙¿Ì≤Ÿ◊˜‘±“¯∆⁄»®œﬁœÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢‰∫åÁ∫ß‰ª£ÁêÜÊìç‰ΩúÂëòÈì∂ÊúüÊùÉÈôêÂìçÂ∫î
 void CTraderSpi::OnRspQrySecAgentACIDMap(CThostFtdcSecAgentACIDMapField* pSecAgentACIDMap, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pSecAgentACIDMap->BrokerID << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pSecAgentACIDMap->UserID << endl;
-                cout << "◊ Ω’Àªß TThostFtdcAccountIDType:" << pSecAgentACIDMap->AccountID << endl;
-                cout << "±“÷÷ TThostFtdcCurrencyIDType:" << pSecAgentACIDMap->CurrencyID << endl;
-                cout << "æ≥Õ‚÷–ΩÈª˙ππ◊ Ω’ ∫≈ TThostFtdcAccountIDType:" << pSecAgentACIDMap->BrokerSecAgentID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pSecAgentACIDMap->BrokerID << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pSecAgentACIDMap->UserID << endl;
+                cout << "ËµÑÈáëË¥¶Êà∑ TThostFtdcAccountIDType:" << pSecAgentACIDMap->AccountID << endl;
+                cout << "Â∏ÅÁßç TThostFtdcCurrencyIDType:" << pSecAgentACIDMap->CurrencyID << endl;
+                cout << "Â¢ÉÂ§ñ‰∏≠‰ªãÊú∫ÊûÑËµÑÈáëÂ∏êÂè∑ TThostFtdcAccountIDType:" << pSecAgentACIDMap->BrokerSecAgentID << endl;
         }
 }
 
-///«Î«Û≤È—Ø≤˙∆∑±®º€ª„¬ 
+///ËØ∑Ê±ÇÊü•ËØ¢‰∫ßÂìÅÊä•‰ª∑Ê±áÁéá
 void CTraderSpi::OnRspQryProductExchRate(CThostFtdcProductExchRateField* pProductExchRate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "≤˙∆∑¥˙¬Î TThostFtdcInstrumentIDType:" << pProductExchRate->ProductID << endl;
-                cout << "±®º€±“÷÷¿‡–Õ TThostFtdcCurrencyIDType:" << pProductExchRate->QuoteCurrencyID << endl;
-                cout << "ª„¬  TThostFtdcExchangeRateType:" << pProductExchRate->ExchangeRate << endl;
+                cout << "‰∫ßÂìÅ‰ª£Á†Å TThostFtdcInstrumentIDType:" << pProductExchRate->ProductID << endl;
+                cout << "Êä•‰ª∑Â∏ÅÁßçÁ±ªÂûã TThostFtdcCurrencyIDType:" << pProductExchRate->QuoteCurrencyID << endl;
+                cout << "Ê±áÁéá TThostFtdcExchangeRateType:" << pProductExchRate->ExchangeRate << endl;
         }
 }
 
-///«Î«Û≤È—Ø≤˙∆∑◊È
+///ËØ∑Ê±ÇÊü•ËØ¢‰∫ßÂìÅÁªÑ
 void CTraderSpi::OnRspQryProductGroup(CThostFtdcProductGroupField* pProductGroup, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "≤˙∆∑¥˙¬Î TThostFtdcInstrumentIDType:" << pProductGroup->ProductID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pProductGroup->ExchangeID << endl;
-                cout << "≤˙∆∑◊È¥˙¬Î TThostFtdcInstrumentIDType:" << pProductGroup->ProductGroupID << endl;
+                cout << "‰∫ßÂìÅ‰ª£Á†Å TThostFtdcInstrumentIDType:" << pProductGroup->ProductID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pProductGroup->ExchangeID << endl;
+                cout << "‰∫ßÂìÅÁªÑ‰ª£Á†Å TThostFtdcInstrumentIDType:" << pProductGroup->ProductGroupID << endl;
         }
 }
 
-///«Î«Û≤È—Ø∆⁄»®Ωª“◊≥…±æœÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ÊúüÊùÉ‰∫§ÊòìÊàêÊú¨ÂìçÂ∫î
 void CTraderSpi::OnRspQryOptionInstrTradeCost(CThostFtdcOptionInstrTradeCostField* pOptionInstrTradeCost, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pOptionInstrTradeCost->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pOptionInstrTradeCost->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pOptionInstrTradeCost->InstrumentID << endl;
-                cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pOptionInstrTradeCost->HedgeFlag << endl;
-                cout << "∆⁄»®∫œ‘º±£÷§Ω≤ª±‰≤ø∑÷ TThostFtdcMoneyType:" << pOptionInstrTradeCost->FixedMargin << endl;
-                cout << "∆⁄»®∫œ‘º◊Ó–°±£÷§Ω TThostFtdcMoneyType:" << pOptionInstrTradeCost->MiniMargin << endl;
-                cout << "∆⁄»®∫œ‘º»®¿˚Ω TThostFtdcMoneyType:" << pOptionInstrTradeCost->Royalty << endl;
-                cout << "Ωª“◊À˘∆⁄»®∫œ‘º±£÷§Ω≤ª±‰≤ø∑÷ TThostFtdcMoneyType:" << pOptionInstrTradeCost->ExchFixedMargin << endl;
-                cout << "Ωª“◊À˘∆⁄»®∫œ‘º◊Ó–°±£÷§Ω TThostFtdcMoneyType:" << pOptionInstrTradeCost->ExchMiniMargin << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pOptionInstrTradeCost->ExchangeID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pOptionInstrTradeCost->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pOptionInstrTradeCost->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pOptionInstrTradeCost->InstrumentID << endl;
+                cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pOptionInstrTradeCost->HedgeFlag << endl;
+                cout << "ÊúüÊùÉÂêàÁ∫¶‰øùËØÅÈáë‰∏çÂèòÈÉ®ÂàÜ TThostFtdcMoneyType:" << pOptionInstrTradeCost->FixedMargin << endl;
+                cout << "ÊúüÊùÉÂêàÁ∫¶ÊúÄÂ∞è‰øùËØÅÈáë TThostFtdcMoneyType:" << pOptionInstrTradeCost->MiniMargin << endl;
+                cout << "ÊúüÊùÉÂêàÁ∫¶ÊùÉÂà©Èáë TThostFtdcMoneyType:" << pOptionInstrTradeCost->Royalty << endl;
+                cout << "‰∫§ÊòìÊâÄÊúüÊùÉÂêàÁ∫¶‰øùËØÅÈáë‰∏çÂèòÈÉ®ÂàÜ TThostFtdcMoneyType:" << pOptionInstrTradeCost->ExchFixedMargin << endl;
+                cout << "‰∫§ÊòìÊâÄÊúüÊùÉÂêàÁ∫¶ÊúÄÂ∞è‰øùËØÅÈáë TThostFtdcMoneyType:" << pOptionInstrTradeCost->ExchMiniMargin << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pOptionInstrTradeCost->ExchangeID << endl;
         }
 }
 
-///«Î«Û≤È—Ø∆⁄»®∫œ‘º ÷–¯∑—œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ÊúüÊùÉÂêàÁ∫¶ÊâãÁª≠Ë¥πÂìçÂ∫î
 void CTraderSpi::OnRspQryOptionInstrCommRate(CThostFtdcOptionInstrCommRateField* pOptionInstrCommRate, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pOptionInstrCommRate->InstrumentID << endl;
-                cout << "Õ∂◊ ’ﬂ∑∂Œß TThostFtdcInvestorRangeType:" << pOptionInstrCommRate->InvestorRange << endl;
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pOptionInstrCommRate->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pOptionInstrCommRate->InvestorID << endl;
-                cout << "ø™≤÷ ÷–¯∑—¬  TThostFtdcRatioType:" << pOptionInstrCommRate->OpenRatioByMoney << endl;
-                cout << "ø™≤÷ ÷–¯∑— TThostFtdcRatioType:" << pOptionInstrCommRate->OpenRatioByVolume << endl;
-                cout << "∆Ω≤÷ ÷–¯∑—¬  TThostFtdcRatioType:" << pOptionInstrCommRate->CloseRatioByMoney << endl;
-                cout << "∆Ω≤÷ ÷–¯∑— TThostFtdcRatioType:" << pOptionInstrCommRate->CloseRatioByVolume << endl;
-                cout << "∆ΩΩÒ ÷–¯∑—¬  TThostFtdcRatioType:" << pOptionInstrCommRate->CloseTodayRatioByMoney << endl;
-                cout << "∆ΩΩÒ ÷–¯∑— TThostFtdcRatioType:" << pOptionInstrCommRate->CloseTodayRatioByVolume << endl;
-                cout << "÷¥–– ÷–¯∑—¬  TThostFtdcRatioType:" << pOptionInstrCommRate->StrikeRatioByMoney << endl;
-                cout << "÷¥–– ÷–¯∑— TThostFtdcRatioType:" << pOptionInstrCommRate->StrikeRatioByVolume << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pOptionInstrCommRate->ExchangeID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pOptionInstrCommRate->InstrumentID << endl;
+                cout << "ÊäïËµÑËÄÖËåÉÂõ¥ TThostFtdcInvestorRangeType:" << pOptionInstrCommRate->InvestorRange << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pOptionInstrCommRate->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pOptionInstrCommRate->InvestorID << endl;
+                cout << "ÂºÄ‰ªìÊâãÁª≠Ë¥πÁéá TThostFtdcRatioType:" << pOptionInstrCommRate->OpenRatioByMoney << endl;
+                cout << "ÂºÄ‰ªìÊâãÁª≠Ë¥π TThostFtdcRatioType:" << pOptionInstrCommRate->OpenRatioByVolume << endl;
+                cout << "Âπ≥‰ªìÊâãÁª≠Ë¥πÁéá TThostFtdcRatioType:" << pOptionInstrCommRate->CloseRatioByMoney << endl;
+                cout << "Âπ≥‰ªìÊâãÁª≠Ë¥π TThostFtdcRatioType:" << pOptionInstrCommRate->CloseRatioByVolume << endl;
+                cout << "Âπ≥‰ªäÊâãÁª≠Ë¥πÁéá TThostFtdcRatioType:" << pOptionInstrCommRate->CloseTodayRatioByMoney << endl;
+                cout << "Âπ≥‰ªäÊâãÁª≠Ë¥π TThostFtdcRatioType:" << pOptionInstrCommRate->CloseTodayRatioByVolume << endl;
+                cout << "ÊâßË°åÊâãÁª≠Ë¥πÁéá TThostFtdcRatioType:" << pOptionInstrCommRate->StrikeRatioByMoney << endl;
+                cout << "ÊâßË°åÊâãÁª≠Ë¥π TThostFtdcRatioType:" << pOptionInstrCommRate->StrikeRatioByVolume << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pOptionInstrCommRate->ExchangeID << endl;
         }
 }
 
-///«Î«Û≤È—Ø÷¥–––˚∏ÊœÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ÊâßË°åÂÆ£ÂëäÂìçÂ∫î
 void CTraderSpi::OnRspQryExecOrder(CThostFtdcExecOrderField* pExecOrder, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pExecOrder->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pExecOrder->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pExecOrder->InstrumentID << endl;
-                cout << "÷¥–––˚∏Ê“˝”√ TThostFtdcOrderRefType:" << pExecOrder->ExecOrderRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pExecOrder->UserID << endl;
-                cout << " ˝¡ø TThostFtdcVolumeType:" << pExecOrder->Volume << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pExecOrder->RequestID << endl;
-                cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pExecOrder->BusinessUnit << endl;
-                cout << "ø™∆Ω±Í÷æ TThostFtdcOffsetFlagType:" << pExecOrder->OffsetFlag << endl;
-                cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pExecOrder->HedgeFlag << endl;
-                cout << "÷¥––¿‡–Õ TThostFtdcActionTypeType:" << pExecOrder->ActionType << endl;
-                cout << "±£¡ÙÕ∑¥Á…Í«Îµƒ≥÷≤÷∑ΩœÚ TThostFtdcPosiDirectionType:" << pExecOrder->PosiDirection << endl;
-                cout << "∆⁄»®––»®∫Û «∑Ò±£¡Ù∆⁄ªıÕ∑¥Áµƒ±Íº« TThostFtdcExecOrderPositionFlagType:" << pExecOrder->ReservePositionFlag << endl;
-                cout << "∆⁄»®––»®∫Û…˙≥…µƒÕ∑¥Á «∑Ò◊‘∂Ø∆Ω≤÷ TThostFtdcExecOrderCloseFlagType:" << pExecOrder->CloseFlag << endl;
-                cout << "±æµÿ÷¥–––˚∏Ê±‡∫≈ TThostFtdcOrderLocalIDType:" << pExecOrder->ExecOrderLocalID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pExecOrder->ExchangeID << endl;
-                cout << "ª·‘±¥˙¬Î TThostFtdcParticipantIDType:" << pExecOrder->ParticipantID << endl;
-                cout << "øÕªß¥˙¬Î TThostFtdcClientIDType:" << pExecOrder->ClientID << endl;
-                cout << "∫œ‘º‘⁄Ωª“◊À˘µƒ¥˙¬Î TThostFtdcExchangeInstIDType:" << pExecOrder->ExchangeInstID << endl;
-                cout << "Ωª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pExecOrder->TraderID << endl;
-                cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pExecOrder->InstallID << endl;
-                cout << "÷¥–––˚∏ÊÃ·Ωª◊¥Ã¨ TThostFtdcOrderSubmitStatusType:" << pExecOrder->OrderSubmitStatus << endl;
-                cout << "±®µ•Ã· æ–Ú∫≈ TThostFtdcSequenceNoType:" << pExecOrder->NotifySequence << endl;
-                cout << "Ωª“◊»’ TThostFtdcDateType:" << pExecOrder->TradingDay << endl;
-                cout << "Ω·À„±‡∫≈ TThostFtdcSettlementIDType:" << pExecOrder->SettlementID << endl;
-                cout << "÷¥–––˚∏Ê±‡∫≈ TThostFtdcExecOrderSysIDType:" << pExecOrder->ExecOrderSysID << endl;
-                cout << "±®µ•»’∆⁄ TThostFtdcDateType:" << pExecOrder->InsertDate << endl;
-                cout << "≤Â»Î ±º‰ TThostFtdcTimeType:" << pExecOrder->InsertTime << endl;
-                cout << "≥∑œ˙ ±º‰ TThostFtdcTimeType:" << pExecOrder->CancelTime << endl;
-                cout << "÷¥––Ω·π˚ TThostFtdcExecResultType:" << pExecOrder->ExecResult << endl;
-                cout << "Ω·À„ª·‘±±‡∫≈ TThostFtdcParticipantIDType:" << pExecOrder->ClearingPartID << endl;
-                cout << "–Ú∫≈ TThostFtdcSequenceNoType:" << pExecOrder->SequenceNo << endl;
-                cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pExecOrder->FrontID << endl;
-                cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pExecOrder->SessionID << endl;
-                cout << "”√ªß∂À≤˙∆∑–≈œ¢ TThostFtdcProductInfoType:" << pExecOrder->UserProductInfo << endl;
-                cout << "◊¥Ã¨–≈œ¢ TThostFtdcErrorMsgType:" << pExecOrder->StatusMsg << endl;
-                cout << "≤Ÿ◊˜”√ªß¥˙¬Î TThostFtdcUserIDType:" << pExecOrder->ActiveUserID << endl;
-                cout << "æ≠ºÕπ´Àæ±®µ•±‡∫≈ TThostFtdcSequenceNoType:" << pExecOrder->BrokerExecOrderSeq << endl;
-                cout << "”™“µ≤ø±‡∫≈ TThostFtdcBranchIDType:" << pExecOrder->BranchID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pExecOrder->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pExecOrder->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pExecOrder->InstrumentID << endl;
+                cout << "ÊâßË°åÂÆ£ÂëäÂºïÁî® TThostFtdcOrderRefType:" << pExecOrder->ExecOrderRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pExecOrder->UserID << endl;
+                cout << "Êï∞Èáè TThostFtdcVolumeType:" << pExecOrder->Volume << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pExecOrder->RequestID << endl;
+                cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pExecOrder->BusinessUnit << endl;
+                cout << "ÂºÄÂπ≥Ê†áÂøó TThostFtdcOffsetFlagType:" << pExecOrder->OffsetFlag << endl;
+                cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pExecOrder->HedgeFlag << endl;
+                cout << "ÊâßË°åÁ±ªÂûã TThostFtdcActionTypeType:" << pExecOrder->ActionType << endl;
+                cout << "‰øùÁïôÂ§¥ÂØ∏Áî≥ËØ∑ÁöÑÊåÅ‰ªìÊñπÂêë TThostFtdcPosiDirectionType:" << pExecOrder->PosiDirection << endl;
+                cout << "ÊúüÊùÉË°åÊùÉÂêéÊòØÂê¶‰øùÁïôÊúüË¥ßÂ§¥ÂØ∏ÁöÑÊ†áËÆ∞ TThostFtdcExecOrderPositionFlagType:" << pExecOrder->ReservePositionFlag << endl;
+                cout << "ÊúüÊùÉË°åÊùÉÂêéÁîüÊàêÁöÑÂ§¥ÂØ∏ÊòØÂê¶Ëá™Âä®Âπ≥‰ªì TThostFtdcExecOrderCloseFlagType:" << pExecOrder->CloseFlag << endl;
+                cout << "Êú¨Âú∞ÊâßË°åÂÆ£ÂëäÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pExecOrder->ExecOrderLocalID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pExecOrder->ExchangeID << endl;
+                cout << "‰ºöÂëò‰ª£Á†Å TThostFtdcParticipantIDType:" << pExecOrder->ParticipantID << endl;
+                cout << "ÂÆ¢Êà∑‰ª£Á†Å TThostFtdcClientIDType:" << pExecOrder->ClientID << endl;
+                cout << "ÂêàÁ∫¶Âú®‰∫§ÊòìÊâÄÁöÑ‰ª£Á†Å TThostFtdcExchangeInstIDType:" << pExecOrder->ExchangeInstID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pExecOrder->TraderID << endl;
+                cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pExecOrder->InstallID << endl;
+                cout << "ÊâßË°åÂÆ£ÂëäÊèê‰∫§Áä∂ÊÄÅ TThostFtdcOrderSubmitStatusType:" << pExecOrder->OrderSubmitStatus << endl;
+                cout << "Êä•ÂçïÊèêÁ§∫Â∫èÂè∑ TThostFtdcSequenceNoType:" << pExecOrder->NotifySequence << endl;
+                cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pExecOrder->TradingDay << endl;
+                cout << "ÁªìÁÆóÁºñÂè∑ TThostFtdcSettlementIDType:" << pExecOrder->SettlementID << endl;
+                cout << "ÊâßË°åÂÆ£ÂëäÁºñÂè∑ TThostFtdcExecOrderSysIDType:" << pExecOrder->ExecOrderSysID << endl;
+                cout << "Êä•ÂçïÊó•Êúü TThostFtdcDateType:" << pExecOrder->InsertDate << endl;
+                cout << "ÊèíÂÖ•Êó∂Èó¥ TThostFtdcTimeType:" << pExecOrder->InsertTime << endl;
+                cout << "Êí§ÈîÄÊó∂Èó¥ TThostFtdcTimeType:" << pExecOrder->CancelTime << endl;
+                cout << "ÊâßË°åÁªìÊûú TThostFtdcExecResultType:" << pExecOrder->ExecResult << endl;
+                cout << "ÁªìÁÆó‰ºöÂëòÁºñÂè∑ TThostFtdcParticipantIDType:" << pExecOrder->ClearingPartID << endl;
+                cout << "Â∫èÂè∑ TThostFtdcSequenceNoType:" << pExecOrder->SequenceNo << endl;
+                cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pExecOrder->FrontID << endl;
+                cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pExecOrder->SessionID << endl;
+                cout << "Áî®Êà∑Á´Ø‰∫ßÂìÅ‰ø°ÊÅØ TThostFtdcProductInfoType:" << pExecOrder->UserProductInfo << endl;
+                cout << "Áä∂ÊÄÅ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pExecOrder->StatusMsg << endl;
+                cout << "Êìç‰ΩúÁî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pExecOrder->ActiveUserID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏Êä•ÂçïÁºñÂè∑ TThostFtdcSequenceNoType:" << pExecOrder->BrokerExecOrderSeq << endl;
+                cout << "Ëê•‰∏öÈÉ®ÁºñÂè∑ TThostFtdcBranchIDType:" << pExecOrder->BranchID << endl;
         }
 }
 
-///«Î«Û≤È—Ø—Øº€œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ËØ¢‰ª∑ÂìçÂ∫î
 void CTraderSpi::OnRspQryForQuote(CThostFtdcForQuoteField* pForQuote, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pForQuote->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pForQuote->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pForQuote->InstrumentID << endl;
-                cout << "—Øº€“˝”√ TThostFtdcOrderRefType:" << pForQuote->ForQuoteRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pForQuote->UserID << endl;
-                cout << "±æµÿ—Øº€±‡∫≈ TThostFtdcOrderLocalIDType:" << pForQuote->ForQuoteLocalID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pForQuote->ExchangeID << endl;
-                cout << "ª·‘±¥˙¬Î TThostFtdcParticipantIDType:" << pForQuote->ParticipantID << endl;
-                cout << "øÕªß¥˙¬Î TThostFtdcClientIDType:" << pForQuote->ClientID << endl;
-                cout << "∫œ‘º‘⁄Ωª“◊À˘µƒ¥˙¬Î TThostFtdcExchangeInstIDType:" << pForQuote->ExchangeInstID << endl;
-                cout << "Ωª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pForQuote->TraderID << endl;
-                cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pForQuote->InstallID << endl;
-                cout << "±®µ•»’∆⁄ TThostFtdcDateType:" << pForQuote->InsertDate << endl;
-                cout << "≤Â»Î ±º‰ TThostFtdcTimeType:" << pForQuote->InsertTime << endl;
-                cout << "—Øº€◊¥Ã¨ TThostFtdcForQuoteStatusType:" << pForQuote->ForQuoteStatus << endl;
-                cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pForQuote->FrontID << endl;
-                cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pForQuote->SessionID << endl;
-                cout << "◊¥Ã¨–≈œ¢ TThostFtdcErrorMsgType:" << pForQuote->StatusMsg << endl;
-                cout << "≤Ÿ◊˜”√ªß¥˙¬Î TThostFtdcUserIDType:" << pForQuote->ActiveUserID << endl;
-                cout << "æ≠ºÕπ´Àæ—Øº€±‡∫≈ TThostFtdcSequenceNoType:" << pForQuote->BrokerForQutoSeq << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pForQuote->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pForQuote->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pForQuote->InstrumentID << endl;
+                cout << "ËØ¢‰ª∑ÂºïÁî® TThostFtdcOrderRefType:" << pForQuote->ForQuoteRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pForQuote->UserID << endl;
+                cout << "Êú¨Âú∞ËØ¢‰ª∑ÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pForQuote->ForQuoteLocalID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pForQuote->ExchangeID << endl;
+                cout << "‰ºöÂëò‰ª£Á†Å TThostFtdcParticipantIDType:" << pForQuote->ParticipantID << endl;
+                cout << "ÂÆ¢Êà∑‰ª£Á†Å TThostFtdcClientIDType:" << pForQuote->ClientID << endl;
+                cout << "ÂêàÁ∫¶Âú®‰∫§ÊòìÊâÄÁöÑ‰ª£Á†Å TThostFtdcExchangeInstIDType:" << pForQuote->ExchangeInstID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pForQuote->TraderID << endl;
+                cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pForQuote->InstallID << endl;
+                cout << "Êä•ÂçïÊó•Êúü TThostFtdcDateType:" << pForQuote->InsertDate << endl;
+                cout << "ÊèíÂÖ•Êó∂Èó¥ TThostFtdcTimeType:" << pForQuote->InsertTime << endl;
+                cout << "ËØ¢‰ª∑Áä∂ÊÄÅ TThostFtdcForQuoteStatusType:" << pForQuote->ForQuoteStatus << endl;
+                cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pForQuote->FrontID << endl;
+                cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pForQuote->SessionID << endl;
+                cout << "Áä∂ÊÄÅ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pForQuote->StatusMsg << endl;
+                cout << "Êìç‰ΩúÁî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pForQuote->ActiveUserID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏ËØ¢‰ª∑ÁºñÂè∑ TThostFtdcSequenceNoType:" << pForQuote->BrokerForQutoSeq << endl;
         }
 }
 
-///«Î«Û≤È—Ø±®º€œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢Êä•‰ª∑ÂìçÂ∫î
 void CTraderSpi::OnRspQryQuote(CThostFtdcQuoteField* pQuote, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pQuote->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pQuote->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pQuote->InstrumentID << endl;
-                cout << "±®º€“˝”√ TThostFtdcOrderRefType:" << pQuote->QuoteRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pQuote->UserID << endl;
-                cout << "¬Ùº€∏Ò TThostFtdcPriceType:" << pQuote->AskPrice << endl;
-                cout << "¬Úº€∏Ò TThostFtdcPriceType:" << pQuote->BidPrice << endl;
-                cout << "¬Ù ˝¡ø TThostFtdcVolumeType:" << pQuote->AskVolume << endl;
-                cout << "¬Ú ˝¡ø TThostFtdcVolumeType:" << pQuote->BidVolume << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pQuote->RequestID << endl;
-                cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pQuote->BusinessUnit << endl;
-                cout << "¬Ùø™∆Ω±Í÷æ TThostFtdcOffsetFlagType:" << pQuote->AskOffsetFlag << endl;
-                cout << "¬Úø™∆Ω±Í÷æ TThostFtdcOffsetFlagType:" << pQuote->BidOffsetFlag << endl;
-                cout << "¬ÙÕ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pQuote->AskHedgeFlag << endl;
-                cout << "¬ÚÕ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pQuote->BidHedgeFlag << endl;
-                cout << "±æµÿ±®º€±‡∫≈ TThostFtdcOrderLocalIDType:" << pQuote->QuoteLocalID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pQuote->ExchangeID << endl;
-                cout << "ª·‘±¥˙¬Î TThostFtdcParticipantIDType:" << pQuote->ParticipantID << endl;
-                cout << "øÕªß¥˙¬Î TThostFtdcClientIDType:" << pQuote->ClientID << endl;
-                cout << "∫œ‘º‘⁄Ωª“◊À˘µƒ¥˙¬Î TThostFtdcExchangeInstIDType:" << pQuote->ExchangeInstID << endl;
-                cout << "Ωª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pQuote->TraderID << endl;
-                cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pQuote->InstallID << endl;
-                cout << "±®º€Ã· æ–Ú∫≈ TThostFtdcSequenceNoType:" << pQuote->NotifySequence << endl;
-                cout << "±®º€Ã·Ωª◊¥Ã¨ TThostFtdcOrderSubmitStatusType:" << pQuote->OrderSubmitStatus << endl;
-                cout << "Ωª“◊»’ TThostFtdcDateType:" << pQuote->TradingDay << endl;
-                cout << "Ω·À„±‡∫≈ TThostFtdcSettlementIDType:" << pQuote->SettlementID << endl;
-                cout << "±®º€±‡∫≈ TThostFtdcOrderSysIDType:" << pQuote->QuoteSysID << endl;
-                cout << "±®µ•»’∆⁄ TThostFtdcDateType:" << pQuote->InsertDate << endl;
-                cout << "≤Â»Î ±º‰ TThostFtdcTimeType:" << pQuote->InsertTime << endl;
-                cout << "≥∑œ˙ ±º‰ TThostFtdcTimeType:" << pQuote->CancelTime << endl;
-                cout << "±®º€◊¥Ã¨ TThostFtdcOrderStatusType:" << pQuote->QuoteStatus << endl;
-                cout << "Ω·À„ª·‘±±‡∫≈ TThostFtdcParticipantIDType:" << pQuote->ClearingPartID << endl;
-                cout << "–Ú∫≈ TThostFtdcSequenceNoType:" << pQuote->SequenceNo << endl;
-                cout << "¬Ù∑Ω±®µ•±‡∫≈ TThostFtdcOrderSysIDType:" << pQuote->AskOrderSysID << endl;
-                cout << "¬Ú∑Ω±®µ•±‡∫≈ TThostFtdcOrderSysIDType:" << pQuote->BidOrderSysID << endl;
-                cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pQuote->FrontID << endl;
-                cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pQuote->SessionID << endl;
-                cout << "”√ªß∂À≤˙∆∑–≈œ¢ TThostFtdcProductInfoType:" << pQuote->UserProductInfo << endl;
-                cout << "◊¥Ã¨–≈œ¢ TThostFtdcErrorMsgType:" << pQuote->StatusMsg << endl;
-                cout << "≤Ÿ◊˜”√ªß¥˙¬Î TThostFtdcUserIDType:" << pQuote->ActiveUserID << endl;
-                cout << "æ≠ºÕπ´Àæ±®º€±‡∫≈ TThostFtdcSequenceNoType:" << pQuote->BrokerQuoteSeq << endl;
-                cout << "—‹…˙¬Ù±®µ•“˝”√ TThostFtdcOrderRefType:" << pQuote->AskOrderRef << endl;
-                cout << "—‹…˙¬Ú±®µ•“˝”√ TThostFtdcOrderRefType:" << pQuote->BidOrderRef << endl;
-                cout << "”¶º€±‡∫≈ TThostFtdcOrderSysIDType:" << pQuote->ForQuoteSysID << endl;
-                cout << "”™“µ≤ø±‡∫≈ TThostFtdcBranchIDType:" << pQuote->BranchID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pQuote->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pQuote->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pQuote->InstrumentID << endl;
+                cout << "Êä•‰ª∑ÂºïÁî® TThostFtdcOrderRefType:" << pQuote->QuoteRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pQuote->UserID << endl;
+                cout << "Âçñ‰ª∑Ê†º TThostFtdcPriceType:" << pQuote->AskPrice << endl;
+                cout << "‰π∞‰ª∑Ê†º TThostFtdcPriceType:" << pQuote->BidPrice << endl;
+                cout << "ÂçñÊï∞Èáè TThostFtdcVolumeType:" << pQuote->AskVolume << endl;
+                cout << "‰π∞Êï∞Èáè TThostFtdcVolumeType:" << pQuote->BidVolume << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pQuote->RequestID << endl;
+                cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pQuote->BusinessUnit << endl;
+                cout << "ÂçñÂºÄÂπ≥Ê†áÂøó TThostFtdcOffsetFlagType:" << pQuote->AskOffsetFlag << endl;
+                cout << "‰π∞ÂºÄÂπ≥Ê†áÂøó TThostFtdcOffsetFlagType:" << pQuote->BidOffsetFlag << endl;
+                cout << "ÂçñÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pQuote->AskHedgeFlag << endl;
+                cout << "‰π∞ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pQuote->BidHedgeFlag << endl;
+                cout << "Êú¨Âú∞Êä•‰ª∑ÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pQuote->QuoteLocalID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pQuote->ExchangeID << endl;
+                cout << "‰ºöÂëò‰ª£Á†Å TThostFtdcParticipantIDType:" << pQuote->ParticipantID << endl;
+                cout << "ÂÆ¢Êà∑‰ª£Á†Å TThostFtdcClientIDType:" << pQuote->ClientID << endl;
+                cout << "ÂêàÁ∫¶Âú®‰∫§ÊòìÊâÄÁöÑ‰ª£Á†Å TThostFtdcExchangeInstIDType:" << pQuote->ExchangeInstID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pQuote->TraderID << endl;
+                cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pQuote->InstallID << endl;
+                cout << "Êä•‰ª∑ÊèêÁ§∫Â∫èÂè∑ TThostFtdcSequenceNoType:" << pQuote->NotifySequence << endl;
+                cout << "Êä•‰ª∑Êèê‰∫§Áä∂ÊÄÅ TThostFtdcOrderSubmitStatusType:" << pQuote->OrderSubmitStatus << endl;
+                cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pQuote->TradingDay << endl;
+                cout << "ÁªìÁÆóÁºñÂè∑ TThostFtdcSettlementIDType:" << pQuote->SettlementID << endl;
+                cout << "Êä•‰ª∑ÁºñÂè∑ TThostFtdcOrderSysIDType:" << pQuote->QuoteSysID << endl;
+                cout << "Êä•ÂçïÊó•Êúü TThostFtdcDateType:" << pQuote->InsertDate << endl;
+                cout << "ÊèíÂÖ•Êó∂Èó¥ TThostFtdcTimeType:" << pQuote->InsertTime << endl;
+                cout << "Êí§ÈîÄÊó∂Èó¥ TThostFtdcTimeType:" << pQuote->CancelTime << endl;
+                cout << "Êä•‰ª∑Áä∂ÊÄÅ TThostFtdcOrderStatusType:" << pQuote->QuoteStatus << endl;
+                cout << "ÁªìÁÆó‰ºöÂëòÁºñÂè∑ TThostFtdcParticipantIDType:" << pQuote->ClearingPartID << endl;
+                cout << "Â∫èÂè∑ TThostFtdcSequenceNoType:" << pQuote->SequenceNo << endl;
+                cout << "ÂçñÊñπÊä•ÂçïÁºñÂè∑ TThostFtdcOrderSysIDType:" << pQuote->AskOrderSysID << endl;
+                cout << "‰π∞ÊñπÊä•ÂçïÁºñÂè∑ TThostFtdcOrderSysIDType:" << pQuote->BidOrderSysID << endl;
+                cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pQuote->FrontID << endl;
+                cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pQuote->SessionID << endl;
+                cout << "Áî®Êà∑Á´Ø‰∫ßÂìÅ‰ø°ÊÅØ TThostFtdcProductInfoType:" << pQuote->UserProductInfo << endl;
+                cout << "Áä∂ÊÄÅ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pQuote->StatusMsg << endl;
+                cout << "Êìç‰ΩúÁî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pQuote->ActiveUserID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏Êä•‰ª∑ÁºñÂè∑ TThostFtdcSequenceNoType:" << pQuote->BrokerQuoteSeq << endl;
+                cout << "Ë°çÁîüÂçñÊä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pQuote->AskOrderRef << endl;
+                cout << "Ë°çÁîü‰π∞Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pQuote->BidOrderRef << endl;
+                cout << "Â∫î‰ª∑ÁºñÂè∑ TThostFtdcOrderSysIDType:" << pQuote->ForQuoteSysID << endl;
+                cout << "Ëê•‰∏öÈÉ®ÁºñÂè∑ TThostFtdcBranchIDType:" << pQuote->BranchID << endl;
         }
 }
 
-///«Î«Û≤È—ØÀ¯∂®”¶¥
+///ËØ∑Ê±ÇÊü•ËØ¢ÈîÅÂÆöÂ∫îÁ≠î
 void CTraderSpi::OnRspQryLock(CThostFtdcLockField* pLock, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pLock->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pLock->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pLock->InstrumentID << endl;
-                cout << "À¯∂®“˝”√ TThostFtdcOrderRefType:" << pLock->LockRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pLock->UserID << endl;
-                cout << " ˝¡ø TThostFtdcVolumeType:" << pLock->Volume << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pLock->RequestID << endl;
-                cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pLock->BusinessUnit << endl;
-                cout << "À¯∂®¿‡–Õ TThostFtdcLockTypeType:" << pLock->LockType << endl;
-                cout << "±æµÿÀ¯∂®±‡∫≈ TThostFtdcOrderLocalIDType:" << pLock->LockLocalID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pLock->ExchangeID << endl;
-                cout << "ª·‘±¥˙¬Î TThostFtdcParticipantIDType:" << pLock->ParticipantID << endl;
-                cout << "øÕªß¥˙¬Î TThostFtdcClientIDType:" << pLock->ClientID << endl;
-                cout << "∫œ‘º‘⁄Ωª“◊À˘µƒ¥˙¬Î TThostFtdcExchangeInstIDType:" << pLock->ExchangeInstID << endl;
-                cout << "Ωª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pLock->TraderID << endl;
-                cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pLock->InstallID << endl;
-                cout << "÷¥–––˚∏ÊÃ·Ωª◊¥Ã¨ TThostFtdcOrderSubmitStatusType:" << pLock->OrderSubmitStatus << endl;
-                cout << "±®µ•Ã· æ–Ú∫≈ TThostFtdcSequenceNoType:" << pLock->NotifySequence << endl;
-                cout << "Ωª“◊»’ TThostFtdcDateType:" << pLock->TradingDay << endl;
-                cout << "Ω·À„±‡∫≈ TThostFtdcSettlementIDType:" << pLock->SettlementID << endl;
-                cout << "À¯∂®±‡∫≈ TThostFtdcOrderSysIDType:" << pLock->LockSysID << endl;
-                cout << "±®µ•»’∆⁄ TThostFtdcDateType:" << pLock->InsertDate << endl;
-                cout << "≤Â»Î ±º‰ TThostFtdcTimeType:" << pLock->InsertTime << endl;
-                cout << "≥∑œ˙ ±º‰ TThostFtdcTimeType:" << pLock->CancelTime << endl;
-                cout << "À¯∂®◊¥Ã¨ TThostFtdcOrderActionStatusType:" << pLock->LockStatus << endl;
-                cout << "Ω·À„ª·‘±±‡∫≈ TThostFtdcParticipantIDType:" << pLock->ClearingPartID << endl;
-                cout << "–Ú∫≈ TThostFtdcSequenceNoType:" << pLock->SequenceNo << endl;
-                cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pLock->FrontID << endl;
-                cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pLock->SessionID << endl;
-                cout << "”√ªß∂À≤˙∆∑–≈œ¢ TThostFtdcProductInfoType:" << pLock->UserProductInfo << endl;
-                cout << "◊¥Ã¨–≈œ¢ TThostFtdcErrorMsgType:" << pLock->StatusMsg << endl;
-                cout << "≤Ÿ◊˜”√ªß¥˙¬Î TThostFtdcUserIDType:" << pLock->ActiveUserID << endl;
-                cout << "æ≠ºÕπ´Àæ±®µ•±‡∫≈ TThostFtdcSequenceNoType:" << pLock->BrokerLockSeq << endl;
-                cout << "”™“µ≤ø±‡∫≈ TThostFtdcBranchIDType:" << pLock->BranchID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pLock->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pLock->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pLock->InstrumentID << endl;
+                cout << "ÈîÅÂÆöÂºïÁî® TThostFtdcOrderRefType:" << pLock->LockRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pLock->UserID << endl;
+                cout << "Êï∞Èáè TThostFtdcVolumeType:" << pLock->Volume << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pLock->RequestID << endl;
+                cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pLock->BusinessUnit << endl;
+                cout << "ÈîÅÂÆöÁ±ªÂûã TThostFtdcLockTypeType:" << pLock->LockType << endl;
+                cout << "Êú¨Âú∞ÈîÅÂÆöÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pLock->LockLocalID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pLock->ExchangeID << endl;
+                cout << "‰ºöÂëò‰ª£Á†Å TThostFtdcParticipantIDType:" << pLock->ParticipantID << endl;
+                cout << "ÂÆ¢Êà∑‰ª£Á†Å TThostFtdcClientIDType:" << pLock->ClientID << endl;
+                cout << "ÂêàÁ∫¶Âú®‰∫§ÊòìÊâÄÁöÑ‰ª£Á†Å TThostFtdcExchangeInstIDType:" << pLock->ExchangeInstID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pLock->TraderID << endl;
+                cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pLock->InstallID << endl;
+                cout << "ÊâßË°åÂÆ£ÂëäÊèê‰∫§Áä∂ÊÄÅ TThostFtdcOrderSubmitStatusType:" << pLock->OrderSubmitStatus << endl;
+                cout << "Êä•ÂçïÊèêÁ§∫Â∫èÂè∑ TThostFtdcSequenceNoType:" << pLock->NotifySequence << endl;
+                cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pLock->TradingDay << endl;
+                cout << "ÁªìÁÆóÁºñÂè∑ TThostFtdcSettlementIDType:" << pLock->SettlementID << endl;
+                cout << "ÈîÅÂÆöÁºñÂè∑ TThostFtdcOrderSysIDType:" << pLock->LockSysID << endl;
+                cout << "Êä•ÂçïÊó•Êúü TThostFtdcDateType:" << pLock->InsertDate << endl;
+                cout << "ÊèíÂÖ•Êó∂Èó¥ TThostFtdcTimeType:" << pLock->InsertTime << endl;
+                cout << "Êí§ÈîÄÊó∂Èó¥ TThostFtdcTimeType:" << pLock->CancelTime << endl;
+                cout << "ÈîÅÂÆöÁä∂ÊÄÅ TThostFtdcOrderActionStatusType:" << pLock->LockStatus << endl;
+                cout << "ÁªìÁÆó‰ºöÂëòÁºñÂè∑ TThostFtdcParticipantIDType:" << pLock->ClearingPartID << endl;
+                cout << "Â∫èÂè∑ TThostFtdcSequenceNoType:" << pLock->SequenceNo << endl;
+                cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pLock->FrontID << endl;
+                cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pLock->SessionID << endl;
+                cout << "Áî®Êà∑Á´Ø‰∫ßÂìÅ‰ø°ÊÅØ TThostFtdcProductInfoType:" << pLock->UserProductInfo << endl;
+                cout << "Áä∂ÊÄÅ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pLock->StatusMsg << endl;
+                cout << "Êìç‰ΩúÁî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pLock->ActiveUserID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏Êä•ÂçïÁºñÂè∑ TThostFtdcSequenceNoType:" << pLock->BrokerLockSeq << endl;
+                cout << "Ëê•‰∏öÈÉ®ÁºñÂè∑ TThostFtdcBranchIDType:" << pLock->BranchID << endl;
         }
 }
 
-///«Î«Û≤È—ØÀ¯∂®÷§»Ø≤÷Œª”¶¥
+///ËØ∑Ê±ÇÊü•ËØ¢ÈîÅÂÆöËØÅÂà∏‰ªì‰ΩçÂ∫îÁ≠î
 void CTraderSpi::OnRspQryLockPosition(CThostFtdcLockPositionField* pLockPosition, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pLockPosition->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pLockPosition->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pLockPosition->InstrumentID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pLockPosition->ExchangeID << endl;
-                cout << " ˝¡ø TThostFtdcVolumeType:" << pLockPosition->Volume << endl;
-                cout << "∂≥Ω· ˝¡ø TThostFtdcVolumeType:" << pLockPosition->FrozenVolume << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pLockPosition->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pLockPosition->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pLockPosition->InstrumentID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pLockPosition->ExchangeID << endl;
+                cout << "Êï∞Èáè TThostFtdcVolumeType:" << pLockPosition->Volume << endl;
+                cout << "ÂÜªÁªìÊï∞Èáè TThostFtdcVolumeType:" << pLockPosition->FrozenVolume << endl;
         }
 }
 
-///«Î«Û≤È—ØÕ∂◊ ’ﬂ∑÷º∂
+///ËØ∑Ê±ÇÊü•ËØ¢ÊäïËµÑËÄÖÂàÜÁ∫ß
 void CTraderSpi::OnRspQryInvestorLevel(CThostFtdcInvestorLevelField* pInvestorLevel, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInvestorLevel->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInvestorLevel->InvestorID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInvestorLevel->ExchangeID << endl;
-                cout << "Õ∂◊ ’ﬂ∑÷º∂¿‡–Õ TThostFtdcLevelTypeType:" << pInvestorLevel->LevelType << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInvestorLevel->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInvestorLevel->InvestorID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInvestorLevel->ExchangeID << endl;
+                cout << "ÊäïËµÑËÄÖÂàÜÁ∫ßÁ±ªÂûã TThostFtdcLevelTypeType:" << pInvestorLevel->LevelType << endl;
         }
 }
 
-///«Î«Û≤È—ØE+1»’––»®∂≥Ω·œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢E+1Êó•Ë°åÊùÉÂÜªÁªìÂìçÂ∫î
 void CTraderSpi::OnRspQryExecFreeze(CThostFtdcExecFreezeField* pExecFreeze, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "±Íµƒ∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pExecFreeze->InstrumentID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pExecFreeze->ExchangeID << endl;
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pExecFreeze->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pExecFreeze->InvestorID << endl;
-                cout << "≥÷≤÷∂‡ø’∑ΩœÚ TThostFtdcPosiDirectionType:" << pExecFreeze->PosiDirection << endl;
-                cout << "∆⁄»®¿‡–Õ TThostFtdcOptionsTypeType:" << pExecFreeze->OptionsType << endl;
-                cout << "∂≥Ω·µƒ ˝¡øµ•Œªπ… TThostFtdcVolumeType:" << pExecFreeze->Volume << endl;
-                cout << "∂≥Ω·Ω∂Ó TThostFtdcMoneyType:" << pExecFreeze->FrozenAmount << endl;
+                cout << "Ê†áÁöÑÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pExecFreeze->InstrumentID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pExecFreeze->ExchangeID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pExecFreeze->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pExecFreeze->InvestorID << endl;
+                cout << "ÊåÅ‰ªìÂ§öÁ©∫ÊñπÂêë TThostFtdcPosiDirectionType:" << pExecFreeze->PosiDirection << endl;
+                cout << "ÊúüÊùÉÁ±ªÂûã TThostFtdcOptionsTypeType:" << pExecFreeze->OptionsType << endl;
+                cout << "ÂÜªÁªìÁöÑÊï∞ÈáèÂçï‰ΩçËÇ° TThostFtdcVolumeType:" << pExecFreeze->Volume << endl;
+                cout << "ÂÜªÁªìÈáëÈ¢ù TThostFtdcMoneyType:" << pExecFreeze->FrozenAmount << endl;
         }
 }
 
-///«Î«Û≤È—Ø◊È∫œ∫œ‘º∞≤»´œµ ˝œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ÁªÑÂêàÂêàÁ∫¶ÂÆâÂÖ®Á≥ªÊï∞ÂìçÂ∫î
 void CTraderSpi::OnRspQryCombInstrumentGuard(CThostFtdcCombInstrumentGuardField* pCombInstrumentGuard, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pCombInstrumentGuard->BrokerID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pCombInstrumentGuard->InstrumentID << endl;
-                cout << "Œ¥÷™ TThostFtdcRatioType:" << pCombInstrumentGuard->GuarantRatio << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pCombInstrumentGuard->BrokerID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pCombInstrumentGuard->InstrumentID << endl;
+                cout << "Êú™Áü• TThostFtdcRatioType:" << pCombInstrumentGuard->GuarantRatio << endl;
         }
 }
 
-///«Î«Û≤È—Ø…Í«Î◊È∫œœÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢Áî≥ËØ∑ÁªÑÂêàÂìçÂ∫î
 void CTraderSpi::OnRspQryCombAction(CThostFtdcCombActionField* pCombAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pCombAction->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pCombAction->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pCombAction->InstrumentID << endl;
-                cout << "◊È∫œ“˝”√ TThostFtdcOrderRefType:" << pCombAction->CombActionRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pCombAction->UserID << endl;
-                cout << "¬Ú¬Ù∑ΩœÚ TThostFtdcDirectionType:" << pCombAction->Direction << endl;
-                cout << " ˝¡ø TThostFtdcVolumeType:" << pCombAction->Volume << endl;
-                cout << "◊È∫œ÷∏¡Ó∑ΩœÚ TThostFtdcCombDirectionType:" << pCombAction->CombDirection << endl;
-                cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pCombAction->HedgeFlag << endl;
-                cout << "±æµÿ…Í«Î◊È∫œ±‡∫≈ TThostFtdcOrderLocalIDType:" << pCombAction->ActionLocalID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pCombAction->ExchangeID << endl;
-                cout << "ª·‘±¥˙¬Î TThostFtdcParticipantIDType:" << pCombAction->ParticipantID << endl;
-                cout << "øÕªß¥˙¬Î TThostFtdcClientIDType:" << pCombAction->ClientID << endl;
-                cout << "∫œ‘º‘⁄Ωª“◊À˘µƒ¥˙¬Î TThostFtdcExchangeInstIDType:" << pCombAction->ExchangeInstID << endl;
-                cout << "Ωª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pCombAction->TraderID << endl;
-                cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pCombAction->InstallID << endl;
-                cout << "◊È∫œ◊¥Ã¨ TThostFtdcOrderActionStatusType:" << pCombAction->ActionStatus << endl;
-                cout << "±®µ•Ã· æ–Ú∫≈ TThostFtdcSequenceNoType:" << pCombAction->NotifySequence << endl;
-                cout << "Ωª“◊»’ TThostFtdcDateType:" << pCombAction->TradingDay << endl;
-                cout << "Ω·À„±‡∫≈ TThostFtdcSettlementIDType:" << pCombAction->SettlementID << endl;
-                cout << "–Ú∫≈ TThostFtdcSequenceNoType:" << pCombAction->SequenceNo << endl;
-                cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pCombAction->FrontID << endl;
-                cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pCombAction->SessionID << endl;
-                cout << "”√ªß∂À≤˙∆∑–≈œ¢ TThostFtdcProductInfoType:" << pCombAction->UserProductInfo << endl;
-                cout << "◊¥Ã¨–≈œ¢ TThostFtdcErrorMsgType:" << pCombAction->StatusMsg << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pCombAction->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pCombAction->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pCombAction->InstrumentID << endl;
+                cout << "ÁªÑÂêàÂºïÁî® TThostFtdcOrderRefType:" << pCombAction->CombActionRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pCombAction->UserID << endl;
+                cout << "‰π∞ÂçñÊñπÂêë TThostFtdcDirectionType:" << pCombAction->Direction << endl;
+                cout << "Êï∞Èáè TThostFtdcVolumeType:" << pCombAction->Volume << endl;
+                cout << "ÁªÑÂêàÊåá‰ª§ÊñπÂêë TThostFtdcCombDirectionType:" << pCombAction->CombDirection << endl;
+                cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pCombAction->HedgeFlag << endl;
+                cout << "Êú¨Âú∞Áî≥ËØ∑ÁªÑÂêàÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pCombAction->ActionLocalID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pCombAction->ExchangeID << endl;
+                cout << "‰ºöÂëò‰ª£Á†Å TThostFtdcParticipantIDType:" << pCombAction->ParticipantID << endl;
+                cout << "ÂÆ¢Êà∑‰ª£Á†Å TThostFtdcClientIDType:" << pCombAction->ClientID << endl;
+                cout << "ÂêàÁ∫¶Âú®‰∫§ÊòìÊâÄÁöÑ‰ª£Á†Å TThostFtdcExchangeInstIDType:" << pCombAction->ExchangeInstID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pCombAction->TraderID << endl;
+                cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pCombAction->InstallID << endl;
+                cout << "ÁªÑÂêàÁä∂ÊÄÅ TThostFtdcOrderActionStatusType:" << pCombAction->ActionStatus << endl;
+                cout << "Êä•ÂçïÊèêÁ§∫Â∫èÂè∑ TThostFtdcSequenceNoType:" << pCombAction->NotifySequence << endl;
+                cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pCombAction->TradingDay << endl;
+                cout << "ÁªìÁÆóÁºñÂè∑ TThostFtdcSettlementIDType:" << pCombAction->SettlementID << endl;
+                cout << "Â∫èÂè∑ TThostFtdcSequenceNoType:" << pCombAction->SequenceNo << endl;
+                cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pCombAction->FrontID << endl;
+                cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pCombAction->SessionID << endl;
+                cout << "Áî®Êà∑Á´Ø‰∫ßÂìÅ‰ø°ÊÅØ TThostFtdcProductInfoType:" << pCombAction->UserProductInfo << endl;
+                cout << "Áä∂ÊÄÅ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pCombAction->StatusMsg << endl;
         }
 }
 
-///«Î«Û≤È—Ø◊™’ ¡˜ÀÆœÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ËΩ¨Â∏êÊµÅÊ∞¥ÂìçÂ∫î
 void CTraderSpi::OnRspQryTransferSerial(CThostFtdcTransferSerialField* pTransferSerial, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "∆ΩÃ®¡˜ÀÆ∫≈ TThostFtdcPlateSerialType:" << pTransferSerial->PlateSerial << endl;
-                cout << "Ωª“◊∑¢∆∑Ω»’∆⁄ TThostFtdcTradeDateType:" << pTransferSerial->TradeDate << endl;
-                cout << "Ωª“◊»’∆⁄ TThostFtdcDateType:" << pTransferSerial->TradingDay << endl;
-                cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pTransferSerial->TradeTime << endl;
-                cout << "Ωª“◊¥˙¬Î TThostFtdcTradeCodeType:" << pTransferSerial->TradeCode << endl;
-                cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pTransferSerial->SessionID << endl;
-                cout << "“¯––±‡¬Î TThostFtdcBankIDType:" << pTransferSerial->BankID << endl;
-                cout << "“¯––∑÷÷ßª˙ππ±‡¬Î TThostFtdcBankBrchIDType:" << pTransferSerial->BankBranchID << endl;
-                cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pTransferSerial->BankAccType << endl;
-                cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pTransferSerial->BankAccount << endl;
-                cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pTransferSerial->BankSerial << endl;
-                cout << "∆⁄ªıπ´Àæ±‡¬Î TThostFtdcBrokerIDType:" << pTransferSerial->BrokerID << endl;
-                cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pTransferSerial->BrokerBranchID << endl;
-                cout << "∆⁄ªıπ´Àæ’ ∫≈¿‡–Õ TThostFtdcFutureAccTypeType:" << pTransferSerial->FutureAccType << endl;
-                cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pTransferSerial->AccountID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pTransferSerial->InvestorID << endl;
-                cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pTransferSerial->FutureSerial << endl;
-                cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pTransferSerial->IdCardType << endl;
-                cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pTransferSerial->IdentifiedCardNo << endl;
-                cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pTransferSerial->CurrencyID << endl;
-                cout << "Ωª“◊Ω∂Ó TThostFtdcTradeAmountType:" << pTransferSerial->TradeAmount << endl;
-                cout << "”¶ ’øÕªß∑—”√ TThostFtdcCustFeeType:" << pTransferSerial->CustFee << endl;
-                cout << "”¶ ’∆⁄ªıπ´Àæ∑—”√ TThostFtdcFutureFeeType:" << pTransferSerial->BrokerFee << endl;
-                cout << "”––ß±Í÷æ TThostFtdcAvailabilityFlagType:" << pTransferSerial->AvailabilityFlag << endl;
-                cout << "≤Ÿ◊˜‘± TThostFtdcOperatorCodeType:" << pTransferSerial->OperatorCode << endl;
-                cout << "–¬“¯––’ ∫≈ TThostFtdcBankAccountType:" << pTransferSerial->BankNewAccount << endl;
-                cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pTransferSerial->ErrorID << endl;
-                cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pTransferSerial->ErrorMsg << endl;
+                cout << "Âπ≥Âè∞ÊµÅÊ∞¥Âè∑ TThostFtdcPlateSerialType:" << pTransferSerial->PlateSerial << endl;
+                cout << "‰∫§ÊòìÂèëËµ∑ÊñπÊó•Êúü TThostFtdcTradeDateType:" << pTransferSerial->TradeDate << endl;
+                cout << "‰∫§ÊòìÊó•Êúü TThostFtdcDateType:" << pTransferSerial->TradingDay << endl;
+                cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pTransferSerial->TradeTime << endl;
+                cout << "‰∫§Êòì‰ª£Á†Å TThostFtdcTradeCodeType:" << pTransferSerial->TradeCode << endl;
+                cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pTransferSerial->SessionID << endl;
+                cout << "Èì∂Ë°åÁºñÁ†Å TThostFtdcBankIDType:" << pTransferSerial->BankID << endl;
+                cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑÁºñÁ†Å TThostFtdcBankBrchIDType:" << pTransferSerial->BankBranchID << endl;
+                cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pTransferSerial->BankAccType << endl;
+                cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pTransferSerial->BankAccount << endl;
+                cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pTransferSerial->BankSerial << endl;
+                cout << "ÊúüË¥ßÂÖ¨Âè∏ÁºñÁ†Å TThostFtdcBrokerIDType:" << pTransferSerial->BrokerID << endl;
+                cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pTransferSerial->BrokerBranchID << endl;
+                cout << "ÊúüË¥ßÂÖ¨Âè∏Â∏êÂè∑Á±ªÂûã TThostFtdcFutureAccTypeType:" << pTransferSerial->FutureAccType << endl;
+                cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pTransferSerial->AccountID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pTransferSerial->InvestorID << endl;
+                cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pTransferSerial->FutureSerial << endl;
+                cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pTransferSerial->IdCardType << endl;
+                cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pTransferSerial->IdentifiedCardNo << endl;
+                cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pTransferSerial->CurrencyID << endl;
+                cout << "‰∫§ÊòìÈáëÈ¢ù TThostFtdcTradeAmountType:" << pTransferSerial->TradeAmount << endl;
+                cout << "Â∫îÊî∂ÂÆ¢Êà∑Ë¥πÁî® TThostFtdcCustFeeType:" << pTransferSerial->CustFee << endl;
+                cout << "Â∫îÊî∂ÊúüË¥ßÂÖ¨Âè∏Ë¥πÁî® TThostFtdcFutureFeeType:" << pTransferSerial->BrokerFee << endl;
+                cout << "ÊúâÊïàÊ†áÂøó TThostFtdcAvailabilityFlagType:" << pTransferSerial->AvailabilityFlag << endl;
+                cout << "Êìç‰ΩúÂëò TThostFtdcOperatorCodeType:" << pTransferSerial->OperatorCode << endl;
+                cout << "Êñ∞Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pTransferSerial->BankNewAccount << endl;
+                cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pTransferSerial->ErrorID << endl;
+                cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pTransferSerial->ErrorMsg << endl;
         }
 }
 
-///«Î«Û≤È—Ø“¯∆⁄«©‘ºπÿœµœÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢Èì∂ÊúüÁ≠æÁ∫¶ÂÖ≥Á≥ªÂìçÂ∫î
 void CTraderSpi::OnRspQryAccountregister(CThostFtdcAccountregisterField* pAccountregister, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pAccountregister->TradeDay << endl;
-                cout << "“¯––±‡¬Î TThostFtdcBankIDType:" << pAccountregister->BankID << endl;
-                cout << "“¯––∑÷÷ßª˙ππ±‡¬Î TThostFtdcBankBrchIDType:" << pAccountregister->BankBranchID << endl;
-                cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pAccountregister->BankAccount << endl;
-                cout << "∆⁄ªıπ´Àæ±‡¬Î TThostFtdcBrokerIDType:" << pAccountregister->BrokerID << endl;
-                cout << "∆⁄ªıπ´Àæ∑÷÷ßª˙ππ±‡¬Î TThostFtdcFutureBranchIDType:" << pAccountregister->BrokerBranchID << endl;
-                cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pAccountregister->AccountID << endl;
-                cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pAccountregister->IdCardType << endl;
-                cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pAccountregister->IdentifiedCardNo << endl;
-                cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pAccountregister->CustomerName << endl;
-                cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pAccountregister->CurrencyID << endl;
-                cout << "ø™œ˙ªß¿‡± TThostFtdcOpenOrDestroyType:" << pAccountregister->OpenOrDestroy << endl;
-                cout << "«©‘º»’∆⁄ TThostFtdcTradeDateType:" << pAccountregister->RegDate << endl;
-                cout << "Ω‚‘º»’∆⁄ TThostFtdcTradeDateType:" << pAccountregister->OutDate << endl;
-                // cout << "Ωª“◊ID:" << pAccountregister->TThostFtdcTIDType << endlTID;
-                cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pAccountregister->CustType << endl;
-                cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pAccountregister->BankAccType << endl;
+                cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pAccountregister->TradeDay << endl;
+                cout << "Èì∂Ë°åÁºñÁ†Å TThostFtdcBankIDType:" << pAccountregister->BankID << endl;
+                cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑÁºñÁ†Å TThostFtdcBankBrchIDType:" << pAccountregister->BankBranchID << endl;
+                cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pAccountregister->BankAccount << endl;
+                cout << "ÊúüË¥ßÂÖ¨Âè∏ÁºñÁ†Å TThostFtdcBrokerIDType:" << pAccountregister->BrokerID << endl;
+                cout << "ÊúüË¥ßÂÖ¨Âè∏ÂàÜÊîØÊú∫ÊûÑÁºñÁ†Å TThostFtdcFutureBranchIDType:" << pAccountregister->BrokerBranchID << endl;
+                cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pAccountregister->AccountID << endl;
+                cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pAccountregister->IdCardType << endl;
+                cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pAccountregister->IdentifiedCardNo << endl;
+                cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pAccountregister->CustomerName << endl;
+                cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pAccountregister->CurrencyID << endl;
+                cout << "ÂºÄÈîÄÊà∑Á±ªÂà´ TThostFtdcOpenOrDestroyType:" << pAccountregister->OpenOrDestroy << endl;
+                cout << "Á≠æÁ∫¶Êó•Êúü TThostFtdcTradeDateType:" << pAccountregister->RegDate << endl;
+                cout << "Ëß£Á∫¶Êó•Êúü TThostFtdcTradeDateType:" << pAccountregister->OutDate << endl;
+                // cout << "‰∫§ÊòìID:" << pAccountregister->TThostFtdcTIDType << endlTID;
+                cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pAccountregister->CustType << endl;
+                cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pAccountregister->BankAccType << endl;
         }
 }
 
-///¥ÌŒÛ”¶¥
+///ÈîôËØØÂ∫îÁ≠î
 void CTraderSpi::OnRspError(CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> ErrorID=" << pRspInfo->ErrorID << ", ErrorMsg=" << pRspInfo->ErrorMsg << endl;
 }
 
-///±®µ•Õ®÷™
+///Êä•ÂçïÈÄöÁü•
 void CTraderSpi::OnRtnOrder(CThostFtdcOrderField* pOrder)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pOrder->BrokerID << endl;
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pOrder->InvestorID << endl;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pOrder->InstrumentID << endl;
-        cout << "±®µ•“˝”√ TThostFtdcOrderRefType:" << pOrder->OrderRef << endl;
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pOrder->UserID << endl;
-        cout << "±®µ•º€∏ÒÃıº˛ TThostFtdcOrderPriceTypeType:" << pOrder->OrderPriceType << endl;
-        cout << "¬Ú¬Ù∑ΩœÚ TThostFtdcDirectionType:" << pOrder->Direction << endl;
-        cout << "◊È∫œø™∆Ω±Í÷æ TThostFtdcCombOffsetFlagType:" << pOrder->CombOffsetFlag << endl;
-        cout << "◊È∫œÕ∂ª˙Ã◊±£±Í÷æ TThostFtdcCombHedgeFlagType:" << pOrder->CombHedgeFlag << endl;
-        cout << "º€∏Ò TThostFtdcPriceType:" << pOrder->LimitPrice << endl;
-        cout << " ˝¡ø TThostFtdcVolumeType:" << pOrder->VolumeTotalOriginal << endl;
-        cout << "”––ß∆⁄¿‡–Õ TThostFtdcTimeConditionType:" << pOrder->TimeCondition << endl;
-        // cout << "GTD»’∆⁄:" << pOrder->TThostFtdcDateType << endlGTDDate;
-        cout << "≥…Ωª¡ø¿‡–Õ TThostFtdcVolumeConditionType:" << pOrder->VolumeCondition << endl;
-        cout << "◊Ó–°≥…Ωª¡ø TThostFtdcVolumeType:" << pOrder->MinVolume << endl;
-        cout << "¥•∑¢Ãıº˛ TThostFtdcContingentConditionType:" << pOrder->ContingentCondition << endl;
-        cout << "÷πÀº€ TThostFtdcPriceType:" << pOrder->StopPrice << endl;
-        cout << "«ø∆Ω‘≠“Ú TThostFtdcForceCloseReasonType:" << pOrder->ForceCloseReason << endl;
-        cout << "◊‘∂Øπ“∆±Í÷æ TThostFtdcBoolType:" << pOrder->IsAutoSuspend << endl;
-        cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pOrder->BusinessUnit << endl;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pOrder->RequestID << endl;
-        cout << "±æµÿ±®µ•±‡∫≈ TThostFtdcOrderLocalIDType:" << pOrder->OrderLocalID << endl;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pOrder->ExchangeID << endl;
-        cout << "ª·‘±¥˙¬Î TThostFtdcParticipantIDType:" << pOrder->ParticipantID << endl;
-        cout << "øÕªß¥˙¬Î TThostFtdcClientIDType:" << pOrder->ClientID << endl;
-        cout << "∫œ‘º‘⁄Ωª“◊À˘µƒ¥˙¬Î TThostFtdcExchangeInstIDType:" << pOrder->ExchangeInstID << endl;
-        cout << "Ωª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pOrder->TraderID << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pOrder->InstallID << endl;
-        cout << "±®µ•Ã·Ωª◊¥Ã¨ TThostFtdcOrderSubmitStatusType:" << pOrder->OrderSubmitStatus << endl;
-        cout << "±®µ•Ã· æ–Ú∫≈ TThostFtdcSequenceNoType:" << pOrder->NotifySequence << endl;
-        cout << "Ωª“◊»’ TThostFtdcDateType:" << pOrder->TradingDay << endl;
-        cout << "Ω·À„±‡∫≈ TThostFtdcSettlementIDType:" << pOrder->SettlementID << endl;
-        cout << "±®µ•±‡∫≈ TThostFtdcOrderSysIDType:" << pOrder->OrderSysID << endl;
-        cout << "±®µ•¿¥‘¥ TThostFtdcOrderSourceType:" << pOrder->OrderSource << endl;
-        cout << "±®µ•◊¥Ã¨ TThostFtdcOrderStatusType:" << pOrder->OrderStatus << endl;
-        cout << "±®µ•¿‡–Õ TThostFtdcOrderTypeType:" << pOrder->OrderType << endl;
-        cout << "ΩÒ≥…Ωª ˝¡ø TThostFtdcVolumeType:" << pOrder->VolumeTraded << endl;
-        cout << " £”‡ ˝¡ø TThostFtdcVolumeType:" << pOrder->VolumeTotal << endl;
-        cout << "±®µ•»’∆⁄ TThostFtdcDateType:" << pOrder->InsertDate << endl;
-        cout << "ŒØÕ– ±º‰ TThostFtdcTimeType:" << pOrder->InsertTime << endl;
-        cout << "º§ªÓ ±º‰ TThostFtdcTimeType:" << pOrder->ActiveTime << endl;
-        cout << "π“∆ ±º‰ TThostFtdcTimeType:" << pOrder->SuspendTime << endl;
-        cout << "◊Ó∫Û–ﬁ∏ƒ ±º‰ TThostFtdcTimeType:" << pOrder->UpdateTime << endl;
-        cout << "≥∑œ˙ ±º‰ TThostFtdcTimeType:" << pOrder->CancelTime << endl;
-        cout << "◊Ó∫Û–ﬁ∏ƒΩª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pOrder->ActiveTraderID << endl;
-        cout << "Ω·À„ª·‘±±‡∫≈ TThostFtdcParticipantIDType:" << pOrder->ClearingPartID << endl;
-        cout << "–Ú∫≈ TThostFtdcSequenceNoType:" << pOrder->SequenceNo << endl;
-        cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pOrder->FrontID << endl;
-        cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pOrder->SessionID << endl;
-        cout << "”√ªß∂À≤˙∆∑–≈œ¢ TThostFtdcProductInfoType:" << pOrder->UserProductInfo << endl;
-        cout << "◊¥Ã¨–≈œ¢ TThostFtdcErrorMsgType:" << pOrder->StatusMsg << endl;
-        cout << "”√ªß«ø∆¿±Í÷æ TThostFtdcBoolType:" << pOrder->UserForceClose << endl;
-        cout << "≤Ÿ◊˜”√ªß¥˙¬Î TThostFtdcUserIDType:" << pOrder->ActiveUserID << endl;
-        cout << "æ≠ºÕπ´Àæ±®µ•±‡∫≈ TThostFtdcSequenceNoType:" << pOrder->BrokerOrderSeq << endl;
-        cout << "œ‡πÿ±®µ• TThostFtdcOrderSysIDType:" << pOrder->RelativeOrderSysID << endl;
-        cout << "÷£…ÃÀ˘≥…Ωª ˝¡ø TThostFtdcVolumeType:" << pOrder->ZCETotalTradedVolume << endl;
-        cout << "ª•ªªµ•±Í÷æ TThostFtdcBoolType:" << pOrder->IsSwapOrder << endl;
-        cout << "”™“µ≤ø±‡∫≈ TThostFtdcBranchIDType:" << pOrder->BranchID << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pOrder->BrokerID << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pOrder->InvestorID << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pOrder->InstrumentID << endl;
+        cout << "Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pOrder->OrderRef << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pOrder->UserID << endl;
+        cout << "Êä•Âçï‰ª∑Ê†ºÊù°‰ª∂ TThostFtdcOrderPriceTypeType:" << pOrder->OrderPriceType << endl;
+        cout << "‰π∞ÂçñÊñπÂêë TThostFtdcDirectionType:" << pOrder->Direction << endl;
+        cout << "ÁªÑÂêàÂºÄÂπ≥Ê†áÂøó TThostFtdcCombOffsetFlagType:" << pOrder->CombOffsetFlag << endl;
+        cout << "ÁªÑÂêàÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcCombHedgeFlagType:" << pOrder->CombHedgeFlag << endl;
+        cout << "‰ª∑Ê†º TThostFtdcPriceType:" << pOrder->LimitPrice << endl;
+        cout << "Êï∞Èáè TThostFtdcVolumeType:" << pOrder->VolumeTotalOriginal << endl;
+        cout << "ÊúâÊïàÊúüÁ±ªÂûã TThostFtdcTimeConditionType:" << pOrder->TimeCondition << endl;
+        // cout << "GTDÊó•Êúü:" << pOrder->TThostFtdcDateType << endlGTDDate;
+        cout << "Êàê‰∫§ÈáèÁ±ªÂûã TThostFtdcVolumeConditionType:" << pOrder->VolumeCondition << endl;
+        cout << "ÊúÄÂ∞èÊàê‰∫§Èáè TThostFtdcVolumeType:" << pOrder->MinVolume << endl;
+        cout << "Ëß¶ÂèëÊù°‰ª∂ TThostFtdcContingentConditionType:" << pOrder->ContingentCondition << endl;
+        cout << "Ê≠¢Êçü‰ª∑ TThostFtdcPriceType:" << pOrder->StopPrice << endl;
+        cout << "Âº∫Âπ≥ÂéüÂõ† TThostFtdcForceCloseReasonType:" << pOrder->ForceCloseReason << endl;
+        cout << "Ëá™Âä®ÊåÇËµ∑Ê†áÂøó TThostFtdcBoolType:" << pOrder->IsAutoSuspend << endl;
+        cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pOrder->BusinessUnit << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pOrder->RequestID << endl;
+        cout << "Êú¨Âú∞Êä•ÂçïÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pOrder->OrderLocalID << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pOrder->ExchangeID << endl;
+        cout << "‰ºöÂëò‰ª£Á†Å TThostFtdcParticipantIDType:" << pOrder->ParticipantID << endl;
+        cout << "ÂÆ¢Êà∑‰ª£Á†Å TThostFtdcClientIDType:" << pOrder->ClientID << endl;
+        cout << "ÂêàÁ∫¶Âú®‰∫§ÊòìÊâÄÁöÑ‰ª£Á†Å TThostFtdcExchangeInstIDType:" << pOrder->ExchangeInstID << endl;
+        cout << "‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pOrder->TraderID << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pOrder->InstallID << endl;
+        cout << "Êä•ÂçïÊèê‰∫§Áä∂ÊÄÅ TThostFtdcOrderSubmitStatusType:" << pOrder->OrderSubmitStatus << endl;
+        cout << "Êä•ÂçïÊèêÁ§∫Â∫èÂè∑ TThostFtdcSequenceNoType:" << pOrder->NotifySequence << endl;
+        cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pOrder->TradingDay << endl;
+        cout << "ÁªìÁÆóÁºñÂè∑ TThostFtdcSettlementIDType:" << pOrder->SettlementID << endl;
+        cout << "Êä•ÂçïÁºñÂè∑ TThostFtdcOrderSysIDType:" << pOrder->OrderSysID << endl;
+        cout << "Êä•ÂçïÊù•Ê∫ê TThostFtdcOrderSourceType:" << pOrder->OrderSource << endl;
+        cout << "Êä•ÂçïÁä∂ÊÄÅ TThostFtdcOrderStatusType:" << pOrder->OrderStatus << endl;
+        cout << "Êä•ÂçïÁ±ªÂûã TThostFtdcOrderTypeType:" << pOrder->OrderType << endl;
+        cout << "‰ªäÊàê‰∫§Êï∞Èáè TThostFtdcVolumeType:" << pOrder->VolumeTraded << endl;
+        cout << "Ââ©‰ΩôÊï∞Èáè TThostFtdcVolumeType:" << pOrder->VolumeTotal << endl;
+        cout << "Êä•ÂçïÊó•Êúü TThostFtdcDateType:" << pOrder->InsertDate << endl;
+        cout << "ÂßîÊâòÊó∂Èó¥ TThostFtdcTimeType:" << pOrder->InsertTime << endl;
+        cout << "ÊøÄÊ¥ªÊó∂Èó¥ TThostFtdcTimeType:" << pOrder->ActiveTime << endl;
+        cout << "ÊåÇËµ∑Êó∂Èó¥ TThostFtdcTimeType:" << pOrder->SuspendTime << endl;
+        cout << "ÊúÄÂêé‰øÆÊîπÊó∂Èó¥ TThostFtdcTimeType:" << pOrder->UpdateTime << endl;
+        cout << "Êí§ÈîÄÊó∂Èó¥ TThostFtdcTimeType:" << pOrder->CancelTime << endl;
+        cout << "ÊúÄÂêé‰øÆÊîπ‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pOrder->ActiveTraderID << endl;
+        cout << "ÁªìÁÆó‰ºöÂëòÁºñÂè∑ TThostFtdcParticipantIDType:" << pOrder->ClearingPartID << endl;
+        cout << "Â∫èÂè∑ TThostFtdcSequenceNoType:" << pOrder->SequenceNo << endl;
+        cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pOrder->FrontID << endl;
+        cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pOrder->SessionID << endl;
+        cout << "Áî®Êà∑Á´Ø‰∫ßÂìÅ‰ø°ÊÅØ TThostFtdcProductInfoType:" << pOrder->UserProductInfo << endl;
+        cout << "Áä∂ÊÄÅ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pOrder->StatusMsg << endl;
+        cout << "Áî®Êà∑Âº∫ËØÑÊ†áÂøó TThostFtdcBoolType:" << pOrder->UserForceClose << endl;
+        cout << "Êìç‰ΩúÁî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pOrder->ActiveUserID << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏Êä•ÂçïÁºñÂè∑ TThostFtdcSequenceNoType:" << pOrder->BrokerOrderSeq << endl;
+        cout << "Áõ∏ÂÖ≥Êä•Âçï TThostFtdcOrderSysIDType:" << pOrder->RelativeOrderSysID << endl;
+        cout << "ÈÉëÂïÜÊâÄÊàê‰∫§Êï∞Èáè TThostFtdcVolumeType:" << pOrder->ZCETotalTradedVolume << endl;
+        cout << "‰∫íÊç¢ÂçïÊ†áÂøó TThostFtdcBoolType:" << pOrder->IsSwapOrder << endl;
+        cout << "Ëê•‰∏öÈÉ®ÁºñÂè∑ TThostFtdcBranchIDType:" << pOrder->BranchID << endl;
 }
 
-///≥…ΩªÕ®÷™
+///Êàê‰∫§ÈÄöÁü•
 void CTraderSpi::OnRtnTrade(CThostFtdcTradeField* pTrade)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pTrade->BrokerID << endl;
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pTrade->InvestorID << endl;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pTrade->InstrumentID << endl;
-        cout << "±®µ•“˝”√ TThostFtdcOrderRefType:" << pTrade->OrderRef << endl;
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pTrade->UserID << endl;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pTrade->ExchangeID << endl;
-        cout << "≥…Ωª±‡∫≈ TThostFtdcTradeIDType:" << pTrade->TradeID << endl;
-        cout << "¬Ú¬Ù∑ΩœÚ TThostFtdcDirectionType:" << pTrade->Direction << endl;
-        cout << "±®µ•±‡∫≈ TThostFtdcOrderSysIDType:" << pTrade->OrderSysID << endl;
-        cout << "ª·‘±¥˙¬Î TThostFtdcParticipantIDType:" << pTrade->ParticipantID << endl;
-        cout << "øÕªß¥˙¬Î TThostFtdcClientIDType:" << pTrade->ClientID << endl;
-        cout << "Ωª“◊Ω«…´ TThostFtdcTradingRoleType:" << pTrade->TradingRole << endl;
-        cout << "∫œ‘º‘⁄Ωª“◊À˘µƒ¥˙¬Î TThostFtdcExchangeInstIDType:" << pTrade->ExchangeInstID << endl;
-        cout << "ø™∆Ω±Í÷æ TThostFtdcOffsetFlagType:" << pTrade->OffsetFlag << endl;
-        cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pTrade->HedgeFlag << endl;
-        cout << "º€∏Ò TThostFtdcPriceType:" << pTrade->Price << endl;
-        cout << " ˝¡ø TThostFtdcVolumeType:" << pTrade->Volume << endl;
-        cout << "≥…Ωª ±∆⁄ TThostFtdcDateType:" << pTrade->TradeDate << endl;
-        cout << "≥…Ωª ±º‰ TThostFtdcTimeType:" << pTrade->TradeTime << endl;
-        cout << "≥…Ωª¿‡–Õ TThostFtdcTradeTypeType:" << pTrade->TradeType << endl;
-        cout << "≥…Ωªº€¿¥‘¥ TThostFtdcPriceSourceType:" << pTrade->PriceSource << endl;
-        cout << "Ωª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pTrade->TraderID << endl;
-        cout << "±æµÿ±®µ•±‡∫≈ TThostFtdcOrderLocalIDType:" << pTrade->OrderLocalID << endl;
-        cout << "Ω·À„ª·‘±±‡∫≈ TThostFtdcParticipantIDType:" << pTrade->ClearingPartID << endl;
-        cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pTrade->BusinessUnit << endl;
-        cout << "–Ú∫≈ TThostFtdcSequenceNoType:" << pTrade->SequenceNo << endl;
-        cout << "Ωª“◊»’ TThostFtdcDateType:" << pTrade->TradingDay << endl;
-        cout << "Ω·À„±‡∫≈ TThostFtdcSettlementIDType:" << pTrade->SettlementID << endl;
-        cout << "æ≠ºÕπ´Àæ±®µ•±‡∫≈ TThostFtdcSequenceNoType:" << pTrade->BrokerOrderSeq << endl;
-        cout << "≥…Ωª¿¥‘¥ TThostFtdcTradeSourceType:" << pTrade->TradeSource << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pTrade->BrokerID << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pTrade->InvestorID << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pTrade->InstrumentID << endl;
+        cout << "Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pTrade->OrderRef << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pTrade->UserID << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pTrade->ExchangeID << endl;
+        cout << "Êàê‰∫§ÁºñÂè∑ TThostFtdcTradeIDType:" << pTrade->TradeID << endl;
+        cout << "‰π∞ÂçñÊñπÂêë TThostFtdcDirectionType:" << pTrade->Direction << endl;
+        cout << "Êä•ÂçïÁºñÂè∑ TThostFtdcOrderSysIDType:" << pTrade->OrderSysID << endl;
+        cout << "‰ºöÂëò‰ª£Á†Å TThostFtdcParticipantIDType:" << pTrade->ParticipantID << endl;
+        cout << "ÂÆ¢Êà∑‰ª£Á†Å TThostFtdcClientIDType:" << pTrade->ClientID << endl;
+        cout << "‰∫§ÊòìËßíËâ≤ TThostFtdcTradingRoleType:" << pTrade->TradingRole << endl;
+        cout << "ÂêàÁ∫¶Âú®‰∫§ÊòìÊâÄÁöÑ‰ª£Á†Å TThostFtdcExchangeInstIDType:" << pTrade->ExchangeInstID << endl;
+        cout << "ÂºÄÂπ≥Ê†áÂøó TThostFtdcOffsetFlagType:" << pTrade->OffsetFlag << endl;
+        cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pTrade->HedgeFlag << endl;
+        cout << "‰ª∑Ê†º TThostFtdcPriceType:" << pTrade->Price << endl;
+        cout << "Êï∞Èáè TThostFtdcVolumeType:" << pTrade->Volume << endl;
+        cout << "Êàê‰∫§Êó∂Êúü TThostFtdcDateType:" << pTrade->TradeDate << endl;
+        cout << "Êàê‰∫§Êó∂Èó¥ TThostFtdcTimeType:" << pTrade->TradeTime << endl;
+        cout << "Êàê‰∫§Á±ªÂûã TThostFtdcTradeTypeType:" << pTrade->TradeType << endl;
+        cout << "Êàê‰∫§‰ª∑Êù•Ê∫ê TThostFtdcPriceSourceType:" << pTrade->PriceSource << endl;
+        cout << "‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pTrade->TraderID << endl;
+        cout << "Êú¨Âú∞Êä•ÂçïÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pTrade->OrderLocalID << endl;
+        cout << "ÁªìÁÆó‰ºöÂëòÁºñÂè∑ TThostFtdcParticipantIDType:" << pTrade->ClearingPartID << endl;
+        cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pTrade->BusinessUnit << endl;
+        cout << "Â∫èÂè∑ TThostFtdcSequenceNoType:" << pTrade->SequenceNo << endl;
+        cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pTrade->TradingDay << endl;
+        cout << "ÁªìÁÆóÁºñÂè∑ TThostFtdcSettlementIDType:" << pTrade->SettlementID << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏Êä•ÂçïÁºñÂè∑ TThostFtdcSequenceNoType:" << pTrade->BrokerOrderSeq << endl;
+        cout << "Êàê‰∫§Êù•Ê∫ê TThostFtdcTradeSourceType:" << pTrade->TradeSource << endl;
 }
 
-///±®µ•¬º»Î¥ÌŒÛªÿ±®
+///Êä•ÂçïÂΩïÂÖ•ÈîôËØØÂõûÊä•
 void CTraderSpi::OnErrRtnOrderInsert(CThostFtdcInputOrderField* pInputOrder, CThostFtdcRspInfoField* pRspInfo)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (!IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInputOrder->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInputOrder->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInputOrder->InstrumentID << endl;
-                cout << "±®µ•“˝”√ TThostFtdcOrderRefType:" << pInputOrder->OrderRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pInputOrder->UserID << endl;
-                cout << "±®µ•º€∏ÒÃıº˛ TThostFtdcOrderPriceTypeType:" << pInputOrder->OrderPriceType << endl;
-                cout << "¬Ú¬Ù∑ΩœÚ TThostFtdcDirectionType:" << pInputOrder->Direction << endl;
-                cout << "◊È∫œø™∆Ω±Í÷æ TThostFtdcCombOffsetFlagType:" << pInputOrder->CombOffsetFlag << endl;
-                cout << "◊È∫œÕ∂ª˙Ã◊±£±Í÷æ TThostFtdcCombHedgeFlagType:" << pInputOrder->CombHedgeFlag << endl;
-                cout << "º€∏Ò TThostFtdcPriceType:" << pInputOrder->LimitPrice << endl;
-                cout << " ˝¡ø TThostFtdcVolumeType:" << pInputOrder->VolumeTotalOriginal << endl;
-                cout << "”––ß∆⁄¿‡–Õ TThostFtdcTimeConditionType:" << pInputOrder->TimeCondition << endl;
-                cout << "»’∆⁄ TThostFtdcDateType:" << pInputOrder->GTDDate << endl;
-                cout << "≥…Ωª¡ø¿‡–Õ TThostFtdcVolumeConditionType:" << pInputOrder->VolumeCondition << endl;
-                cout << "◊Ó–°≥…Ωª¡ø TThostFtdcVolumeType:" << pInputOrder->MinVolume << endl;
-                cout << "¥•∑¢Ãıº˛ TThostFtdcContingentConditionType:" << pInputOrder->ContingentCondition << endl;
-                cout << "÷πÀº€ TThostFtdcPriceType:" << pInputOrder->StopPrice << endl;
-                cout << "«ø∆Ω‘≠“Ú TThostFtdcForceCloseReasonType:" << pInputOrder->ForceCloseReason << endl;
-                cout << "◊‘∂Øπ“∆±Í÷æ TThostFtdcBoolType:" << pInputOrder->IsAutoSuspend << endl;
-                cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pInputOrder->BusinessUnit << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pInputOrder->RequestID << endl;
-                cout << "”√ªß«ø∆¿±Í÷æ TThostFtdcBoolType:" << pInputOrder->UserForceClose << endl;
-                cout << "ª•ªªµ•±Í÷æ TThostFtdcBoolType:" << pInputOrder->IsSwapOrder << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInputOrder->ExchangeID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInputOrder->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInputOrder->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInputOrder->InstrumentID << endl;
+                cout << "Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pInputOrder->OrderRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pInputOrder->UserID << endl;
+                cout << "Êä•Âçï‰ª∑Ê†ºÊù°‰ª∂ TThostFtdcOrderPriceTypeType:" << pInputOrder->OrderPriceType << endl;
+                cout << "‰π∞ÂçñÊñπÂêë TThostFtdcDirectionType:" << pInputOrder->Direction << endl;
+                cout << "ÁªÑÂêàÂºÄÂπ≥Ê†áÂøó TThostFtdcCombOffsetFlagType:" << pInputOrder->CombOffsetFlag << endl;
+                cout << "ÁªÑÂêàÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcCombHedgeFlagType:" << pInputOrder->CombHedgeFlag << endl;
+                cout << "‰ª∑Ê†º TThostFtdcPriceType:" << pInputOrder->LimitPrice << endl;
+                cout << "Êï∞Èáè TThostFtdcVolumeType:" << pInputOrder->VolumeTotalOriginal << endl;
+                cout << "ÊúâÊïàÊúüÁ±ªÂûã TThostFtdcTimeConditionType:" << pInputOrder->TimeCondition << endl;
+                cout << "Êó•Êúü TThostFtdcDateType:" << pInputOrder->GTDDate << endl;
+                cout << "Êàê‰∫§ÈáèÁ±ªÂûã TThostFtdcVolumeConditionType:" << pInputOrder->VolumeCondition << endl;
+                cout << "ÊúÄÂ∞èÊàê‰∫§Èáè TThostFtdcVolumeType:" << pInputOrder->MinVolume << endl;
+                cout << "Ëß¶ÂèëÊù°‰ª∂ TThostFtdcContingentConditionType:" << pInputOrder->ContingentCondition << endl;
+                cout << "Ê≠¢Êçü‰ª∑ TThostFtdcPriceType:" << pInputOrder->StopPrice << endl;
+                cout << "Âº∫Âπ≥ÂéüÂõ† TThostFtdcForceCloseReasonType:" << pInputOrder->ForceCloseReason << endl;
+                cout << "Ëá™Âä®ÊåÇËµ∑Ê†áÂøó TThostFtdcBoolType:" << pInputOrder->IsAutoSuspend << endl;
+                cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pInputOrder->BusinessUnit << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pInputOrder->RequestID << endl;
+                cout << "Áî®Êà∑Âº∫ËØÑÊ†áÂøó TThostFtdcBoolType:" << pInputOrder->UserForceClose << endl;
+                cout << "‰∫íÊç¢ÂçïÊ†áÂøó TThostFtdcBoolType:" << pInputOrder->IsSwapOrder << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInputOrder->ExchangeID << endl;
         }
 }
 
-///±®µ•≤Ÿ◊˜¥ÌŒÛªÿ±®
+///Êä•ÂçïÊìç‰ΩúÈîôËØØÂõûÊä•
 void CTraderSpi::OnErrRtnOrderAction(CThostFtdcOrderActionField* pOrderAction, CThostFtdcRspInfoField* pRspInfo)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (!IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pOrderAction->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pOrderAction->InvestorID << endl;
-                cout << "±®µ•≤Ÿ◊˜“˝”√ TThostFtdcOrderActionRefType:" << pOrderAction->OrderActionRef << endl;
-                cout << "±®µ•“˝”√ TThostFtdcOrderRefType:" << pOrderAction->OrderRef << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pOrderAction->RequestID << endl;
-                cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pOrderAction->FrontID << endl;
-                cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pOrderAction->SessionID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pOrderAction->ExchangeID << endl;
-                cout << "±®µ•±‡∫≈ TThostFtdcOrderSysIDType:" << pOrderAction->OrderSysID << endl;
-                cout << "≤Ÿ◊˜±Í÷æ TThostFtdcActionFlagType:" << pOrderAction->ActionFlag << endl;
-                cout << "º€∏Ò TThostFtdcPriceType:" << pOrderAction->LimitPrice << endl;
-                cout << " ˝¡ø±‰ªØ TThostFtdcVolumeType:" << pOrderAction->VolumeChange << endl;
-                cout << "≤Ÿ◊˜»’∆⁄ TThostFtdcDateType:" << pOrderAction->ActionDate << endl;
-                cout << "≤Ÿ◊˜ ±º‰ TThostFtdcTimeType:" << pOrderAction->ActionTime << endl;
-                cout << "Ωª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pOrderAction->TraderID << endl;
-                cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pOrderAction->InstallID << endl;
-                cout << "±æµÿ±®µ•±‡∫≈ TThostFtdcOrderLocalIDType:" << pOrderAction->OrderLocalID << endl;
-                cout << "≤Ÿ◊˜±æµÿ±‡∫≈ TThostFtdcOrderLocalIDType:" << pOrderAction->ActionLocalID << endl;
-                cout << "ª·‘±¥˙¬Î TThostFtdcParticipantIDType:" << pOrderAction->ParticipantID << endl;
-                cout << "øÕªß¥˙¬Î TThostFtdcClientIDType:" << pOrderAction->ClientID << endl;
-                cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pOrderAction->BusinessUnit << endl;
-                cout << "±®µ•≤Ÿ◊˜◊¥Ã¨ TThostFtdcOrderActionStatusType:" << pOrderAction->OrderActionStatus << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pOrderAction->UserID << endl;
-                cout << "◊¥Ã¨–≈œ¢ TThostFtdcErrorMsgType:" << pOrderAction->StatusMsg << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pOrderAction->InstrumentID << endl;
-                cout << "”™“µ≤ø±‡∫≈ TThostFtdcBranchIDType:" << pOrderAction->BranchID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pOrderAction->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pOrderAction->InvestorID << endl;
+                cout << "Êä•ÂçïÊìç‰ΩúÂºïÁî® TThostFtdcOrderActionRefType:" << pOrderAction->OrderActionRef << endl;
+                cout << "Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pOrderAction->OrderRef << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pOrderAction->RequestID << endl;
+                cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pOrderAction->FrontID << endl;
+                cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pOrderAction->SessionID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pOrderAction->ExchangeID << endl;
+                cout << "Êä•ÂçïÁºñÂè∑ TThostFtdcOrderSysIDType:" << pOrderAction->OrderSysID << endl;
+                cout << "Êìç‰ΩúÊ†áÂøó TThostFtdcActionFlagType:" << pOrderAction->ActionFlag << endl;
+                cout << "‰ª∑Ê†º TThostFtdcPriceType:" << pOrderAction->LimitPrice << endl;
+                cout << "Êï∞ÈáèÂèòÂåñ TThostFtdcVolumeType:" << pOrderAction->VolumeChange << endl;
+                cout << "Êìç‰ΩúÊó•Êúü TThostFtdcDateType:" << pOrderAction->ActionDate << endl;
+                cout << "Êìç‰ΩúÊó∂Èó¥ TThostFtdcTimeType:" << pOrderAction->ActionTime << endl;
+                cout << "‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pOrderAction->TraderID << endl;
+                cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pOrderAction->InstallID << endl;
+                cout << "Êú¨Âú∞Êä•ÂçïÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pOrderAction->OrderLocalID << endl;
+                cout << "Êìç‰ΩúÊú¨Âú∞ÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pOrderAction->ActionLocalID << endl;
+                cout << "‰ºöÂëò‰ª£Á†Å TThostFtdcParticipantIDType:" << pOrderAction->ParticipantID << endl;
+                cout << "ÂÆ¢Êà∑‰ª£Á†Å TThostFtdcClientIDType:" << pOrderAction->ClientID << endl;
+                cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pOrderAction->BusinessUnit << endl;
+                cout << "Êä•ÂçïÊìç‰ΩúÁä∂ÊÄÅ TThostFtdcOrderActionStatusType:" << pOrderAction->OrderActionStatus << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pOrderAction->UserID << endl;
+                cout << "Áä∂ÊÄÅ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pOrderAction->StatusMsg << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pOrderAction->InstrumentID << endl;
+                cout << "Ëê•‰∏öÈÉ®ÁºñÂè∑ TThostFtdcBranchIDType:" << pOrderAction->BranchID << endl;
         }
 }
 
-///∫œ‘ºΩª“◊◊¥Ã¨Õ®÷™
+///ÂêàÁ∫¶‰∫§ÊòìÁä∂ÊÄÅÈÄöÁü•
 void CTraderSpi::OnRtnInstrumentStatus(CThostFtdcInstrumentStatusField* pInstrumentStatus)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInstrumentStatus->ExchangeID << endl;
-        cout << "∫œ‘º‘⁄Ωª“◊À˘µƒ¥˙¬Î TThostFtdcExchangeInstIDType:" << pInstrumentStatus->ExchangeInstID << endl;
-        cout << "Ω·À„◊È¥˙¬Î TThostFtdcSettlementGroupIDType:" << pInstrumentStatus->SettlementGroupID << endl;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInstrumentStatus->InstrumentID << endl;
-        cout << "∫œ‘ºΩª“◊◊¥Ã¨ TThostFtdcInstrumentStatusType:" << pInstrumentStatus->InstrumentStatus << endl;
-        cout << "Ωª“◊Ω◊∂Œ±‡∫≈ TThostFtdcTradingSegmentSNType:" << pInstrumentStatus->TradingSegmentSN << endl;
-        cout << "Ω¯»Î±æ◊¥Ã¨ ±º‰ TThostFtdcTimeType:" << pInstrumentStatus->EnterTime << endl;
-        cout << "Ω¯»Î±æ◊¥Ã¨‘≠“Ú TThostFtdcInstStatusEnterReasonType:" << pInstrumentStatus->EnterReason << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInstrumentStatus->ExchangeID << endl;
+        cout << "ÂêàÁ∫¶Âú®‰∫§ÊòìÊâÄÁöÑ‰ª£Á†Å TThostFtdcExchangeInstIDType:" << pInstrumentStatus->ExchangeInstID << endl;
+        cout << "ÁªìÁÆóÁªÑ‰ª£Á†Å TThostFtdcSettlementGroupIDType:" << pInstrumentStatus->SettlementGroupID << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInstrumentStatus->InstrumentID << endl;
+        cout << "ÂêàÁ∫¶‰∫§ÊòìÁä∂ÊÄÅ TThostFtdcInstrumentStatusType:" << pInstrumentStatus->InstrumentStatus << endl;
+        cout << "‰∫§ÊòìÈò∂ÊÆµÁºñÂè∑ TThostFtdcTradingSegmentSNType:" << pInstrumentStatus->TradingSegmentSN << endl;
+        cout << "ËøõÂÖ•Êú¨Áä∂ÊÄÅÊó∂Èó¥ TThostFtdcTimeType:" << pInstrumentStatus->EnterTime << endl;
+        cout << "ËøõÂÖ•Êú¨Áä∂ÊÄÅÂéüÂõ† TThostFtdcInstStatusEnterReasonType:" << pInstrumentStatus->EnterReason << endl;
 }
 
-///Ωª“◊Õ®÷™
+///‰∫§ÊòìÈÄöÁü•
 void CTraderSpi::OnRtnTradingNotice(CThostFtdcTradingNoticeInfoField* pTradingNoticeInfo)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pTradingNoticeInfo->BrokerID << endl;
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pTradingNoticeInfo->InvestorID << endl;
-        cout << "∑¢ÀÕ ±º‰ TThostFtdcTimeType:" << pTradingNoticeInfo->SendTime << endl;
-        cout << "œ˚œ¢’˝Œƒ TThostFtdcContentType:" << pTradingNoticeInfo->FieldContent << endl;
-        cout << "–Ú¡–œµ¡–∫≈ TThostFtdcSequenceSeriesType:" << pTradingNoticeInfo->SequenceSeries << endl;
-        cout << "–Ú¡–∫≈ TThostFtdcSequenceNoType:" << pTradingNoticeInfo->SequenceNo << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pTradingNoticeInfo->BrokerID << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pTradingNoticeInfo->InvestorID << endl;
+        cout << "ÂèëÈÄÅÊó∂Èó¥ TThostFtdcTimeType:" << pTradingNoticeInfo->SendTime << endl;
+        cout << "Ê∂àÊÅØÊ≠£Êñá TThostFtdcContentType:" << pTradingNoticeInfo->FieldContent << endl;
+        cout << "Â∫èÂàóÁ≥ªÂàóÂè∑ TThostFtdcSequenceSeriesType:" << pTradingNoticeInfo->SequenceSeries << endl;
+        cout << "Â∫èÂàóÂè∑ TThostFtdcSequenceNoType:" << pTradingNoticeInfo->SequenceNo << endl;
 }
 
-///Ã· æÃıº˛µ•–£—È¥ÌŒÛ
+///ÊèêÁ§∫Êù°‰ª∂ÂçïÊ†°È™åÈîôËØØ
 void CTraderSpi::OnRtnErrorConditionalOrder(CThostFtdcErrorConditionalOrderField* pErrorConditionalOrder)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pErrorConditionalOrder->BrokerID << endl;
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pErrorConditionalOrder->InvestorID << endl;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pErrorConditionalOrder->InstrumentID << endl;
-        cout << "±®µ•“˝”√ TThostFtdcOrderRefType:" << pErrorConditionalOrder->OrderRef << endl;
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pErrorConditionalOrder->UserID << endl;
-        cout << "±®µ•º€∏ÒÃıº˛ TThostFtdcOrderPriceTypeType:" << pErrorConditionalOrder->OrderPriceType << endl;
-        cout << "¬Ú¬Ù∑ΩœÚ TThostFtdcDirectionType:" << pErrorConditionalOrder->Direction << endl;
-        cout << "◊È∫œø™∆Ω±Í÷æ TThostFtdcCombOffsetFlagType:" << pErrorConditionalOrder->CombOffsetFlag << endl;
-        cout << "◊È∫œÕ∂ª˙Ã◊±£±Í÷æ TThostFtdcCombHedgeFlagType:" << pErrorConditionalOrder->CombHedgeFlag << endl;
-        cout << "º€∏Ò TThostFtdcPriceType:" << pErrorConditionalOrder->LimitPrice << endl;
-        cout << " ˝¡ø TThostFtdcVolumeType:" << pErrorConditionalOrder->VolumeTotalOriginal << endl;
-        cout << "”––ß∆⁄¿‡–Õ TThostFtdcTimeConditionType:" << pErrorConditionalOrder->TimeCondition << endl;
-        cout << "»’∆⁄ TThostFtdcDateType:" << pErrorConditionalOrder->GTDDate << endl;
-        cout << "≥…Ωª¡ø¿‡–Õ TThostFtdcVolumeConditionType:" << pErrorConditionalOrder->VolumeCondition << endl;
-        cout << "◊Ó–°≥…Ωª¡ø TThostFtdcVolumeType:" << pErrorConditionalOrder->MinVolume << endl;
-        cout << "¥•∑¢Ãıº˛ TThostFtdcContingentConditionType:" << pErrorConditionalOrder->ContingentCondition << endl;
-        cout << "÷πÀº€ TThostFtdcPriceType:" << pErrorConditionalOrder->StopPrice << endl;
-        cout << "«ø∆Ω‘≠“Ú TThostFtdcForceCloseReasonType:" << pErrorConditionalOrder->ForceCloseReason << endl;
-        cout << "◊‘∂Øπ“∆±Í÷æ TThostFtdcBoolType:" << pErrorConditionalOrder->IsAutoSuspend << endl;
-        cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pErrorConditionalOrder->BusinessUnit << endl;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pErrorConditionalOrder->RequestID << endl;
-        cout << "±æµÿ±®µ•±‡∫≈ TThostFtdcOrderLocalIDType:" << pErrorConditionalOrder->OrderLocalID << endl;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pErrorConditionalOrder->ExchangeID << endl;
-        cout << "ª·‘±¥˙¬Î TThostFtdcParticipantIDType:" << pErrorConditionalOrder->ParticipantID << endl;
-        cout << "øÕªß¥˙¬Î TThostFtdcClientIDType:" << pErrorConditionalOrder->ClientID << endl;
-        cout << "∫œ‘º‘⁄Ωª“◊À˘µƒ¥˙¬Î TThostFtdcExchangeInstIDType:" << pErrorConditionalOrder->ExchangeInstID << endl;
-        cout << "Ωª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pErrorConditionalOrder->TraderID << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pErrorConditionalOrder->InstallID << endl;
-        cout << "±®µ•Ã·Ωª◊¥Ã¨ TThostFtdcOrderSubmitStatusType:" << pErrorConditionalOrder->OrderSubmitStatus << endl;
-        cout << "±®µ•Ã· æ–Ú∫≈ TThostFtdcSequenceNoType:" << pErrorConditionalOrder->NotifySequence << endl;
-        cout << "Ωª“◊»’ TThostFtdcDateType:" << pErrorConditionalOrder->TradingDay << endl;
-        cout << "Ω·À„±‡∫≈ TThostFtdcSettlementIDType:" << pErrorConditionalOrder->SettlementID << endl;
-        cout << "±®µ•±‡∫≈ TThostFtdcOrderSysIDType:" << pErrorConditionalOrder->OrderSysID << endl;
-        cout << "±®µ•¿¥‘¥ TThostFtdcOrderSourceType:" << pErrorConditionalOrder->OrderSource << endl;
-        cout << "±®µ•◊¥Ã¨ TThostFtdcOrderStatusType:" << pErrorConditionalOrder->OrderStatus << endl;
-        cout << "±®µ•¿‡–Õ TThostFtdcOrderTypeType:" << pErrorConditionalOrder->OrderType << endl;
-        cout << "ΩÒ≥…Ωª ˝¡ø TThostFtdcVolumeType:" << pErrorConditionalOrder->VolumeTraded << endl;
-        cout << " £”‡ ˝¡ø TThostFtdcVolumeType:" << pErrorConditionalOrder->VolumeTotal << endl;
-        cout << "±®µ•»’∆⁄ TThostFtdcDateType:" << pErrorConditionalOrder->InsertDate << endl;
-        cout << "ŒØÕ– ±º‰ TThostFtdcTimeType:" << pErrorConditionalOrder->InsertTime << endl;
-        cout << "º§ªÓ ±º‰ TThostFtdcTimeType:" << pErrorConditionalOrder->ActiveTime << endl;
-        cout << "π“∆ ±º‰ TThostFtdcTimeType:" << pErrorConditionalOrder->SuspendTime << endl;
-        cout << "◊Ó∫Û–ﬁ∏ƒ ±º‰ TThostFtdcTimeType:" << pErrorConditionalOrder->UpdateTime << endl;
-        cout << "≥∑œ˙ ±º‰ TThostFtdcTimeType:" << pErrorConditionalOrder->CancelTime << endl;
-        cout << "◊Ó∫Û–ﬁ∏ƒΩª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pErrorConditionalOrder->ActiveTraderID << endl;
-        cout << "Ω·À„ª·‘±±‡∫≈ TThostFtdcParticipantIDType:" << pErrorConditionalOrder->ClearingPartID << endl;
-        cout << "–Ú∫≈ TThostFtdcSequenceNoType:" << pErrorConditionalOrder->SequenceNo << endl;
-        cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pErrorConditionalOrder->FrontID << endl;
-        cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pErrorConditionalOrder->SessionID << endl;
-        cout << "”√ªß∂À≤˙∆∑–≈œ¢ TThostFtdcProductInfoType:" << pErrorConditionalOrder->UserProductInfo << endl;
-        cout << "◊¥Ã¨–≈œ¢ TThostFtdcErrorMsgType:" << pErrorConditionalOrder->StatusMsg << endl;
-        cout << "”√ªß«ø∆¿±Í÷æ TThostFtdcBoolType:" << pErrorConditionalOrder->UserForceClose << endl;
-        cout << "≤Ÿ◊˜”√ªß¥˙¬Î TThostFtdcUserIDType:" << pErrorConditionalOrder->ActiveUserID << endl;
-        cout << "æ≠ºÕπ´Àæ±®µ•±‡∫≈ TThostFtdcSequenceNoType:" << pErrorConditionalOrder->BrokerOrderSeq << endl;
-        cout << "œ‡πÿ±®µ• TThostFtdcOrderSysIDType:" << pErrorConditionalOrder->RelativeOrderSysID << endl;
-        cout << "÷£…ÃÀ˘≥…Ωª ˝¡ø TThostFtdcVolumeType:" << pErrorConditionalOrder->ZCETotalTradedVolume << endl;
-        cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pErrorConditionalOrder->ErrorID << endl;
-        cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pErrorConditionalOrder->ErrorMsg << endl;
-        cout << "ª•ªªµ•±Í÷æ TThostFtdcBoolType:" << pErrorConditionalOrder->IsSwapOrder << endl;
-        cout << "”™“µ≤ø±‡∫≈ TThostFtdcBranchIDType:" << pErrorConditionalOrder->BranchID << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pErrorConditionalOrder->BrokerID << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pErrorConditionalOrder->InvestorID << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pErrorConditionalOrder->InstrumentID << endl;
+        cout << "Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pErrorConditionalOrder->OrderRef << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pErrorConditionalOrder->UserID << endl;
+        cout << "Êä•Âçï‰ª∑Ê†ºÊù°‰ª∂ TThostFtdcOrderPriceTypeType:" << pErrorConditionalOrder->OrderPriceType << endl;
+        cout << "‰π∞ÂçñÊñπÂêë TThostFtdcDirectionType:" << pErrorConditionalOrder->Direction << endl;
+        cout << "ÁªÑÂêàÂºÄÂπ≥Ê†áÂøó TThostFtdcCombOffsetFlagType:" << pErrorConditionalOrder->CombOffsetFlag << endl;
+        cout << "ÁªÑÂêàÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcCombHedgeFlagType:" << pErrorConditionalOrder->CombHedgeFlag << endl;
+        cout << "‰ª∑Ê†º TThostFtdcPriceType:" << pErrorConditionalOrder->LimitPrice << endl;
+        cout << "Êï∞Èáè TThostFtdcVolumeType:" << pErrorConditionalOrder->VolumeTotalOriginal << endl;
+        cout << "ÊúâÊïàÊúüÁ±ªÂûã TThostFtdcTimeConditionType:" << pErrorConditionalOrder->TimeCondition << endl;
+        cout << "Êó•Êúü TThostFtdcDateType:" << pErrorConditionalOrder->GTDDate << endl;
+        cout << "Êàê‰∫§ÈáèÁ±ªÂûã TThostFtdcVolumeConditionType:" << pErrorConditionalOrder->VolumeCondition << endl;
+        cout << "ÊúÄÂ∞èÊàê‰∫§Èáè TThostFtdcVolumeType:" << pErrorConditionalOrder->MinVolume << endl;
+        cout << "Ëß¶ÂèëÊù°‰ª∂ TThostFtdcContingentConditionType:" << pErrorConditionalOrder->ContingentCondition << endl;
+        cout << "Ê≠¢Êçü‰ª∑ TThostFtdcPriceType:" << pErrorConditionalOrder->StopPrice << endl;
+        cout << "Âº∫Âπ≥ÂéüÂõ† TThostFtdcForceCloseReasonType:" << pErrorConditionalOrder->ForceCloseReason << endl;
+        cout << "Ëá™Âä®ÊåÇËµ∑Ê†áÂøó TThostFtdcBoolType:" << pErrorConditionalOrder->IsAutoSuspend << endl;
+        cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pErrorConditionalOrder->BusinessUnit << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pErrorConditionalOrder->RequestID << endl;
+        cout << "Êú¨Âú∞Êä•ÂçïÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pErrorConditionalOrder->OrderLocalID << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pErrorConditionalOrder->ExchangeID << endl;
+        cout << "‰ºöÂëò‰ª£Á†Å TThostFtdcParticipantIDType:" << pErrorConditionalOrder->ParticipantID << endl;
+        cout << "ÂÆ¢Êà∑‰ª£Á†Å TThostFtdcClientIDType:" << pErrorConditionalOrder->ClientID << endl;
+        cout << "ÂêàÁ∫¶Âú®‰∫§ÊòìÊâÄÁöÑ‰ª£Á†Å TThostFtdcExchangeInstIDType:" << pErrorConditionalOrder->ExchangeInstID << endl;
+        cout << "‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pErrorConditionalOrder->TraderID << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pErrorConditionalOrder->InstallID << endl;
+        cout << "Êä•ÂçïÊèê‰∫§Áä∂ÊÄÅ TThostFtdcOrderSubmitStatusType:" << pErrorConditionalOrder->OrderSubmitStatus << endl;
+        cout << "Êä•ÂçïÊèêÁ§∫Â∫èÂè∑ TThostFtdcSequenceNoType:" << pErrorConditionalOrder->NotifySequence << endl;
+        cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pErrorConditionalOrder->TradingDay << endl;
+        cout << "ÁªìÁÆóÁºñÂè∑ TThostFtdcSettlementIDType:" << pErrorConditionalOrder->SettlementID << endl;
+        cout << "Êä•ÂçïÁºñÂè∑ TThostFtdcOrderSysIDType:" << pErrorConditionalOrder->OrderSysID << endl;
+        cout << "Êä•ÂçïÊù•Ê∫ê TThostFtdcOrderSourceType:" << pErrorConditionalOrder->OrderSource << endl;
+        cout << "Êä•ÂçïÁä∂ÊÄÅ TThostFtdcOrderStatusType:" << pErrorConditionalOrder->OrderStatus << endl;
+        cout << "Êä•ÂçïÁ±ªÂûã TThostFtdcOrderTypeType:" << pErrorConditionalOrder->OrderType << endl;
+        cout << "‰ªäÊàê‰∫§Êï∞Èáè TThostFtdcVolumeType:" << pErrorConditionalOrder->VolumeTraded << endl;
+        cout << "Ââ©‰ΩôÊï∞Èáè TThostFtdcVolumeType:" << pErrorConditionalOrder->VolumeTotal << endl;
+        cout << "Êä•ÂçïÊó•Êúü TThostFtdcDateType:" << pErrorConditionalOrder->InsertDate << endl;
+        cout << "ÂßîÊâòÊó∂Èó¥ TThostFtdcTimeType:" << pErrorConditionalOrder->InsertTime << endl;
+        cout << "ÊøÄÊ¥ªÊó∂Èó¥ TThostFtdcTimeType:" << pErrorConditionalOrder->ActiveTime << endl;
+        cout << "ÊåÇËµ∑Êó∂Èó¥ TThostFtdcTimeType:" << pErrorConditionalOrder->SuspendTime << endl;
+        cout << "ÊúÄÂêé‰øÆÊîπÊó∂Èó¥ TThostFtdcTimeType:" << pErrorConditionalOrder->UpdateTime << endl;
+        cout << "Êí§ÈîÄÊó∂Èó¥ TThostFtdcTimeType:" << pErrorConditionalOrder->CancelTime << endl;
+        cout << "ÊúÄÂêé‰øÆÊîπ‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pErrorConditionalOrder->ActiveTraderID << endl;
+        cout << "ÁªìÁÆó‰ºöÂëòÁºñÂè∑ TThostFtdcParticipantIDType:" << pErrorConditionalOrder->ClearingPartID << endl;
+        cout << "Â∫èÂè∑ TThostFtdcSequenceNoType:" << pErrorConditionalOrder->SequenceNo << endl;
+        cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pErrorConditionalOrder->FrontID << endl;
+        cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pErrorConditionalOrder->SessionID << endl;
+        cout << "Áî®Êà∑Á´Ø‰∫ßÂìÅ‰ø°ÊÅØ TThostFtdcProductInfoType:" << pErrorConditionalOrder->UserProductInfo << endl;
+        cout << "Áä∂ÊÄÅ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pErrorConditionalOrder->StatusMsg << endl;
+        cout << "Áî®Êà∑Âº∫ËØÑÊ†áÂøó TThostFtdcBoolType:" << pErrorConditionalOrder->UserForceClose << endl;
+        cout << "Êìç‰ΩúÁî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pErrorConditionalOrder->ActiveUserID << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏Êä•ÂçïÁºñÂè∑ TThostFtdcSequenceNoType:" << pErrorConditionalOrder->BrokerOrderSeq << endl;
+        cout << "Áõ∏ÂÖ≥Êä•Âçï TThostFtdcOrderSysIDType:" << pErrorConditionalOrder->RelativeOrderSysID << endl;
+        cout << "ÈÉëÂïÜÊâÄÊàê‰∫§Êï∞Èáè TThostFtdcVolumeType:" << pErrorConditionalOrder->ZCETotalTradedVolume << endl;
+        cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pErrorConditionalOrder->ErrorID << endl;
+        cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pErrorConditionalOrder->ErrorMsg << endl;
+        cout << "‰∫íÊç¢ÂçïÊ†áÂøó TThostFtdcBoolType:" << pErrorConditionalOrder->IsSwapOrder << endl;
+        cout << "Ëê•‰∏öÈÉ®ÁºñÂè∑ TThostFtdcBranchIDType:" << pErrorConditionalOrder->BranchID << endl;
 }
 
-///÷¥–––˚∏ÊÕ®÷™
+///ÊâßË°åÂÆ£ÂëäÈÄöÁü•
 void CTraderSpi::OnRtnExecOrder(CThostFtdcExecOrderField* pExecOrder)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pExecOrder->BrokerID << endl;
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pExecOrder->InvestorID << endl;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pExecOrder->InstrumentID << endl;
-        cout << "÷¥–––˚∏Ê“˝”√ TThostFtdcOrderRefType:" << pExecOrder->ExecOrderRef << endl;
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pExecOrder->UserID << endl;
-        cout << " ˝¡ø TThostFtdcVolumeType:" << pExecOrder->Volume << endl;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pExecOrder->RequestID << endl;
-        cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pExecOrder->BusinessUnit << endl;
-        cout << "ø™∆Ω±Í÷æ TThostFtdcOffsetFlagType:" << pExecOrder->OffsetFlag << endl;
-        cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pExecOrder->HedgeFlag << endl;
-        cout << "÷¥––¿‡–Õ TThostFtdcActionTypeType:" << pExecOrder->ActionType << endl;
-        cout << "±£¡ÙÕ∑¥Á…Í«Îµƒ≥÷≤÷∑ΩœÚ TThostFtdcPosiDirectionType:" << pExecOrder->PosiDirection << endl;
-        cout << "∆⁄»®––»®∫Û «∑Ò±£¡Ù∆⁄ªıÕ∑¥Áµƒ±Íº« TThostFtdcExecOrderPositionFlagType:" << pExecOrder->ReservePositionFlag << endl;
-        cout << "∆⁄»®––»®∫Û…˙≥…µƒÕ∑¥Á «∑Ò◊‘∂Ø∆Ω≤÷ TThostFtdcExecOrderCloseFlagType:" << pExecOrder->CloseFlag << endl;
-        cout << "±æµÿ÷¥–––˚∏Ê±‡∫≈ TThostFtdcOrderLocalIDType:" << pExecOrder->ExecOrderLocalID << endl;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pExecOrder->ExchangeID << endl;
-        cout << "ª·‘±¥˙¬Î TThostFtdcParticipantIDType:" << pExecOrder->ParticipantID << endl;
-        cout << "øÕªß¥˙¬Î TThostFtdcClientIDType:" << pExecOrder->ClientID << endl;
-        cout << "∫œ‘º‘⁄Ωª“◊À˘µƒ¥˙¬Î TThostFtdcExchangeInstIDType:" << pExecOrder->ExchangeInstID << endl;
-        cout << "Ωª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pExecOrder->TraderID << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pExecOrder->InstallID << endl;
-        cout << "÷¥–––˚∏ÊÃ·Ωª◊¥Ã¨ TThostFtdcOrderSubmitStatusType:" << pExecOrder->OrderSubmitStatus << endl;
-        cout << "±®µ•Ã· æ–Ú∫≈ TThostFtdcSequenceNoType:" << pExecOrder->NotifySequence << endl;
-        cout << "Ωª“◊»’ TThostFtdcDateType:" << pExecOrder->TradingDay << endl;
-        cout << "Ω·À„±‡∫≈ TThostFtdcSettlementIDType:" << pExecOrder->SettlementID << endl;
-        cout << "÷¥–––˚∏Ê±‡∫≈ TThostFtdcExecOrderSysIDType:" << pExecOrder->ExecOrderSysID << endl;
-        cout << "±®µ•»’∆⁄ TThostFtdcDateType:" << pExecOrder->InsertDate << endl;
-        cout << "≤Â»Î ±º‰ TThostFtdcTimeType:" << pExecOrder->InsertTime << endl;
-        cout << "≥∑œ˙ ±º‰ TThostFtdcTimeType:" << pExecOrder->CancelTime << endl;
-        cout << "÷¥––Ω·π˚ TThostFtdcExecResultType:" << pExecOrder->ExecResult << endl;
-        cout << "Ω·À„ª·‘±±‡∫≈ TThostFtdcParticipantIDType:" << pExecOrder->ClearingPartID << endl;
-        cout << "–Ú∫≈ TThostFtdcSequenceNoType:" << pExecOrder->SequenceNo << endl;
-        cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pExecOrder->FrontID << endl;
-        cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pExecOrder->SessionID << endl;
-        cout << "”√ªß∂À≤˙∆∑–≈œ¢ TThostFtdcProductInfoType:" << pExecOrder->UserProductInfo << endl;
-        cout << "◊¥Ã¨–≈œ¢ TThostFtdcErrorMsgType:" << pExecOrder->StatusMsg << endl;
-        cout << "≤Ÿ◊˜”√ªß¥˙¬Î TThostFtdcUserIDType:" << pExecOrder->ActiveUserID << endl;
-        cout << "æ≠ºÕπ´Àæ±®µ•±‡∫≈ TThostFtdcSequenceNoType:" << pExecOrder->BrokerExecOrderSeq << endl;
-        cout << "”™“µ≤ø±‡∫≈ TThostFtdcBranchIDType:" << pExecOrder->BranchID << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pExecOrder->BrokerID << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pExecOrder->InvestorID << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pExecOrder->InstrumentID << endl;
+        cout << "ÊâßË°åÂÆ£ÂëäÂºïÁî® TThostFtdcOrderRefType:" << pExecOrder->ExecOrderRef << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pExecOrder->UserID << endl;
+        cout << "Êï∞Èáè TThostFtdcVolumeType:" << pExecOrder->Volume << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pExecOrder->RequestID << endl;
+        cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pExecOrder->BusinessUnit << endl;
+        cout << "ÂºÄÂπ≥Ê†áÂøó TThostFtdcOffsetFlagType:" << pExecOrder->OffsetFlag << endl;
+        cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pExecOrder->HedgeFlag << endl;
+        cout << "ÊâßË°åÁ±ªÂûã TThostFtdcActionTypeType:" << pExecOrder->ActionType << endl;
+        cout << "‰øùÁïôÂ§¥ÂØ∏Áî≥ËØ∑ÁöÑÊåÅ‰ªìÊñπÂêë TThostFtdcPosiDirectionType:" << pExecOrder->PosiDirection << endl;
+        cout << "ÊúüÊùÉË°åÊùÉÂêéÊòØÂê¶‰øùÁïôÊúüË¥ßÂ§¥ÂØ∏ÁöÑÊ†áËÆ∞ TThostFtdcExecOrderPositionFlagType:" << pExecOrder->ReservePositionFlag << endl;
+        cout << "ÊúüÊùÉË°åÊùÉÂêéÁîüÊàêÁöÑÂ§¥ÂØ∏ÊòØÂê¶Ëá™Âä®Âπ≥‰ªì TThostFtdcExecOrderCloseFlagType:" << pExecOrder->CloseFlag << endl;
+        cout << "Êú¨Âú∞ÊâßË°åÂÆ£ÂëäÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pExecOrder->ExecOrderLocalID << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pExecOrder->ExchangeID << endl;
+        cout << "‰ºöÂëò‰ª£Á†Å TThostFtdcParticipantIDType:" << pExecOrder->ParticipantID << endl;
+        cout << "ÂÆ¢Êà∑‰ª£Á†Å TThostFtdcClientIDType:" << pExecOrder->ClientID << endl;
+        cout << "ÂêàÁ∫¶Âú®‰∫§ÊòìÊâÄÁöÑ‰ª£Á†Å TThostFtdcExchangeInstIDType:" << pExecOrder->ExchangeInstID << endl;
+        cout << "‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pExecOrder->TraderID << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pExecOrder->InstallID << endl;
+        cout << "ÊâßË°åÂÆ£ÂëäÊèê‰∫§Áä∂ÊÄÅ TThostFtdcOrderSubmitStatusType:" << pExecOrder->OrderSubmitStatus << endl;
+        cout << "Êä•ÂçïÊèêÁ§∫Â∫èÂè∑ TThostFtdcSequenceNoType:" << pExecOrder->NotifySequence << endl;
+        cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pExecOrder->TradingDay << endl;
+        cout << "ÁªìÁÆóÁºñÂè∑ TThostFtdcSettlementIDType:" << pExecOrder->SettlementID << endl;
+        cout << "ÊâßË°åÂÆ£ÂëäÁºñÂè∑ TThostFtdcExecOrderSysIDType:" << pExecOrder->ExecOrderSysID << endl;
+        cout << "Êä•ÂçïÊó•Êúü TThostFtdcDateType:" << pExecOrder->InsertDate << endl;
+        cout << "ÊèíÂÖ•Êó∂Èó¥ TThostFtdcTimeType:" << pExecOrder->InsertTime << endl;
+        cout << "Êí§ÈîÄÊó∂Èó¥ TThostFtdcTimeType:" << pExecOrder->CancelTime << endl;
+        cout << "ÊâßË°åÁªìÊûú TThostFtdcExecResultType:" << pExecOrder->ExecResult << endl;
+        cout << "ÁªìÁÆó‰ºöÂëòÁºñÂè∑ TThostFtdcParticipantIDType:" << pExecOrder->ClearingPartID << endl;
+        cout << "Â∫èÂè∑ TThostFtdcSequenceNoType:" << pExecOrder->SequenceNo << endl;
+        cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pExecOrder->FrontID << endl;
+        cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pExecOrder->SessionID << endl;
+        cout << "Áî®Êà∑Á´Ø‰∫ßÂìÅ‰ø°ÊÅØ TThostFtdcProductInfoType:" << pExecOrder->UserProductInfo << endl;
+        cout << "Áä∂ÊÄÅ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pExecOrder->StatusMsg << endl;
+        cout << "Êìç‰ΩúÁî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pExecOrder->ActiveUserID << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏Êä•ÂçïÁºñÂè∑ TThostFtdcSequenceNoType:" << pExecOrder->BrokerExecOrderSeq << endl;
+        cout << "Ëê•‰∏öÈÉ®ÁºñÂè∑ TThostFtdcBranchIDType:" << pExecOrder->BranchID << endl;
 }
 
-///÷¥–––˚∏Ê¬º»Î¥ÌŒÛªÿ±®
+///ÊâßË°åÂÆ£ÂëäÂΩïÂÖ•ÈîôËØØÂõûÊä•
 void CTraderSpi::OnErrRtnExecOrderInsert(CThostFtdcInputExecOrderField* pInputExecOrder, CThostFtdcRspInfoField* pRspInfo)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (!IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInputExecOrder->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInputExecOrder->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInputExecOrder->InstrumentID << endl;
-                cout << "÷¥–––˚∏Ê“˝”√ TThostFtdcOrderRefType:" << pInputExecOrder->ExecOrderRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pInputExecOrder->UserID << endl;
-                cout << " ˝¡ø TThostFtdcVolumeType:" << pInputExecOrder->Volume << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pInputExecOrder->RequestID << endl;
-                cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pInputExecOrder->BusinessUnit << endl;
-                cout << "ø™∆Ω±Í÷æ TThostFtdcOffsetFlagType:" << pInputExecOrder->OffsetFlag << endl;
-                cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pInputExecOrder->HedgeFlag << endl;
-                cout << "÷¥––¿‡–Õ TThostFtdcActionTypeType:" << pInputExecOrder->ActionType << endl;
-                cout << "±£¡ÙÕ∑¥Á…Í«Îµƒ≥÷≤÷∑ΩœÚ TThostFtdcPosiDirectionType:" << pInputExecOrder->PosiDirection << endl;
-                cout << "∆⁄»®––»®∫Û «∑Ò±£¡Ù∆⁄ªıÕ∑¥Áµƒ±Íº« TThostFtdcExecOrderPositionFlagType:" << pInputExecOrder->ReservePositionFlag << endl;
-                cout << "∆⁄»®––»®∫Û…˙≥…µƒÕ∑¥Á «∑Ò◊‘∂Ø∆Ω≤÷ TThostFtdcExecOrderCloseFlagType:" << pInputExecOrder->CloseFlag << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInputExecOrder->ExchangeID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInputExecOrder->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInputExecOrder->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInputExecOrder->InstrumentID << endl;
+                cout << "ÊâßË°åÂÆ£ÂëäÂºïÁî® TThostFtdcOrderRefType:" << pInputExecOrder->ExecOrderRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pInputExecOrder->UserID << endl;
+                cout << "Êï∞Èáè TThostFtdcVolumeType:" << pInputExecOrder->Volume << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pInputExecOrder->RequestID << endl;
+                cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pInputExecOrder->BusinessUnit << endl;
+                cout << "ÂºÄÂπ≥Ê†áÂøó TThostFtdcOffsetFlagType:" << pInputExecOrder->OffsetFlag << endl;
+                cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pInputExecOrder->HedgeFlag << endl;
+                cout << "ÊâßË°åÁ±ªÂûã TThostFtdcActionTypeType:" << pInputExecOrder->ActionType << endl;
+                cout << "‰øùÁïôÂ§¥ÂØ∏Áî≥ËØ∑ÁöÑÊåÅ‰ªìÊñπÂêë TThostFtdcPosiDirectionType:" << pInputExecOrder->PosiDirection << endl;
+                cout << "ÊúüÊùÉË°åÊùÉÂêéÊòØÂê¶‰øùÁïôÊúüË¥ßÂ§¥ÂØ∏ÁöÑÊ†áËÆ∞ TThostFtdcExecOrderPositionFlagType:" << pInputExecOrder->ReservePositionFlag << endl;
+                cout << "ÊúüÊùÉË°åÊùÉÂêéÁîüÊàêÁöÑÂ§¥ÂØ∏ÊòØÂê¶Ëá™Âä®Âπ≥‰ªì TThostFtdcExecOrderCloseFlagType:" << pInputExecOrder->CloseFlag << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInputExecOrder->ExchangeID << endl;
         }
 }
 
-///÷¥–––˚∏Ê≤Ÿ◊˜¥ÌŒÛªÿ±®
+///ÊâßË°åÂÆ£ÂëäÊìç‰ΩúÈîôËØØÂõûÊä•
 void CTraderSpi::OnErrRtnExecOrderAction(CThostFtdcExecOrderActionField* pExecOrderAction, CThostFtdcRspInfoField* pRspInfo)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (!IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pExecOrderAction->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pExecOrderAction->InvestorID << endl;
-                cout << "÷¥–––˚∏Ê≤Ÿ◊˜“˝”√ TThostFtdcOrderActionRefType:" << pExecOrderAction->ExecOrderActionRef << endl;
-                cout << "÷¥–––˚∏Ê“˝”√ TThostFtdcOrderRefType:" << pExecOrderAction->ExecOrderRef << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pExecOrderAction->RequestID << endl;
-                cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pExecOrderAction->FrontID << endl;
-                cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pExecOrderAction->SessionID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pExecOrderAction->ExchangeID << endl;
-                cout << "÷¥–––˚∏Ê≤Ÿ◊˜±‡∫≈ TThostFtdcExecOrderSysIDType:" << pExecOrderAction->ExecOrderSysID << endl;
-                cout << "≤Ÿ◊˜±Í÷æ TThostFtdcActionFlagType:" << pExecOrderAction->ActionFlag << endl;
-                cout << "≤Ÿ◊˜»’∆⁄ TThostFtdcDateType:" << pExecOrderAction->ActionDate << endl;
-                cout << "≤Ÿ◊˜ ±º‰ TThostFtdcTimeType:" << pExecOrderAction->ActionTime << endl;
-                cout << "Ωª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pExecOrderAction->TraderID << endl;
-                cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pExecOrderAction->InstallID << endl;
-                cout << "±æµÿ÷¥–––˚∏Ê±‡∫≈ TThostFtdcOrderLocalIDType:" << pExecOrderAction->ExecOrderLocalID << endl;
-                cout << "≤Ÿ◊˜±æµÿ±‡∫≈ TThostFtdcOrderLocalIDType:" << pExecOrderAction->ActionLocalID << endl;
-                cout << "ª·‘±¥˙¬Î TThostFtdcParticipantIDType:" << pExecOrderAction->ParticipantID << endl;
-                cout << "øÕªß¥˙¬Î TThostFtdcClientIDType:" << pExecOrderAction->ClientID << endl;
-                cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pExecOrderAction->BusinessUnit << endl;
-                cout << "±®µ•≤Ÿ◊˜◊¥Ã¨ TThostFtdcOrderActionStatusType:" << pExecOrderAction->OrderActionStatus << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pExecOrderAction->UserID << endl;
-                cout << "÷¥––¿‡–Õ TThostFtdcActionTypeType:" << pExecOrderAction->ActionType << endl;
-                cout << "◊¥Ã¨–≈œ¢ TThostFtdcErrorMsgType:" << pExecOrderAction->StatusMsg << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pExecOrderAction->InstrumentID << endl;
-                cout << "”™“µ≤ø±‡∫≈ TThostFtdcBranchIDType:" << pExecOrderAction->BranchID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pExecOrderAction->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pExecOrderAction->InvestorID << endl;
+                cout << "ÊâßË°åÂÆ£ÂëäÊìç‰ΩúÂºïÁî® TThostFtdcOrderActionRefType:" << pExecOrderAction->ExecOrderActionRef << endl;
+                cout << "ÊâßË°åÂÆ£ÂëäÂºïÁî® TThostFtdcOrderRefType:" << pExecOrderAction->ExecOrderRef << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pExecOrderAction->RequestID << endl;
+                cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pExecOrderAction->FrontID << endl;
+                cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pExecOrderAction->SessionID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pExecOrderAction->ExchangeID << endl;
+                cout << "ÊâßË°åÂÆ£ÂëäÊìç‰ΩúÁºñÂè∑ TThostFtdcExecOrderSysIDType:" << pExecOrderAction->ExecOrderSysID << endl;
+                cout << "Êìç‰ΩúÊ†áÂøó TThostFtdcActionFlagType:" << pExecOrderAction->ActionFlag << endl;
+                cout << "Êìç‰ΩúÊó•Êúü TThostFtdcDateType:" << pExecOrderAction->ActionDate << endl;
+                cout << "Êìç‰ΩúÊó∂Èó¥ TThostFtdcTimeType:" << pExecOrderAction->ActionTime << endl;
+                cout << "‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pExecOrderAction->TraderID << endl;
+                cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pExecOrderAction->InstallID << endl;
+                cout << "Êú¨Âú∞ÊâßË°åÂÆ£ÂëäÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pExecOrderAction->ExecOrderLocalID << endl;
+                cout << "Êìç‰ΩúÊú¨Âú∞ÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pExecOrderAction->ActionLocalID << endl;
+                cout << "‰ºöÂëò‰ª£Á†Å TThostFtdcParticipantIDType:" << pExecOrderAction->ParticipantID << endl;
+                cout << "ÂÆ¢Êà∑‰ª£Á†Å TThostFtdcClientIDType:" << pExecOrderAction->ClientID << endl;
+                cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pExecOrderAction->BusinessUnit << endl;
+                cout << "Êä•ÂçïÊìç‰ΩúÁä∂ÊÄÅ TThostFtdcOrderActionStatusType:" << pExecOrderAction->OrderActionStatus << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pExecOrderAction->UserID << endl;
+                cout << "ÊâßË°åÁ±ªÂûã TThostFtdcActionTypeType:" << pExecOrderAction->ActionType << endl;
+                cout << "Áä∂ÊÄÅ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pExecOrderAction->StatusMsg << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pExecOrderAction->InstrumentID << endl;
+                cout << "Ëê•‰∏öÈÉ®ÁºñÂè∑ TThostFtdcBranchIDType:" << pExecOrderAction->BranchID << endl;
         }
 }
 
-///—Øº€¬º»Î¥ÌŒÛªÿ±®
+///ËØ¢‰ª∑ÂΩïÂÖ•ÈîôËØØÂõûÊä•
 void CTraderSpi::OnErrRtnForQuoteInsert(CThostFtdcInputForQuoteField* pInputForQuote, CThostFtdcRspInfoField* pRspInfo)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (!IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInputForQuote->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInputForQuote->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInputForQuote->InstrumentID << endl;
-                cout << "—Øº€“˝”√ TThostFtdcOrderRefType:" << pInputForQuote->ForQuoteRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pInputForQuote->UserID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInputForQuote->ExchangeID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInputForQuote->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInputForQuote->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInputForQuote->InstrumentID << endl;
+                cout << "ËØ¢‰ª∑ÂºïÁî® TThostFtdcOrderRefType:" << pInputForQuote->ForQuoteRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pInputForQuote->UserID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInputForQuote->ExchangeID << endl;
         }
 }
 
-///±®º€Õ®÷™
+///Êä•‰ª∑ÈÄöÁü•
 void CTraderSpi::OnRtnQuote(CThostFtdcQuoteField* pQuote)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pQuote->BrokerID << endl;
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pQuote->InvestorID << endl;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pQuote->InstrumentID << endl;
-        cout << "±®º€“˝”√ TThostFtdcOrderRefType:" << pQuote->QuoteRef << endl;
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pQuote->UserID << endl;
-        cout << "¬Ùº€∏Ò TThostFtdcPriceType:" << pQuote->AskPrice << endl;
-        cout << "¬Úº€∏Ò TThostFtdcPriceType:" << pQuote->BidPrice << endl;
-        cout << "¬Ù ˝¡ø TThostFtdcVolumeType:" << pQuote->AskVolume << endl;
-        cout << "¬Ú ˝¡ø TThostFtdcVolumeType:" << pQuote->BidVolume << endl;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pQuote->RequestID << endl;
-        cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pQuote->BusinessUnit << endl;
-        cout << "¬Ùø™∆Ω±Í÷æ TThostFtdcOffsetFlagType:" << pQuote->AskOffsetFlag << endl;
-        cout << "¬Úø™∆Ω±Í÷æ TThostFtdcOffsetFlagType:" << pQuote->BidOffsetFlag << endl;
-        cout << "¬ÙÕ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pQuote->AskHedgeFlag << endl;
-        cout << "¬ÚÕ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pQuote->BidHedgeFlag << endl;
-        cout << "±æµÿ±®º€±‡∫≈ TThostFtdcOrderLocalIDType:" << pQuote->QuoteLocalID << endl;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pQuote->ExchangeID << endl;
-        cout << "ª·‘±¥˙¬Î TThostFtdcParticipantIDType:" << pQuote->ParticipantID << endl;
-        cout << "øÕªß¥˙¬Î TThostFtdcClientIDType:" << pQuote->ClientID << endl;
-        cout << "∫œ‘º‘⁄Ωª“◊À˘µƒ¥˙¬Î TThostFtdcExchangeInstIDType:" << pQuote->ExchangeInstID << endl;
-        cout << "Ωª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pQuote->TraderID << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pQuote->InstallID << endl;
-        cout << "±®º€Ã· æ–Ú∫≈ TThostFtdcSequenceNoType:" << pQuote->NotifySequence << endl;
-        cout << "±®º€Ã·Ωª◊¥Ã¨ TThostFtdcOrderSubmitStatusType:" << pQuote->OrderSubmitStatus << endl;
-        cout << "Ωª“◊»’ TThostFtdcDateType:" << pQuote->TradingDay << endl;
-        cout << "Ω·À„±‡∫≈ TThostFtdcSettlementIDType:" << pQuote->SettlementID << endl;
-        cout << "±®º€±‡∫≈ TThostFtdcOrderSysIDType:" << pQuote->QuoteSysID << endl;
-        cout << "±®µ•»’∆⁄ TThostFtdcDateType:" << pQuote->InsertDate << endl;
-        cout << "≤Â»Î ±º‰ TThostFtdcTimeType:" << pQuote->InsertTime << endl;
-        cout << "≥∑œ˙ ±º‰ TThostFtdcTimeType:" << pQuote->CancelTime << endl;
-        cout << "±®º€◊¥Ã¨ TThostFtdcOrderStatusType:" << pQuote->QuoteStatus << endl;
-        cout << "Ω·À„ª·‘±±‡∫≈ TThostFtdcParticipantIDType:" << pQuote->ClearingPartID << endl;
-        cout << "–Ú∫≈ TThostFtdcSequenceNoType:" << pQuote->SequenceNo << endl;
-        cout << "¬Ù∑Ω±®µ•±‡∫≈ TThostFtdcOrderSysIDType:" << pQuote->AskOrderSysID << endl;
-        cout << "¬Ú∑Ω±®µ•±‡∫≈ TThostFtdcOrderSysIDType:" << pQuote->BidOrderSysID << endl;
-        cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pQuote->FrontID << endl;
-        cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pQuote->SessionID << endl;
-        cout << "”√ªß∂À≤˙∆∑–≈œ¢ TThostFtdcProductInfoType:" << pQuote->UserProductInfo << endl;
-        cout << "◊¥Ã¨–≈œ¢ TThostFtdcErrorMsgType:" << pQuote->StatusMsg << endl;
-        cout << "≤Ÿ◊˜”√ªß¥˙¬Î TThostFtdcUserIDType:" << pQuote->ActiveUserID << endl;
-        cout << "æ≠ºÕπ´Àæ±®º€±‡∫≈ TThostFtdcSequenceNoType:" << pQuote->BrokerQuoteSeq << endl;
-        cout << "—‹…˙¬Ù±®µ•“˝”√ TThostFtdcOrderRefType:" << pQuote->AskOrderRef << endl;
-        cout << "—‹…˙¬Ú±®µ•“˝”√ TThostFtdcOrderRefType:" << pQuote->BidOrderRef << endl;
-        cout << "”¶º€±‡∫≈ TThostFtdcOrderSysIDType:" << pQuote->ForQuoteSysID << endl;
-        cout << "”™“µ≤ø±‡∫≈ TThostFtdcBranchIDType:" << pQuote->BranchID << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pQuote->BrokerID << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pQuote->InvestorID << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pQuote->InstrumentID << endl;
+        cout << "Êä•‰ª∑ÂºïÁî® TThostFtdcOrderRefType:" << pQuote->QuoteRef << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pQuote->UserID << endl;
+        cout << "Âçñ‰ª∑Ê†º TThostFtdcPriceType:" << pQuote->AskPrice << endl;
+        cout << "‰π∞‰ª∑Ê†º TThostFtdcPriceType:" << pQuote->BidPrice << endl;
+        cout << "ÂçñÊï∞Èáè TThostFtdcVolumeType:" << pQuote->AskVolume << endl;
+        cout << "‰π∞Êï∞Èáè TThostFtdcVolumeType:" << pQuote->BidVolume << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pQuote->RequestID << endl;
+        cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pQuote->BusinessUnit << endl;
+        cout << "ÂçñÂºÄÂπ≥Ê†áÂøó TThostFtdcOffsetFlagType:" << pQuote->AskOffsetFlag << endl;
+        cout << "‰π∞ÂºÄÂπ≥Ê†áÂøó TThostFtdcOffsetFlagType:" << pQuote->BidOffsetFlag << endl;
+        cout << "ÂçñÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pQuote->AskHedgeFlag << endl;
+        cout << "‰π∞ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pQuote->BidHedgeFlag << endl;
+        cout << "Êú¨Âú∞Êä•‰ª∑ÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pQuote->QuoteLocalID << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pQuote->ExchangeID << endl;
+        cout << "‰ºöÂëò‰ª£Á†Å TThostFtdcParticipantIDType:" << pQuote->ParticipantID << endl;
+        cout << "ÂÆ¢Êà∑‰ª£Á†Å TThostFtdcClientIDType:" << pQuote->ClientID << endl;
+        cout << "ÂêàÁ∫¶Âú®‰∫§ÊòìÊâÄÁöÑ‰ª£Á†Å TThostFtdcExchangeInstIDType:" << pQuote->ExchangeInstID << endl;
+        cout << "‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pQuote->TraderID << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pQuote->InstallID << endl;
+        cout << "Êä•‰ª∑ÊèêÁ§∫Â∫èÂè∑ TThostFtdcSequenceNoType:" << pQuote->NotifySequence << endl;
+        cout << "Êä•‰ª∑Êèê‰∫§Áä∂ÊÄÅ TThostFtdcOrderSubmitStatusType:" << pQuote->OrderSubmitStatus << endl;
+        cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pQuote->TradingDay << endl;
+        cout << "ÁªìÁÆóÁºñÂè∑ TThostFtdcSettlementIDType:" << pQuote->SettlementID << endl;
+        cout << "Êä•‰ª∑ÁºñÂè∑ TThostFtdcOrderSysIDType:" << pQuote->QuoteSysID << endl;
+        cout << "Êä•ÂçïÊó•Êúü TThostFtdcDateType:" << pQuote->InsertDate << endl;
+        cout << "ÊèíÂÖ•Êó∂Èó¥ TThostFtdcTimeType:" << pQuote->InsertTime << endl;
+        cout << "Êí§ÈîÄÊó∂Èó¥ TThostFtdcTimeType:" << pQuote->CancelTime << endl;
+        cout << "Êä•‰ª∑Áä∂ÊÄÅ TThostFtdcOrderStatusType:" << pQuote->QuoteStatus << endl;
+        cout << "ÁªìÁÆó‰ºöÂëòÁºñÂè∑ TThostFtdcParticipantIDType:" << pQuote->ClearingPartID << endl;
+        cout << "Â∫èÂè∑ TThostFtdcSequenceNoType:" << pQuote->SequenceNo << endl;
+        cout << "ÂçñÊñπÊä•ÂçïÁºñÂè∑ TThostFtdcOrderSysIDType:" << pQuote->AskOrderSysID << endl;
+        cout << "‰π∞ÊñπÊä•ÂçïÁºñÂè∑ TThostFtdcOrderSysIDType:" << pQuote->BidOrderSysID << endl;
+        cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pQuote->FrontID << endl;
+        cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pQuote->SessionID << endl;
+        cout << "Áî®Êà∑Á´Ø‰∫ßÂìÅ‰ø°ÊÅØ TThostFtdcProductInfoType:" << pQuote->UserProductInfo << endl;
+        cout << "Áä∂ÊÄÅ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pQuote->StatusMsg << endl;
+        cout << "Êìç‰ΩúÁî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pQuote->ActiveUserID << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏Êä•‰ª∑ÁºñÂè∑ TThostFtdcSequenceNoType:" << pQuote->BrokerQuoteSeq << endl;
+        cout << "Ë°çÁîüÂçñÊä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pQuote->AskOrderRef << endl;
+        cout << "Ë°çÁîü‰π∞Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pQuote->BidOrderRef << endl;
+        cout << "Â∫î‰ª∑ÁºñÂè∑ TThostFtdcOrderSysIDType:" << pQuote->ForQuoteSysID << endl;
+        cout << "Ëê•‰∏öÈÉ®ÁºñÂè∑ TThostFtdcBranchIDType:" << pQuote->BranchID << endl;
 }
 
-///±®º€¬º»Î¥ÌŒÛªÿ±®
+///Êä•‰ª∑ÂΩïÂÖ•ÈîôËØØÂõûÊä•
 void CTraderSpi::OnErrRtnQuoteInsert(CThostFtdcInputQuoteField* pInputQuote, CThostFtdcRspInfoField* pRspInfo)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (!IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInputQuote->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInputQuote->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInputQuote->InstrumentID << endl;
-                cout << "±®º€“˝”√ TThostFtdcOrderRefType:" << pInputQuote->QuoteRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pInputQuote->UserID << endl;
-                cout << "¬Ùº€∏Ò TThostFtdcPriceType:" << pInputQuote->AskPrice << endl;
-                cout << "¬Úº€∏Ò TThostFtdcPriceType:" << pInputQuote->BidPrice << endl;
-                cout << "¬Ù ˝¡ø TThostFtdcVolumeType:" << pInputQuote->AskVolume << endl;
-                cout << "¬Ú ˝¡ø TThostFtdcVolumeType:" << pInputQuote->BidVolume << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pInputQuote->RequestID << endl;
-                cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pInputQuote->BusinessUnit << endl;
-                cout << "¬Ùø™∆Ω±Í÷æ TThostFtdcOffsetFlagType:" << pInputQuote->AskOffsetFlag << endl;
-                cout << "¬Úø™∆Ω±Í÷æ TThostFtdcOffsetFlagType:" << pInputQuote->BidOffsetFlag << endl;
-                cout << "¬ÙÕ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pInputQuote->AskHedgeFlag << endl;
-                cout << "¬ÚÕ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pInputQuote->BidHedgeFlag << endl;
-                cout << "—‹…˙¬Ù±®µ•“˝”√ TThostFtdcOrderRefType:" << pInputQuote->AskOrderRef << endl;
-                cout << "—‹…˙¬Ú±®µ•“˝”√ TThostFtdcOrderRefType:" << pInputQuote->BidOrderRef << endl;
-                cout << "”¶º€±‡∫≈ TThostFtdcOrderSysIDType:" << pInputQuote->ForQuoteSysID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInputQuote->ExchangeID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInputQuote->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInputQuote->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInputQuote->InstrumentID << endl;
+                cout << "Êä•‰ª∑ÂºïÁî® TThostFtdcOrderRefType:" << pInputQuote->QuoteRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pInputQuote->UserID << endl;
+                cout << "Âçñ‰ª∑Ê†º TThostFtdcPriceType:" << pInputQuote->AskPrice << endl;
+                cout << "‰π∞‰ª∑Ê†º TThostFtdcPriceType:" << pInputQuote->BidPrice << endl;
+                cout << "ÂçñÊï∞Èáè TThostFtdcVolumeType:" << pInputQuote->AskVolume << endl;
+                cout << "‰π∞Êï∞Èáè TThostFtdcVolumeType:" << pInputQuote->BidVolume << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pInputQuote->RequestID << endl;
+                cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pInputQuote->BusinessUnit << endl;
+                cout << "ÂçñÂºÄÂπ≥Ê†áÂøó TThostFtdcOffsetFlagType:" << pInputQuote->AskOffsetFlag << endl;
+                cout << "‰π∞ÂºÄÂπ≥Ê†áÂøó TThostFtdcOffsetFlagType:" << pInputQuote->BidOffsetFlag << endl;
+                cout << "ÂçñÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pInputQuote->AskHedgeFlag << endl;
+                cout << "‰π∞ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pInputQuote->BidHedgeFlag << endl;
+                cout << "Ë°çÁîüÂçñÊä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pInputQuote->AskOrderRef << endl;
+                cout << "Ë°çÁîü‰π∞Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pInputQuote->BidOrderRef << endl;
+                cout << "Â∫î‰ª∑ÁºñÂè∑ TThostFtdcOrderSysIDType:" << pInputQuote->ForQuoteSysID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInputQuote->ExchangeID << endl;
         }
 }
 
-///±®º€≤Ÿ◊˜¥ÌŒÛªÿ±®
+///Êä•‰ª∑Êìç‰ΩúÈîôËØØÂõûÊä•
 void CTraderSpi::OnErrRtnQuoteAction(CThostFtdcQuoteActionField* pQuoteAction, CThostFtdcRspInfoField* pRspInfo)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (!IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pQuoteAction->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pQuoteAction->InvestorID << endl;
-                cout << "±®º€≤Ÿ◊˜“˝”√ TThostFtdcOrderActionRefType:" << pQuoteAction->QuoteActionRef << endl;
-                cout << "±®º€“˝”√ TThostFtdcOrderRefType:" << pQuoteAction->QuoteRef << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pQuoteAction->RequestID << endl;
-                cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pQuoteAction->FrontID << endl;
-                cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pQuoteAction->SessionID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pQuoteAction->ExchangeID << endl;
-                cout << "±®º€≤Ÿ◊˜±‡∫≈ TThostFtdcOrderSysIDType:" << pQuoteAction->QuoteSysID << endl;
-                cout << "≤Ÿ◊˜±Í÷æ TThostFtdcActionFlagType:" << pQuoteAction->ActionFlag << endl;
-                cout << "≤Ÿ◊˜»’∆⁄ TThostFtdcDateType:" << pQuoteAction->ActionDate << endl;
-                cout << "≤Ÿ◊˜ ±º‰ TThostFtdcTimeType:" << pQuoteAction->ActionTime << endl;
-                cout << "Ωª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pQuoteAction->TraderID << endl;
-                cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pQuoteAction->InstallID << endl;
-                cout << "±æµÿ±®º€±‡∫≈ TThostFtdcOrderLocalIDType:" << pQuoteAction->QuoteLocalID << endl;
-                cout << "≤Ÿ◊˜±æµÿ±‡∫≈ TThostFtdcOrderLocalIDType:" << pQuoteAction->ActionLocalID << endl;
-                cout << "ª·‘±¥˙¬Î TThostFtdcParticipantIDType:" << pQuoteAction->ParticipantID << endl;
-                cout << "øÕªß¥˙¬Î TThostFtdcClientIDType:" << pQuoteAction->ClientID << endl;
-                cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pQuoteAction->BusinessUnit << endl;
-                cout << "±®µ•≤Ÿ◊˜◊¥Ã¨ TThostFtdcOrderActionStatusType:" << pQuoteAction->OrderActionStatus << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pQuoteAction->UserID << endl;
-                cout << "◊¥Ã¨–≈œ¢ TThostFtdcErrorMsgType:" << pQuoteAction->StatusMsg << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pQuoteAction->InstrumentID << endl;
-                cout << "”™“µ≤ø±‡∫≈ TThostFtdcBranchIDType:" << pQuoteAction->BranchID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pQuoteAction->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pQuoteAction->InvestorID << endl;
+                cout << "Êä•‰ª∑Êìç‰ΩúÂºïÁî® TThostFtdcOrderActionRefType:" << pQuoteAction->QuoteActionRef << endl;
+                cout << "Êä•‰ª∑ÂºïÁî® TThostFtdcOrderRefType:" << pQuoteAction->QuoteRef << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pQuoteAction->RequestID << endl;
+                cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pQuoteAction->FrontID << endl;
+                cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pQuoteAction->SessionID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pQuoteAction->ExchangeID << endl;
+                cout << "Êä•‰ª∑Êìç‰ΩúÁºñÂè∑ TThostFtdcOrderSysIDType:" << pQuoteAction->QuoteSysID << endl;
+                cout << "Êìç‰ΩúÊ†áÂøó TThostFtdcActionFlagType:" << pQuoteAction->ActionFlag << endl;
+                cout << "Êìç‰ΩúÊó•Êúü TThostFtdcDateType:" << pQuoteAction->ActionDate << endl;
+                cout << "Êìç‰ΩúÊó∂Èó¥ TThostFtdcTimeType:" << pQuoteAction->ActionTime << endl;
+                cout << "‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pQuoteAction->TraderID << endl;
+                cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pQuoteAction->InstallID << endl;
+                cout << "Êú¨Âú∞Êä•‰ª∑ÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pQuoteAction->QuoteLocalID << endl;
+                cout << "Êìç‰ΩúÊú¨Âú∞ÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pQuoteAction->ActionLocalID << endl;
+                cout << "‰ºöÂëò‰ª£Á†Å TThostFtdcParticipantIDType:" << pQuoteAction->ParticipantID << endl;
+                cout << "ÂÆ¢Êà∑‰ª£Á†Å TThostFtdcClientIDType:" << pQuoteAction->ClientID << endl;
+                cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pQuoteAction->BusinessUnit << endl;
+                cout << "Êä•ÂçïÊìç‰ΩúÁä∂ÊÄÅ TThostFtdcOrderActionStatusType:" << pQuoteAction->OrderActionStatus << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pQuoteAction->UserID << endl;
+                cout << "Áä∂ÊÄÅ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pQuoteAction->StatusMsg << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pQuoteAction->InstrumentID << endl;
+                cout << "Ëê•‰∏öÈÉ®ÁºñÂè∑ TThostFtdcBranchIDType:" << pQuoteAction->BranchID << endl;
         }
 }
 
-///—Øº€Õ®÷™
+///ËØ¢‰ª∑ÈÄöÁü•
 void CTraderSpi::OnRtnForQuoteRsp(CThostFtdcForQuoteRspField* pForQuoteRsp)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "Ωª“◊»’ TThostFtdcDateType:" << pForQuoteRsp->TradingDay << endl;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pForQuoteRsp->InstrumentID << endl;
-        cout << "—Øº€±‡∫≈ TThostFtdcOrderSysIDType:" << pForQuoteRsp->ForQuoteSysID << endl;
-        cout << "—Øº€ ±º‰ TThostFtdcTimeType:" << pForQuoteRsp->ForQuoteTime << endl;
-        cout << "“µŒÒ»’∆⁄ TThostFtdcDateType:" << pForQuoteRsp->ActionDay << endl;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pForQuoteRsp->ExchangeID << endl;
+        cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pForQuoteRsp->TradingDay << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pForQuoteRsp->InstrumentID << endl;
+        cout << "ËØ¢‰ª∑ÁºñÂè∑ TThostFtdcOrderSysIDType:" << pForQuoteRsp->ForQuoteSysID << endl;
+        cout << "ËØ¢‰ª∑Êó∂Èó¥ TThostFtdcTimeType:" << pForQuoteRsp->ForQuoteTime << endl;
+        cout << "‰∏öÂä°Êó•Êúü TThostFtdcDateType:" << pForQuoteRsp->ActionDay << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pForQuoteRsp->ExchangeID << endl;
 }
 
-///±£÷§Ωº‡øÿ÷––ƒ”√ªß¡Ó≈∆
+///‰øùËØÅÈáëÁõëÊéß‰∏≠ÂøÉÁî®Êà∑‰ª§Áâå
 void CTraderSpi::OnRtnCFMMCTradingAccountToken(CThostFtdcCFMMCTradingAccountTokenField* pCFMMCTradingAccountToken)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pCFMMCTradingAccountToken->BrokerID << endl;
-        cout << "æ≠ºÕπ´ÀæÕ≥“ª±‡¬Î TThostFtdcParticipantIDType:" << pCFMMCTradingAccountToken->ParticipantID << endl;
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pCFMMCTradingAccountToken->AccountID << endl;
-        cout << "√‹‘ø±‡∫≈ TThostFtdcSequenceNoType:" << pCFMMCTradingAccountToken->KeyID << endl;
-        cout << "∂ØÃ¨¡Ó≈∆ TThostFtdcCFMMCTokenType:" << pCFMMCTradingAccountToken->Token << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pCFMMCTradingAccountToken->BrokerID << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏Áªü‰∏ÄÁºñÁ†Å TThostFtdcParticipantIDType:" << pCFMMCTradingAccountToken->ParticipantID << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pCFMMCTradingAccountToken->AccountID << endl;
+        cout << "ÂØÜÈí•ÁºñÂè∑ TThostFtdcSequenceNoType:" << pCFMMCTradingAccountToken->KeyID << endl;
+        cout << "Âä®ÊÄÅ‰ª§Áâå TThostFtdcCFMMCTokenType:" << pCFMMCTradingAccountToken->Token << endl;
 }
 
-///À¯∂®Õ®÷™
+///ÈîÅÂÆöÈÄöÁü•
 void CTraderSpi::OnRtnLock(CThostFtdcLockField* pLock)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pLock->BrokerID << endl;
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pLock->InvestorID << endl;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pLock->InstrumentID << endl;
-        cout << "À¯∂®“˝”√ TThostFtdcOrderRefType:" << pLock->LockRef << endl;
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pLock->UserID << endl;
-        cout << " ˝¡ø TThostFtdcVolumeType:" << pLock->Volume << endl;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pLock->RequestID << endl;
-        cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pLock->BusinessUnit << endl;
-        cout << "À¯∂®¿‡–Õ TThostFtdcLockTypeType:" << pLock->LockType << endl;
-        cout << "±æµÿÀ¯∂®±‡∫≈ TThostFtdcOrderLocalIDType:" << pLock->LockLocalID << endl;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pLock->ExchangeID << endl;
-        cout << "ª·‘±¥˙¬Î TThostFtdcParticipantIDType:" << pLock->ParticipantID << endl;
-        cout << "øÕªß¥˙¬Î TThostFtdcClientIDType:" << pLock->ClientID << endl;
-        cout << "∫œ‘º‘⁄Ωª“◊À˘µƒ¥˙¬Î TThostFtdcExchangeInstIDType:" << pLock->ExchangeInstID << endl;
-        cout << "Ωª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pLock->TraderID << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pLock->InstallID << endl;
-        cout << "÷¥–––˚∏ÊÃ·Ωª◊¥Ã¨ TThostFtdcOrderSubmitStatusType:" << pLock->OrderSubmitStatus << endl;
-        cout << "±®µ•Ã· æ–Ú∫≈ TThostFtdcSequenceNoType:" << pLock->NotifySequence << endl;
-        cout << "Ωª“◊»’ TThostFtdcDateType:" << pLock->TradingDay << endl;
-        cout << "Ω·À„±‡∫≈ TThostFtdcSettlementIDType:" << pLock->SettlementID << endl;
-        cout << "À¯∂®±‡∫≈ TThostFtdcOrderSysIDType:" << pLock->LockSysID << endl;
-        cout << "±®µ•»’∆⁄ TThostFtdcDateType:" << pLock->InsertDate << endl;
-        cout << "≤Â»Î ±º‰ TThostFtdcTimeType:" << pLock->InsertTime << endl;
-        cout << "≥∑œ˙ ±º‰ TThostFtdcTimeType:" << pLock->CancelTime << endl;
-        cout << "À¯∂®◊¥Ã¨ TThostFtdcOrderActionStatusType:" << pLock->LockStatus << endl;
-        cout << "Ω·À„ª·‘±±‡∫≈ TThostFtdcParticipantIDType:" << pLock->ClearingPartID << endl;
-        cout << "–Ú∫≈ TThostFtdcSequenceNoType:" << pLock->SequenceNo << endl;
-        cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pLock->FrontID << endl;
-        cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pLock->SessionID << endl;
-        cout << "”√ªß∂À≤˙∆∑–≈œ¢ TThostFtdcProductInfoType:" << pLock->UserProductInfo << endl;
-        cout << "◊¥Ã¨–≈œ¢ TThostFtdcErrorMsgType:" << pLock->StatusMsg << endl;
-        cout << "≤Ÿ◊˜”√ªß¥˙¬Î TThostFtdcUserIDType:" << pLock->ActiveUserID << endl;
-        cout << "æ≠ºÕπ´Àæ±®µ•±‡∫≈ TThostFtdcSequenceNoType:" << pLock->BrokerLockSeq << endl;
-        cout << "”™“µ≤ø±‡∫≈ TThostFtdcBranchIDType:" << pLock->BranchID << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pLock->BrokerID << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pLock->InvestorID << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pLock->InstrumentID << endl;
+        cout << "ÈîÅÂÆöÂºïÁî® TThostFtdcOrderRefType:" << pLock->LockRef << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pLock->UserID << endl;
+        cout << "Êï∞Èáè TThostFtdcVolumeType:" << pLock->Volume << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pLock->RequestID << endl;
+        cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pLock->BusinessUnit << endl;
+        cout << "ÈîÅÂÆöÁ±ªÂûã TThostFtdcLockTypeType:" << pLock->LockType << endl;
+        cout << "Êú¨Âú∞ÈîÅÂÆöÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pLock->LockLocalID << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pLock->ExchangeID << endl;
+        cout << "‰ºöÂëò‰ª£Á†Å TThostFtdcParticipantIDType:" << pLock->ParticipantID << endl;
+        cout << "ÂÆ¢Êà∑‰ª£Á†Å TThostFtdcClientIDType:" << pLock->ClientID << endl;
+        cout << "ÂêàÁ∫¶Âú®‰∫§ÊòìÊâÄÁöÑ‰ª£Á†Å TThostFtdcExchangeInstIDType:" << pLock->ExchangeInstID << endl;
+        cout << "‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pLock->TraderID << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pLock->InstallID << endl;
+        cout << "ÊâßË°åÂÆ£ÂëäÊèê‰∫§Áä∂ÊÄÅ TThostFtdcOrderSubmitStatusType:" << pLock->OrderSubmitStatus << endl;
+        cout << "Êä•ÂçïÊèêÁ§∫Â∫èÂè∑ TThostFtdcSequenceNoType:" << pLock->NotifySequence << endl;
+        cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pLock->TradingDay << endl;
+        cout << "ÁªìÁÆóÁºñÂè∑ TThostFtdcSettlementIDType:" << pLock->SettlementID << endl;
+        cout << "ÈîÅÂÆöÁºñÂè∑ TThostFtdcOrderSysIDType:" << pLock->LockSysID << endl;
+        cout << "Êä•ÂçïÊó•Êúü TThostFtdcDateType:" << pLock->InsertDate << endl;
+        cout << "ÊèíÂÖ•Êó∂Èó¥ TThostFtdcTimeType:" << pLock->InsertTime << endl;
+        cout << "Êí§ÈîÄÊó∂Èó¥ TThostFtdcTimeType:" << pLock->CancelTime << endl;
+        cout << "ÈîÅÂÆöÁä∂ÊÄÅ TThostFtdcOrderActionStatusType:" << pLock->LockStatus << endl;
+        cout << "ÁªìÁÆó‰ºöÂëòÁºñÂè∑ TThostFtdcParticipantIDType:" << pLock->ClearingPartID << endl;
+        cout << "Â∫èÂè∑ TThostFtdcSequenceNoType:" << pLock->SequenceNo << endl;
+        cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pLock->FrontID << endl;
+        cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pLock->SessionID << endl;
+        cout << "Áî®Êà∑Á´Ø‰∫ßÂìÅ‰ø°ÊÅØ TThostFtdcProductInfoType:" << pLock->UserProductInfo << endl;
+        cout << "Áä∂ÊÄÅ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pLock->StatusMsg << endl;
+        cout << "Êìç‰ΩúÁî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pLock->ActiveUserID << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏Êä•ÂçïÁºñÂè∑ TThostFtdcSequenceNoType:" << pLock->BrokerLockSeq << endl;
+        cout << "Ëê•‰∏öÈÉ®ÁºñÂè∑ TThostFtdcBranchIDType:" << pLock->BranchID << endl;
 }
 
-///À¯∂®¥ÌŒÛÕ®÷™
+///ÈîÅÂÆöÈîôËØØÈÄöÁü•
 void CTraderSpi::OnErrRtnLockInsert(CThostFtdcInputLockField* pInputLock, CThostFtdcRspInfoField* pRspInfo)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInputLock->BrokerID << endl;
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInputLock->InvestorID << endl;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInputLock->InstrumentID << endl;
-        cout << "À¯∂®“˝”√ TThostFtdcOrderRefType:" << pInputLock->LockRef << endl;
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pInputLock->UserID << endl;
-        cout << " ˝¡ø TThostFtdcVolumeType:" << pInputLock->Volume << endl;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pInputLock->RequestID << endl;
-        cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pInputLock->BusinessUnit << endl;
-        cout << "À¯∂®¿‡–Õ TThostFtdcLockTypeType:" << pInputLock->LockType << endl;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInputLock->ExchangeID << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInputLock->BrokerID << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInputLock->InvestorID << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInputLock->InstrumentID << endl;
+        cout << "ÈîÅÂÆöÂºïÁî® TThostFtdcOrderRefType:" << pInputLock->LockRef << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pInputLock->UserID << endl;
+        cout << "Êï∞Èáè TThostFtdcVolumeType:" << pInputLock->Volume << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pInputLock->RequestID << endl;
+        cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pInputLock->BusinessUnit << endl;
+        cout << "ÈîÅÂÆöÁ±ªÂûã TThostFtdcLockTypeType:" << pInputLock->LockType << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInputLock->ExchangeID << endl;
 }
 
-///…Í«Î◊È∫œÕ®÷™
+///Áî≥ËØ∑ÁªÑÂêàÈÄöÁü•
 void CTraderSpi::OnRtnCombAction(CThostFtdcCombActionField* pCombAction)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pCombAction->BrokerID << endl;
-        cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pCombAction->InvestorID << endl;
-        cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pCombAction->InstrumentID << endl;
-        cout << "◊È∫œ“˝”√ TThostFtdcOrderRefType:" << pCombAction->CombActionRef << endl;
-        cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pCombAction->UserID << endl;
-        cout << "¬Ú¬Ù∑ΩœÚ TThostFtdcDirectionType:" << pCombAction->Direction << endl;
-        cout << " ˝¡ø TThostFtdcVolumeType:" << pCombAction->Volume << endl;
-        cout << "◊È∫œ÷∏¡Ó∑ΩœÚ TThostFtdcCombDirectionType:" << pCombAction->CombDirection << endl;
-        cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pCombAction->HedgeFlag << endl;
-        cout << "±æµÿ…Í«Î◊È∫œ±‡∫≈ TThostFtdcOrderLocalIDType:" << pCombAction->ActionLocalID << endl;
-        cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pCombAction->ExchangeID << endl;
-        cout << "ª·‘±¥˙¬Î TThostFtdcParticipantIDType:" << pCombAction->ParticipantID << endl;
-        cout << "øÕªß¥˙¬Î TThostFtdcClientIDType:" << pCombAction->ClientID << endl;
-        cout << "∫œ‘º‘⁄Ωª“◊À˘µƒ¥˙¬Î TThostFtdcExchangeInstIDType:" << pCombAction->ExchangeInstID << endl;
-        cout << "Ωª“◊À˘Ωª“◊‘±¥˙¬Î TThostFtdcTraderIDType:" << pCombAction->TraderID << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pCombAction->InstallID << endl;
-        cout << "◊È∫œ◊¥Ã¨ TThostFtdcOrderActionStatusType:" << pCombAction->ActionStatus << endl;
-        cout << "±®µ•Ã· æ–Ú∫≈ TThostFtdcSequenceNoType:" << pCombAction->NotifySequence << endl;
-        cout << "Ωª“◊»’ TThostFtdcDateType:" << pCombAction->TradingDay << endl;
-        cout << "Ω·À„±‡∫≈ TThostFtdcSettlementIDType:" << pCombAction->SettlementID << endl;
-        cout << "–Ú∫≈ TThostFtdcSequenceNoType:" << pCombAction->SequenceNo << endl;
-        cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pCombAction->FrontID << endl;
-        cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pCombAction->SessionID << endl;
-        cout << "”√ªß∂À≤˙∆∑–≈œ¢ TThostFtdcProductInfoType:" << pCombAction->UserProductInfo << endl;
-        cout << "◊¥Ã¨–≈œ¢ TThostFtdcErrorMsgType:" << pCombAction->StatusMsg << endl;
+        cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pCombAction->BrokerID << endl;
+        cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pCombAction->InvestorID << endl;
+        cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pCombAction->InstrumentID << endl;
+        cout << "ÁªÑÂêàÂºïÁî® TThostFtdcOrderRefType:" << pCombAction->CombActionRef << endl;
+        cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pCombAction->UserID << endl;
+        cout << "‰π∞ÂçñÊñπÂêë TThostFtdcDirectionType:" << pCombAction->Direction << endl;
+        cout << "Êï∞Èáè TThostFtdcVolumeType:" << pCombAction->Volume << endl;
+        cout << "ÁªÑÂêàÊåá‰ª§ÊñπÂêë TThostFtdcCombDirectionType:" << pCombAction->CombDirection << endl;
+        cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pCombAction->HedgeFlag << endl;
+        cout << "Êú¨Âú∞Áî≥ËØ∑ÁªÑÂêàÁºñÂè∑ TThostFtdcOrderLocalIDType:" << pCombAction->ActionLocalID << endl;
+        cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pCombAction->ExchangeID << endl;
+        cout << "‰ºöÂëò‰ª£Á†Å TThostFtdcParticipantIDType:" << pCombAction->ParticipantID << endl;
+        cout << "ÂÆ¢Êà∑‰ª£Á†Å TThostFtdcClientIDType:" << pCombAction->ClientID << endl;
+        cout << "ÂêàÁ∫¶Âú®‰∫§ÊòìÊâÄÁöÑ‰ª£Á†Å TThostFtdcExchangeInstIDType:" << pCombAction->ExchangeInstID << endl;
+        cout << "‰∫§ÊòìÊâÄ‰∫§ÊòìÂëò‰ª£Á†Å TThostFtdcTraderIDType:" << pCombAction->TraderID << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pCombAction->InstallID << endl;
+        cout << "ÁªÑÂêàÁä∂ÊÄÅ TThostFtdcOrderActionStatusType:" << pCombAction->ActionStatus << endl;
+        cout << "Êä•ÂçïÊèêÁ§∫Â∫èÂè∑ TThostFtdcSequenceNoType:" << pCombAction->NotifySequence << endl;
+        cout << "‰∫§ÊòìÊó• TThostFtdcDateType:" << pCombAction->TradingDay << endl;
+        cout << "ÁªìÁÆóÁºñÂè∑ TThostFtdcSettlementIDType:" << pCombAction->SettlementID << endl;
+        cout << "Â∫èÂè∑ TThostFtdcSequenceNoType:" << pCombAction->SequenceNo << endl;
+        cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pCombAction->FrontID << endl;
+        cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pCombAction->SessionID << endl;
+        cout << "Áî®Êà∑Á´Ø‰∫ßÂìÅ‰ø°ÊÅØ TThostFtdcProductInfoType:" << pCombAction->UserProductInfo << endl;
+        cout << "Áä∂ÊÄÅ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pCombAction->StatusMsg << endl;
 }
 
-///…Í«Î◊È∫œ¬º»Î¥ÌŒÛªÿ±®
+///Áî≥ËØ∑ÁªÑÂêàÂΩïÂÖ•ÈîôËØØÂõûÊä•
 void CTraderSpi::OnErrRtnCombActionInsert(CThostFtdcInputCombActionField* pInputCombAction, CThostFtdcRspInfoField* pRspInfo)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (!IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pInputCombAction->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pInputCombAction->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pInputCombAction->InstrumentID << endl;
-                cout << "◊È∫œ“˝”√ TThostFtdcOrderRefType:" << pInputCombAction->CombActionRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pInputCombAction->UserID << endl;
-                cout << "¬Ú¬Ù∑ΩœÚ TThostFtdcDirectionType:" << pInputCombAction->Direction << endl;
-                cout << " ˝¡ø TThostFtdcVolumeType:" << pInputCombAction->Volume << endl;
-                cout << "◊È∫œ÷∏¡Ó∑ΩœÚ TThostFtdcCombDirectionType:" << pInputCombAction->CombDirection << endl;
-                cout << "Õ∂ª˙Ã◊±£±Í÷æ TThostFtdcHedgeFlagType:" << pInputCombAction->HedgeFlag << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pInputCombAction->ExchangeID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pInputCombAction->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pInputCombAction->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pInputCombAction->InstrumentID << endl;
+                cout << "ÁªÑÂêàÂºïÁî® TThostFtdcOrderRefType:" << pInputCombAction->CombActionRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pInputCombAction->UserID << endl;
+                cout << "‰π∞ÂçñÊñπÂêë TThostFtdcDirectionType:" << pInputCombAction->Direction << endl;
+                cout << "Êï∞Èáè TThostFtdcVolumeType:" << pInputCombAction->Volume << endl;
+                cout << "ÁªÑÂêàÊåá‰ª§ÊñπÂêë TThostFtdcCombDirectionType:" << pInputCombAction->CombDirection << endl;
+                cout << "ÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcHedgeFlagType:" << pInputCombAction->HedgeFlag << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pInputCombAction->ExchangeID << endl;
         }
 }
 
-///«Î«Û≤È—Ø«©‘º“¯––œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢Á≠æÁ∫¶Èì∂Ë°åÂìçÂ∫î
 void CTraderSpi::OnRspQryContractBank(CThostFtdcContractBankField* pContractBank, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pContractBank->BrokerID << endl;
-                cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pContractBank->BankID << endl;
-                cout << "“¯––∑÷÷––ƒ¥˙¬Î TThostFtdcBankBrchIDType:" << pContractBank->BankBrchID << endl;
-                cout << "“¯––√˚≥∆ TThostFtdcBankNameType:" << pContractBank->BankName << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pContractBank->BrokerID << endl;
+                cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pContractBank->BankID << endl;
+                cout << "Èì∂Ë°åÂàÜ‰∏≠ÂøÉ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pContractBank->BankBrchID << endl;
+                cout << "Èì∂Ë°åÂêçÁß∞ TThostFtdcBankNameType:" << pContractBank->BankName << endl;
         }
 }
 
-///«Î«Û≤È—Ø‘§¬Òµ•œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢È¢ÑÂüãÂçïÂìçÂ∫î
 void CTraderSpi::OnRspQryParkedOrder(CThostFtdcParkedOrderField* pParkedOrder, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pParkedOrder->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pParkedOrder->InvestorID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pParkedOrder->InstrumentID << endl;
-                cout << "±®µ•“˝”√ TThostFtdcOrderRefType:" << pParkedOrder->OrderRef << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pParkedOrder->UserID << endl;
-                cout << "±®µ•º€∏ÒÃıº˛ TThostFtdcOrderPriceTypeType:" << pParkedOrder->OrderPriceType << endl;
-                cout << "¬Ú¬Ù∑ΩœÚ TThostFtdcDirectionType:" << pParkedOrder->Direction << endl;
-                cout << "◊È∫œø™∆Ω±Í÷æ TThostFtdcCombOffsetFlagType:" << pParkedOrder->CombOffsetFlag << endl;
-                cout << "◊È∫œÕ∂ª˙Ã◊±£±Í÷æ TThostFtdcCombHedgeFlagType:" << pParkedOrder->CombHedgeFlag << endl;
-                cout << "º€∏Ò TThostFtdcPriceType:" << pParkedOrder->LimitPrice << endl;
-                cout << " ˝¡ø TThostFtdcVolumeType:" << pParkedOrder->VolumeTotalOriginal << endl;
-                cout << "”––ß∆⁄¿‡–Õ TThostFtdcTimeConditionType:" << pParkedOrder->TimeCondition << endl;
-                cout << "»’∆⁄ TThostFtdcDateType:" << pParkedOrder->GTDDate << endl;
-                cout << "≥…Ωª¡ø¿‡–Õ TThostFtdcVolumeConditionType:" << pParkedOrder->VolumeCondition << endl;
-                cout << "◊Ó–°≥…Ωª¡ø TThostFtdcVolumeType:" << pParkedOrder->MinVolume << endl;
-                cout << "¥•∑¢Ãıº˛ TThostFtdcContingentConditionType:" << pParkedOrder->ContingentCondition << endl;
-                cout << "÷πÀº€ TThostFtdcPriceType:" << pParkedOrder->StopPrice << endl;
-                cout << "«ø∆Ω‘≠“Ú TThostFtdcForceCloseReasonType:" << pParkedOrder->ForceCloseReason << endl;
-                cout << "◊‘∂Øπ“∆±Í÷æ TThostFtdcBoolType:" << pParkedOrder->IsAutoSuspend << endl;
-                cout << "“µŒÒµ•‘™ TThostFtdcBusinessUnitType:" << pParkedOrder->BusinessUnit << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pParkedOrder->RequestID << endl;
-                cout << "”√ªß«ø∆¿±Í÷æ TThostFtdcBoolType:" << pParkedOrder->UserForceClose << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pParkedOrder->ExchangeID << endl;
-                cout << "‘§¬Ò±®µ•±‡∫≈ TThostFtdcParkedOrderIDType:" << pParkedOrder->ParkedOrderID << endl;
-                cout << "”√ªß¿‡–Õ TThostFtdcUserTypeType:" << pParkedOrder->UserType << endl;
-                cout << "‘§¬Òµ•◊¥Ã¨ TThostFtdcParkedOrderStatusType:" << pParkedOrder->Status << endl;
-                cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pParkedOrder->ErrorID << endl;
-                cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pParkedOrder->ErrorMsg << endl;
-                cout << "ª•ªªµ•±Í÷æ TThostFtdcBoolType:" << pParkedOrder->IsSwapOrder << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pParkedOrder->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pParkedOrder->InvestorID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pParkedOrder->InstrumentID << endl;
+                cout << "Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pParkedOrder->OrderRef << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pParkedOrder->UserID << endl;
+                cout << "Êä•Âçï‰ª∑Ê†ºÊù°‰ª∂ TThostFtdcOrderPriceTypeType:" << pParkedOrder->OrderPriceType << endl;
+                cout << "‰π∞ÂçñÊñπÂêë TThostFtdcDirectionType:" << pParkedOrder->Direction << endl;
+                cout << "ÁªÑÂêàÂºÄÂπ≥Ê†áÂøó TThostFtdcCombOffsetFlagType:" << pParkedOrder->CombOffsetFlag << endl;
+                cout << "ÁªÑÂêàÊäïÊú∫Â•ó‰øùÊ†áÂøó TThostFtdcCombHedgeFlagType:" << pParkedOrder->CombHedgeFlag << endl;
+                cout << "‰ª∑Ê†º TThostFtdcPriceType:" << pParkedOrder->LimitPrice << endl;
+                cout << "Êï∞Èáè TThostFtdcVolumeType:" << pParkedOrder->VolumeTotalOriginal << endl;
+                cout << "ÊúâÊïàÊúüÁ±ªÂûã TThostFtdcTimeConditionType:" << pParkedOrder->TimeCondition << endl;
+                cout << "Êó•Êúü TThostFtdcDateType:" << pParkedOrder->GTDDate << endl;
+                cout << "Êàê‰∫§ÈáèÁ±ªÂûã TThostFtdcVolumeConditionType:" << pParkedOrder->VolumeCondition << endl;
+                cout << "ÊúÄÂ∞èÊàê‰∫§Èáè TThostFtdcVolumeType:" << pParkedOrder->MinVolume << endl;
+                cout << "Ëß¶ÂèëÊù°‰ª∂ TThostFtdcContingentConditionType:" << pParkedOrder->ContingentCondition << endl;
+                cout << "Ê≠¢Êçü‰ª∑ TThostFtdcPriceType:" << pParkedOrder->StopPrice << endl;
+                cout << "Âº∫Âπ≥ÂéüÂõ† TThostFtdcForceCloseReasonType:" << pParkedOrder->ForceCloseReason << endl;
+                cout << "Ëá™Âä®ÊåÇËµ∑Ê†áÂøó TThostFtdcBoolType:" << pParkedOrder->IsAutoSuspend << endl;
+                cout << "‰∏öÂä°ÂçïÂÖÉ TThostFtdcBusinessUnitType:" << pParkedOrder->BusinessUnit << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pParkedOrder->RequestID << endl;
+                cout << "Áî®Êà∑Âº∫ËØÑÊ†áÂøó TThostFtdcBoolType:" << pParkedOrder->UserForceClose << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pParkedOrder->ExchangeID << endl;
+                cout << "È¢ÑÂüãÊä•ÂçïÁºñÂè∑ TThostFtdcParkedOrderIDType:" << pParkedOrder->ParkedOrderID << endl;
+                cout << "Áî®Êà∑Á±ªÂûã TThostFtdcUserTypeType:" << pParkedOrder->UserType << endl;
+                cout << "È¢ÑÂüãÂçïÁä∂ÊÄÅ TThostFtdcParkedOrderStatusType:" << pParkedOrder->Status << endl;
+                cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pParkedOrder->ErrorID << endl;
+                cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pParkedOrder->ErrorMsg << endl;
+                cout << "‰∫íÊç¢ÂçïÊ†áÂøó TThostFtdcBoolType:" << pParkedOrder->IsSwapOrder << endl;
         }
 }
 
-///«Î«Û≤È—Ø‘§¬Ò≥∑µ•œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢È¢ÑÂüãÊí§ÂçïÂìçÂ∫î
 void CTraderSpi::OnRspQryParkedOrderAction(CThostFtdcParkedOrderActionField* pParkedOrderAction, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pParkedOrderAction->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pParkedOrderAction->InvestorID << endl;
-                cout << "±®µ•≤Ÿ◊˜“˝”√ TThostFtdcOrderActionRefType:" << pParkedOrderAction->OrderActionRef << endl;
-                cout << "±®µ•“˝”√ TThostFtdcOrderRefType:" << pParkedOrderAction->OrderRef << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pParkedOrderAction->RequestID << endl;
-                cout << "«∞÷√±‡∫≈ TThostFtdcFrontIDType:" << pParkedOrderAction->FrontID << endl;
-                cout << "ª·ª∞±‡∫≈ TThostFtdcSessionIDType:" << pParkedOrderAction->SessionID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pParkedOrderAction->ExchangeID << endl;
-                cout << "±®µ•±‡∫≈ TThostFtdcOrderSysIDType:" << pParkedOrderAction->OrderSysID << endl;
-                cout << "≤Ÿ◊˜±Í÷æ TThostFtdcActionFlagType:" << pParkedOrderAction->ActionFlag << endl;
-                cout << "º€∏Ò TThostFtdcPriceType:" << pParkedOrderAction->LimitPrice << endl;
-                cout << " ˝¡ø±‰ªØ TThostFtdcVolumeType:" << pParkedOrderAction->VolumeChange << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pParkedOrderAction->UserID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pParkedOrderAction->InstrumentID << endl;
-                cout << "‘§¬Ò≥∑µ•µ•±‡∫≈ TThostFtdcParkedOrderActionIDType:" << pParkedOrderAction->ParkedOrderActionID << endl;
-                cout << "”√ªß¿‡–Õ TThostFtdcUserTypeType:" << pParkedOrderAction->UserType << endl;
-                cout << "‘§¬Ò≥∑µ•◊¥Ã¨ TThostFtdcParkedOrderStatusType:" << pParkedOrderAction->Status << endl;
-                cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pParkedOrderAction->ErrorID << endl;
-                cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pParkedOrderAction->ErrorMsg << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pParkedOrderAction->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pParkedOrderAction->InvestorID << endl;
+                cout << "Êä•ÂçïÊìç‰ΩúÂºïÁî® TThostFtdcOrderActionRefType:" << pParkedOrderAction->OrderActionRef << endl;
+                cout << "Êä•ÂçïÂºïÁî® TThostFtdcOrderRefType:" << pParkedOrderAction->OrderRef << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pParkedOrderAction->RequestID << endl;
+                cout << "ÂâçÁΩÆÁºñÂè∑ TThostFtdcFrontIDType:" << pParkedOrderAction->FrontID << endl;
+                cout << "‰ºöËØùÁºñÂè∑ TThostFtdcSessionIDType:" << pParkedOrderAction->SessionID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pParkedOrderAction->ExchangeID << endl;
+                cout << "Êä•ÂçïÁºñÂè∑ TThostFtdcOrderSysIDType:" << pParkedOrderAction->OrderSysID << endl;
+                cout << "Êìç‰ΩúÊ†áÂøó TThostFtdcActionFlagType:" << pParkedOrderAction->ActionFlag << endl;
+                cout << "‰ª∑Ê†º TThostFtdcPriceType:" << pParkedOrderAction->LimitPrice << endl;
+                cout << "Êï∞ÈáèÂèòÂåñ TThostFtdcVolumeType:" << pParkedOrderAction->VolumeChange << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pParkedOrderAction->UserID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pParkedOrderAction->InstrumentID << endl;
+                cout << "È¢ÑÂüãÊí§ÂçïÂçïÁºñÂè∑ TThostFtdcParkedOrderActionIDType:" << pParkedOrderAction->ParkedOrderActionID << endl;
+                cout << "Áî®Êà∑Á±ªÂûã TThostFtdcUserTypeType:" << pParkedOrderAction->UserType << endl;
+                cout << "È¢ÑÂüãÊí§ÂçïÁä∂ÊÄÅ TThostFtdcParkedOrderStatusType:" << pParkedOrderAction->Status << endl;
+                cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pParkedOrderAction->ErrorID << endl;
+                cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pParkedOrderAction->ErrorMsg << endl;
         }
 }
 
-///«Î«Û≤È—ØΩª“◊Õ®÷™œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢‰∫§ÊòìÈÄöÁü•ÂìçÂ∫î
 void CTraderSpi::OnRspQryTradingNotice(CThostFtdcTradingNoticeField* pTradingNotice, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pTradingNotice->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ∑∂Œß TThostFtdcInvestorRangeType:" << pTradingNotice->InvestorRange << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pTradingNotice->InvestorID << endl;
-                cout << "–Ú¡–œµ¡–∫≈ TThostFtdcSequenceSeriesType:" << pTradingNotice->SequenceSeries << endl;
-                cout << "”√ªß¥˙¬Î TThostFtdcUserIDType:" << pTradingNotice->UserID << endl;
-                cout << "∑¢ÀÕ ±º‰ TThostFtdcTimeType:" << pTradingNotice->SendTime << endl;
-                cout << "–Ú¡–∫≈ TThostFtdcSequenceNoType:" << pTradingNotice->SequenceNo << endl;
-                cout << "œ˚œ¢’˝Œƒ TThostFtdcContentType:" << pTradingNotice->FieldContent << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pTradingNotice->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖËåÉÂõ¥ TThostFtdcInvestorRangeType:" << pTradingNotice->InvestorRange << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pTradingNotice->InvestorID << endl;
+                cout << "Â∫èÂàóÁ≥ªÂàóÂè∑ TThostFtdcSequenceSeriesType:" << pTradingNotice->SequenceSeries << endl;
+                cout << "Áî®Êà∑‰ª£Á†Å TThostFtdcUserIDType:" << pTradingNotice->UserID << endl;
+                cout << "ÂèëÈÄÅÊó∂Èó¥ TThostFtdcTimeType:" << pTradingNotice->SendTime << endl;
+                cout << "Â∫èÂàóÂè∑ TThostFtdcSequenceNoType:" << pTradingNotice->SequenceNo << endl;
+                cout << "Ê∂àÊÅØÊ≠£Êñá TThostFtdcContentType:" << pTradingNotice->FieldContent << endl;
         }
 }
 
-///«Î«Û≤È—Øæ≠ºÕπ´ÀæΩª“◊≤Œ ˝œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ÁªèÁ∫™ÂÖ¨Âè∏‰∫§ÊòìÂèÇÊï∞ÂìçÂ∫î
 void CTraderSpi::OnRspQryBrokerTradingParams(CThostFtdcBrokerTradingParamsField* pBrokerTradingParams, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pBrokerTradingParams->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pBrokerTradingParams->InvestorID << endl;
-                cout << "±£÷§Ωº€∏Ò¿‡–Õ TThostFtdcMarginPriceTypeType:" << pBrokerTradingParams->MarginPriceType << endl;
-                cout << "”Øø˜À„∑® TThostFtdcAlgorithmType:" << pBrokerTradingParams->Algorithm << endl;
-                cout << "ø…”√ «∑Ò∞¸∫¨∆Ω≤÷”Ø¿˚ TThostFtdcIncludeCloseProfitType:" << pBrokerTradingParams->AvailIncludeCloseProfit << endl;
-                cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pBrokerTradingParams->CurrencyID << endl;
-                cout << "∆⁄»®»®¿˚Ωº€∏Ò¿‡–Õ TThostFtdcOptionRoyaltyPriceTypeType:" << pBrokerTradingParams->OptionRoyaltyPriceType << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pBrokerTradingParams->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pBrokerTradingParams->InvestorID << endl;
+                cout << "‰øùËØÅÈáë‰ª∑Ê†ºÁ±ªÂûã TThostFtdcMarginPriceTypeType:" << pBrokerTradingParams->MarginPriceType << endl;
+                cout << "Áõà‰∫èÁÆóÊ≥ï TThostFtdcAlgorithmType:" << pBrokerTradingParams->Algorithm << endl;
+                cout << "ÂèØÁî®ÊòØÂê¶ÂåÖÂê´Âπ≥‰ªìÁõàÂà© TThostFtdcIncludeCloseProfitType:" << pBrokerTradingParams->AvailIncludeCloseProfit << endl;
+                cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pBrokerTradingParams->CurrencyID << endl;
+                cout << "ÊúüÊùÉÊùÉÂà©Èáë‰ª∑Ê†ºÁ±ªÂûã TThostFtdcOptionRoyaltyPriceTypeType:" << pBrokerTradingParams->OptionRoyaltyPriceType << endl;
         }
 }
 
-///«Î«Û≤È—Øæ≠ºÕπ´ÀæΩª“◊À„∑®œÏ”¶
+///ËØ∑Ê±ÇÊü•ËØ¢ÁªèÁ∫™ÂÖ¨Âè∏‰∫§ÊòìÁÆóÊ≥ïÂìçÂ∫î
 void CTraderSpi::OnRspQryBrokerTradingAlgos(CThostFtdcBrokerTradingAlgosField* pBrokerTradingAlgos, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pBrokerTradingAlgos->BrokerID << endl;
-                cout << "Ωª“◊À˘¥˙¬Î TThostFtdcExchangeIDType:" << pBrokerTradingAlgos->ExchangeID << endl;
-                cout << "∫œ‘º¥˙¬Î TThostFtdcInstrumentIDType:" << pBrokerTradingAlgos->InstrumentID << endl;
-                cout << "≥÷≤÷¥¶¿ÌÀ„∑®±‡∫≈ TThostFtdcHandlePositionAlgoIDType:" << pBrokerTradingAlgos->HandlePositionAlgoID << endl;
-                cout << "—∞’“±£÷§Ω¬ À„∑®±‡∫≈ TThostFtdcFindMarginRateAlgoIDType:" << pBrokerTradingAlgos->FindMarginRateAlgoID << endl;
-                cout << "◊ Ω¥¶¿ÌÀ„∑®±‡∫≈ TThostFtdcHandleTradingAccountAlgoIDType:" << pBrokerTradingAlgos->HandleTradingAccountAlgoID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pBrokerTradingAlgos->BrokerID << endl;
+                cout << "‰∫§ÊòìÊâÄ‰ª£Á†Å TThostFtdcExchangeIDType:" << pBrokerTradingAlgos->ExchangeID << endl;
+                cout << "ÂêàÁ∫¶‰ª£Á†Å TThostFtdcInstrumentIDType:" << pBrokerTradingAlgos->InstrumentID << endl;
+                cout << "ÊåÅ‰ªìÂ§ÑÁêÜÁÆóÊ≥ïÁºñÂè∑ TThostFtdcHandlePositionAlgoIDType:" << pBrokerTradingAlgos->HandlePositionAlgoID << endl;
+                cout << "ÂØªÊâæ‰øùËØÅÈáëÁéáÁÆóÊ≥ïÁºñÂè∑ TThostFtdcFindMarginRateAlgoIDType:" << pBrokerTradingAlgos->FindMarginRateAlgoID << endl;
+                cout << "ËµÑÈáëÂ§ÑÁêÜÁÆóÊ≥ïÁºñÂè∑ TThostFtdcHandleTradingAccountAlgoIDType:" << pBrokerTradingAlgos->HandleTradingAccountAlgoID << endl;
         }
 }
 
-///«Î«Û≤È—Øº‡øÿ÷––ƒ”√ªß¡Ó≈∆
+///ËØ∑Ê±ÇÊü•ËØ¢ÁõëÊéß‰∏≠ÂøÉÁî®Êà∑‰ª§Áâå
 void CTraderSpi::OnRspQueryCFMMCTradingAccountToken(CThostFtdcQueryCFMMCTradingAccountTokenField* pQueryCFMMCTradingAccountToken, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "æ≠ºÕπ´Àæ¥˙¬Î TThostFtdcBrokerIDType:" << pQueryCFMMCTradingAccountToken->BrokerID << endl;
-                cout << "Õ∂◊ ’ﬂ¥˙¬Î TThostFtdcInvestorIDType:" << pQueryCFMMCTradingAccountToken->InvestorID << endl;
+                cout << "ÁªèÁ∫™ÂÖ¨Âè∏‰ª£Á†Å TThostFtdcBrokerIDType:" << pQueryCFMMCTradingAccountToken->BrokerID << endl;
+                cout << "ÊäïËµÑËÄÖ‰ª£Á†Å TThostFtdcInvestorIDType:" << pQueryCFMMCTradingAccountToken->InvestorID << endl;
         }
 }
 
-///“¯––∑¢∆“¯––◊ Ω◊™∆⁄ªıÕ®÷™
+///Èì∂Ë°åÂèëËµ∑Èì∂Ë°åËµÑÈáëËΩ¨ÊúüË¥ßÈÄöÁü•
 void CTraderSpi::OnRtnFromBankToFutureByBank(CThostFtdcRspTransferField* pRspTransfer)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pRspTransfer->TradeCode << endl;
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pRspTransfer->BankID << endl;
-        cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pRspTransfer->BankBranchID << endl;
-        cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pRspTransfer->BrokerID << endl;
-        cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pRspTransfer->BrokerBranchID << endl;
-        cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pRspTransfer->TradeDate << endl;
-        cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pRspTransfer->TradeTime << endl;
-        cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pRspTransfer->BankSerial << endl;
-        cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pRspTransfer->TradingDay << endl;
-        cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pRspTransfer->PlateSerial << endl;
-        cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pRspTransfer->LastFragment << endl;
-        cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pRspTransfer->SessionID << endl;
-        cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pRspTransfer->CustomerName << endl;
-        cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pRspTransfer->IdCardType << endl;
-        cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pRspTransfer->IdentifiedCardNo << endl;
-        cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pRspTransfer->CustType << endl;
-        cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pRspTransfer->BankAccount << endl;
-        cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pRspTransfer->BankPassWord << endl;
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pRspTransfer->AccountID << endl;
-        cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pRspTransfer->Password << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pRspTransfer->InstallID << endl;
-        cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pRspTransfer->FutureSerial << endl;
-        cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pRspTransfer->UserID << endl;
-        cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pRspTransfer->VerifyCertNoFlag << endl;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pRspTransfer->CurrencyID << endl;
-        cout << "◊™’ Ω∂Ó TThostFtdcTradeAmountType:" << pRspTransfer->TradeAmount << endl;
-        cout << "∆⁄ªıø…»°Ω∂Ó TThostFtdcTradeAmountType:" << pRspTransfer->FutureFetchAmount << endl;
-        cout << "∑—”√÷ß∏∂±Í÷æ TThostFtdcFeePayFlagType:" << pRspTransfer->FeePayFlag << endl;
-        cout << "”¶ ’øÕªß∑—”√ TThostFtdcCustFeeType:" << pRspTransfer->CustFee << endl;
-        cout << "”¶ ’∆⁄ªıπ´Àæ∑—”√ TThostFtdcFutureFeeType:" << pRspTransfer->BrokerFee << endl;
-        cout << "∑¢ÀÕ∑Ω∏¯Ω” ’∑Ωµƒœ˚œ¢ TThostFtdcAddInfoType:" << pRspTransfer->Message << endl;
-        cout << "’™“™ TThostFtdcDigestType:" << pRspTransfer->Digest << endl;
-        cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspTransfer->BankAccType << endl;
-        cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pRspTransfer->DeviceID << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspTransfer->BankSecuAccType << endl;
-        cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pRspTransfer->BrokerIDByBank << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pRspTransfer->BankSecuAcc << endl;
-        cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pRspTransfer->BankPwdFlag << endl;
-        cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pRspTransfer->SecuPwdFlag << endl;
-        cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pRspTransfer->OperNo << endl;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pRspTransfer->RequestID << endl;
-        // cout << "Ωª“◊ID:" << pRspTransfer->TThostFtdcTIDType << endlTID;
-        cout << "◊™’ÀΩª“◊◊¥Ã¨ TThostFtdcTransferStatusType:" << pRspTransfer->TransferStatus << endl;
-        cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pRspTransfer->ErrorID << endl;
-        cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pRspTransfer->ErrorMsg << endl;
+        cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pRspTransfer->TradeCode << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pRspTransfer->BankID << endl;
+        cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pRspTransfer->BankBranchID << endl;
+        cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pRspTransfer->BrokerID << endl;
+        cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pRspTransfer->BrokerBranchID << endl;
+        cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pRspTransfer->TradeDate << endl;
+        cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pRspTransfer->TradeTime << endl;
+        cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pRspTransfer->BankSerial << endl;
+        cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pRspTransfer->TradingDay << endl;
+        cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pRspTransfer->PlateSerial << endl;
+        cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pRspTransfer->LastFragment << endl;
+        cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pRspTransfer->SessionID << endl;
+        cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pRspTransfer->CustomerName << endl;
+        cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pRspTransfer->IdCardType << endl;
+        cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pRspTransfer->IdentifiedCardNo << endl;
+        cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pRspTransfer->CustType << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspTransfer->BankAccount << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pRspTransfer->BankPassWord << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pRspTransfer->AccountID << endl;
+        cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pRspTransfer->Password << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pRspTransfer->InstallID << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pRspTransfer->FutureSerial << endl;
+        cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pRspTransfer->UserID << endl;
+        cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pRspTransfer->VerifyCertNoFlag << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pRspTransfer->CurrencyID << endl;
+        cout << "ËΩ¨Â∏êÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspTransfer->TradeAmount << endl;
+        cout << "ÊúüË¥ßÂèØÂèñÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspTransfer->FutureFetchAmount << endl;
+        cout << "Ë¥πÁî®ÊîØ‰ªòÊ†áÂøó TThostFtdcFeePayFlagType:" << pRspTransfer->FeePayFlag << endl;
+        cout << "Â∫îÊî∂ÂÆ¢Êà∑Ë¥πÁî® TThostFtdcCustFeeType:" << pRspTransfer->CustFee << endl;
+        cout << "Â∫îÊî∂ÊúüË¥ßÂÖ¨Âè∏Ë¥πÁî® TThostFtdcFutureFeeType:" << pRspTransfer->BrokerFee << endl;
+        cout << "ÂèëÈÄÅÊñπÁªôÊé•Êî∂ÊñπÁöÑÊ∂àÊÅØ TThostFtdcAddInfoType:" << pRspTransfer->Message << endl;
+        cout << "ÊëòË¶Å TThostFtdcDigestType:" << pRspTransfer->Digest << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspTransfer->BankAccType << endl;
+        cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pRspTransfer->DeviceID << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspTransfer->BankSecuAccType << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pRspTransfer->BrokerIDByBank << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspTransfer->BankSecuAcc << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pRspTransfer->BankPwdFlag << endl;
+        cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pRspTransfer->SecuPwdFlag << endl;
+        cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pRspTransfer->OperNo << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pRspTransfer->RequestID << endl;
+        // cout << "‰∫§ÊòìID:" << pRspTransfer->TThostFtdcTIDType << endlTID;
+        cout << "ËΩ¨Ë¥¶‰∫§ÊòìÁä∂ÊÄÅ TThostFtdcTransferStatusType:" << pRspTransfer->TransferStatus << endl;
+        cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pRspTransfer->ErrorID << endl;
+        cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pRspTransfer->ErrorMsg << endl;
 }
 
-///“¯––∑¢∆∆⁄ªı◊ Ω◊™“¯––Õ®÷™
+///Èì∂Ë°åÂèëËµ∑ÊúüË¥ßËµÑÈáëËΩ¨Èì∂Ë°åÈÄöÁü•
 void CTraderSpi::OnRtnFromFutureToBankByBank(CThostFtdcRspTransferField* pRspTransfer)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pRspTransfer->TradeCode << endl;
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pRspTransfer->BankID << endl;
-        cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pRspTransfer->BankBranchID << endl;
-        cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pRspTransfer->BrokerID << endl;
-        cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pRspTransfer->BrokerBranchID << endl;
-        cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pRspTransfer->TradeDate << endl;
-        cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pRspTransfer->TradeTime << endl;
-        cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pRspTransfer->BankSerial << endl;
-        cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pRspTransfer->TradingDay << endl;
-        cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pRspTransfer->PlateSerial << endl;
-        cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pRspTransfer->LastFragment << endl;
-        cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pRspTransfer->SessionID << endl;
-        cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pRspTransfer->CustomerName << endl;
-        cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pRspTransfer->IdCardType << endl;
-        cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pRspTransfer->IdentifiedCardNo << endl;
-        cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pRspTransfer->CustType << endl;
-        cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pRspTransfer->BankAccount << endl;
-        cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pRspTransfer->BankPassWord << endl;
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pRspTransfer->AccountID << endl;
-        cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pRspTransfer->Password << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pRspTransfer->InstallID << endl;
-        cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pRspTransfer->FutureSerial << endl;
-        cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pRspTransfer->UserID << endl;
-        cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pRspTransfer->VerifyCertNoFlag << endl;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pRspTransfer->CurrencyID << endl;
-        cout << "◊™’ Ω∂Ó TThostFtdcTradeAmountType:" << pRspTransfer->TradeAmount << endl;
-        cout << "∆⁄ªıø…»°Ω∂Ó TThostFtdcTradeAmountType:" << pRspTransfer->FutureFetchAmount << endl;
-        cout << "∑—”√÷ß∏∂±Í÷æ TThostFtdcFeePayFlagType:" << pRspTransfer->FeePayFlag << endl;
-        cout << "”¶ ’øÕªß∑—”√ TThostFtdcCustFeeType:" << pRspTransfer->CustFee << endl;
-        cout << "”¶ ’∆⁄ªıπ´Àæ∑—”√ TThostFtdcFutureFeeType:" << pRspTransfer->BrokerFee << endl;
-        cout << "∑¢ÀÕ∑Ω∏¯Ω” ’∑Ωµƒœ˚œ¢ TThostFtdcAddInfoType:" << pRspTransfer->Message << endl;
-        cout << "’™“™ TThostFtdcDigestType:" << pRspTransfer->Digest << endl;
-        cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspTransfer->BankAccType << endl;
-        cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pRspTransfer->DeviceID << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspTransfer->BankSecuAccType << endl;
-        cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pRspTransfer->BrokerIDByBank << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pRspTransfer->BankSecuAcc << endl;
-        cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pRspTransfer->BankPwdFlag << endl;
-        cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pRspTransfer->SecuPwdFlag << endl;
-        cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pRspTransfer->OperNo << endl;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pRspTransfer->RequestID << endl;
-        // cout << "Ωª“◊ID:" << pRspTransfer->TThostFtdcTIDType << endlTID;
-        cout << "◊™’ÀΩª“◊◊¥Ã¨ TThostFtdcTransferStatusType:" << pRspTransfer->TransferStatus << endl;
-        cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pRspTransfer->ErrorID << endl;
-        cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pRspTransfer->ErrorMsg << endl;
+        cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pRspTransfer->TradeCode << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pRspTransfer->BankID << endl;
+        cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pRspTransfer->BankBranchID << endl;
+        cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pRspTransfer->BrokerID << endl;
+        cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pRspTransfer->BrokerBranchID << endl;
+        cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pRspTransfer->TradeDate << endl;
+        cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pRspTransfer->TradeTime << endl;
+        cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pRspTransfer->BankSerial << endl;
+        cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pRspTransfer->TradingDay << endl;
+        cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pRspTransfer->PlateSerial << endl;
+        cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pRspTransfer->LastFragment << endl;
+        cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pRspTransfer->SessionID << endl;
+        cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pRspTransfer->CustomerName << endl;
+        cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pRspTransfer->IdCardType << endl;
+        cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pRspTransfer->IdentifiedCardNo << endl;
+        cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pRspTransfer->CustType << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspTransfer->BankAccount << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pRspTransfer->BankPassWord << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pRspTransfer->AccountID << endl;
+        cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pRspTransfer->Password << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pRspTransfer->InstallID << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pRspTransfer->FutureSerial << endl;
+        cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pRspTransfer->UserID << endl;
+        cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pRspTransfer->VerifyCertNoFlag << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pRspTransfer->CurrencyID << endl;
+        cout << "ËΩ¨Â∏êÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspTransfer->TradeAmount << endl;
+        cout << "ÊúüË¥ßÂèØÂèñÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspTransfer->FutureFetchAmount << endl;
+        cout << "Ë¥πÁî®ÊîØ‰ªòÊ†áÂøó TThostFtdcFeePayFlagType:" << pRspTransfer->FeePayFlag << endl;
+        cout << "Â∫îÊî∂ÂÆ¢Êà∑Ë¥πÁî® TThostFtdcCustFeeType:" << pRspTransfer->CustFee << endl;
+        cout << "Â∫îÊî∂ÊúüË¥ßÂÖ¨Âè∏Ë¥πÁî® TThostFtdcFutureFeeType:" << pRspTransfer->BrokerFee << endl;
+        cout << "ÂèëÈÄÅÊñπÁªôÊé•Êî∂ÊñπÁöÑÊ∂àÊÅØ TThostFtdcAddInfoType:" << pRspTransfer->Message << endl;
+        cout << "ÊëòË¶Å TThostFtdcDigestType:" << pRspTransfer->Digest << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspTransfer->BankAccType << endl;
+        cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pRspTransfer->DeviceID << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspTransfer->BankSecuAccType << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pRspTransfer->BrokerIDByBank << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspTransfer->BankSecuAcc << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pRspTransfer->BankPwdFlag << endl;
+        cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pRspTransfer->SecuPwdFlag << endl;
+        cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pRspTransfer->OperNo << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pRspTransfer->RequestID << endl;
+        // cout << "‰∫§ÊòìID:" << pRspTransfer->TThostFtdcTIDType << endlTID;
+        cout << "ËΩ¨Ë¥¶‰∫§ÊòìÁä∂ÊÄÅ TThostFtdcTransferStatusType:" << pRspTransfer->TransferStatus << endl;
+        cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pRspTransfer->ErrorID << endl;
+        cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pRspTransfer->ErrorMsg << endl;
 }
 
-///“¯––∑¢∆≥Â’˝“¯––◊™∆⁄ªıÕ®÷™
+///Èì∂Ë°åÂèëËµ∑ÂÜ≤Ê≠£Èì∂Ë°åËΩ¨ÊúüË¥ßÈÄöÁü•
 void CTraderSpi::OnRtnRepealFromBankToFutureByBank(CThostFtdcRspRepealField* pRspRepeal)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "≥Â’˝ ±º‰º‰∏Ù TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
-        cout << "“—æ≠≥Â’˝¥Œ ˝ TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
-        cout << "“¯––≥Â’˝±Í÷æ TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
-        cout << "∆⁄…Ã≥Â’˝±Í÷æ TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
-        cout << "±ª≥Â’˝∆ΩÃ®¡˜ÀÆ∫≈ TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
-        cout << "±ª≥Â’˝“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
-        cout << "±ª≥Â’˝∆⁄ªı¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
-        cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
-        cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
-        cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
-        cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
-        cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
-        cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
-        cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
-        cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
-        cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
-        cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
-        cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
-        cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
-        cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
-        cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
-        cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
-        cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
-        cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
-        cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
-        cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
-        cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
-        cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
-        cout << "◊™’ Ω∂Ó TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
-        cout << "∆⁄ªıø…»°Ω∂Ó TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
-        cout << "∑—”√÷ß∏∂±Í÷æ TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
-        cout << "”¶ ’øÕªß∑—”√ TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
-        cout << "”¶ ’∆⁄ªıπ´Àæ∑—”√ TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
-        cout << "∑¢ÀÕ∑Ω∏¯Ω” ’∑Ωµƒœ˚œ¢ TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
-        cout << "’™“™ TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
-        cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
-        cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
-        cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
-        cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
-        cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
-        cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
-        // cout << "Ωª“◊ID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
-        cout << "◊™’ÀΩª“◊◊¥Ã¨ TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
-        cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
-        cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
+        cout << "ÂÜ≤Ê≠£Êó∂Èó¥Èó¥Èöî TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
+        cout << "Â∑≤ÁªèÂÜ≤Ê≠£Ê¨°Êï∞ TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
+        cout << "Èì∂Ë°åÂÜ≤Ê≠£Ê†áÂøó TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
+        cout << "ÊúüÂïÜÂÜ≤Ê≠£Ê†áÂøó TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
+        cout << "Ë¢´ÂÜ≤Ê≠£Âπ≥Âè∞ÊµÅÊ∞¥Âè∑ TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
+        cout << "Ë¢´ÂÜ≤Ê≠£Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
+        cout << "Ë¢´ÂÜ≤Ê≠£ÊúüË¥ßÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
+        cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
+        cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
+        cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
+        cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
+        cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
+        cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
+        cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
+        cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
+        cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
+        cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
+        cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
+        cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
+        cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
+        cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
+        cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
+        cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
+        cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
+        cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
+        cout << "ËΩ¨Â∏êÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
+        cout << "ÊúüË¥ßÂèØÂèñÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
+        cout << "Ë¥πÁî®ÊîØ‰ªòÊ†áÂøó TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
+        cout << "Â∫îÊî∂ÂÆ¢Êà∑Ë¥πÁî® TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
+        cout << "Â∫îÊî∂ÊúüË¥ßÂÖ¨Âè∏Ë¥πÁî® TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
+        cout << "ÂèëÈÄÅÊñπÁªôÊé•Êî∂ÊñπÁöÑÊ∂àÊÅØ TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
+        cout << "ÊëòË¶Å TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
+        cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
+        cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
+        cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
+        // cout << "‰∫§ÊòìID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
+        cout << "ËΩ¨Ë¥¶‰∫§ÊòìÁä∂ÊÄÅ TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
+        cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
+        cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
 }
 
-///“¯––∑¢∆≥Â’˝∆⁄ªı◊™“¯––Õ®÷™
+///Èì∂Ë°åÂèëËµ∑ÂÜ≤Ê≠£ÊúüË¥ßËΩ¨Èì∂Ë°åÈÄöÁü•
 void CTraderSpi::OnRtnRepealFromFutureToBankByBank(CThostFtdcRspRepealField* pRspRepeal)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "≥Â’˝ ±º‰º‰∏Ù TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
-        cout << "“—æ≠≥Â’˝¥Œ ˝ TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
-        cout << "“¯––≥Â’˝±Í÷æ TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
-        cout << "∆⁄…Ã≥Â’˝±Í÷æ TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
-        cout << "±ª≥Â’˝∆ΩÃ®¡˜ÀÆ∫≈ TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
-        cout << "±ª≥Â’˝“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
-        cout << "±ª≥Â’˝∆⁄ªı¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
-        cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
-        cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
-        cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
-        cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
-        cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
-        cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
-        cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
-        cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
-        cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
-        cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
-        cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
-        cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
-        cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
-        cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
-        cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
-        cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
-        cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
-        cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
-        cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
-        cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
-        cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
-        cout << "◊™’ Ω∂Ó TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
-        cout << "∆⁄ªıø…»°Ω∂Ó TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
-        cout << "∑—”√÷ß∏∂±Í÷æ TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
-        cout << "”¶ ’øÕªß∑—”√ TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
-        cout << "”¶ ’∆⁄ªıπ´Àæ∑—”√ TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
-        cout << "∑¢ÀÕ∑Ω∏¯Ω” ’∑Ωµƒœ˚œ¢ TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
-        cout << "’™“™ TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
-        cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
-        cout << "«˛µ¿±Í TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
-        cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
-        cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
-        cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
-        cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
-        cout << "Ωª“◊ TThostFtdcTIDType:" << pRspRepeal->TID << endl;
-        cout << "◊™’ÀΩª“◊◊¥Ã¨ TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
-        cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
-        cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
+        cout << "ÂÜ≤Ê≠£Êó∂Èó¥Èó¥Èöî TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
+        cout << "Â∑≤ÁªèÂÜ≤Ê≠£Ê¨°Êï∞ TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
+        cout << "Èì∂Ë°åÂÜ≤Ê≠£Ê†áÂøó TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
+        cout << "ÊúüÂïÜÂÜ≤Ê≠£Ê†áÂøó TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
+        cout << "Ë¢´ÂÜ≤Ê≠£Âπ≥Âè∞ÊµÅÊ∞¥Âè∑ TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
+        cout << "Ë¢´ÂÜ≤Ê≠£Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
+        cout << "Ë¢´ÂÜ≤Ê≠£ÊúüË¥ßÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
+        cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
+        cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
+        cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
+        cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
+        cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
+        cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
+        cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
+        cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
+        cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
+        cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
+        cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
+        cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
+        cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
+        cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
+        cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
+        cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
+        cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
+        cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
+        cout << "ËΩ¨Â∏êÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
+        cout << "ÊúüË¥ßÂèØÂèñÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
+        cout << "Ë¥πÁî®ÊîØ‰ªòÊ†áÂøó TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
+        cout << "Â∫îÊî∂ÂÆ¢Êà∑Ë¥πÁî® TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
+        cout << "Â∫îÊî∂ÊúüË¥ßÂÖ¨Âè∏Ë¥πÁî® TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
+        cout << "ÂèëÈÄÅÊñπÁªôÊé•Êî∂ÊñπÁöÑÊ∂àÊÅØ TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
+        cout << "ÊëòË¶Å TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
+        cout << "Ê∏†ÈÅìÊ†á TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
+        cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
+        cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
+        cout << "‰∫§Êòì TThostFtdcTIDType:" << pRspRepeal->TID << endl;
+        cout << "ËΩ¨Ë¥¶‰∫§ÊòìÁä∂ÊÄÅ TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
+        cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
+        cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
 }
 
-///∆⁄ªı∑¢∆“¯––◊ Ω◊™∆⁄ªıÕ®÷™
+///ÊúüË¥ßÂèëËµ∑Èì∂Ë°åËµÑÈáëËΩ¨ÊúüË¥ßÈÄöÁü•
 void CTraderSpi::OnRtnFromBankToFutureByFuture(CThostFtdcRspTransferField* pRspTransfer)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pRspTransfer->TradeCode << endl;
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pRspTransfer->BankID << endl;
-        cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pRspTransfer->BankBranchID << endl;
-        cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pRspTransfer->BrokerID << endl;
-        cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pRspTransfer->BrokerBranchID << endl;
-        cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pRspTransfer->TradeDate << endl;
-        cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pRspTransfer->TradeTime << endl;
-        cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pRspTransfer->BankSerial << endl;
-        cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pRspTransfer->TradingDay << endl;
-        cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pRspTransfer->PlateSerial << endl;
-        cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pRspTransfer->LastFragment << endl;
-        cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pRspTransfer->SessionID << endl;
-        cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pRspTransfer->CustomerName << endl;
-        cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pRspTransfer->IdCardType << endl;
-        cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pRspTransfer->IdentifiedCardNo << endl;
-        cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pRspTransfer->CustType << endl;
-        cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pRspTransfer->BankAccount << endl;
-        cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pRspTransfer->BankPassWord << endl;
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pRspTransfer->AccountID << endl;
-        cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pRspTransfer->Password << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pRspTransfer->InstallID << endl;
-        cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pRspTransfer->FutureSerial << endl;
-        cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pRspTransfer->UserID << endl;
-        cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pRspTransfer->VerifyCertNoFlag << endl;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pRspTransfer->CurrencyID << endl;
-        cout << "◊™’ Ω∂Ó TThostFtdcTradeAmountType:" << pRspTransfer->TradeAmount << endl;
-        cout << "∆⁄ªıø…»°Ω∂Ó TThostFtdcTradeAmountType:" << pRspTransfer->FutureFetchAmount << endl;
-        cout << "∑—”√÷ß∏∂±Í÷æ TThostFtdcFeePayFlagType:" << pRspTransfer->FeePayFlag << endl;
-        cout << "”¶ ’øÕªß∑—”√ TThostFtdcCustFeeType:" << pRspTransfer->CustFee << endl;
-        cout << "”¶ ’∆⁄ªıπ´Àæ∑—”√ TThostFtdcFutureFeeType:" << pRspTransfer->BrokerFee << endl;
-        cout << "∑¢ÀÕ∑Ω∏¯Ω” ’∑Ωµƒœ˚œ¢ TThostFtdcAddInfoType:" << pRspTransfer->Message << endl;
-        cout << "’™“™ TThostFtdcDigestType:" << pRspTransfer->Digest << endl;
-        cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspTransfer->BankAccType << endl;
-        cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pRspTransfer->DeviceID << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspTransfer->BankSecuAccType << endl;
-        cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pRspTransfer->BrokerIDByBank << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pRspTransfer->BankSecuAcc << endl;
-        cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pRspTransfer->BankPwdFlag << endl;
-        cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pRspTransfer->SecuPwdFlag << endl;
-        cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pRspTransfer->OperNo << endl;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pRspTransfer->RequestID << endl;
-        // cout << "Ωª“◊ID:" << pRspTransfer->TThostFtdcTIDType << endlTID;
-        cout << "◊™’ÀΩª“◊◊¥Ã¨ TThostFtdcTransferStatusType:" << pRspTransfer->TransferStatus << endl;
-        cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pRspTransfer->ErrorID << endl;
-        cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pRspTransfer->ErrorMsg << endl;
+        cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pRspTransfer->TradeCode << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pRspTransfer->BankID << endl;
+        cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pRspTransfer->BankBranchID << endl;
+        cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pRspTransfer->BrokerID << endl;
+        cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pRspTransfer->BrokerBranchID << endl;
+        cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pRspTransfer->TradeDate << endl;
+        cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pRspTransfer->TradeTime << endl;
+        cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pRspTransfer->BankSerial << endl;
+        cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pRspTransfer->TradingDay << endl;
+        cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pRspTransfer->PlateSerial << endl;
+        cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pRspTransfer->LastFragment << endl;
+        cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pRspTransfer->SessionID << endl;
+        cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pRspTransfer->CustomerName << endl;
+        cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pRspTransfer->IdCardType << endl;
+        cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pRspTransfer->IdentifiedCardNo << endl;
+        cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pRspTransfer->CustType << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspTransfer->BankAccount << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pRspTransfer->BankPassWord << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pRspTransfer->AccountID << endl;
+        cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pRspTransfer->Password << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pRspTransfer->InstallID << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pRspTransfer->FutureSerial << endl;
+        cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pRspTransfer->UserID << endl;
+        cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pRspTransfer->VerifyCertNoFlag << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pRspTransfer->CurrencyID << endl;
+        cout << "ËΩ¨Â∏êÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspTransfer->TradeAmount << endl;
+        cout << "ÊúüË¥ßÂèØÂèñÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspTransfer->FutureFetchAmount << endl;
+        cout << "Ë¥πÁî®ÊîØ‰ªòÊ†áÂøó TThostFtdcFeePayFlagType:" << pRspTransfer->FeePayFlag << endl;
+        cout << "Â∫îÊî∂ÂÆ¢Êà∑Ë¥πÁî® TThostFtdcCustFeeType:" << pRspTransfer->CustFee << endl;
+        cout << "Â∫îÊî∂ÊúüË¥ßÂÖ¨Âè∏Ë¥πÁî® TThostFtdcFutureFeeType:" << pRspTransfer->BrokerFee << endl;
+        cout << "ÂèëÈÄÅÊñπÁªôÊé•Êî∂ÊñπÁöÑÊ∂àÊÅØ TThostFtdcAddInfoType:" << pRspTransfer->Message << endl;
+        cout << "ÊëòË¶Å TThostFtdcDigestType:" << pRspTransfer->Digest << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspTransfer->BankAccType << endl;
+        cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pRspTransfer->DeviceID << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspTransfer->BankSecuAccType << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pRspTransfer->BrokerIDByBank << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspTransfer->BankSecuAcc << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pRspTransfer->BankPwdFlag << endl;
+        cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pRspTransfer->SecuPwdFlag << endl;
+        cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pRspTransfer->OperNo << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pRspTransfer->RequestID << endl;
+        // cout << "‰∫§ÊòìID:" << pRspTransfer->TThostFtdcTIDType << endlTID;
+        cout << "ËΩ¨Ë¥¶‰∫§ÊòìÁä∂ÊÄÅ TThostFtdcTransferStatusType:" << pRspTransfer->TransferStatus << endl;
+        cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pRspTransfer->ErrorID << endl;
+        cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pRspTransfer->ErrorMsg << endl;
 }
 
-///∆⁄ªı∑¢∆∆⁄ªı◊ Ω◊™“¯––Õ®÷™
+///ÊúüË¥ßÂèëËµ∑ÊúüË¥ßËµÑÈáëËΩ¨Èì∂Ë°åÈÄöÁü•
 void CTraderSpi::OnRtnFromFutureToBankByFuture(CThostFtdcRspTransferField* pRspTransfer)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pRspTransfer->TradeCode << endl;
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pRspTransfer->BankID << endl;
-        cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pRspTransfer->BankBranchID << endl;
-        cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pRspTransfer->BrokerID << endl;
-        cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pRspTransfer->BrokerBranchID << endl;
-        cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pRspTransfer->TradeDate << endl;
-        cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pRspTransfer->TradeTime << endl;
-        cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pRspTransfer->BankSerial << endl;
-        cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pRspTransfer->TradingDay << endl;
-        cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pRspTransfer->PlateSerial << endl;
-        cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pRspTransfer->LastFragment << endl;
-        cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pRspTransfer->SessionID << endl;
-        cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pRspTransfer->CustomerName << endl;
-        cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pRspTransfer->IdCardType << endl;
-        cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pRspTransfer->IdentifiedCardNo << endl;
-        cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pRspTransfer->CustType << endl;
-        cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pRspTransfer->BankAccount << endl;
-        cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pRspTransfer->BankPassWord << endl;
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pRspTransfer->AccountID << endl;
-        cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pRspTransfer->Password << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pRspTransfer->InstallID << endl;
-        cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pRspTransfer->FutureSerial << endl;
-        cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pRspTransfer->UserID << endl;
-        cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pRspTransfer->VerifyCertNoFlag << endl;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pRspTransfer->CurrencyID << endl;
-        cout << "◊™’ Ω∂Ó TThostFtdcTradeAmountType:" << pRspTransfer->TradeAmount << endl;
-        cout << "∆⁄ªıø…»°Ω∂Ó TThostFtdcTradeAmountType:" << pRspTransfer->FutureFetchAmount << endl;
-        cout << "∑—”√÷ß∏∂±Í÷æ TThostFtdcFeePayFlagType:" << pRspTransfer->FeePayFlag << endl;
-        cout << "”¶ ’øÕªß∑—”√ TThostFtdcCustFeeType:" << pRspTransfer->CustFee << endl;
-        cout << "”¶ ’∆⁄ªıπ´Àæ∑—”√ TThostFtdcFutureFeeType:" << pRspTransfer->BrokerFee << endl;
-        cout << "∑¢ÀÕ∑Ω∏¯Ω” ’∑Ωµƒœ˚œ¢ TThostFtdcAddInfoType:" << pRspTransfer->Message << endl;
-        cout << "’™“™ TThostFtdcDigestType:" << pRspTransfer->Digest << endl;
-        cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspTransfer->BankAccType << endl;
-        cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pRspTransfer->DeviceID << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspTransfer->BankSecuAccType << endl;
-        cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pRspTransfer->BrokerIDByBank << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pRspTransfer->BankSecuAcc << endl;
-        cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pRspTransfer->BankPwdFlag << endl;
-        cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pRspTransfer->SecuPwdFlag << endl;
-        cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pRspTransfer->OperNo << endl;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pRspTransfer->RequestID << endl;
-        // cout << "Ωª“◊ID:" << pRspTransfer->TThostFtdcTIDType << endlTID;
-        cout << "◊™’ÀΩª“◊◊¥Ã¨ TThostFtdcTransferStatusType:" << pRspTransfer->TransferStatus << endl;
-        cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pRspTransfer->ErrorID << endl;
-        cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pRspTransfer->ErrorMsg << endl;
+        cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pRspTransfer->TradeCode << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pRspTransfer->BankID << endl;
+        cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pRspTransfer->BankBranchID << endl;
+        cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pRspTransfer->BrokerID << endl;
+        cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pRspTransfer->BrokerBranchID << endl;
+        cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pRspTransfer->TradeDate << endl;
+        cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pRspTransfer->TradeTime << endl;
+        cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pRspTransfer->BankSerial << endl;
+        cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pRspTransfer->TradingDay << endl;
+        cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pRspTransfer->PlateSerial << endl;
+        cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pRspTransfer->LastFragment << endl;
+        cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pRspTransfer->SessionID << endl;
+        cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pRspTransfer->CustomerName << endl;
+        cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pRspTransfer->IdCardType << endl;
+        cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pRspTransfer->IdentifiedCardNo << endl;
+        cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pRspTransfer->CustType << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspTransfer->BankAccount << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pRspTransfer->BankPassWord << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pRspTransfer->AccountID << endl;
+        cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pRspTransfer->Password << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pRspTransfer->InstallID << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pRspTransfer->FutureSerial << endl;
+        cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pRspTransfer->UserID << endl;
+        cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pRspTransfer->VerifyCertNoFlag << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pRspTransfer->CurrencyID << endl;
+        cout << "ËΩ¨Â∏êÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspTransfer->TradeAmount << endl;
+        cout << "ÊúüË¥ßÂèØÂèñÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspTransfer->FutureFetchAmount << endl;
+        cout << "Ë¥πÁî®ÊîØ‰ªòÊ†áÂøó TThostFtdcFeePayFlagType:" << pRspTransfer->FeePayFlag << endl;
+        cout << "Â∫îÊî∂ÂÆ¢Êà∑Ë¥πÁî® TThostFtdcCustFeeType:" << pRspTransfer->CustFee << endl;
+        cout << "Â∫îÊî∂ÊúüË¥ßÂÖ¨Âè∏Ë¥πÁî® TThostFtdcFutureFeeType:" << pRspTransfer->BrokerFee << endl;
+        cout << "ÂèëÈÄÅÊñπÁªôÊé•Êî∂ÊñπÁöÑÊ∂àÊÅØ TThostFtdcAddInfoType:" << pRspTransfer->Message << endl;
+        cout << "ÊëòË¶Å TThostFtdcDigestType:" << pRspTransfer->Digest << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspTransfer->BankAccType << endl;
+        cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pRspTransfer->DeviceID << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspTransfer->BankSecuAccType << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pRspTransfer->BrokerIDByBank << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspTransfer->BankSecuAcc << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pRspTransfer->BankPwdFlag << endl;
+        cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pRspTransfer->SecuPwdFlag << endl;
+        cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pRspTransfer->OperNo << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pRspTransfer->RequestID << endl;
+        // cout << "‰∫§ÊòìID:" << pRspTransfer->TThostFtdcTIDType << endlTID;
+        cout << "ËΩ¨Ë¥¶‰∫§ÊòìÁä∂ÊÄÅ TThostFtdcTransferStatusType:" << pRspTransfer->TransferStatus << endl;
+        cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pRspTransfer->ErrorID << endl;
+        cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pRspTransfer->ErrorMsg << endl;
 }
 
-///œµÕ≥‘À–– ±∆⁄ªı∂À ÷π§∑¢∆≥Â’˝“¯––◊™∆⁄ªı«Î«Û£¨“¯––¥¶¿ÌÕÍ±œ∫Û±®≈Ã∑¢ªÿµƒÕ®÷™
+///Á≥ªÁªüËøêË°åÊó∂ÊúüË¥ßÁ´ØÊâãÂ∑•ÂèëËµ∑ÂÜ≤Ê≠£Èì∂Ë°åËΩ¨ÊúüË¥ßËØ∑Ê±ÇÔºåÈì∂Ë°åÂ§ÑÁêÜÂÆåÊØïÂêéÊä•ÁõòÂèëÂõûÁöÑÈÄöÁü•
 void CTraderSpi::OnRtnRepealFromBankToFutureByFutureManual(CThostFtdcRspRepealField* pRspRepeal)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "≥Â’˝ ±º‰º‰∏Ù TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
-        cout << "“—æ≠≥Â’˝¥Œ ˝ TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
-        cout << "“¯––≥Â’˝±Í÷æ TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
-        cout << "∆⁄…Ã≥Â’˝±Í÷æ TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
-        cout << "±ª≥Â’˝∆ΩÃ®¡˜ÀÆ∫≈ TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
-        cout << "±ª≥Â’˝“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
-        cout << "±ª≥Â’˝∆⁄ªı¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
-        cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
-        cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
-        cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
-        cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
-        cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
-        cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
-        cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
-        cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
-        cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
-        cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
-        cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
-        cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
-        cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
-        cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
-        cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
-        cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
-        cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
-        cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
-        cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
-        cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
-        cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
-        cout << "◊™’ Ω∂Ó TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
-        cout << "∆⁄ªıø…»°Ω∂Ó TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
-        cout << "∑—”√÷ß∏∂±Í÷æ TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
-        cout << "”¶ ’øÕªß∑—”√ TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
-        cout << "”¶ ’∆⁄ªıπ´Àæ∑—”√ TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
-        cout << "∑¢ÀÕ∑Ω∏¯Ω” ’∑Ωµƒœ˚œ¢ TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
-        cout << "’™“™ TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
-        cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
-        cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
-        cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
-        cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
-        cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
-        cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
-        // cout << "Ωª“◊ID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
-        cout << "◊™’ÀΩª“◊◊¥Ã¨ TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
-        cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
-        cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
+        cout << "ÂÜ≤Ê≠£Êó∂Èó¥Èó¥Èöî TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
+        cout << "Â∑≤ÁªèÂÜ≤Ê≠£Ê¨°Êï∞ TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
+        cout << "Èì∂Ë°åÂÜ≤Ê≠£Ê†áÂøó TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
+        cout << "ÊúüÂïÜÂÜ≤Ê≠£Ê†áÂøó TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
+        cout << "Ë¢´ÂÜ≤Ê≠£Âπ≥Âè∞ÊµÅÊ∞¥Âè∑ TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
+        cout << "Ë¢´ÂÜ≤Ê≠£Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
+        cout << "Ë¢´ÂÜ≤Ê≠£ÊúüË¥ßÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
+        cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
+        cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
+        cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
+        cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
+        cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
+        cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
+        cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
+        cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
+        cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
+        cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
+        cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
+        cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
+        cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
+        cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
+        cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
+        cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
+        cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
+        cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
+        cout << "ËΩ¨Â∏êÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
+        cout << "ÊúüË¥ßÂèØÂèñÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
+        cout << "Ë¥πÁî®ÊîØ‰ªòÊ†áÂøó TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
+        cout << "Â∫îÊî∂ÂÆ¢Êà∑Ë¥πÁî® TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
+        cout << "Â∫îÊî∂ÊúüË¥ßÂÖ¨Âè∏Ë¥πÁî® TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
+        cout << "ÂèëÈÄÅÊñπÁªôÊé•Êî∂ÊñπÁöÑÊ∂àÊÅØ TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
+        cout << "ÊëòË¶Å TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
+        cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
+        cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
+        cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
+        // cout << "‰∫§ÊòìID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
+        cout << "ËΩ¨Ë¥¶‰∫§ÊòìÁä∂ÊÄÅ TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
+        cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
+        cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
 }
 
-///œµÕ≥‘À–– ±∆⁄ªı∂À ÷π§∑¢∆≥Â’˝∆⁄ªı◊™“¯––«Î«Û£¨“¯––¥¶¿ÌÕÍ±œ∫Û±®≈Ã∑¢ªÿµƒÕ®÷™
+///Á≥ªÁªüËøêË°åÊó∂ÊúüË¥ßÁ´ØÊâãÂ∑•ÂèëËµ∑ÂÜ≤Ê≠£ÊúüË¥ßËΩ¨Èì∂Ë°åËØ∑Ê±ÇÔºåÈì∂Ë°åÂ§ÑÁêÜÂÆåÊØïÂêéÊä•ÁõòÂèëÂõûÁöÑÈÄöÁü•
 void CTraderSpi::OnRtnRepealFromFutureToBankByFutureManual(CThostFtdcRspRepealField* pRspRepeal)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "≥Â’˝ ±º‰º‰∏Ù TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
-        cout << "“—æ≠≥Â’˝¥Œ ˝ TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
-        cout << "“¯––≥Â’˝±Í÷æ TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
-        cout << "∆⁄…Ã≥Â’˝±Í÷æ TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
-        cout << "±ª≥Â’˝∆ΩÃ®¡˜ÀÆ∫≈ TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
-        cout << "±ª≥Â’˝“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
-        cout << "±ª≥Â’˝∆⁄ªı¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
-        cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
-        cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
-        cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
-        cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
-        cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
-        cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
-        cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
-        cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
-        cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
-        cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
-        cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
-        cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
-        cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
-        cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
-        cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
-        cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
-        cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
-        cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
-        cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
-        cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
-        cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
-        cout << "◊™’ Ω∂Ó TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
-        cout << "∆⁄ªıø…»°Ω∂Ó TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
-        cout << "∑—”√÷ß∏∂±Í÷æ TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
-        cout << "”¶ ’øÕªß∑—”√ TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
-        cout << "”¶ ’∆⁄ªıπ´Àæ∑—”√ TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
-        cout << "∑¢ÀÕ∑Ω∏¯Ω” ’∑Ωµƒœ˚œ¢ TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
-        cout << "’™“™ TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
-        cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
-        cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
-        cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
-        cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
-        cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
-        cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
-        // cout << "Ωª“◊ID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
-        cout << "◊™’ÀΩª“◊◊¥Ã¨ TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
-        cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
-        cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
+        cout << "ÂÜ≤Ê≠£Êó∂Èó¥Èó¥Èöî TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
+        cout << "Â∑≤ÁªèÂÜ≤Ê≠£Ê¨°Êï∞ TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
+        cout << "Èì∂Ë°åÂÜ≤Ê≠£Ê†áÂøó TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
+        cout << "ÊúüÂïÜÂÜ≤Ê≠£Ê†áÂøó TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
+        cout << "Ë¢´ÂÜ≤Ê≠£Âπ≥Âè∞ÊµÅÊ∞¥Âè∑ TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
+        cout << "Ë¢´ÂÜ≤Ê≠£Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
+        cout << "Ë¢´ÂÜ≤Ê≠£ÊúüË¥ßÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
+        cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
+        cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
+        cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
+        cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
+        cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
+        cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
+        cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
+        cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
+        cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
+        cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
+        cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
+        cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
+        cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
+        cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
+        cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
+        cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
+        cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
+        cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
+        cout << "ËΩ¨Â∏êÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
+        cout << "ÊúüË¥ßÂèØÂèñÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
+        cout << "Ë¥πÁî®ÊîØ‰ªòÊ†áÂøó TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
+        cout << "Â∫îÊî∂ÂÆ¢Êà∑Ë¥πÁî® TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
+        cout << "Â∫îÊî∂ÊúüË¥ßÂÖ¨Âè∏Ë¥πÁî® TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
+        cout << "ÂèëÈÄÅÊñπÁªôÊé•Êî∂ÊñπÁöÑÊ∂àÊÅØ TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
+        cout << "ÊëòË¶Å TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
+        cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
+        cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
+        cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
+        // cout << "‰∫§ÊòìID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
+        cout << "ËΩ¨Ë¥¶‰∫§ÊòìÁä∂ÊÄÅ TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
+        cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
+        cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
 }
 
-///∆⁄ªı∑¢∆≤È—Ø“¯––”‡∂ÓÕ®÷™
+///ÊúüË¥ßÂèëËµ∑Êü•ËØ¢Èì∂Ë°å‰ΩôÈ¢ùÈÄöÁü•
 void CTraderSpi::OnRtnQueryBankBalanceByFuture(CThostFtdcNotifyQueryAccountField* pNotifyQueryAccount)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pNotifyQueryAccount->TradeCode << endl;
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pNotifyQueryAccount->BankID << endl;
-        cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pNotifyQueryAccount->BankBranchID << endl;
-        cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pNotifyQueryAccount->BrokerID << endl;
-        cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pNotifyQueryAccount->BrokerBranchID << endl;
-        cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pNotifyQueryAccount->TradeDate << endl;
-        cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pNotifyQueryAccount->TradeTime << endl;
-        cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pNotifyQueryAccount->BankSerial << endl;
-        cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pNotifyQueryAccount->TradingDay << endl;
-        cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pNotifyQueryAccount->PlateSerial << endl;
-        cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pNotifyQueryAccount->LastFragment << endl;
-        cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pNotifyQueryAccount->SessionID << endl;
-        cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pNotifyQueryAccount->CustomerName << endl;
-        cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pNotifyQueryAccount->IdCardType << endl;
-        cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pNotifyQueryAccount->IdentifiedCardNo << endl;
-        cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pNotifyQueryAccount->CustType << endl;
-        cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pNotifyQueryAccount->BankAccount << endl;
-        cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pNotifyQueryAccount->BankPassWord << endl;
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pNotifyQueryAccount->AccountID << endl;
-        cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pNotifyQueryAccount->Password << endl;
-        cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pNotifyQueryAccount->FutureSerial << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pNotifyQueryAccount->InstallID << endl;
-        cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pNotifyQueryAccount->UserID << endl;
-        cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pNotifyQueryAccount->VerifyCertNoFlag << endl;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pNotifyQueryAccount->CurrencyID << endl;
-        cout << "’™“™ TThostFtdcDigestType:" << pNotifyQueryAccount->Digest << endl;
-        cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pNotifyQueryAccount->BankAccType << endl;
-        cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pNotifyQueryAccount->DeviceID << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pNotifyQueryAccount->BankSecuAccType << endl;
-        cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pNotifyQueryAccount->BrokerIDByBank << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pNotifyQueryAccount->BankSecuAcc << endl;
-        cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pNotifyQueryAccount->BankPwdFlag << endl;
-        cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pNotifyQueryAccount->SecuPwdFlag << endl;
-        cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pNotifyQueryAccount->OperNo << endl;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pNotifyQueryAccount->RequestID << endl;
-        cout << "Ωª“◊ TThostFtdcTIDType:" << pNotifyQueryAccount->TID << endl;
-        cout << "“¯––ø…”√Ω∂Ó TThostFtdcTradeAmountType:" << pNotifyQueryAccount->BankUseAmount << endl;
-        cout << "“¯––ø…»°Ω∂Ó TThostFtdcTradeAmountType:" << pNotifyQueryAccount->BankFetchAmount << endl;
-        cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pNotifyQueryAccount->ErrorID << endl;
-        cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pNotifyQueryAccount->ErrorMsg << endl;
+        cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pNotifyQueryAccount->TradeCode << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pNotifyQueryAccount->BankID << endl;
+        cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pNotifyQueryAccount->BankBranchID << endl;
+        cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pNotifyQueryAccount->BrokerID << endl;
+        cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pNotifyQueryAccount->BrokerBranchID << endl;
+        cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pNotifyQueryAccount->TradeDate << endl;
+        cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pNotifyQueryAccount->TradeTime << endl;
+        cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pNotifyQueryAccount->BankSerial << endl;
+        cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pNotifyQueryAccount->TradingDay << endl;
+        cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pNotifyQueryAccount->PlateSerial << endl;
+        cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pNotifyQueryAccount->LastFragment << endl;
+        cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pNotifyQueryAccount->SessionID << endl;
+        cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pNotifyQueryAccount->CustomerName << endl;
+        cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pNotifyQueryAccount->IdCardType << endl;
+        cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pNotifyQueryAccount->IdentifiedCardNo << endl;
+        cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pNotifyQueryAccount->CustType << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pNotifyQueryAccount->BankAccount << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pNotifyQueryAccount->BankPassWord << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pNotifyQueryAccount->AccountID << endl;
+        cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pNotifyQueryAccount->Password << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pNotifyQueryAccount->FutureSerial << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pNotifyQueryAccount->InstallID << endl;
+        cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pNotifyQueryAccount->UserID << endl;
+        cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pNotifyQueryAccount->VerifyCertNoFlag << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pNotifyQueryAccount->CurrencyID << endl;
+        cout << "ÊëòË¶Å TThostFtdcDigestType:" << pNotifyQueryAccount->Digest << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pNotifyQueryAccount->BankAccType << endl;
+        cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pNotifyQueryAccount->DeviceID << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pNotifyQueryAccount->BankSecuAccType << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pNotifyQueryAccount->BrokerIDByBank << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pNotifyQueryAccount->BankSecuAcc << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pNotifyQueryAccount->BankPwdFlag << endl;
+        cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pNotifyQueryAccount->SecuPwdFlag << endl;
+        cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pNotifyQueryAccount->OperNo << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pNotifyQueryAccount->RequestID << endl;
+        cout << "‰∫§Êòì TThostFtdcTIDType:" << pNotifyQueryAccount->TID << endl;
+        cout << "Èì∂Ë°åÂèØÁî®ÈáëÈ¢ù TThostFtdcTradeAmountType:" << pNotifyQueryAccount->BankUseAmount << endl;
+        cout << "Èì∂Ë°åÂèØÂèñÈáëÈ¢ù TThostFtdcTradeAmountType:" << pNotifyQueryAccount->BankFetchAmount << endl;
+        cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pNotifyQueryAccount->ErrorID << endl;
+        cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pNotifyQueryAccount->ErrorMsg << endl;
 }
 
-///∆⁄ªı∑¢∆“¯––◊ Ω◊™∆⁄ªı¥ÌŒÛªÿ±®
+///ÊúüË¥ßÂèëËµ∑Èì∂Ë°åËµÑÈáëËΩ¨ÊúüË¥ßÈîôËØØÂõûÊä•
 void CTraderSpi::OnErrRtnBankToFutureByFuture(CThostFtdcReqTransferField* pReqTransfer, CThostFtdcRspInfoField* pRspInfo)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pReqTransfer->TradeCode << endl;
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pReqTransfer->BankID << endl;
-        cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pReqTransfer->BankBranchID << endl;
-        cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pReqTransfer->BrokerID << endl;
-        cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pReqTransfer->BrokerBranchID << endl;
-        cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pReqTransfer->TradeDate << endl;
-        cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pReqTransfer->TradeTime << endl;
-        cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pReqTransfer->BankSerial << endl;
-        cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pReqTransfer->TradingDay << endl;
-        cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pReqTransfer->PlateSerial << endl;
-        cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pReqTransfer->LastFragment << endl;
-        cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pReqTransfer->SessionID << endl;
-        cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pReqTransfer->CustomerName << endl;
-        cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pReqTransfer->IdCardType << endl;
-        cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pReqTransfer->IdentifiedCardNo << endl;
-        cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pReqTransfer->CustType << endl;
-        cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pReqTransfer->BankAccount << endl;
-        cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pReqTransfer->BankPassWord << endl;
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pReqTransfer->AccountID << endl;
-        cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pReqTransfer->Password << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pReqTransfer->InstallID << endl;
-        cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pReqTransfer->FutureSerial << endl;
-        cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pReqTransfer->UserID << endl;
-        cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pReqTransfer->VerifyCertNoFlag << endl;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pReqTransfer->CurrencyID << endl;
-        cout << "◊™’ Ω∂Ó TThostFtdcTradeAmountType:" << pReqTransfer->TradeAmount << endl;
-        cout << "∆⁄ªıø…»°Ω∂Ó TThostFtdcTradeAmountType:" << pReqTransfer->FutureFetchAmount << endl;
-        cout << "∑—”√÷ß∏∂±Í÷æ TThostFtdcFeePayFlagType:" << pReqTransfer->FeePayFlag << endl;
-        cout << "”¶ ’øÕªß∑—”√ TThostFtdcCustFeeType:" << pReqTransfer->CustFee << endl;
-        cout << "”¶ ’∆⁄ªıπ´Àæ∑—”√ TThostFtdcFutureFeeType:" << pReqTransfer->BrokerFee << endl;
-        cout << "∑¢ÀÕ∑Ω∏¯Ω” ’∑Ωµƒœ˚œ¢ TThostFtdcAddInfoType:" << pReqTransfer->Message << endl;
-        cout << "’™“™ TThostFtdcDigestType:" << pReqTransfer->Digest << endl;
-        cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pReqTransfer->BankAccType << endl;
-        cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pReqTransfer->DeviceID << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pReqTransfer->BankSecuAccType << endl;
-        cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pReqTransfer->BrokerIDByBank << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pReqTransfer->BankSecuAcc << endl;
-        cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pReqTransfer->BankPwdFlag << endl;
-        cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pReqTransfer->SecuPwdFlag << endl;
-        cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pReqTransfer->OperNo << endl;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pReqTransfer->RequestID << endl;
-        // cout << "Ωª“◊ID:" << pReqTransfer->TThostFtdcTIDType << endlTID;
-        cout << "◊™’ÀΩª“◊◊¥Ã¨ TThostFtdcTransferStatusType:" << pReqTransfer->TransferStatus << endl;
+        cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pReqTransfer->TradeCode << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pReqTransfer->BankID << endl;
+        cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pReqTransfer->BankBranchID << endl;
+        cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pReqTransfer->BrokerID << endl;
+        cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pReqTransfer->BrokerBranchID << endl;
+        cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pReqTransfer->TradeDate << endl;
+        cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pReqTransfer->TradeTime << endl;
+        cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pReqTransfer->BankSerial << endl;
+        cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pReqTransfer->TradingDay << endl;
+        cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pReqTransfer->PlateSerial << endl;
+        cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pReqTransfer->LastFragment << endl;
+        cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pReqTransfer->SessionID << endl;
+        cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pReqTransfer->CustomerName << endl;
+        cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pReqTransfer->IdCardType << endl;
+        cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pReqTransfer->IdentifiedCardNo << endl;
+        cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pReqTransfer->CustType << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pReqTransfer->BankAccount << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pReqTransfer->BankPassWord << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pReqTransfer->AccountID << endl;
+        cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pReqTransfer->Password << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pReqTransfer->InstallID << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pReqTransfer->FutureSerial << endl;
+        cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pReqTransfer->UserID << endl;
+        cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pReqTransfer->VerifyCertNoFlag << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pReqTransfer->CurrencyID << endl;
+        cout << "ËΩ¨Â∏êÈáëÈ¢ù TThostFtdcTradeAmountType:" << pReqTransfer->TradeAmount << endl;
+        cout << "ÊúüË¥ßÂèØÂèñÈáëÈ¢ù TThostFtdcTradeAmountType:" << pReqTransfer->FutureFetchAmount << endl;
+        cout << "Ë¥πÁî®ÊîØ‰ªòÊ†áÂøó TThostFtdcFeePayFlagType:" << pReqTransfer->FeePayFlag << endl;
+        cout << "Â∫îÊî∂ÂÆ¢Êà∑Ë¥πÁî® TThostFtdcCustFeeType:" << pReqTransfer->CustFee << endl;
+        cout << "Â∫îÊî∂ÊúüË¥ßÂÖ¨Âè∏Ë¥πÁî® TThostFtdcFutureFeeType:" << pReqTransfer->BrokerFee << endl;
+        cout << "ÂèëÈÄÅÊñπÁªôÊé•Êî∂ÊñπÁöÑÊ∂àÊÅØ TThostFtdcAddInfoType:" << pReqTransfer->Message << endl;
+        cout << "ÊëòË¶Å TThostFtdcDigestType:" << pReqTransfer->Digest << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pReqTransfer->BankAccType << endl;
+        cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pReqTransfer->DeviceID << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pReqTransfer->BankSecuAccType << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pReqTransfer->BrokerIDByBank << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pReqTransfer->BankSecuAcc << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pReqTransfer->BankPwdFlag << endl;
+        cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pReqTransfer->SecuPwdFlag << endl;
+        cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pReqTransfer->OperNo << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pReqTransfer->RequestID << endl;
+        // cout << "‰∫§ÊòìID:" << pReqTransfer->TThostFtdcTIDType << endlTID;
+        cout << "ËΩ¨Ë¥¶‰∫§ÊòìÁä∂ÊÄÅ TThostFtdcTransferStatusType:" << pReqTransfer->TransferStatus << endl;
 }
 
-///∆⁄ªı∑¢∆∆⁄ªı◊ Ω◊™“¯––¥ÌŒÛªÿ±®
+///ÊúüË¥ßÂèëËµ∑ÊúüË¥ßËµÑÈáëËΩ¨Èì∂Ë°åÈîôËØØÂõûÊä•
 void CTraderSpi::OnErrRtnFutureToBankByFuture(CThostFtdcReqTransferField* pReqTransfer, CThostFtdcRspInfoField* pRspInfo)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (!IsErrorRspInfo(pRspInfo)) {
-                cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pReqTransfer->TradeCode << endl;
-                cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pReqTransfer->BankID << endl;
-                cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pReqTransfer->BankBranchID << endl;
-                cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pReqTransfer->BrokerID << endl;
-                cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pReqTransfer->BrokerBranchID << endl;
-                cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pReqTransfer->TradeDate << endl;
-                cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pReqTransfer->TradeTime << endl;
-                cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pReqTransfer->BankSerial << endl;
-                cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pReqTransfer->TradingDay << endl;
-                cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pReqTransfer->PlateSerial << endl;
-                cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pReqTransfer->LastFragment << endl;
-                cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pReqTransfer->SessionID << endl;
-                cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pReqTransfer->CustomerName << endl;
-                cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pReqTransfer->IdCardType << endl;
-                cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pReqTransfer->IdentifiedCardNo << endl;
-                cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pReqTransfer->CustType << endl;
-                cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pReqTransfer->BankAccount << endl;
-                cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pReqTransfer->BankPassWord << endl;
-                cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pReqTransfer->AccountID << endl;
-                cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pReqTransfer->Password << endl;
-                cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pReqTransfer->InstallID << endl;
-                cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pReqTransfer->FutureSerial << endl;
-                cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pReqTransfer->UserID << endl;
-                cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pReqTransfer->VerifyCertNoFlag << endl;
-                cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pReqTransfer->CurrencyID << endl;
-                cout << "◊™’ Ω∂Ó TThostFtdcTradeAmountType:" << pReqTransfer->TradeAmount << endl;
-                cout << "∆⁄ªıø…»°Ω∂Ó TThostFtdcTradeAmountType:" << pReqTransfer->FutureFetchAmount << endl;
-                cout << "∑—”√÷ß∏∂±Í÷æ TThostFtdcFeePayFlagType:" << pReqTransfer->FeePayFlag << endl;
-                cout << "”¶ ’øÕªß∑—”√ TThostFtdcCustFeeType:" << pReqTransfer->CustFee << endl;
-                cout << "”¶ ’∆⁄ªıπ´Àæ∑—”√ TThostFtdcFutureFeeType:" << pReqTransfer->BrokerFee << endl;
-                cout << "∑¢ÀÕ∑Ω∏¯Ω” ’∑Ωµƒœ˚œ¢ TThostFtdcAddInfoType:" << pReqTransfer->Message << endl;
-                cout << "’™“™ TThostFtdcDigestType:" << pReqTransfer->Digest << endl;
-                cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pReqTransfer->BankAccType << endl;
-                cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pReqTransfer->DeviceID << endl;
-                cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pReqTransfer->BankSecuAccType << endl;
-                cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pReqTransfer->BrokerIDByBank << endl;
-                cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pReqTransfer->BankSecuAcc << endl;
-                cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pReqTransfer->BankPwdFlag << endl;
-                cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pReqTransfer->SecuPwdFlag << endl;
-                cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pReqTransfer->OperNo << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pReqTransfer->RequestID << endl;
-                // cout << "Ωª“◊ID:" << pReqTransfer->TThostFtdcTIDType << endlTID;
-                cout << "◊™’ÀΩª“◊◊¥Ã¨ TThostFtdcTransferStatusType:" << pReqTransfer->TransferStatus << endl;
+                cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pReqTransfer->TradeCode << endl;
+                cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pReqTransfer->BankID << endl;
+                cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pReqTransfer->BankBranchID << endl;
+                cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pReqTransfer->BrokerID << endl;
+                cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pReqTransfer->BrokerBranchID << endl;
+                cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pReqTransfer->TradeDate << endl;
+                cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pReqTransfer->TradeTime << endl;
+                cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pReqTransfer->BankSerial << endl;
+                cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pReqTransfer->TradingDay << endl;
+                cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pReqTransfer->PlateSerial << endl;
+                cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pReqTransfer->LastFragment << endl;
+                cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pReqTransfer->SessionID << endl;
+                cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pReqTransfer->CustomerName << endl;
+                cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pReqTransfer->IdCardType << endl;
+                cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pReqTransfer->IdentifiedCardNo << endl;
+                cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pReqTransfer->CustType << endl;
+                cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pReqTransfer->BankAccount << endl;
+                cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pReqTransfer->BankPassWord << endl;
+                cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pReqTransfer->AccountID << endl;
+                cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pReqTransfer->Password << endl;
+                cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pReqTransfer->InstallID << endl;
+                cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pReqTransfer->FutureSerial << endl;
+                cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pReqTransfer->UserID << endl;
+                cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pReqTransfer->VerifyCertNoFlag << endl;
+                cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pReqTransfer->CurrencyID << endl;
+                cout << "ËΩ¨Â∏êÈáëÈ¢ù TThostFtdcTradeAmountType:" << pReqTransfer->TradeAmount << endl;
+                cout << "ÊúüË¥ßÂèØÂèñÈáëÈ¢ù TThostFtdcTradeAmountType:" << pReqTransfer->FutureFetchAmount << endl;
+                cout << "Ë¥πÁî®ÊîØ‰ªòÊ†áÂøó TThostFtdcFeePayFlagType:" << pReqTransfer->FeePayFlag << endl;
+                cout << "Â∫îÊî∂ÂÆ¢Êà∑Ë¥πÁî® TThostFtdcCustFeeType:" << pReqTransfer->CustFee << endl;
+                cout << "Â∫îÊî∂ÊúüË¥ßÂÖ¨Âè∏Ë¥πÁî® TThostFtdcFutureFeeType:" << pReqTransfer->BrokerFee << endl;
+                cout << "ÂèëÈÄÅÊñπÁªôÊé•Êî∂ÊñπÁöÑÊ∂àÊÅØ TThostFtdcAddInfoType:" << pReqTransfer->Message << endl;
+                cout << "ÊëòË¶Å TThostFtdcDigestType:" << pReqTransfer->Digest << endl;
+                cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pReqTransfer->BankAccType << endl;
+                cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pReqTransfer->DeviceID << endl;
+                cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pReqTransfer->BankSecuAccType << endl;
+                cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pReqTransfer->BrokerIDByBank << endl;
+                cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pReqTransfer->BankSecuAcc << endl;
+                cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pReqTransfer->BankPwdFlag << endl;
+                cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pReqTransfer->SecuPwdFlag << endl;
+                cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pReqTransfer->OperNo << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pReqTransfer->RequestID << endl;
+                // cout << "‰∫§ÊòìID:" << pReqTransfer->TThostFtdcTIDType << endlTID;
+                cout << "ËΩ¨Ë¥¶‰∫§ÊòìÁä∂ÊÄÅ TThostFtdcTransferStatusType:" << pReqTransfer->TransferStatus << endl;
         }
 }
 
-///œµÕ≥‘À–– ±∆⁄ªı∂À ÷π§∑¢∆≥Â’˝“¯––◊™∆⁄ªı¥ÌŒÛªÿ±®
+///Á≥ªÁªüËøêË°åÊó∂ÊúüË¥ßÁ´ØÊâãÂ∑•ÂèëËµ∑ÂÜ≤Ê≠£Èì∂Ë°åËΩ¨ÊúüË¥ßÈîôËØØÂõûÊä•
 void CTraderSpi::OnErrRtnRepealBankToFutureByFutureManual(CThostFtdcReqRepealField* pReqRepeal, CThostFtdcRspInfoField* pRspInfo)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (!IsErrorRspInfo(pRspInfo)) {
-                cout << "≥Â’˝ ±º‰º‰∏Ù TThostFtdcRepealTimeIntervalType:" << pReqRepeal->RepealTimeInterval << endl;
-                cout << "“—æ≠≥Â’˝¥Œ ˝ TThostFtdcRepealedTimesType:" << pReqRepeal->RepealedTimes << endl;
-                cout << "“¯––≥Â’˝±Í÷æ TThostFtdcBankRepealFlagType:" << pReqRepeal->BankRepealFlag << endl;
-                cout << "∆⁄…Ã≥Â’˝±Í÷æ TThostFtdcBrokerRepealFlagType:" << pReqRepeal->BrokerRepealFlag << endl;
-                cout << "±ª≥Â’˝∆ΩÃ®¡˜ÀÆ∫≈ TThostFtdcPlateSerialType:" << pReqRepeal->PlateRepealSerial << endl;
-                cout << "±ª≥Â’˝“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pReqRepeal->BankRepealSerial << endl;
-                cout << "±ª≥Â’˝∆⁄ªı¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pReqRepeal->FutureRepealSerial << endl;
-                cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pReqRepeal->TradeCode << endl;
-                cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pReqRepeal->BankID << endl;
-                cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pReqRepeal->BankBranchID << endl;
-                cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pReqRepeal->BrokerID << endl;
-                cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pReqRepeal->BrokerBranchID << endl;
-                cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pReqRepeal->TradeDate << endl;
-                cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pReqRepeal->TradeTime << endl;
-                cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pReqRepeal->BankSerial << endl;
-                cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pReqRepeal->TradingDay << endl;
-                cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pReqRepeal->PlateSerial << endl;
-                cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pReqRepeal->LastFragment << endl;
-                cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pReqRepeal->SessionID << endl;
-                cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pReqRepeal->CustomerName << endl;
-                cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pReqRepeal->IdCardType << endl;
-                cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pReqRepeal->IdentifiedCardNo << endl;
-                cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pReqRepeal->CustType << endl;
-                cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pReqRepeal->BankAccount << endl;
-                cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pReqRepeal->BankPassWord << endl;
-                cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pReqRepeal->AccountID << endl;
-                cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pReqRepeal->Password << endl;
-                cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pReqRepeal->InstallID << endl;
-                cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pReqRepeal->FutureSerial << endl;
-                cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pReqRepeal->UserID << endl;
-                cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pReqRepeal->VerifyCertNoFlag << endl;
-                cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pReqRepeal->CurrencyID << endl;
-                cout << "◊™’ Ω∂Ó TThostFtdcTradeAmountType:" << pReqRepeal->TradeAmount << endl;
-                cout << "∆⁄ªıø…»°Ω∂Ó TThostFtdcTradeAmountType:" << pReqRepeal->FutureFetchAmount << endl;
-                cout << "∑—”√÷ß∏∂±Í÷æ TThostFtdcFeePayFlagType:" << pReqRepeal->FeePayFlag << endl;
-                cout << "”¶ ’øÕªß∑—”√ TThostFtdcCustFeeType:" << pReqRepeal->CustFee << endl;
-                cout << "”¶ ’∆⁄ªıπ´Àæ∑—”√ TThostFtdcFutureFeeType:" << pReqRepeal->BrokerFee << endl;
-                cout << "∑¢ÀÕ∑Ω∏¯Ω” ’∑Ωµƒœ˚œ¢ TThostFtdcAddInfoType:" << pReqRepeal->Message << endl;
-                cout << "’™“™ TThostFtdcDigestType:" << pReqRepeal->Digest << endl;
-                cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pReqRepeal->BankAccType << endl;
-                cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pReqRepeal->DeviceID << endl;
-                cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pReqRepeal->BankSecuAccType << endl;
-                cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pReqRepeal->BrokerIDByBank << endl;
-                cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pReqRepeal->BankSecuAcc << endl;
-                cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pReqRepeal->BankPwdFlag << endl;
-                cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pReqRepeal->SecuPwdFlag << endl;
-                cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pReqRepeal->OperNo << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pReqRepeal->RequestID << endl;
-                // cout << "Ωª“◊ID:" << pReqRepeal->TThostFtdcTIDType << endlTID;
-                cout << "◊™’ÀΩª“◊◊¥Ã¨ TThostFtdcTransferStatusType:" << pReqRepeal->TransferStatus << endl;
+                cout << "ÂÜ≤Ê≠£Êó∂Èó¥Èó¥Èöî TThostFtdcRepealTimeIntervalType:" << pReqRepeal->RepealTimeInterval << endl;
+                cout << "Â∑≤ÁªèÂÜ≤Ê≠£Ê¨°Êï∞ TThostFtdcRepealedTimesType:" << pReqRepeal->RepealedTimes << endl;
+                cout << "Èì∂Ë°åÂÜ≤Ê≠£Ê†áÂøó TThostFtdcBankRepealFlagType:" << pReqRepeal->BankRepealFlag << endl;
+                cout << "ÊúüÂïÜÂÜ≤Ê≠£Ê†áÂøó TThostFtdcBrokerRepealFlagType:" << pReqRepeal->BrokerRepealFlag << endl;
+                cout << "Ë¢´ÂÜ≤Ê≠£Âπ≥Âè∞ÊµÅÊ∞¥Âè∑ TThostFtdcPlateSerialType:" << pReqRepeal->PlateRepealSerial << endl;
+                cout << "Ë¢´ÂÜ≤Ê≠£Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pReqRepeal->BankRepealSerial << endl;
+                cout << "Ë¢´ÂÜ≤Ê≠£ÊúüË¥ßÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pReqRepeal->FutureRepealSerial << endl;
+                cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pReqRepeal->TradeCode << endl;
+                cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pReqRepeal->BankID << endl;
+                cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pReqRepeal->BankBranchID << endl;
+                cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pReqRepeal->BrokerID << endl;
+                cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pReqRepeal->BrokerBranchID << endl;
+                cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pReqRepeal->TradeDate << endl;
+                cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pReqRepeal->TradeTime << endl;
+                cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pReqRepeal->BankSerial << endl;
+                cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pReqRepeal->TradingDay << endl;
+                cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pReqRepeal->PlateSerial << endl;
+                cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pReqRepeal->LastFragment << endl;
+                cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pReqRepeal->SessionID << endl;
+                cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pReqRepeal->CustomerName << endl;
+                cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pReqRepeal->IdCardType << endl;
+                cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pReqRepeal->IdentifiedCardNo << endl;
+                cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pReqRepeal->CustType << endl;
+                cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pReqRepeal->BankAccount << endl;
+                cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pReqRepeal->BankPassWord << endl;
+                cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pReqRepeal->AccountID << endl;
+                cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pReqRepeal->Password << endl;
+                cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pReqRepeal->InstallID << endl;
+                cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pReqRepeal->FutureSerial << endl;
+                cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pReqRepeal->UserID << endl;
+                cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pReqRepeal->VerifyCertNoFlag << endl;
+                cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pReqRepeal->CurrencyID << endl;
+                cout << "ËΩ¨Â∏êÈáëÈ¢ù TThostFtdcTradeAmountType:" << pReqRepeal->TradeAmount << endl;
+                cout << "ÊúüË¥ßÂèØÂèñÈáëÈ¢ù TThostFtdcTradeAmountType:" << pReqRepeal->FutureFetchAmount << endl;
+                cout << "Ë¥πÁî®ÊîØ‰ªòÊ†áÂøó TThostFtdcFeePayFlagType:" << pReqRepeal->FeePayFlag << endl;
+                cout << "Â∫îÊî∂ÂÆ¢Êà∑Ë¥πÁî® TThostFtdcCustFeeType:" << pReqRepeal->CustFee << endl;
+                cout << "Â∫îÊî∂ÊúüË¥ßÂÖ¨Âè∏Ë¥πÁî® TThostFtdcFutureFeeType:" << pReqRepeal->BrokerFee << endl;
+                cout << "ÂèëÈÄÅÊñπÁªôÊé•Êî∂ÊñπÁöÑÊ∂àÊÅØ TThostFtdcAddInfoType:" << pReqRepeal->Message << endl;
+                cout << "ÊëòË¶Å TThostFtdcDigestType:" << pReqRepeal->Digest << endl;
+                cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pReqRepeal->BankAccType << endl;
+                cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pReqRepeal->DeviceID << endl;
+                cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pReqRepeal->BankSecuAccType << endl;
+                cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pReqRepeal->BrokerIDByBank << endl;
+                cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pReqRepeal->BankSecuAcc << endl;
+                cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pReqRepeal->BankPwdFlag << endl;
+                cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pReqRepeal->SecuPwdFlag << endl;
+                cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pReqRepeal->OperNo << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pReqRepeal->RequestID << endl;
+                // cout << "‰∫§ÊòìID:" << pReqRepeal->TThostFtdcTIDType << endlTID;
+                cout << "ËΩ¨Ë¥¶‰∫§ÊòìÁä∂ÊÄÅ TThostFtdcTransferStatusType:" << pReqRepeal->TransferStatus << endl;
         }
 }
 
-///œµÕ≥‘À–– ±∆⁄ªı∂À ÷π§∑¢∆≥Â’˝∆⁄ªı◊™“¯––¥ÌŒÛªÿ±®
+///Á≥ªÁªüËøêË°åÊó∂ÊúüË¥ßÁ´ØÊâãÂ∑•ÂèëËµ∑ÂÜ≤Ê≠£ÊúüË¥ßËΩ¨Èì∂Ë°åÈîôËØØÂõûÊä•
 void CTraderSpi::OnErrRtnRepealFutureToBankByFutureManual(CThostFtdcReqRepealField* pReqRepeal, CThostFtdcRspInfoField* pRspInfo)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (!IsErrorRspInfo(pRspInfo)) {
-                cout << "≥Â’˝ ±º‰º‰∏Ù TThostFtdcRepealTimeIntervalType:" << pReqRepeal->RepealTimeInterval << endl;
-                cout << "“—æ≠≥Â’˝¥Œ ˝ TThostFtdcRepealedTimesType:" << pReqRepeal->RepealedTimes << endl;
-                cout << "“¯––≥Â’˝±Í÷æ TThostFtdcBankRepealFlagType:" << pReqRepeal->BankRepealFlag << endl;
-                cout << "∆⁄…Ã≥Â’˝±Í÷æ TThostFtdcBrokerRepealFlagType:" << pReqRepeal->BrokerRepealFlag << endl;
-                cout << "±ª≥Â’˝∆ΩÃ®¡˜ÀÆ∫≈ TThostFtdcPlateSerialType:" << pReqRepeal->PlateRepealSerial << endl;
-                cout << "±ª≥Â’˝“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pReqRepeal->BankRepealSerial << endl;
-                cout << "±ª≥Â’˝∆⁄ªı¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pReqRepeal->FutureRepealSerial << endl;
-                cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pReqRepeal->TradeCode << endl;
-                cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pReqRepeal->BankID << endl;
-                cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pReqRepeal->BankBranchID << endl;
-                cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pReqRepeal->BrokerID << endl;
-                cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pReqRepeal->BrokerBranchID << endl;
-                cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pReqRepeal->TradeDate << endl;
-                cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pReqRepeal->TradeTime << endl;
-                cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pReqRepeal->BankSerial << endl;
-                cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pReqRepeal->TradingDay << endl;
-                cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pReqRepeal->PlateSerial << endl;
-                cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pReqRepeal->LastFragment << endl;
-                cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pReqRepeal->SessionID << endl;
-                cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pReqRepeal->CustomerName << endl;
-                cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pReqRepeal->IdCardType << endl;
-                cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pReqRepeal->IdentifiedCardNo << endl;
-                cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pReqRepeal->CustType << endl;
-                cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pReqRepeal->BankAccount << endl;
-                cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pReqRepeal->BankPassWord << endl;
-                cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pReqRepeal->AccountID << endl;
-                cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pReqRepeal->Password << endl;
-                cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pReqRepeal->InstallID << endl;
-                cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pReqRepeal->FutureSerial << endl;
-                cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pReqRepeal->UserID << endl;
-                cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pReqRepeal->VerifyCertNoFlag << endl;
-                cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pReqRepeal->CurrencyID << endl;
-                cout << "◊™’ Ω∂Ó TThostFtdcTradeAmountType:" << pReqRepeal->TradeAmount << endl;
-                cout << "∆⁄ªıø…»°Ω∂Ó TThostFtdcTradeAmountType:" << pReqRepeal->FutureFetchAmount << endl;
-                cout << "∑—”√÷ß∏∂±Í÷æ TThostFtdcFeePayFlagType:" << pReqRepeal->FeePayFlag << endl;
-                cout << "”¶ ’øÕªß∑—”√ TThostFtdcCustFeeType:" << pReqRepeal->CustFee << endl;
-                cout << "”¶ ’∆⁄ªıπ´Àæ∑—”√ TThostFtdcFutureFeeType:" << pReqRepeal->BrokerFee << endl;
-                cout << "∑¢ÀÕ∑Ω∏¯Ω” ’∑Ωµƒœ˚œ¢ TThostFtdcAddInfoType:" << pReqRepeal->Message << endl;
-                cout << "’™“™ TThostFtdcDigestType:" << pReqRepeal->Digest << endl;
-                cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pReqRepeal->BankAccType << endl;
-                cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pReqRepeal->DeviceID << endl;
-                cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pReqRepeal->BankSecuAccType << endl;
-                cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pReqRepeal->BrokerIDByBank << endl;
-                cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pReqRepeal->BankSecuAcc << endl;
-                cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pReqRepeal->BankPwdFlag << endl;
-                cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pReqRepeal->SecuPwdFlag << endl;
-                cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pReqRepeal->OperNo << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pReqRepeal->RequestID << endl;
-                // cout << "Ωª“◊ID:" << pReqRepeal->TThostFtdcTIDType << endlTID;
-                cout << "◊™’ÀΩª“◊◊¥Ã¨ TThostFtdcTransferStatusType:" << pReqRepeal->TransferStatus << endl;
+                cout << "ÂÜ≤Ê≠£Êó∂Èó¥Èó¥Èöî TThostFtdcRepealTimeIntervalType:" << pReqRepeal->RepealTimeInterval << endl;
+                cout << "Â∑≤ÁªèÂÜ≤Ê≠£Ê¨°Êï∞ TThostFtdcRepealedTimesType:" << pReqRepeal->RepealedTimes << endl;
+                cout << "Èì∂Ë°åÂÜ≤Ê≠£Ê†áÂøó TThostFtdcBankRepealFlagType:" << pReqRepeal->BankRepealFlag << endl;
+                cout << "ÊúüÂïÜÂÜ≤Ê≠£Ê†áÂøó TThostFtdcBrokerRepealFlagType:" << pReqRepeal->BrokerRepealFlag << endl;
+                cout << "Ë¢´ÂÜ≤Ê≠£Âπ≥Âè∞ÊµÅÊ∞¥Âè∑ TThostFtdcPlateSerialType:" << pReqRepeal->PlateRepealSerial << endl;
+                cout << "Ë¢´ÂÜ≤Ê≠£Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pReqRepeal->BankRepealSerial << endl;
+                cout << "Ë¢´ÂÜ≤Ê≠£ÊúüË¥ßÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pReqRepeal->FutureRepealSerial << endl;
+                cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pReqRepeal->TradeCode << endl;
+                cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pReqRepeal->BankID << endl;
+                cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pReqRepeal->BankBranchID << endl;
+                cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pReqRepeal->BrokerID << endl;
+                cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pReqRepeal->BrokerBranchID << endl;
+                cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pReqRepeal->TradeDate << endl;
+                cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pReqRepeal->TradeTime << endl;
+                cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pReqRepeal->BankSerial << endl;
+                cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pReqRepeal->TradingDay << endl;
+                cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pReqRepeal->PlateSerial << endl;
+                cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pReqRepeal->LastFragment << endl;
+                cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pReqRepeal->SessionID << endl;
+                cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pReqRepeal->CustomerName << endl;
+                cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pReqRepeal->IdCardType << endl;
+                cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pReqRepeal->IdentifiedCardNo << endl;
+                cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pReqRepeal->CustType << endl;
+                cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pReqRepeal->BankAccount << endl;
+                cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pReqRepeal->BankPassWord << endl;
+                cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pReqRepeal->AccountID << endl;
+                cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pReqRepeal->Password << endl;
+                cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pReqRepeal->InstallID << endl;
+                cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pReqRepeal->FutureSerial << endl;
+                cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pReqRepeal->UserID << endl;
+                cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pReqRepeal->VerifyCertNoFlag << endl;
+                cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pReqRepeal->CurrencyID << endl;
+                cout << "ËΩ¨Â∏êÈáëÈ¢ù TThostFtdcTradeAmountType:" << pReqRepeal->TradeAmount << endl;
+                cout << "ÊúüË¥ßÂèØÂèñÈáëÈ¢ù TThostFtdcTradeAmountType:" << pReqRepeal->FutureFetchAmount << endl;
+                cout << "Ë¥πÁî®ÊîØ‰ªòÊ†áÂøó TThostFtdcFeePayFlagType:" << pReqRepeal->FeePayFlag << endl;
+                cout << "Â∫îÊî∂ÂÆ¢Êà∑Ë¥πÁî® TThostFtdcCustFeeType:" << pReqRepeal->CustFee << endl;
+                cout << "Â∫îÊî∂ÊúüË¥ßÂÖ¨Âè∏Ë¥πÁî® TThostFtdcFutureFeeType:" << pReqRepeal->BrokerFee << endl;
+                cout << "ÂèëÈÄÅÊñπÁªôÊé•Êî∂ÊñπÁöÑÊ∂àÊÅØ TThostFtdcAddInfoType:" << pReqRepeal->Message << endl;
+                cout << "ÊëòË¶Å TThostFtdcDigestType:" << pReqRepeal->Digest << endl;
+                cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pReqRepeal->BankAccType << endl;
+                cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pReqRepeal->DeviceID << endl;
+                cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pReqRepeal->BankSecuAccType << endl;
+                cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pReqRepeal->BrokerIDByBank << endl;
+                cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pReqRepeal->BankSecuAcc << endl;
+                cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pReqRepeal->BankPwdFlag << endl;
+                cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pReqRepeal->SecuPwdFlag << endl;
+                cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pReqRepeal->OperNo << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pReqRepeal->RequestID << endl;
+                // cout << "‰∫§ÊòìID:" << pReqRepeal->TThostFtdcTIDType << endlTID;
+                cout << "ËΩ¨Ë¥¶‰∫§ÊòìÁä∂ÊÄÅ TThostFtdcTransferStatusType:" << pReqRepeal->TransferStatus << endl;
         }
 }
 
-///∆⁄ªı∑¢∆≤È—Ø“¯––”‡∂Ó¥ÌŒÛªÿ±®
+///ÊúüË¥ßÂèëËµ∑Êü•ËØ¢Èì∂Ë°å‰ΩôÈ¢ùÈîôËØØÂõûÊä•
 void CTraderSpi::OnErrRtnQueryBankBalanceByFuture(CThostFtdcReqQueryAccountField* pReqQueryAccount, CThostFtdcRspInfoField* pRspInfo)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (!IsErrorRspInfo(pRspInfo)) {
-                cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pReqQueryAccount->TradeCode << endl;
-                cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pReqQueryAccount->BankID << endl;
-                cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pReqQueryAccount->BankBranchID << endl;
-                cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pReqQueryAccount->BrokerID << endl;
-                cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pReqQueryAccount->BrokerBranchID << endl;
-                cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pReqQueryAccount->TradeDate << endl;
-                cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pReqQueryAccount->TradeTime << endl;
-                cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pReqQueryAccount->BankSerial << endl;
-                cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pReqQueryAccount->TradingDay << endl;
-                cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pReqQueryAccount->PlateSerial << endl;
-                cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pReqQueryAccount->LastFragment << endl;
-                cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pReqQueryAccount->SessionID << endl;
-                cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pReqQueryAccount->CustomerName << endl;
-                cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pReqQueryAccount->IdCardType << endl;
-                cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pReqQueryAccount->IdentifiedCardNo << endl;
-                cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pReqQueryAccount->CustType << endl;
-                cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pReqQueryAccount->BankAccount << endl;
-                cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pReqQueryAccount->BankPassWord << endl;
-                cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pReqQueryAccount->AccountID << endl;
-                cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pReqQueryAccount->Password << endl;
-                cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pReqQueryAccount->FutureSerial << endl;
-                cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pReqQueryAccount->InstallID << endl;
-                cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pReqQueryAccount->UserID << endl;
-                cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pReqQueryAccount->VerifyCertNoFlag << endl;
-                cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pReqQueryAccount->CurrencyID << endl;
-                cout << "’™“™ TThostFtdcDigestType:" << pReqQueryAccount->Digest << endl;
-                cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pReqQueryAccount->BankAccType << endl;
-                cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pReqQueryAccount->DeviceID << endl;
-                cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pReqQueryAccount->BankSecuAccType << endl;
-                cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pReqQueryAccount->BrokerIDByBank << endl;
-                cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pReqQueryAccount->BankSecuAcc << endl;
-                cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pReqQueryAccount->BankPwdFlag << endl;
-                cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pReqQueryAccount->SecuPwdFlag << endl;
-                cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pReqQueryAccount->OperNo << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pReqQueryAccount->RequestID << endl;
-                // cout << "Ωª“◊ID:" << pReqQueryAccount->TThostFtdcTIDType << endlTID;
+                cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pReqQueryAccount->TradeCode << endl;
+                cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pReqQueryAccount->BankID << endl;
+                cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pReqQueryAccount->BankBranchID << endl;
+                cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pReqQueryAccount->BrokerID << endl;
+                cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pReqQueryAccount->BrokerBranchID << endl;
+                cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pReqQueryAccount->TradeDate << endl;
+                cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pReqQueryAccount->TradeTime << endl;
+                cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pReqQueryAccount->BankSerial << endl;
+                cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pReqQueryAccount->TradingDay << endl;
+                cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pReqQueryAccount->PlateSerial << endl;
+                cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pReqQueryAccount->LastFragment << endl;
+                cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pReqQueryAccount->SessionID << endl;
+                cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pReqQueryAccount->CustomerName << endl;
+                cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pReqQueryAccount->IdCardType << endl;
+                cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pReqQueryAccount->IdentifiedCardNo << endl;
+                cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pReqQueryAccount->CustType << endl;
+                cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pReqQueryAccount->BankAccount << endl;
+                cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pReqQueryAccount->BankPassWord << endl;
+                cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pReqQueryAccount->AccountID << endl;
+                cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pReqQueryAccount->Password << endl;
+                cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pReqQueryAccount->FutureSerial << endl;
+                cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pReqQueryAccount->InstallID << endl;
+                cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pReqQueryAccount->UserID << endl;
+                cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pReqQueryAccount->VerifyCertNoFlag << endl;
+                cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pReqQueryAccount->CurrencyID << endl;
+                cout << "ÊëòË¶Å TThostFtdcDigestType:" << pReqQueryAccount->Digest << endl;
+                cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pReqQueryAccount->BankAccType << endl;
+                cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pReqQueryAccount->DeviceID << endl;
+                cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pReqQueryAccount->BankSecuAccType << endl;
+                cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pReqQueryAccount->BrokerIDByBank << endl;
+                cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pReqQueryAccount->BankSecuAcc << endl;
+                cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pReqQueryAccount->BankPwdFlag << endl;
+                cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pReqQueryAccount->SecuPwdFlag << endl;
+                cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pReqQueryAccount->OperNo << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pReqQueryAccount->RequestID << endl;
+                // cout << "‰∫§ÊòìID:" << pReqQueryAccount->TThostFtdcTIDType << endlTID;
         }
 }
 
-///∆⁄ªı∑¢∆≥Â’˝“¯––◊™∆⁄ªı«Î«Û£¨“¯––¥¶¿ÌÕÍ±œ∫Û±®≈Ã∑¢ªÿµƒÕ®÷™
+///ÊúüË¥ßÂèëËµ∑ÂÜ≤Ê≠£Èì∂Ë°åËΩ¨ÊúüË¥ßËØ∑Ê±ÇÔºåÈì∂Ë°åÂ§ÑÁêÜÂÆåÊØïÂêéÊä•ÁõòÂèëÂõûÁöÑÈÄöÁü•
 void CTraderSpi::OnRtnRepealFromBankToFutureByFuture(CThostFtdcRspRepealField* pRspRepeal)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "≥Â’˝ ±º‰º‰∏Ù TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
-        cout << "“—æ≠≥Â’˝¥Œ ˝ TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
-        cout << "“¯––≥Â’˝±Í÷æ TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
-        cout << "∆⁄…Ã≥Â’˝±Í÷æ TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
-        cout << "±ª≥Â’˝∆ΩÃ®¡˜ÀÆ∫≈ TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
-        cout << "±ª≥Â’˝“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
-        cout << "±ª≥Â’˝∆⁄ªı¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
-        cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
-        cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
-        cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
-        cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
-        cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
-        cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
-        cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
-        cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
-        cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
-        cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
-        cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
-        cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
-        cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
-        cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
-        cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
-        cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
-        cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
-        cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
-        cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
-        cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
-        cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
-        cout << "◊™’ Ω∂Ó TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
-        cout << "∆⁄ªıø…»°Ω∂Ó TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
-        cout << "∑—”√÷ß∏∂±Í÷æ TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
-        cout << "”¶ ’øÕªß∑—”√ TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
-        cout << "”¶ ’∆⁄ªıπ´Àæ∑—”√ TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
-        cout << "∑¢ÀÕ∑Ω∏¯Ω” ’∑Ωµƒœ˚œ¢ TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
-        cout << "’™“™ TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
-        cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
-        cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
-        cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
-        cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
-        cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
-        cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
-        // cout << "Ωª“◊ID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
-        cout << "◊™’ÀΩª“◊◊¥Ã¨ TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
-        cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
-        cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
+        cout << "ÂÜ≤Ê≠£Êó∂Èó¥Èó¥Èöî TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
+        cout << "Â∑≤ÁªèÂÜ≤Ê≠£Ê¨°Êï∞ TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
+        cout << "Èì∂Ë°åÂÜ≤Ê≠£Ê†áÂøó TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
+        cout << "ÊúüÂïÜÂÜ≤Ê≠£Ê†áÂøó TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
+        cout << "Ë¢´ÂÜ≤Ê≠£Âπ≥Âè∞ÊµÅÊ∞¥Âè∑ TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
+        cout << "Ë¢´ÂÜ≤Ê≠£Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
+        cout << "Ë¢´ÂÜ≤Ê≠£ÊúüË¥ßÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
+        cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
+        cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
+        cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
+        cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
+        cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
+        cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
+        cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
+        cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
+        cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
+        cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
+        cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
+        cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
+        cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
+        cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
+        cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
+        cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
+        cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
+        cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
+        cout << "ËΩ¨Â∏êÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
+        cout << "ÊúüË¥ßÂèØÂèñÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
+        cout << "Ë¥πÁî®ÊîØ‰ªòÊ†áÂøó TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
+        cout << "Â∫îÊî∂ÂÆ¢Êà∑Ë¥πÁî® TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
+        cout << "Â∫îÊî∂ÊúüË¥ßÂÖ¨Âè∏Ë¥πÁî® TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
+        cout << "ÂèëÈÄÅÊñπÁªôÊé•Êî∂ÊñπÁöÑÊ∂àÊÅØ TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
+        cout << "ÊëòË¶Å TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
+        cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
+        cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
+        cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
+        // cout << "‰∫§ÊòìID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
+        cout << "ËΩ¨Ë¥¶‰∫§ÊòìÁä∂ÊÄÅ TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
+        cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
+        cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
 }
 
-///∆⁄ªı∑¢∆≥Â’˝∆⁄ªı◊™“¯––«Î«Û£¨“¯––¥¶¿ÌÕÍ±œ∫Û±®≈Ã∑¢ªÿµƒÕ®÷™
+///ÊúüË¥ßÂèëËµ∑ÂÜ≤Ê≠£ÊúüË¥ßËΩ¨Èì∂Ë°åËØ∑Ê±ÇÔºåÈì∂Ë°åÂ§ÑÁêÜÂÆåÊØïÂêéÊä•ÁõòÂèëÂõûÁöÑÈÄöÁü•
 void CTraderSpi::OnRtnRepealFromFutureToBankByFuture(CThostFtdcRspRepealField* pRspRepeal)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "≥Â’˝ ±º‰º‰∏Ù TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
-        cout << "“—æ≠≥Â’˝¥Œ ˝ TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
-        cout << "“¯––≥Â’˝±Í÷æ TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
-        cout << "∆⁄…Ã≥Â’˝±Í÷æ TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
-        cout << "±ª≥Â’˝∆ΩÃ®¡˜ÀÆ∫≈ TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
-        cout << "±ª≥Â’˝“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
-        cout << "±ª≥Â’˝∆⁄ªı¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
-        cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
-        cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
-        cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
-        cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
-        cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
-        cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
-        cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
-        cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
-        cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
-        cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
-        cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
-        cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
-        cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
-        cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
-        cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
-        cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
-        cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
-        cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
-        cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
-        cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
-        cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
-        cout << "◊™’ Ω∂Ó TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
-        cout << "∆⁄ªıø…»°Ω∂Ó TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
-        cout << "∑—”√÷ß∏∂±Í÷æ TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
-        cout << "”¶ ’øÕªß∑—”√ TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
-        cout << "”¶ ’∆⁄ªıπ´Àæ∑—”√ TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
-        cout << "∑¢ÀÕ∑Ω∏¯Ω” ’∑Ωµƒœ˚œ¢ TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
-        cout << "’™“™ TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
-        cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
-        cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
-        cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
-        cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
-        cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
-        cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
-        cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
-        // cout << "Ωª“◊ID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
-        cout << "◊™’ÀΩª“◊◊¥Ã¨ TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
-        cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
-        cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
+        cout << "ÂÜ≤Ê≠£Êó∂Èó¥Èó¥Èöî TThostFtdcRepealTimeIntervalType:" << pRspRepeal->RepealTimeInterval << endl;
+        cout << "Â∑≤ÁªèÂÜ≤Ê≠£Ê¨°Êï∞ TThostFtdcRepealedTimesType:" << pRspRepeal->RepealedTimes << endl;
+        cout << "Èì∂Ë°åÂÜ≤Ê≠£Ê†áÂøó TThostFtdcBankRepealFlagType:" << pRspRepeal->BankRepealFlag << endl;
+        cout << "ÊúüÂïÜÂÜ≤Ê≠£Ê†áÂøó TThostFtdcBrokerRepealFlagType:" << pRspRepeal->BrokerRepealFlag << endl;
+        cout << "Ë¢´ÂÜ≤Ê≠£Âπ≥Âè∞ÊµÅÊ∞¥Âè∑ TThostFtdcPlateSerialType:" << pRspRepeal->PlateRepealSerial << endl;
+        cout << "Ë¢´ÂÜ≤Ê≠£Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pRspRepeal->BankRepealSerial << endl;
+        cout << "Ë¢´ÂÜ≤Ê≠£ÊúüË¥ßÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pRspRepeal->FutureRepealSerial << endl;
+        cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pRspRepeal->TradeCode << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pRspRepeal->BankID << endl;
+        cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pRspRepeal->BankBranchID << endl;
+        cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pRspRepeal->BrokerID << endl;
+        cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pRspRepeal->BrokerBranchID << endl;
+        cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pRspRepeal->TradeDate << endl;
+        cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pRspRepeal->TradeTime << endl;
+        cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pRspRepeal->BankSerial << endl;
+        cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pRspRepeal->TradingDay << endl;
+        cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pRspRepeal->PlateSerial << endl;
+        cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pRspRepeal->LastFragment << endl;
+        cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pRspRepeal->SessionID << endl;
+        cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pRspRepeal->CustomerName << endl;
+        cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pRspRepeal->IdCardType << endl;
+        cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pRspRepeal->IdentifiedCardNo << endl;
+        cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pRspRepeal->CustType << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspRepeal->BankAccount << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pRspRepeal->BankPassWord << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pRspRepeal->AccountID << endl;
+        cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pRspRepeal->Password << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pRspRepeal->InstallID << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pRspRepeal->FutureSerial << endl;
+        cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pRspRepeal->UserID << endl;
+        cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pRspRepeal->VerifyCertNoFlag << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pRspRepeal->CurrencyID << endl;
+        cout << "ËΩ¨Â∏êÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspRepeal->TradeAmount << endl;
+        cout << "ÊúüË¥ßÂèØÂèñÈáëÈ¢ù TThostFtdcTradeAmountType:" << pRspRepeal->FutureFetchAmount << endl;
+        cout << "Ë¥πÁî®ÊîØ‰ªòÊ†áÂøó TThostFtdcFeePayFlagType:" << pRspRepeal->FeePayFlag << endl;
+        cout << "Â∫îÊî∂ÂÆ¢Êà∑Ë¥πÁî® TThostFtdcCustFeeType:" << pRspRepeal->CustFee << endl;
+        cout << "Â∫îÊî∂ÊúüË¥ßÂÖ¨Âè∏Ë¥πÁî® TThostFtdcFutureFeeType:" << pRspRepeal->BrokerFee << endl;
+        cout << "ÂèëÈÄÅÊñπÁªôÊé•Êî∂ÊñπÁöÑÊ∂àÊÅØ TThostFtdcAddInfoType:" << pRspRepeal->Message << endl;
+        cout << "ÊëòË¶Å TThostFtdcDigestType:" << pRspRepeal->Digest << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspRepeal->BankAccType << endl;
+        cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pRspRepeal->DeviceID << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pRspRepeal->BankSecuAccType << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pRspRepeal->BrokerIDByBank << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pRspRepeal->BankSecuAcc << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pRspRepeal->BankPwdFlag << endl;
+        cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pRspRepeal->SecuPwdFlag << endl;
+        cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pRspRepeal->OperNo << endl;
+        cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pRspRepeal->RequestID << endl;
+        // cout << "‰∫§ÊòìID:" << pRspRepeal->TThostFtdcTIDType << endlTID;
+        cout << "ËΩ¨Ë¥¶‰∫§ÊòìÁä∂ÊÄÅ TThostFtdcTransferStatusType:" << pRspRepeal->TransferStatus << endl;
+        cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pRspRepeal->ErrorID << endl;
+        cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pRspRepeal->ErrorMsg << endl;
 }
 
-///∆⁄ªı∑¢∆“¯––◊ Ω◊™∆⁄ªı”¶¥
+///ÊúüË¥ßÂèëËµ∑Èì∂Ë°åËµÑÈáëËΩ¨ÊúüË¥ßÂ∫îÁ≠î
 void CTraderSpi::OnRspFromBankToFutureByFuture(CThostFtdcReqTransferField* pReqTransfer, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pReqTransfer->TradeCode << endl;
-                cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pReqTransfer->BankID << endl;
-                cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pReqTransfer->BankBranchID << endl;
-                cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pReqTransfer->BrokerID << endl;
-                cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pReqTransfer->BrokerBranchID << endl;
-                cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pReqTransfer->TradeDate << endl;
-                cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pReqTransfer->TradeTime << endl;
-                cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pReqTransfer->BankSerial << endl;
-                cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pReqTransfer->TradingDay << endl;
-                cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pReqTransfer->PlateSerial << endl;
-                cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pReqTransfer->LastFragment << endl;
-                cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pReqTransfer->SessionID << endl;
-                cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pReqTransfer->CustomerName << endl;
-                cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pReqTransfer->IdCardType << endl;
-                cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pReqTransfer->IdentifiedCardNo << endl;
-                cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pReqTransfer->CustType << endl;
-                cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pReqTransfer->BankAccount << endl;
-                cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pReqTransfer->BankPassWord << endl;
-                cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pReqTransfer->AccountID << endl;
-                cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pReqTransfer->Password << endl;
-                cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pReqTransfer->InstallID << endl;
-                cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pReqTransfer->FutureSerial << endl;
-                cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pReqTransfer->UserID << endl;
-                cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pReqTransfer->VerifyCertNoFlag << endl;
-                cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pReqTransfer->CurrencyID << endl;
-                cout << "◊™’ Ω∂Ó TThostFtdcTradeAmountType:" << pReqTransfer->TradeAmount << endl;
-                cout << "∆⁄ªıø…»°Ω∂Ó TThostFtdcTradeAmountType:" << pReqTransfer->FutureFetchAmount << endl;
-                cout << "∑—”√÷ß∏∂±Í÷æ TThostFtdcFeePayFlagType:" << pReqTransfer->FeePayFlag << endl;
-                cout << "”¶ ’øÕªß∑—”√ TThostFtdcCustFeeType:" << pReqTransfer->CustFee << endl;
-                cout << "”¶ ’∆⁄ªıπ´Àæ∑—”√ TThostFtdcFutureFeeType:" << pReqTransfer->BrokerFee << endl;
-                cout << "∑¢ÀÕ∑Ω∏¯Ω” ’∑Ωµƒœ˚œ¢ TThostFtdcAddInfoType:" << pReqTransfer->Message << endl;
-                cout << "’™“™ TThostFtdcDigestType:" << pReqTransfer->Digest << endl;
-                cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pReqTransfer->BankAccType << endl;
-                cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pReqTransfer->DeviceID << endl;
-                cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pReqTransfer->BankSecuAccType << endl;
-                cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pReqTransfer->BrokerIDByBank << endl;
-                cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pReqTransfer->BankSecuAcc << endl;
-                cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pReqTransfer->BankPwdFlag << endl;
-                cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pReqTransfer->SecuPwdFlag << endl;
-                cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pReqTransfer->OperNo << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pReqTransfer->RequestID << endl;
-                // cout << "Ωª“◊ID:" << pReqTransfer->TThostFtdcTIDType << endlTID;
-                cout << "◊™’ÀΩª“◊◊¥Ã¨ TThostFtdcTransferStatusType:" << pReqTransfer->TransferStatus << endl;
+                cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pReqTransfer->TradeCode << endl;
+                cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pReqTransfer->BankID << endl;
+                cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pReqTransfer->BankBranchID << endl;
+                cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pReqTransfer->BrokerID << endl;
+                cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pReqTransfer->BrokerBranchID << endl;
+                cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pReqTransfer->TradeDate << endl;
+                cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pReqTransfer->TradeTime << endl;
+                cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pReqTransfer->BankSerial << endl;
+                cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pReqTransfer->TradingDay << endl;
+                cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pReqTransfer->PlateSerial << endl;
+                cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pReqTransfer->LastFragment << endl;
+                cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pReqTransfer->SessionID << endl;
+                cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pReqTransfer->CustomerName << endl;
+                cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pReqTransfer->IdCardType << endl;
+                cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pReqTransfer->IdentifiedCardNo << endl;
+                cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pReqTransfer->CustType << endl;
+                cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pReqTransfer->BankAccount << endl;
+                cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pReqTransfer->BankPassWord << endl;
+                cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pReqTransfer->AccountID << endl;
+                cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pReqTransfer->Password << endl;
+                cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pReqTransfer->InstallID << endl;
+                cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pReqTransfer->FutureSerial << endl;
+                cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pReqTransfer->UserID << endl;
+                cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pReqTransfer->VerifyCertNoFlag << endl;
+                cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pReqTransfer->CurrencyID << endl;
+                cout << "ËΩ¨Â∏êÈáëÈ¢ù TThostFtdcTradeAmountType:" << pReqTransfer->TradeAmount << endl;
+                cout << "ÊúüË¥ßÂèØÂèñÈáëÈ¢ù TThostFtdcTradeAmountType:" << pReqTransfer->FutureFetchAmount << endl;
+                cout << "Ë¥πÁî®ÊîØ‰ªòÊ†áÂøó TThostFtdcFeePayFlagType:" << pReqTransfer->FeePayFlag << endl;
+                cout << "Â∫îÊî∂ÂÆ¢Êà∑Ë¥πÁî® TThostFtdcCustFeeType:" << pReqTransfer->CustFee << endl;
+                cout << "Â∫îÊî∂ÊúüË¥ßÂÖ¨Âè∏Ë¥πÁî® TThostFtdcFutureFeeType:" << pReqTransfer->BrokerFee << endl;
+                cout << "ÂèëÈÄÅÊñπÁªôÊé•Êî∂ÊñπÁöÑÊ∂àÊÅØ TThostFtdcAddInfoType:" << pReqTransfer->Message << endl;
+                cout << "ÊëòË¶Å TThostFtdcDigestType:" << pReqTransfer->Digest << endl;
+                cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pReqTransfer->BankAccType << endl;
+                cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pReqTransfer->DeviceID << endl;
+                cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pReqTransfer->BankSecuAccType << endl;
+                cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pReqTransfer->BrokerIDByBank << endl;
+                cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pReqTransfer->BankSecuAcc << endl;
+                cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pReqTransfer->BankPwdFlag << endl;
+                cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pReqTransfer->SecuPwdFlag << endl;
+                cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pReqTransfer->OperNo << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pReqTransfer->RequestID << endl;
+                // cout << "‰∫§ÊòìID:" << pReqTransfer->TThostFtdcTIDType << endlTID;
+                cout << "ËΩ¨Ë¥¶‰∫§ÊòìÁä∂ÊÄÅ TThostFtdcTransferStatusType:" << pReqTransfer->TransferStatus << endl;
         }
 }
 
-///∆⁄ªı∑¢∆∆⁄ªı◊ Ω◊™“¯––”¶¥
+///ÊúüË¥ßÂèëËµ∑ÊúüË¥ßËµÑÈáëËΩ¨Èì∂Ë°åÂ∫îÁ≠î
 void CTraderSpi::OnRspFromFutureToBankByFuture(CThostFtdcReqTransferField* pReqTransfer, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pReqTransfer->TradeCode << endl;
-                cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pReqTransfer->BankID << endl;
-                cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pReqTransfer->BankBranchID << endl;
-                cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pReqTransfer->BrokerID << endl;
-                cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pReqTransfer->BrokerBranchID << endl;
-                cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pReqTransfer->TradeDate << endl;
-                cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pReqTransfer->TradeTime << endl;
-                cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pReqTransfer->BankSerial << endl;
-                cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pReqTransfer->TradingDay << endl;
-                cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pReqTransfer->PlateSerial << endl;
-                cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pReqTransfer->LastFragment << endl;
-                cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pReqTransfer->SessionID << endl;
-                cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pReqTransfer->CustomerName << endl;
-                cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pReqTransfer->IdCardType << endl;
-                cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pReqTransfer->IdentifiedCardNo << endl;
-                cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pReqTransfer->CustType << endl;
-                cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pReqTransfer->BankAccount << endl;
-                cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pReqTransfer->BankPassWord << endl;
-                cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pReqTransfer->AccountID << endl;
-                cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pReqTransfer->Password << endl;
-                cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pReqTransfer->InstallID << endl;
-                cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pReqTransfer->FutureSerial << endl;
-                cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pReqTransfer->UserID << endl;
-                cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pReqTransfer->VerifyCertNoFlag << endl;
-                cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pReqTransfer->CurrencyID << endl;
-                cout << "◊™’ Ω∂Ó TThostFtdcTradeAmountType:" << pReqTransfer->TradeAmount << endl;
-                cout << "∆⁄ªıø…»°Ω∂Ó TThostFtdcTradeAmountType:" << pReqTransfer->FutureFetchAmount << endl;
-                cout << "∑—”√÷ß∏∂±Í÷æ TThostFtdcFeePayFlagType:" << pReqTransfer->FeePayFlag << endl;
-                cout << "”¶ ’øÕªß∑—”√ TThostFtdcCustFeeType:" << pReqTransfer->CustFee << endl;
-                cout << "”¶ ’∆⁄ªıπ´Àæ∑—”√ TThostFtdcFutureFeeType:" << pReqTransfer->BrokerFee << endl;
-                cout << "∑¢ÀÕ∑Ω∏¯Ω” ’∑Ωµƒœ˚œ¢ TThostFtdcAddInfoType:" << pReqTransfer->Message << endl;
-                cout << "’™“™ TThostFtdcDigestType:" << pReqTransfer->Digest << endl;
-                cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pReqTransfer->BankAccType << endl;
-                cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pReqTransfer->DeviceID << endl;
-                cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pReqTransfer->BankSecuAccType << endl;
-                cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pReqTransfer->BrokerIDByBank << endl;
-                cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pReqTransfer->BankSecuAcc << endl;
-                cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pReqTransfer->BankPwdFlag << endl;
-                cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pReqTransfer->SecuPwdFlag << endl;
-                cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pReqTransfer->OperNo << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pReqTransfer->RequestID << endl;
-                // cout << "Ωª“◊ID:" << pReqTransfer->TThostFtdcTIDType << endlTID;
-                cout << "◊™’ÀΩª“◊◊¥Ã¨ TThostFtdcTransferStatusType:" << pReqTransfer->TransferStatus << endl;
+                cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pReqTransfer->TradeCode << endl;
+                cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pReqTransfer->BankID << endl;
+                cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pReqTransfer->BankBranchID << endl;
+                cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pReqTransfer->BrokerID << endl;
+                cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pReqTransfer->BrokerBranchID << endl;
+                cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pReqTransfer->TradeDate << endl;
+                cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pReqTransfer->TradeTime << endl;
+                cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pReqTransfer->BankSerial << endl;
+                cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pReqTransfer->TradingDay << endl;
+                cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pReqTransfer->PlateSerial << endl;
+                cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pReqTransfer->LastFragment << endl;
+                cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pReqTransfer->SessionID << endl;
+                cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pReqTransfer->CustomerName << endl;
+                cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pReqTransfer->IdCardType << endl;
+                cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pReqTransfer->IdentifiedCardNo << endl;
+                cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pReqTransfer->CustType << endl;
+                cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pReqTransfer->BankAccount << endl;
+                cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pReqTransfer->BankPassWord << endl;
+                cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pReqTransfer->AccountID << endl;
+                cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pReqTransfer->Password << endl;
+                cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pReqTransfer->InstallID << endl;
+                cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pReqTransfer->FutureSerial << endl;
+                cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pReqTransfer->UserID << endl;
+                cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pReqTransfer->VerifyCertNoFlag << endl;
+                cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pReqTransfer->CurrencyID << endl;
+                cout << "ËΩ¨Â∏êÈáëÈ¢ù TThostFtdcTradeAmountType:" << pReqTransfer->TradeAmount << endl;
+                cout << "ÊúüË¥ßÂèØÂèñÈáëÈ¢ù TThostFtdcTradeAmountType:" << pReqTransfer->FutureFetchAmount << endl;
+                cout << "Ë¥πÁî®ÊîØ‰ªòÊ†áÂøó TThostFtdcFeePayFlagType:" << pReqTransfer->FeePayFlag << endl;
+                cout << "Â∫îÊî∂ÂÆ¢Êà∑Ë¥πÁî® TThostFtdcCustFeeType:" << pReqTransfer->CustFee << endl;
+                cout << "Â∫îÊî∂ÊúüË¥ßÂÖ¨Âè∏Ë¥πÁî® TThostFtdcFutureFeeType:" << pReqTransfer->BrokerFee << endl;
+                cout << "ÂèëÈÄÅÊñπÁªôÊé•Êî∂ÊñπÁöÑÊ∂àÊÅØ TThostFtdcAddInfoType:" << pReqTransfer->Message << endl;
+                cout << "ÊëòË¶Å TThostFtdcDigestType:" << pReqTransfer->Digest << endl;
+                cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pReqTransfer->BankAccType << endl;
+                cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pReqTransfer->DeviceID << endl;
+                cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pReqTransfer->BankSecuAccType << endl;
+                cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pReqTransfer->BrokerIDByBank << endl;
+                cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pReqTransfer->BankSecuAcc << endl;
+                cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pReqTransfer->BankPwdFlag << endl;
+                cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pReqTransfer->SecuPwdFlag << endl;
+                cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pReqTransfer->OperNo << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pReqTransfer->RequestID << endl;
+                // cout << "‰∫§ÊòìID:" << pReqTransfer->TThostFtdcTIDType << endlTID;
+                cout << "ËΩ¨Ë¥¶‰∫§ÊòìÁä∂ÊÄÅ TThostFtdcTransferStatusType:" << pReqTransfer->TransferStatus << endl;
         }
 }
 
-///∆⁄ªı∑¢∆≤È—Ø“¯––”‡∂Ó”¶¥
+///ÊúüË¥ßÂèëËµ∑Êü•ËØ¢Èì∂Ë°å‰ΩôÈ¢ùÂ∫îÁ≠î
 void CTraderSpi::OnRspQueryBankAccountMoneyByFuture(CThostFtdcReqQueryAccountField* pReqQueryAccount, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pReqQueryAccount->TradeCode << endl;
-                cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pReqQueryAccount->BankID << endl;
-                cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pReqQueryAccount->BankBranchID << endl;
-                cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pReqQueryAccount->BrokerID << endl;
-                cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pReqQueryAccount->BrokerBranchID << endl;
-                cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pReqQueryAccount->TradeDate << endl;
-                cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pReqQueryAccount->TradeTime << endl;
-                cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pReqQueryAccount->BankSerial << endl;
-                cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pReqQueryAccount->TradingDay << endl;
-                cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pReqQueryAccount->PlateSerial << endl;
-                cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pReqQueryAccount->LastFragment << endl;
-                cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pReqQueryAccount->SessionID << endl;
-                cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pReqQueryAccount->CustomerName << endl;
-                cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pReqQueryAccount->IdCardType << endl;
-                cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pReqQueryAccount->IdentifiedCardNo << endl;
-                cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pReqQueryAccount->CustType << endl;
-                cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pReqQueryAccount->BankAccount << endl;
-                cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pReqQueryAccount->BankPassWord << endl;
-                cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pReqQueryAccount->AccountID << endl;
-                cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pReqQueryAccount->Password << endl;
-                cout << "∆⁄ªıπ´Àæ¡˜ÀÆ∫≈ TThostFtdcFutureSerialType:" << pReqQueryAccount->FutureSerial << endl;
-                cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pReqQueryAccount->InstallID << endl;
-                cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pReqQueryAccount->UserID << endl;
-                cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pReqQueryAccount->VerifyCertNoFlag << endl;
-                cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pReqQueryAccount->CurrencyID << endl;
-                cout << "’™“™ TThostFtdcDigestType:" << pReqQueryAccount->Digest << endl;
-                cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pReqQueryAccount->BankAccType << endl;
-                cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pReqQueryAccount->DeviceID << endl;
-                cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pReqQueryAccount->BankSecuAccType << endl;
-                cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pReqQueryAccount->BrokerIDByBank << endl;
-                cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pReqQueryAccount->BankSecuAcc << endl;
-                cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pReqQueryAccount->BankPwdFlag << endl;
-                cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pReqQueryAccount->SecuPwdFlag << endl;
-                cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pReqQueryAccount->OperNo << endl;
-                cout << "«Î«Û±‡∫≈ TThostFtdcRequestIDType:" << pReqQueryAccount->RequestID << endl;
-                // cout << "Ωª“◊ID:" << pReqQueryAccount->TThostFtdcTIDType << endlTID;
+                cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pReqQueryAccount->TradeCode << endl;
+                cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pReqQueryAccount->BankID << endl;
+                cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pReqQueryAccount->BankBranchID << endl;
+                cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pReqQueryAccount->BrokerID << endl;
+                cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pReqQueryAccount->BrokerBranchID << endl;
+                cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pReqQueryAccount->TradeDate << endl;
+                cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pReqQueryAccount->TradeTime << endl;
+                cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pReqQueryAccount->BankSerial << endl;
+                cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pReqQueryAccount->TradingDay << endl;
+                cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pReqQueryAccount->PlateSerial << endl;
+                cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pReqQueryAccount->LastFragment << endl;
+                cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pReqQueryAccount->SessionID << endl;
+                cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pReqQueryAccount->CustomerName << endl;
+                cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pReqQueryAccount->IdCardType << endl;
+                cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pReqQueryAccount->IdentifiedCardNo << endl;
+                cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pReqQueryAccount->CustType << endl;
+                cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pReqQueryAccount->BankAccount << endl;
+                cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pReqQueryAccount->BankPassWord << endl;
+                cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pReqQueryAccount->AccountID << endl;
+                cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pReqQueryAccount->Password << endl;
+                cout << "ÊúüË¥ßÂÖ¨Âè∏ÊµÅÊ∞¥Âè∑ TThostFtdcFutureSerialType:" << pReqQueryAccount->FutureSerial << endl;
+                cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pReqQueryAccount->InstallID << endl;
+                cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pReqQueryAccount->UserID << endl;
+                cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pReqQueryAccount->VerifyCertNoFlag << endl;
+                cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pReqQueryAccount->CurrencyID << endl;
+                cout << "ÊëòË¶Å TThostFtdcDigestType:" << pReqQueryAccount->Digest << endl;
+                cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pReqQueryAccount->BankAccType << endl;
+                cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pReqQueryAccount->DeviceID << endl;
+                cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pReqQueryAccount->BankSecuAccType << endl;
+                cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pReqQueryAccount->BrokerIDByBank << endl;
+                cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pReqQueryAccount->BankSecuAcc << endl;
+                cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pReqQueryAccount->BankPwdFlag << endl;
+                cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pReqQueryAccount->SecuPwdFlag << endl;
+                cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pReqQueryAccount->OperNo << endl;
+                cout << "ËØ∑Ê±ÇÁºñÂè∑ TThostFtdcRequestIDType:" << pReqQueryAccount->RequestID << endl;
+                // cout << "‰∫§ÊòìID:" << pReqQueryAccount->TThostFtdcTIDType << endlTID;
         }
 }
 
-///“¯––∑¢∆“¯∆⁄ø™ªßÕ®÷™
+///Èì∂Ë°åÂèëËµ∑Èì∂ÊúüÂºÄÊà∑ÈÄöÁü•
 void CTraderSpi::OnRtnOpenAccountByBank(CThostFtdcOpenAccountField* pOpenAccount)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pOpenAccount->TradeCode << endl;
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pOpenAccount->BankID << endl;
-        cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pOpenAccount->BankBranchID << endl;
-        cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pOpenAccount->BrokerID << endl;
-        cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pOpenAccount->BrokerBranchID << endl;
-        cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pOpenAccount->TradeDate << endl;
-        cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pOpenAccount->TradeTime << endl;
-        cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pOpenAccount->BankSerial << endl;
-        cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pOpenAccount->TradingDay << endl;
-        cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pOpenAccount->PlateSerial << endl;
-        cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pOpenAccount->LastFragment << endl;
-        cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pOpenAccount->SessionID << endl;
-        cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pOpenAccount->CustomerName << endl;
-        cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pOpenAccount->IdCardType << endl;
-        cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pOpenAccount->IdentifiedCardNo << endl;
-        cout << "–‘± TThostFtdcGenderType:" << pOpenAccount->Gender << endl;
-        cout << "π˙º“¥˙¬Î TThostFtdcCountryCodeType:" << pOpenAccount->CountryCode << endl;
-        cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pOpenAccount->CustType << endl;
-        cout << "µÿ÷∑ TThostFtdcAddressType:" << pOpenAccount->Address << endl;
-        cout << "” ±‡ TThostFtdcZipCodeType:" << pOpenAccount->ZipCode << endl;
-        cout << "µÁª∞∫≈¬Î TThostFtdcTelephoneType:" << pOpenAccount->Telephone << endl;
-        cout << " ÷ª˙ TThostFtdcMobilePhoneType:" << pOpenAccount->MobilePhone << endl;
-        cout << "¥´’Ê TThostFtdcFaxType:" << pOpenAccount->Fax << endl;
-        cout << "µÁ◊”” º˛ TThostFtdcEMailType:" << pOpenAccount->EMail << endl;
-        cout << "◊ Ω’Àªß◊¥Ã¨ TThostFtdcMoneyAccountStatusType:" << pOpenAccount->MoneyAccountStatus << endl;
-        cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pOpenAccount->BankAccount << endl;
-        cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pOpenAccount->BankPassWord << endl;
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pOpenAccount->AccountID << endl;
-        cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pOpenAccount->Password << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pOpenAccount->InstallID << endl;
-        cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pOpenAccount->VerifyCertNoFlag << endl;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pOpenAccount->CurrencyID << endl;
-        cout << "ª„≥Æ±Í÷æ TThostFtdcCashExchangeCodeType:" << pOpenAccount->CashExchangeCode << endl;
-        cout << "’™“™ TThostFtdcDigestType:" << pOpenAccount->Digest << endl;
-        cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pOpenAccount->BankAccType << endl;
-        cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pOpenAccount->DeviceID << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pOpenAccount->BankSecuAccType << endl;
-        cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pOpenAccount->BrokerIDByBank << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pOpenAccount->BankSecuAcc << endl;
-        cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pOpenAccount->BankPwdFlag << endl;
-        cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pOpenAccount->SecuPwdFlag << endl;
-        cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pOpenAccount->OperNo << endl;
-        // cout << "Ωª“◊ID:" << pOpenAccount->TThostFtdcTIDType << endlTID;
-        cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pOpenAccount->UserID << endl;
-        cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pOpenAccount->ErrorID << endl;
-        cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pOpenAccount->ErrorMsg << endl;
+        cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pOpenAccount->TradeCode << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pOpenAccount->BankID << endl;
+        cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pOpenAccount->BankBranchID << endl;
+        cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pOpenAccount->BrokerID << endl;
+        cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pOpenAccount->BrokerBranchID << endl;
+        cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pOpenAccount->TradeDate << endl;
+        cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pOpenAccount->TradeTime << endl;
+        cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pOpenAccount->BankSerial << endl;
+        cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pOpenAccount->TradingDay << endl;
+        cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pOpenAccount->PlateSerial << endl;
+        cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pOpenAccount->LastFragment << endl;
+        cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pOpenAccount->SessionID << endl;
+        cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pOpenAccount->CustomerName << endl;
+        cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pOpenAccount->IdCardType << endl;
+        cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pOpenAccount->IdentifiedCardNo << endl;
+        cout << "ÊÄßÂà´ TThostFtdcGenderType:" << pOpenAccount->Gender << endl;
+        cout << "ÂõΩÂÆ∂‰ª£Á†Å TThostFtdcCountryCodeType:" << pOpenAccount->CountryCode << endl;
+        cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pOpenAccount->CustType << endl;
+        cout << "Âú∞ÂùÄ TThostFtdcAddressType:" << pOpenAccount->Address << endl;
+        cout << "ÈÇÆÁºñ TThostFtdcZipCodeType:" << pOpenAccount->ZipCode << endl;
+        cout << "ÁîµËØùÂè∑Á†Å TThostFtdcTelephoneType:" << pOpenAccount->Telephone << endl;
+        cout << "ÊâãÊú∫ TThostFtdcMobilePhoneType:" << pOpenAccount->MobilePhone << endl;
+        cout << "‰º†Áúü TThostFtdcFaxType:" << pOpenAccount->Fax << endl;
+        cout << "ÁîµÂ≠êÈÇÆ‰ª∂ TThostFtdcEMailType:" << pOpenAccount->EMail << endl;
+        cout << "ËµÑÈáëË¥¶Êà∑Áä∂ÊÄÅ TThostFtdcMoneyAccountStatusType:" << pOpenAccount->MoneyAccountStatus << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pOpenAccount->BankAccount << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pOpenAccount->BankPassWord << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pOpenAccount->AccountID << endl;
+        cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pOpenAccount->Password << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pOpenAccount->InstallID << endl;
+        cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pOpenAccount->VerifyCertNoFlag << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pOpenAccount->CurrencyID << endl;
+        cout << "Ê±áÈíûÊ†áÂøó TThostFtdcCashExchangeCodeType:" << pOpenAccount->CashExchangeCode << endl;
+        cout << "ÊëòË¶Å TThostFtdcDigestType:" << pOpenAccount->Digest << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pOpenAccount->BankAccType << endl;
+        cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pOpenAccount->DeviceID << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pOpenAccount->BankSecuAccType << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pOpenAccount->BrokerIDByBank << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pOpenAccount->BankSecuAcc << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pOpenAccount->BankPwdFlag << endl;
+        cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pOpenAccount->SecuPwdFlag << endl;
+        cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pOpenAccount->OperNo << endl;
+        // cout << "‰∫§ÊòìID:" << pOpenAccount->TThostFtdcTIDType << endlTID;
+        cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pOpenAccount->UserID << endl;
+        cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pOpenAccount->ErrorID << endl;
+        cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pOpenAccount->ErrorMsg << endl;
 }
 
-///“¯––∑¢∆“¯∆⁄œ˙ªßÕ®÷™
+///Èì∂Ë°åÂèëËµ∑Èì∂ÊúüÈîÄÊà∑ÈÄöÁü•
 void CTraderSpi::OnRtnCancelAccountByBank(CThostFtdcCancelAccountField* pCancelAccount)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pCancelAccount->TradeCode << endl;
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pCancelAccount->BankID << endl;
-        cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pCancelAccount->BankBranchID << endl;
-        cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pCancelAccount->BrokerID << endl;
-        cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pCancelAccount->BrokerBranchID << endl;
-        cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pCancelAccount->TradeDate << endl;
-        cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pCancelAccount->TradeTime << endl;
-        cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pCancelAccount->BankSerial << endl;
-        cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pCancelAccount->TradingDay << endl;
-        cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pCancelAccount->PlateSerial << endl;
-        cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pCancelAccount->LastFragment << endl;
-        cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pCancelAccount->SessionID << endl;
-        cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pCancelAccount->CustomerName << endl;
-        cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pCancelAccount->IdCardType << endl;
-        cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pCancelAccount->IdentifiedCardNo << endl;
-        cout << "–‘± TThostFtdcGenderType:" << pCancelAccount->Gender << endl;
-        cout << "π˙º“¥˙¬Î TThostFtdcCountryCodeType:" << pCancelAccount->CountryCode << endl;
-        cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pCancelAccount->CustType << endl;
-        cout << "µÿ÷∑ TThostFtdcAddressType:" << pCancelAccount->Address << endl;
-        cout << "” ±‡ TThostFtdcZipCodeType:" << pCancelAccount->ZipCode << endl;
-        cout << "µÁª∞∫≈¬Î TThostFtdcTelephoneType:" << pCancelAccount->Telephone << endl;
-        cout << " ÷ª˙ TThostFtdcMobilePhoneType:" << pCancelAccount->MobilePhone << endl;
-        cout << "¥´’Ê TThostFtdcFaxType:" << pCancelAccount->Fax << endl;
-        cout << "µÁ◊”” º˛ TThostFtdcEMailType:" << pCancelAccount->EMail << endl;
-        cout << "◊ Ω’Àªß◊¥Ã¨ TThostFtdcMoneyAccountStatusType:" << pCancelAccount->MoneyAccountStatus << endl;
-        cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pCancelAccount->BankAccount << endl;
-        cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pCancelAccount->BankPassWord << endl;
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pCancelAccount->AccountID << endl;
-        cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pCancelAccount->Password << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pCancelAccount->InstallID << endl;
-        cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pCancelAccount->VerifyCertNoFlag << endl;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pCancelAccount->CurrencyID << endl;
-        cout << "ª„≥Æ±Í÷æ TThostFtdcCashExchangeCodeType:" << pCancelAccount->CashExchangeCode << endl;
-        cout << "’™“™ TThostFtdcDigestType:" << pCancelAccount->Digest << endl;
-        cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pCancelAccount->BankAccType << endl;
-        cout << "«˛µ¿±Í÷æ TThostFtdcDeviceIDType:" << pCancelAccount->DeviceID << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pCancelAccount->BankSecuAccType << endl;
-        cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pCancelAccount->BrokerIDByBank << endl;
-        cout << "∆⁄ªıµ•Œª’ ∫≈ TThostFtdcBankAccountType:" << pCancelAccount->BankSecuAcc << endl;
-        cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pCancelAccount->BankPwdFlag << endl;
-        cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pCancelAccount->SecuPwdFlag << endl;
-        cout << "Ωª“◊πÒ‘± TThostFtdcOperNoType:" << pCancelAccount->OperNo << endl;
-        // cout << "Ωª“◊ID:" << pCancelAccount->TThostFtdcTIDType << endlTID;
-        cout << "”√ªß±Í ∂ TThostFtdcUserIDType:" << pCancelAccount->UserID << endl;
-        cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pCancelAccount->ErrorID << endl;
-        cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pCancelAccount->ErrorMsg << endl;
+        cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pCancelAccount->TradeCode << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pCancelAccount->BankID << endl;
+        cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pCancelAccount->BankBranchID << endl;
+        cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pCancelAccount->BrokerID << endl;
+        cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pCancelAccount->BrokerBranchID << endl;
+        cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pCancelAccount->TradeDate << endl;
+        cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pCancelAccount->TradeTime << endl;
+        cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pCancelAccount->BankSerial << endl;
+        cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pCancelAccount->TradingDay << endl;
+        cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pCancelAccount->PlateSerial << endl;
+        cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pCancelAccount->LastFragment << endl;
+        cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pCancelAccount->SessionID << endl;
+        cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pCancelAccount->CustomerName << endl;
+        cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pCancelAccount->IdCardType << endl;
+        cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pCancelAccount->IdentifiedCardNo << endl;
+        cout << "ÊÄßÂà´ TThostFtdcGenderType:" << pCancelAccount->Gender << endl;
+        cout << "ÂõΩÂÆ∂‰ª£Á†Å TThostFtdcCountryCodeType:" << pCancelAccount->CountryCode << endl;
+        cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pCancelAccount->CustType << endl;
+        cout << "Âú∞ÂùÄ TThostFtdcAddressType:" << pCancelAccount->Address << endl;
+        cout << "ÈÇÆÁºñ TThostFtdcZipCodeType:" << pCancelAccount->ZipCode << endl;
+        cout << "ÁîµËØùÂè∑Á†Å TThostFtdcTelephoneType:" << pCancelAccount->Telephone << endl;
+        cout << "ÊâãÊú∫ TThostFtdcMobilePhoneType:" << pCancelAccount->MobilePhone << endl;
+        cout << "‰º†Áúü TThostFtdcFaxType:" << pCancelAccount->Fax << endl;
+        cout << "ÁîµÂ≠êÈÇÆ‰ª∂ TThostFtdcEMailType:" << pCancelAccount->EMail << endl;
+        cout << "ËµÑÈáëË¥¶Êà∑Áä∂ÊÄÅ TThostFtdcMoneyAccountStatusType:" << pCancelAccount->MoneyAccountStatus << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pCancelAccount->BankAccount << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pCancelAccount->BankPassWord << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pCancelAccount->AccountID << endl;
+        cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pCancelAccount->Password << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pCancelAccount->InstallID << endl;
+        cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pCancelAccount->VerifyCertNoFlag << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pCancelAccount->CurrencyID << endl;
+        cout << "Ê±áÈíûÊ†áÂøó TThostFtdcCashExchangeCodeType:" << pCancelAccount->CashExchangeCode << endl;
+        cout << "ÊëòË¶Å TThostFtdcDigestType:" << pCancelAccount->Digest << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pCancelAccount->BankAccType << endl;
+        cout << "Ê∏†ÈÅìÊ†áÂøó TThostFtdcDeviceIDType:" << pCancelAccount->DeviceID << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pCancelAccount->BankSecuAccType << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pCancelAccount->BrokerIDByBank << endl;
+        cout << "ÊúüË¥ßÂçï‰ΩçÂ∏êÂè∑ TThostFtdcBankAccountType:" << pCancelAccount->BankSecuAcc << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pCancelAccount->BankPwdFlag << endl;
+        cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pCancelAccount->SecuPwdFlag << endl;
+        cout << "‰∫§ÊòìÊüúÂëò TThostFtdcOperNoType:" << pCancelAccount->OperNo << endl;
+        // cout << "‰∫§ÊòìID:" << pCancelAccount->TThostFtdcTIDType << endlTID;
+        cout << "Áî®Êà∑Ê†áËØÜ TThostFtdcUserIDType:" << pCancelAccount->UserID << endl;
+        cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pCancelAccount->ErrorID << endl;
+        cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pCancelAccount->ErrorMsg << endl;
 }
 
-///“¯––∑¢∆±‰∏¸“¯––’À∫≈Õ®÷™
+///Èì∂Ë°åÂèëËµ∑ÂèòÊõ¥Èì∂Ë°åË¥¶Âè∑ÈÄöÁü•
 void CTraderSpi::OnRtnChangeAccountByBank(CThostFtdcChangeAccountField* pChangeAccount)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        cout << "“µŒÒπ¶ƒ‹¬Î TThostFtdcTradeCodeType:" << pChangeAccount->TradeCode << endl;
-        cout << "“¯––¥˙¬Î TThostFtdcBankIDType:" << pChangeAccount->BankID << endl;
-        cout << "“¯––∑÷÷ßª˙ππ¥˙¬Î TThostFtdcBankBrchIDType:" << pChangeAccount->BankBranchID << endl;
-        cout << "∆⁄…Ã¥˙¬Î TThostFtdcBrokerIDType:" << pChangeAccount->BrokerID << endl;
-        cout << "∆⁄…Ã∑÷÷ßª˙ππ¥˙¬Î TThostFtdcFutureBranchIDType:" << pChangeAccount->BrokerBranchID << endl;
-        cout << "Ωª“◊»’∆⁄ TThostFtdcTradeDateType:" << pChangeAccount->TradeDate << endl;
-        cout << "Ωª“◊ ±º‰ TThostFtdcTradeTimeType:" << pChangeAccount->TradeTime << endl;
-        cout << "“¯––¡˜ÀÆ∫≈ TThostFtdcBankSerialType:" << pChangeAccount->BankSerial << endl;
-        cout << "Ωª“◊œµÕ≥»’∆⁄ TThostFtdcTradeDateType:" << pChangeAccount->TradingDay << endl;
-        cout << "“¯∆⁄∆ΩÃ®œ˚œ¢¡˜ÀÆ∫≈ TThostFtdcSerialType:" << pChangeAccount->PlateSerial << endl;
-        cout << "◊Ó∫Û∑÷∆¨±Í÷æ TThostFtdcLastFragmentType:" << pChangeAccount->LastFragment << endl;
-        cout << "ª·ª∞∫≈ TThostFtdcSessionIDType:" << pChangeAccount->SessionID << endl;
-        cout << "øÕªß–’√˚ TThostFtdcIndividualNameType:" << pChangeAccount->CustomerName << endl;
-        cout << "÷§º˛¿‡–Õ TThostFtdcIdCardTypeType:" << pChangeAccount->IdCardType << endl;
-        cout << "÷§º˛∫≈¬Î TThostFtdcIdentifiedCardNoType:" << pChangeAccount->IdentifiedCardNo << endl;
-        cout << "–‘± TThostFtdcGenderType:" << pChangeAccount->Gender << endl;
-        cout << "π˙º“¥˙¬Î TThostFtdcCountryCodeType:" << pChangeAccount->CountryCode << endl;
-        cout << "øÕªß¿‡–Õ TThostFtdcCustTypeType:" << pChangeAccount->CustType << endl;
-        cout << "µÿ÷∑ TThostFtdcAddressType:" << pChangeAccount->Address << endl;
-        cout << "” ±‡ TThostFtdcZipCodeType:" << pChangeAccount->ZipCode << endl;
-        cout << "µÁª∞∫≈¬Î TThostFtdcTelephoneType:" << pChangeAccount->Telephone << endl;
-        cout << " ÷ª˙ TThostFtdcMobilePhoneType:" << pChangeAccount->MobilePhone << endl;
-        cout << "¥´’Ê TThostFtdcFaxType:" << pChangeAccount->Fax << endl;
-        cout << "µÁ◊”” º˛ TThostFtdcEMailType:" << pChangeAccount->EMail << endl;
-        cout << "◊ Ω’Àªß◊¥Ã¨ TThostFtdcMoneyAccountStatusType:" << pChangeAccount->MoneyAccountStatus << endl;
-        cout << "“¯––’ ∫≈ TThostFtdcBankAccountType:" << pChangeAccount->BankAccount << endl;
-        cout << "“¯––√‹¬Î TThostFtdcPasswordType:" << pChangeAccount->BankPassWord << endl;
-        cout << "–¬“¯––’ ∫≈ TThostFtdcBankAccountType:" << pChangeAccount->NewBankAccount << endl;
-        cout << "–¬“¯––√‹¬Î TThostFtdcPasswordType:" << pChangeAccount->NewBankPassWord << endl;
-        cout << "Õ∂◊ ’ﬂ’ ∫≈ TThostFtdcAccountIDType:" << pChangeAccount->AccountID << endl;
-        cout << "∆⁄ªı√‹¬Î TThostFtdcPasswordType:" << pChangeAccount->Password << endl;
-        cout << "“¯––’ ∫≈¿‡–Õ TThostFtdcBankAccTypeType:" << pChangeAccount->BankAccType << endl;
-        cout << "∞≤◊∞±‡∫≈ TThostFtdcInstallIDType:" << pChangeAccount->InstallID << endl;
-        cout << "—È÷§øÕªß÷§º˛∫≈¬Î±Í÷æ TThostFtdcYesNoIndicatorType:" << pChangeAccount->VerifyCertNoFlag << endl;
-        cout << "±“÷÷¥˙¬Î TThostFtdcCurrencyIDType:" << pChangeAccount->CurrencyID << endl;
-        cout << "∆⁄ªıπ´Àæ“¯––±‡¬Î TThostFtdcBankCodingForFutureType:" << pChangeAccount->BrokerIDByBank << endl;
-        cout << "“¯––√‹¬Î±Í÷æ TThostFtdcPwdFlagType:" << pChangeAccount->BankPwdFlag << endl;
-        cout << "∆⁄ªı◊ Ω√‹¬Î∫À∂‘±Í÷æ TThostFtdcPwdFlagType:" << pChangeAccount->SecuPwdFlag << endl;
-        // cout << "Ωª“◊ID:" << pChangeAccount->TThostFtdcTIDType << endlTID;
-        cout << "’™“™ TThostFtdcDigestType:" << pChangeAccount->Digest << endl;
-        cout << "¥ÌŒÛ¥˙¬Î TThostFtdcErrorIDType:" << pChangeAccount->ErrorID << endl;
-        cout << "¥ÌŒÛ–≈œ¢ TThostFtdcErrorMsgType:" << pChangeAccount->ErrorMsg << endl;
+        cout << "‰∏öÂä°ÂäüËÉΩÁ†Å TThostFtdcTradeCodeType:" << pChangeAccount->TradeCode << endl;
+        cout << "Èì∂Ë°å‰ª£Á†Å TThostFtdcBankIDType:" << pChangeAccount->BankID << endl;
+        cout << "Èì∂Ë°åÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcBankBrchIDType:" << pChangeAccount->BankBranchID << endl;
+        cout << "ÊúüÂïÜ‰ª£Á†Å TThostFtdcBrokerIDType:" << pChangeAccount->BrokerID << endl;
+        cout << "ÊúüÂïÜÂàÜÊîØÊú∫ÊûÑ‰ª£Á†Å TThostFtdcFutureBranchIDType:" << pChangeAccount->BrokerBranchID << endl;
+        cout << "‰∫§ÊòìÊó•Êúü TThostFtdcTradeDateType:" << pChangeAccount->TradeDate << endl;
+        cout << "‰∫§ÊòìÊó∂Èó¥ TThostFtdcTradeTimeType:" << pChangeAccount->TradeTime << endl;
+        cout << "Èì∂Ë°åÊµÅÊ∞¥Âè∑ TThostFtdcBankSerialType:" << pChangeAccount->BankSerial << endl;
+        cout << "‰∫§ÊòìÁ≥ªÁªüÊó•Êúü TThostFtdcTradeDateType:" << pChangeAccount->TradingDay << endl;
+        cout << "Èì∂ÊúüÂπ≥Âè∞Ê∂àÊÅØÊµÅÊ∞¥Âè∑ TThostFtdcSerialType:" << pChangeAccount->PlateSerial << endl;
+        cout << "ÊúÄÂêéÂàÜÁâáÊ†áÂøó TThostFtdcLastFragmentType:" << pChangeAccount->LastFragment << endl;
+        cout << "‰ºöËØùÂè∑ TThostFtdcSessionIDType:" << pChangeAccount->SessionID << endl;
+        cout << "ÂÆ¢Êà∑ÂßìÂêç TThostFtdcIndividualNameType:" << pChangeAccount->CustomerName << endl;
+        cout << "ËØÅ‰ª∂Á±ªÂûã TThostFtdcIdCardTypeType:" << pChangeAccount->IdCardType << endl;
+        cout << "ËØÅ‰ª∂Âè∑Á†Å TThostFtdcIdentifiedCardNoType:" << pChangeAccount->IdentifiedCardNo << endl;
+        cout << "ÊÄßÂà´ TThostFtdcGenderType:" << pChangeAccount->Gender << endl;
+        cout << "ÂõΩÂÆ∂‰ª£Á†Å TThostFtdcCountryCodeType:" << pChangeAccount->CountryCode << endl;
+        cout << "ÂÆ¢Êà∑Á±ªÂûã TThostFtdcCustTypeType:" << pChangeAccount->CustType << endl;
+        cout << "Âú∞ÂùÄ TThostFtdcAddressType:" << pChangeAccount->Address << endl;
+        cout << "ÈÇÆÁºñ TThostFtdcZipCodeType:" << pChangeAccount->ZipCode << endl;
+        cout << "ÁîµËØùÂè∑Á†Å TThostFtdcTelephoneType:" << pChangeAccount->Telephone << endl;
+        cout << "ÊâãÊú∫ TThostFtdcMobilePhoneType:" << pChangeAccount->MobilePhone << endl;
+        cout << "‰º†Áúü TThostFtdcFaxType:" << pChangeAccount->Fax << endl;
+        cout << "ÁîµÂ≠êÈÇÆ‰ª∂ TThostFtdcEMailType:" << pChangeAccount->EMail << endl;
+        cout << "ËµÑÈáëË¥¶Êà∑Áä∂ÊÄÅ TThostFtdcMoneyAccountStatusType:" << pChangeAccount->MoneyAccountStatus << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pChangeAccount->BankAccount << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pChangeAccount->BankPassWord << endl;
+        cout << "Êñ∞Èì∂Ë°åÂ∏êÂè∑ TThostFtdcBankAccountType:" << pChangeAccount->NewBankAccount << endl;
+        cout << "Êñ∞Èì∂Ë°åÂØÜÁ†Å TThostFtdcPasswordType:" << pChangeAccount->NewBankPassWord << endl;
+        cout << "ÊäïËµÑËÄÖÂ∏êÂè∑ TThostFtdcAccountIDType:" << pChangeAccount->AccountID << endl;
+        cout << "ÊúüË¥ßÂØÜÁ†Å TThostFtdcPasswordType:" << pChangeAccount->Password << endl;
+        cout << "Èì∂Ë°åÂ∏êÂè∑Á±ªÂûã TThostFtdcBankAccTypeType:" << pChangeAccount->BankAccType << endl;
+        cout << "ÂÆâË£ÖÁºñÂè∑ TThostFtdcInstallIDType:" << pChangeAccount->InstallID << endl;
+        cout << "È™åËØÅÂÆ¢Êà∑ËØÅ‰ª∂Âè∑Á†ÅÊ†áÂøó TThostFtdcYesNoIndicatorType:" << pChangeAccount->VerifyCertNoFlag << endl;
+        cout << "Â∏ÅÁßç‰ª£Á†Å TThostFtdcCurrencyIDType:" << pChangeAccount->CurrencyID << endl;
+        cout << "ÊúüË¥ßÂÖ¨Âè∏Èì∂Ë°åÁºñÁ†Å TThostFtdcBankCodingForFutureType:" << pChangeAccount->BrokerIDByBank << endl;
+        cout << "Èì∂Ë°åÂØÜÁ†ÅÊ†áÂøó TThostFtdcPwdFlagType:" << pChangeAccount->BankPwdFlag << endl;
+        cout << "ÊúüË¥ßËµÑÈáëÂØÜÁ†ÅÊ†∏ÂØπÊ†áÂøó TThostFtdcPwdFlagType:" << pChangeAccount->SecuPwdFlag << endl;
+        // cout << "‰∫§ÊòìID:" << pChangeAccount->TThostFtdcTIDType << endlTID;
+        cout << "ÊëòË¶Å TThostFtdcDigestType:" << pChangeAccount->Digest << endl;
+        cout << "ÈîôËØØ‰ª£Á†Å TThostFtdcErrorIDType:" << pChangeAccount->ErrorID << endl;
+        cout << "ÈîôËØØ‰ø°ÊÅØ TThostFtdcErrorMsgType:" << pChangeAccount->ErrorMsg << endl;
 }
 
