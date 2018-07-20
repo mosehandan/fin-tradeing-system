@@ -2,38 +2,68 @@ syntax = "proto3";
 
 package ctp;
 
+enum MessageType{
+    // 期货行情
+    ctp_sub_marketdata;
+    ctp_un_sub_marketdata;
+    ctp_md_
+    ctp_future_tick = 0;
+    future_transaction = 1;
+    future_orderqueue = 2;
+
+    // 系统消息
+    ctp_connect_result = 3;
+    ctp_login_result = 4;
+    
+
+    // 期货交易
+    
+}
+
+message MessageHead{
+    MessageType = 1;
+
+}
+
+message Message{
+
+    /* MessageHead head = 1; */
+    MessageType = 1;
+    bytes   body = 2;
+}
+
 //数据类型MSG_DATA_FUTURE
 message TDF_FUTURE_DATA
 {
 	//TODO: 字段ctp行情中没有
 	string 	szwindcode = 1;         //600001.sh
-	int32	nauctionprice = 27;			    //波动性中断参考价
-	int32	nauctionqty = 28;			    //波动性中断集合竞价虚拟匹配量
-	int32 	nstatus = 6;				//状态
+	int32	auctionprice = 27;			    //波动性中断参考价
+	int32	auctionqty = 28;			    //波动性中断集合竞价虚拟匹配量
+	int32 	status = 6;				//状态
 
 	string 	szcode = 2;             //原始code
-	string 	nactionday = 3;             //业务发生日(自然日)
-	string 	ntradingday = 4;            //交易日
-	int32 	ntime = 5;					//时间(hhmmssmmm)
-	double 	ipreopeninterest = 7;		//昨持仓
-	double 	npreclose = 8;				//昨收盘价
-	double	npresettleprice = 9;		//昨结算
-	double 	nopen = 10;					//开盘价
-	double 	nhigh = 11;					//最高价
-	double 	nlow = 12;					//最低价
-	double	nmatch = 13;				//最新价
-	int32 	ivolume = 14;				//成交总量
-	double 	iturnover = 15;				//成交总金额
-	double 	iopeninterest = 16;			//持仓总量
-	double 	nclose = 17;				//今收盘
-	double 	nsettleprice = 18;			//今结算
-	double	nhighlimited = 19;			//涨停价
-	double 	nlowlimited = 20;			//跌停价
-	double 	npredelta = 21;			    //昨虚实度
-	double 	ncurrdelta = 22;            //今虚实度
-	repeated double naskprice = 23;			//申卖价
-	repeated int32 	naskvol = 24;			//申卖量
-	repeated double nbidprice = 25;			//申买价
-	repeated int32	nbidvol = 26;			//申买量
-	double 	navgprice = 29;                      //郑商所期货均价
+	string 	actionday = 3;             //业务发生日(自然日)
+	string 	tradingday = 4;            //交易日
+	int32 	time = 5;					//时间(hhmmssmmm)
+	double 	preopeninterest = 7;		//昨持仓
+	double 	preclose = 8;				//昨收盘价
+	double	presettleprice = 9;		//昨结算
+	double 	open = 10;					//开盘价
+	double 	high = 11;					//最高价
+	double 	low = 12;					//最低价
+	double	last = 13;				//最新价
+	int32 	volume = 14;				//成交总量
+	double 	turnover = 15;				//成交总金额
+	double 	openinterest = 16;			//持仓总量
+	double 	close = 17;				//今收盘
+	double 	settleprice = 18;			//今结算
+	double	highlimited = 19;			//涨停价
+	double 	lowlimited = 20;			//跌停价
+	double 	predelta = 21;			    //昨虚实度
+	double 	currdelta = 22;            //今虚实度
+	repeated double askprice = 23;			//申卖价
+	repeated int32 	askvol = 24;			//申卖量
+	repeated double bidprice = 25;			//申买价
+	repeated int32	bidvol = 26;			//申买量
+	double 	avgprice = 29;                      //郑商所期货均价
 };
