@@ -1,44 +1,88 @@
 #include "MdSpi.h"
 #include "ctp.pb.h"
 #include "zhelpers.hpp"
+#include <fstream>
+#include <vector>
 // #include <stdio.h>
 
 extern Document d;
 extern zmq::context_t context;
 extern zmq::socket_t publisher;
 
+inline bool CMdSpi::IsErrorRspInfo(CThostFtdcRspInfoField* pRspInfo)
+{
+        bool bResult = (pRspInfo && pRspInfo->ErrorID != 0);
+        if (bResult)
+                cerr << "--->>> ErrorID=" << pRspInfo->ErrorID << ", ErrorMsg=" << pRspInfo->ErrorMsg << endl;
+        return bResult;
+}
+void CMdSpi::load_config(const Document& d)
+{
+        broker_id = d["broker_id"].GetString();
+        user_id = d["user_id"].GetString();
+        passwd = d["passwd"].GetString();
+        front_id = d["md_address"].GetString();
+}
+void CMdSpi::connect()
+{
+        if (userapi == nullptr) {
+                // userapi = CThostFtdcMdApi::CreateFtdcMdApi(); // é UserApi
+                userapi = CThostFtdcMdApi::CreateFtdcMdApi("./mdlog/"); // é UserApi
+
+                if (!userapi) {
+                        throw "ctp_md failed to create api";
+                }
+                userapi->RegisterSpi(this);
+        }
+
+        userapi->RegisterFront(const_cast<char*>(front_id.c_str())); // connect
+        userapi->Init();
+        userapi->Join();
+}
 int CMdSpi::exit()
 {
-        //¸Ãº¯ÊıÔÚÔ­ÉúAPIÀïÃ»ÓĞ£¬ÓÃÓÚ°²È«ÍË³öAPIÓÃ£¬Ô­ÉúµÄjoinËÆºõ²»Ì«ÎÈ¶¨
+        //è¯¥å‡½æ•°åœ¨åŸç”ŸAPIé‡Œæ²¡æœ‰ï¼Œç”¨äºå®‰å…¨é€€å‡ºAPIç”¨ï¼ŒåŸç”Ÿçš„joinä¼¼ä¹ä¸å¤ªç¨³å®š
         userapi->RegisterSpi(NULL);
         userapi->Release();
         userapi = NULL;
         return 1;
-};
-
-void CMdSpi::subscribeMarketData(const vector<string>& instruments, const vector<string>& markets)
-{
-        // cerr << "--->>> " << __FUNCTION__ << endl;
-        // //char* pp[] = { "IF1804", "IF1805" };
-        // char* pp[] = { "IF1807" };
-        // int iResult = pUserCMdSpi->SubscribeMarketData(pp, 2);
-        // cerr << "--->>> send SubscribeMarketData request: " << ((iResult == 0) ? "success" : "failed") << endl;
-        //
-        // int ncount = instruments.size();
-        // char* insts[ncount];
-        // for (int i = 0; i < ncount; i++)
-        //         insts[i] = const_cast<char*>(instruments[i].c_str());
-        //
-        // userapi->SubscribeMarketData(insts, ncount);
 }
 
-int CMdSpi::subscribeMarketData(string instrumentID)
+void CMdSpi::subscribeMarketData(const vector<string>& instruments)
 {
-        char* buffer = (char*)instrumentID.c_str();
-        char* myreq[1] = { buffer };
-        int i = userapi->SubscribeMarketData(myreq, 1);
-        return i;
-};
+        cout << "--->>> " << __FUNCTION__ << endl;
+        // char* pp[] = { "IF1807" };
+        // int iResult = pUserCMdSpi->SubscribeMarketData(pp, 1);
+
+        auto ncount = instruments.size();
+        char* insts[ncount];
+        for (int i = 0; i < ncount; i++) {
+                insts[i] = const_cast<char*>(instruments[i].c_str());
+                // char *buff = const_cast<char*>(instruments[i].c_str());
+                // userapi->SubscribeMarketData({buff}, 1);
+        }
+        int iResult = userapi->SubscribeMarketData(insts, ncount);
+        cerr << "--->>>SubscribeMarketData " << ncount << " request: " << ( iResult == 0 ? "success" : "failed") << endl;
+}
+
+void CMdSpi::subscribeAllMarketData()
+{
+
+        ifstream in("./config/future_contract.txt");
+
+        if (in) {
+
+                string line;
+                vector<string> sub_code;
+
+                while (getline(in, line)) {
+                        sub_code.push_back(line);
+                }
+                subscribeMarketData(sub_code);
+
+        } else
+                cerr << "can not open future_contract file!" << endl;
+}
 
 int CMdSpi::unSubscribeMarketData(string instrumentID)
 {
@@ -46,7 +90,7 @@ int CMdSpi::unSubscribeMarketData(string instrumentID)
         char* myreq[1] = { buffer };
         int i = userapi->UnSubscribeMarketData(myreq, 1);
         return i;
-};
+}
 
 int CMdSpi::subscribeForQuoteRsp(string instrumentID)
 {
@@ -54,7 +98,7 @@ int CMdSpi::subscribeForQuoteRsp(string instrumentID)
         char* myreq[1] = { buffer };
         int i = userapi->SubscribeForQuoteRsp(myreq, 1);
         return i;
-};
+}
 
 int CMdSpi::unSubscribeForQuoteRsp(string instrumentID)
 {
@@ -62,67 +106,67 @@ int CMdSpi::unSubscribeForQuoteRsp(string instrumentID)
         char* myreq[1] = { buffer };
         int i = userapi->UnSubscribeForQuoteRsp(myreq, 1);
         return i;
-};
+}
 
-int CMdSpi::reqUserLogin(dict req, int nRequestID)
+int CMdSpi::reqUserLogin()
 {
         CThostFtdcReqUserLoginField myreq = CThostFtdcReqUserLoginField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "½»Ò×ÈÕ TThostFtdcDateType:" << endl;
+        cout << "äº¤æ˜“æ—¥ TThostFtdcDateType:" << endl;
         // cin >> myreq.TradingDay;
-        cout << "¾­¼Í¹«Ë¾´úÂë TThostFtdcBrokerIDType:" << endl;
+        cout << "ç»çºªå…¬å¸ä»£ç  TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID, broker_id.c_str());
-        cout << "ÓÃ»§´úÂë TThostFtdcUserIDType:" << endl;
+        cout << "ç”¨æˆ·ä»£ç  TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        cout << "ÃÜÂë TThostFtdcPasswordType:" << endl;
+        cout << "å¯†ç  TThostFtdcPasswordType:" << endl;
         strcpy(myreq.Password, passwd.c_str());
-        cout << "ÓÃ»§¶Ë²úÆ·ĞÅÏ¢ TThostFtdcProductInfoType:" << endl;
+        cout << "ç”¨æˆ·ç«¯äº§å“ä¿¡æ¯ TThostFtdcProductInfoType:" << endl;
         // cin >> myreq.UserProductInfo;
-        cout << "½Ó¿Ú¶Ë²úÆ·ĞÅÏ¢ TThostFtdcProductInfoType:" << endl;
+        cout << "æ¥å£ç«¯äº§å“ä¿¡æ¯ TThostFtdcProductInfoType:" << endl;
         // cin >> myreq.InterfaceProductInfo;
-        cout << "Ğ­ÒéĞÅÏ¢ TThostFtdcProtocolInfoType:" << endl;
+        cout << "åè®®ä¿¡æ¯ TThostFtdcProtocolInfoType:" << endl;
         // cin >> myreq.ProtocolInfo;
-        cout << "MacµØÖ· TThostFtdcMacAddressType:" << endl;
+        cout << "Macåœ°å€ TThostFtdcMacAddressType:" << endl;
         // cin >> myreq.MacAddress;
-        cout << "¶¯Ì¬ÃÜÂë TThostFtdcPasswordType:" << endl;
+        cout << "åŠ¨æ€å¯†ç  TThostFtdcPasswordType:" << endl;
         // cin >> myreq.OneTimePassword;
-        cout << "ÖÕ¶ËIPµØÖ· TThostFtdcIPAddressType:" << endl;
+        cout << "ç»ˆç«¯IPåœ°å€ TThostFtdcIPAddressType:" << endl;
         // cin >> myreq.ClientIPAddress;
-        int i = userapi->ReqUserLogin(&myreq, nRequestID);
+        int i = userapi->ReqUserLogin(&myreq, ++reqid);
         return i;
-};
+}
 
-int CMdSpi::reqUserLogout(dict req, int nRequestID)
+int CMdSpi::reqUserLogout()
 {
         CThostFtdcUserLogoutField myreq = CThostFtdcUserLogoutField();
         memset(&myreq, 0, sizeof(myreq));
-        cout << "¾­¼Í¹«Ë¾´úÂë TThostFtdcBrokerIDType:" << endl;
+        cout << "ç»çºªå…¬å¸ä»£ç  TThostFtdcBrokerIDType:" << endl;
         strcpy(myreq.BrokerID, broker_id.c_str());
-        cout << "ÓÃ»§´úÂë TThostFtdcUserIDType:" << endl;
+        cout << "ç”¨æˆ·ä»£ç  TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
-        int i = userapi->ReqUserLogout(&myreq, nRequestID);
+        int i = userapi->ReqUserLogout(&myreq, ++reqid);
         return i;
-};
+}
 
 //-------------------------------------------------------------------------------------
-//API»Øµ÷º¯Êı
+//APIå›è°ƒå‡½æ•°
 //-------------------------------------------------------------------------------------
 
-///µ±¿Í»§¶ËÓë½»Ò×ºóÌ¨½¨Á¢ÆğÍ¨ĞÅÁ¬½ÓÊ±£¨»¹Î´µÇÂ¼Ç°£©£¬¸Ã·½·¨±»µ÷ÓÃ¡£
+///å½“å®¢æˆ·ç«¯ä¸äº¤æ˜“åå°å»ºç«‹èµ·é€šä¿¡è¿æ¥æ—¶ï¼ˆè¿˜æœªç™»å½•å‰ï¼‰ï¼Œè¯¥æ–¹æ³•è¢«è°ƒç”¨ã€‚
 void CMdSpi::OnFrontConnected()
 {
         cerr << "--->>> " << __FUNCTION__ << endl;
         // user login request
-        ReqUserLogin();
+        reqUserLogin();
 }
 
-///µ±¿Í»§¶ËÓë½»Ò×ºóÌ¨Í¨ĞÅÁ¬½Ó¶Ï¿ªÊ±£¬¸Ã·½·¨±»µ÷ÓÃ¡£µ±·¢ÉúÕâ¸öÇé¿öºó£¬API»á×Ô¶¯ÖØĞÂÁ¬½Ó£¬¿Í»§¶Ë¿É²»×ö´¦Àí¡£
-///@param nReason ´íÎóÔ­Òò
-///        0x1001 ÍøÂç¶ÁÊ§°Ü
-///        0x1002 ÍøÂçĞ´Ê§°Ü
-///        0x2001 ½ÓÊÕĞÄÌø³¬Ê±
-///        0x2002 ·¢ËÍĞÄÌøÊ§°Ü
-///        0x2003 ÊÕµ½´íÎó±¨ÎÄ
+///å½“å®¢æˆ·ç«¯ä¸äº¤æ˜“åå°é€šä¿¡è¿æ¥æ–­å¼€æ—¶ï¼Œè¯¥æ–¹æ³•è¢«è°ƒç”¨ã€‚å½“å‘ç”Ÿè¿™ä¸ªæƒ…å†µåï¼ŒAPIä¼šè‡ªåŠ¨é‡æ–°è¿æ¥ï¼Œå®¢æˆ·ç«¯å¯ä¸åšå¤„ç†ã€‚
+///@param nReason é”™è¯¯åŸå› 
+///        0x1001 ç½‘ç»œè¯»å¤±è´¥
+///        0x1002 ç½‘ç»œå†™å¤±è´¥
+///        0x2001 æ¥æ”¶å¿ƒè·³è¶…æ—¶
+///        0x2002 å‘é€å¿ƒè·³å¤±è´¥
+///        0x2003 æ”¶åˆ°é”™è¯¯æŠ¥æ–‡
 void CMdSpi::OnFrontDisconnected(int nReason)
 {
         cerr << "--->>> " << __FUNCTION__ << endl;
@@ -130,86 +174,87 @@ void CMdSpi::OnFrontDisconnected(int nReason)
         // publisher.send("OnFrontDisconnected");
 }
 
-///ĞÄÌø³¬Ê±¾¯¸æ¡£µ±³¤Ê±¼äÎ´ÊÕµ½±¨ÎÄÊ±£¬¸Ã·½·¨±»µ÷ÓÃ¡£
-///@param nTimeLapse ¾àÀëÉÏ´Î½ÓÊÕ±¨ÎÄµÄÊ±¼ä
+///å¿ƒè·³è¶…æ—¶è­¦å‘Šã€‚å½“é•¿æ—¶é—´æœªæ”¶åˆ°æŠ¥æ–‡æ—¶ï¼Œè¯¥æ–¹æ³•è¢«è°ƒç”¨ã€‚
+///@param nTimeLapse è·ç¦»ä¸Šæ¬¡æ¥æ”¶æŠ¥æ–‡çš„æ—¶é—´
 void CMdSpi::OnHeartBeatWarning(int nTimeLapse)
 {
         cerr << "--->>> " << __FUNCTION__ << endl;
         cerr << "--->>> nTimerLapse = " << nTimeLapse << endl;
 }
 
-///µÇÂ¼ÇëÇóÏìÓ¦
+///ç™»å½•è¯·æ±‚å“åº”
 void CMdSpi::OnRspUserLogin(CThostFtdcRspUserLoginField* pRspUserLogin, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "½»Ò×ÈÕ TThostFtdcDateType:" << pRspUserLogin->TradingDay << endl;
-                cout << "µÇÂ¼³É¹¦Ê±¼ä TThostFtdcTimeType:" << pRspUserLogin->LoginTime << endl;
-                cout << "¾­¼Í¹«Ë¾´úÂë TThostFtdcBrokerIDType:" << pRspUserLogin->BrokerID << endl;
-                cout << "ÓÃ»§´úÂë TThostFtdcUserIDType:" << pRspUserLogin->UserID << endl;
-                cout << "½»Ò×ÏµÍ³Ãû³Æ TThostFtdcSystemNameType:" << pRspUserLogin->SystemName << endl;
-                cout << "Ç°ÖÃ±àºÅ TThostFtdcFrontIDType:" << pRspUserLogin->FrontID << endl;
-                cout << "»á»°±àºÅ TThostFtdcSessionIDType:" << pRspUserLogin->SessionID << endl;
-                cout << "×î´ó±¨µ¥ÒıÓÃ TThostFtdcOrderRefType:" << pRspUserLogin->MaxOrderRef << endl;
-                cout << "ÉÏÆÚËùÊ±¼ä TThostFtdcTimeType:" << pRspUserLogin->SHFETime << endl;
-                cout << "´óÉÌËùÊ±¼ä TThostFtdcTimeType:" << pRspUserLogin->DCETime << endl;
-                cout << "Ö£ÉÌËùÊ±¼ä TThostFtdcTimeType:" << pRspUserLogin->CZCETime << endl;
-                cout << "ÖĞ½ğËùÊ±¼ä TThostFtdcTimeType:" << pRspUserLogin->FFEXTime << endl;
-                cout << "ÄÜÔ´ÖĞĞÄÊ±¼ä TThostFtdcTimeType:" << pRspUserLogin->INETime << endl;
+                cout << "äº¤æ˜“æ—¥ TThostFtdcDateType:" << pRspUserLogin->TradingDay << endl;
+                cout << "ç™»å½•æˆåŠŸæ—¶é—´ TThostFtdcTimeType:" << pRspUserLogin->LoginTime << endl;
+                cout << "ç»çºªå…¬å¸ä»£ç  TThostFtdcBrokerIDType:" << pRspUserLogin->BrokerID << endl;
+                cout << "ç”¨æˆ·ä»£ç  TThostFtdcUserIDType:" << pRspUserLogin->UserID << endl;
+                cout << "äº¤æ˜“ç³»ç»Ÿåç§° TThostFtdcSystemNameType:" << pRspUserLogin->SystemName << endl;
+                cout << "å‰ç½®ç¼–å· TThostFtdcFrontIDType:" << pRspUserLogin->FrontID << endl;
+                cout << "ä¼šè¯ç¼–å· TThostFtdcSessionIDType:" << pRspUserLogin->SessionID << endl;
+                cout << "æœ€å¤§æŠ¥å•å¼•ç”¨ TThostFtdcOrderRefType:" << pRspUserLogin->MaxOrderRef << endl;
+                cout << "ä¸ŠæœŸæ‰€æ—¶é—´ TThostFtdcTimeType:" << pRspUserLogin->SHFETime << endl;
+                cout << "å¤§å•†æ‰€æ—¶é—´ TThostFtdcTimeType:" << pRspUserLogin->DCETime << endl;
+                cout << "éƒ‘å•†æ‰€æ—¶é—´ TThostFtdcTimeType:" << pRspUserLogin->CZCETime << endl;
+                cout << "ä¸­é‡‘æ‰€æ—¶é—´ TThostFtdcTimeType:" << pRspUserLogin->FFEXTime << endl;
+                cout << "èƒ½æºä¸­å¿ƒæ—¶é—´ TThostFtdcTimeType:" << pRspUserLogin->INETime << endl;
 
                 // front_id = pRspUserLogin->FrontID;
                 // session_id = pRspUserLogin->SessionID;
                 // login_status = true;
                 // order_ref = pRspUserLogin->MaxOrderRef;
         }
-        // SubscribeMarketData();
+
+        subscribeAllMarketData();
 }
 
-///µÇ³öÇëÇóÏìÓ¦
+///ç™»å‡ºè¯·æ±‚å“åº”
 void CMdSpi::OnRspUserLogout(CThostFtdcUserLogoutField* pUserLogout, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "¾­¼Í¹«Ë¾´úÂë TThostFtdcBrokerIDType:" << pUserLogout->BrokerID << endl;
-                cout << "ÓÃ»§´úÂë TThostFtdcUserIDType:" << pUserLogout->UserID << endl;
+                cout << "ç»çºªå…¬å¸ä»£ç  TThostFtdcBrokerIDType:" << pUserLogout->BrokerID << endl;
+                cout << "ç”¨æˆ·ä»£ç  TThostFtdcUserIDType:" << pUserLogout->UserID << endl;
         }
 }
 
-///´íÎóÓ¦´ğ
+///é”™è¯¯åº”ç­”
 void CMdSpi::OnRspError(CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cerr << "--->>> " << __FUNCTION__ << endl;
 }
 
-///¶©ÔÄĞĞÇéÓ¦´ğ
+///è®¢é˜…è¡Œæƒ…åº”ç­”
 void CMdSpi::OnRspSubMarketData(CThostFtdcSpecificInstrumentField* pSpecificInstrument, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-            cout << "SubscribeMarketData success!" << endl;
+        if ( pSpecificInstrument != NULL && !IsErrorRspInfo(pRspInfo)) {
+                cout <<  pSpecificInstrument->InstrumentID << endl;
+                // cout << "SubscribeMarketData success!" << endl;
         }
-
 }
 
-///È¡Ïû¶©ÔÄĞĞÇéÓ¦´ğ
+///å–æ¶ˆè®¢é˜…è¡Œæƒ…åº”ç­”
 void CMdSpi::OnRspUnSubMarketData(CThostFtdcSpecificInstrumentField* pSpecificInstrument, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
         if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-            cout << "unSubscribeMarketData success!" << endl;
+                cout << "unSubscribeMarketData success!" << endl;
         }
 }
 
-///¶©ÔÄÑ¯¼ÛÓ¦´ğ
+///è®¢é˜…è¯¢ä»·åº”ç­”
 void CMdSpi::OnRspSubForQuoteRsp(CThostFtdcSpecificInstrumentField* pSpecificInstrument, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
 }
-///È¡Ïû¶©ÔÄÑ¯¼ÛÓ¦´ğ
+///å–æ¶ˆè®¢é˜…è¯¢ä»·åº”ç­”
 void CMdSpi::OnRspUnSubForQuoteRsp(CThostFtdcSpecificInstrumentField* pSpecificInstrument, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
 }
 
-///Éî¶ÈĞĞÇéÍ¨Öª
+///æ·±åº¦è¡Œæƒ…é€šçŸ¥
 void CMdSpi::OnRtnDepthMarketData(CThostFtdcDepthMarketDataField* pDepthMarketData)
 {
         if (pDepthMarketData == NULL) {
@@ -217,70 +262,70 @@ void CMdSpi::OnRtnDepthMarketData(CThostFtdcDepthMarketDataField* pDepthMarketDa
                 return;
         }
         ctp::TDF_FUTURE_DATA td;
-        // TODO: ¸Ã×Ö¶ÎtdfÖĞÎ´Ê¹ÓÃ
+        // TODO: è¯¥å­—æ®µtdfä¸­æœªä½¿ç”¨
         // cerr << "ExchangeID=" << pDepthMarketData->ExchangeID << endl;
         // cerr << "ExchangeInstID=" << pDepthMarketData->ExchangeInstID << endl;
         // cerr << "UpdateTime=" << pDepthMarketData->UpdateTime << endl;
 
-        td.set_szcode(pDepthMarketData->InstrumentID);                //Ô­Ê¼Code
-        td.set_nactionday(pDepthMarketData->ActionDay);               //ÒµÎñ·¢ÉúÈÕ(×ÔÈ»ÈÕ)
-        td.set_ntradingday(pDepthMarketData->TradingDay);             //½»Ò×ÈÕ
-        td.set_ntime(pDepthMarketData->UpdateMillisec);               //Ê±¼ä(HHMMSSmmm)
-        td.set_ipreopeninterest(pDepthMarketData->PreOpenInterest);   //×ò³Ö²Ö
-        td.set_npreclose(pDepthMarketData->PreClosePrice);            //×òÊÕÅÌ¼Û
-        td.set_npresettleprice(pDepthMarketData->PreSettlementPrice); //×ò½áËã
-        td.set_nopen(pDepthMarketData->OpenPrice);                    //¿ªÅÌ¼Û
-        td.set_nhigh(pDepthMarketData->HighestPrice);                 //×î¸ß¼Û
-        td.set_nlow(pDepthMarketData->LowestPrice);                   //×îµÍ¼Û
-        td.set_nmatch(pDepthMarketData->LastPrice);                   //×îĞÂ¼Û
-        td.set_ivolume(pDepthMarketData->Volume);                     //³É½»×ÜÁ¿
-        td.set_iturnover(pDepthMarketData->Turnover);                 //³É½»×Ü½ğ¶î
-        td.set_iopeninterest(pDepthMarketData->OpenInterest);         //³Ö²Ö×ÜÁ¿
-        td.set_nclose(pDepthMarketData->ClosePrice);                  //½ñÊÕÅÌ
-        td.set_nsettleprice(pDepthMarketData->SettlementPrice);       //½ñ½áËã
-        td.set_nhighlimited(pDepthMarketData->UpperLimitPrice);       //ÕÇÍ£¼Û
-        td.set_nlowlimited(pDepthMarketData->LowerLimitPrice);        //µøÍ£¼Û
-        td.set_npredelta(pDepthMarketData->PreDelta);                 //×òĞéÊµ¶È
-        td.set_ncurrdelta(pDepthMarketData->CurrDelta);               //½ñĞéÊµ¶È
+        td.set_szcode(pDepthMarketData->InstrumentID);                //åŸå§‹Code
+        td.set_nactionday(pDepthMarketData->ActionDay);               //ä¸šåŠ¡å‘ç”Ÿæ—¥(è‡ªç„¶æ—¥)
+        td.set_ntradingday(pDepthMarketData->TradingDay);             //äº¤æ˜“æ—¥
+        td.set_ntime(pDepthMarketData->UpdateMillisec);               //æ—¶é—´(HHMMSSmmm)
+        td.set_ipreopeninterest(pDepthMarketData->PreOpenInterest);   //æ˜¨æŒä»“
+        td.set_npreclose(pDepthMarketData->PreClosePrice);            //æ˜¨æ”¶ç›˜ä»·
+        td.set_npresettleprice(pDepthMarketData->PreSettlementPrice); //æ˜¨ç»“ç®—
+        td.set_nopen(pDepthMarketData->OpenPrice);                    //å¼€ç›˜ä»·
+        td.set_nhigh(pDepthMarketData->HighestPrice);                 //æœ€é«˜ä»·
+        td.set_nlow(pDepthMarketData->LowestPrice);                   //æœ€ä½ä»·
+        td.set_nmatch(pDepthMarketData->LastPrice);                   //æœ€æ–°ä»·
+        td.set_ivolume(pDepthMarketData->Volume);                     //æˆäº¤æ€»é‡
+        td.set_iturnover(pDepthMarketData->Turnover);                 //æˆäº¤æ€»é‡‘é¢
+        td.set_iopeninterest(pDepthMarketData->OpenInterest);         //æŒä»“æ€»é‡
+        td.set_nclose(pDepthMarketData->ClosePrice);                  //ä»Šæ”¶ç›˜
+        td.set_nsettleprice(pDepthMarketData->SettlementPrice);       //ä»Šç»“ç®—
+        td.set_nhighlimited(pDepthMarketData->UpperLimitPrice);       //æ¶¨åœä»·
+        td.set_nlowlimited(pDepthMarketData->LowerLimitPrice);        //è·Œåœä»·
+        td.set_npredelta(pDepthMarketData->PreDelta);                 //æ˜¨è™šå®åº¦
+        td.set_ncurrdelta(pDepthMarketData->CurrDelta);               //ä»Šè™šå®åº¦
 
-        td.add_naskprice(pDepthMarketData->AskPrice1); //ÉêÂô¼Û
-        td.add_naskprice(pDepthMarketData->AskPrice2); //ÉêÂô¼Û
-        td.add_naskprice(pDepthMarketData->AskPrice3); //ÉêÂô¼Û
-        td.add_naskprice(pDepthMarketData->AskPrice4); //ÉêÂô¼Û
-        td.add_naskprice(pDepthMarketData->AskPrice5); //ÉêÂô¼Û
+        td.add_naskprice(pDepthMarketData->AskPrice1); //ç”³å–ä»·
+        td.add_naskprice(pDepthMarketData->AskPrice2); //ç”³å–ä»·
+        td.add_naskprice(pDepthMarketData->AskPrice3); //ç”³å–ä»·
+        td.add_naskprice(pDepthMarketData->AskPrice4); //ç”³å–ä»·
+        td.add_naskprice(pDepthMarketData->AskPrice5); //ç”³å–ä»·
 
-        td.add_naskvol(pDepthMarketData->AskVolume1); //ÉêÂôÁ¿
-        td.add_naskvol(pDepthMarketData->AskVolume2); //ÉêÂôÁ¿
-        td.add_naskvol(pDepthMarketData->AskVolume3); //ÉêÂôÁ¿
-        td.add_naskvol(pDepthMarketData->AskVolume4); //ÉêÂôÁ¿
-        td.add_naskvol(pDepthMarketData->AskVolume5); //ÉêÂôÁ¿
+        td.add_naskvol(pDepthMarketData->AskVolume1); //ç”³å–é‡
+        td.add_naskvol(pDepthMarketData->AskVolume2); //ç”³å–é‡
+        td.add_naskvol(pDepthMarketData->AskVolume3); //ç”³å–é‡
+        td.add_naskvol(pDepthMarketData->AskVolume4); //ç”³å–é‡
+        td.add_naskvol(pDepthMarketData->AskVolume5); //ç”³å–é‡
 
-        td.add_nbidprice(pDepthMarketData->BidPrice1); //ÉêÂò¼Û
-        td.add_nbidprice(pDepthMarketData->BidPrice2); //ÉêÂò¼Û
-        td.add_nbidprice(pDepthMarketData->BidPrice3); //ÉêÂò¼Û
-        td.add_nbidprice(pDepthMarketData->BidPrice4); //ÉêÂò¼Û
-        td.add_nbidprice(pDepthMarketData->BidPrice5); //ÉêÂò¼Û
+        td.add_nbidprice(pDepthMarketData->BidPrice1); //ç”³ä¹°ä»·
+        td.add_nbidprice(pDepthMarketData->BidPrice2); //ç”³ä¹°ä»·
+        td.add_nbidprice(pDepthMarketData->BidPrice3); //ç”³ä¹°ä»·
+        td.add_nbidprice(pDepthMarketData->BidPrice4); //ç”³ä¹°ä»·
+        td.add_nbidprice(pDepthMarketData->BidPrice5); //ç”³ä¹°ä»·
 
-        td.add_nbidvol(pDepthMarketData->BidVolume1);     //ÉêÂòÁ¿
-        td.add_nbidvol(pDepthMarketData->BidVolume2);     //ÉêÂòÁ¿
-        td.add_nbidvol(pDepthMarketData->BidVolume3);     //ÉêÂòÁ¿
-        td.add_nbidvol(pDepthMarketData->BidVolume4);     //ÉêÂòÁ¿
-        td.add_nbidvol(pDepthMarketData->BidVolume5);     //ÉêÂòÁ¿
-        td.set_navgprice(pDepthMarketData->AveragePrice); //Ö£ÉÌËùÆÚ»õ¾ù¼Û
+        td.add_nbidvol(pDepthMarketData->BidVolume1);     //ç”³ä¹°é‡
+        td.add_nbidvol(pDepthMarketData->BidVolume2);     //ç”³ä¹°é‡
+        td.add_nbidvol(pDepthMarketData->BidVolume3);     //ç”³ä¹°é‡
+        td.add_nbidvol(pDepthMarketData->BidVolume4);     //ç”³ä¹°é‡
+        td.add_nbidvol(pDepthMarketData->BidVolume5);     //ç”³ä¹°é‡
+        td.set_navgprice(pDepthMarketData->AveragePrice); //éƒ‘å•†æ‰€æœŸè´§å‡ä»·
 
-        //TODO: ×Ö¶ÎctpĞĞÇéÖĞÃ»ÓĞ
+        //TODO: å­—æ®µctpè¡Œæƒ…ä¸­æ²¡æœ‰
         td.set_szwindcode("");   //600001.SH
-        td.set_nauctionprice(0); //²¨¶¯ĞÔÖĞ¶Ï²Î¿¼¼Û
-        td.set_nauctionqty(0);   //²¨¶¯ĞÔÖĞ¶Ï¼¯ºÏ¾º¼ÛĞéÄâÆ¥ÅäÁ¿
-        td.set_nstatus(0);       //×´Ì¬
+        td.set_nauctionprice(0); //æ³¢åŠ¨æ€§ä¸­æ–­å‚è€ƒä»·
+        td.set_nauctionqty(0);   //æ³¢åŠ¨æ€§ä¸­æ–­é›†åˆç«ä»·è™šæ‹ŸåŒ¹é…é‡
+        td.set_nstatus(0);       //çŠ¶æ€
 
         auto msg_size = td.ByteSize();
         zmq::message_t message(msg_size);
         // td.SerializerToString(message.data(),msg_size);
         td.SerializeToArray(message.data(), msg_size);
-        publisher.send(message);
+        // publisher.send(message);
+        publisher.send(std::move(message));
 }
 
-///Ñ¯¼ÛÍ¨Öª
-void CMdSpi::OnRtnForQuoteRsp(CThostFtdcForQuoteRspField* pForQuoteRsp) { }
-
+///è¯¢ä»·é€šçŸ¥
+void CMdSpi::OnRtnForQuoteRsp(CThostFtdcForQuoteRspField* pForQuoteRsp) {}

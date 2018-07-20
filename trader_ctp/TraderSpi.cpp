@@ -8,20 +8,37 @@
 // extern zmq::socket_t publisher;
 // extern zmq::socket_t reply;
 
-//inline void CTraderSpi::connect()
-//{
-//	if (userapi == nullptr) {
-//		//userapi = CThostFtdcTraderApi::CreateFtdcTraderApi("./log/trader/"); // 创建UserApi
-//		userapi = CThostFtdcTraderApi::CreateFtdcTraderApi(); // 创建UserApi
-//
-//		if (!userapi) {
-//			throw "CtpTrader failed to create api";
-//		}
-//		userapi->RegisterSpi(this);
-//	}
-//}
+void CTraderSpi::load_config(const Document& d)
+{
+        broker_id = d["broker_id"].GetString();
+        user_id = d["user_id"].GetString();
+        passwd = d["passwd"].GetString();
+        front_id = d["td_address"].GetString();
+}
 
-bool CTraderSpi::IsErrorRspInfo(CThostFtdcRspInfoField* pRspInfo)
+void CTraderSpi::connect()
+{
+        if (userapi == nullptr) {
+                //userapi = CThostFtdcTraderApi::CreateFtdcTraderApi("./log/trader/"); // 创建UserApi
+                userapi = CThostFtdcTraderApi::CreateFtdcTraderApi(); // 创建UserApi
+
+                if (!userapi) {
+                        throw "CtpTrader failed to create api";
+                }
+                userapi->RegisterSpi(this);
+        }
+
+        userapi->RegisterFront(const_cast<char*>(front_id.c_str())); // connect
+        // userapi->RegisterFront("tcp://180.169.101.178:41205"); // connect
+        userapi->SubscribePublicTopic(THOST_TERT_QUICK); // need check
+        userapi->SubscribePublicTopic(THOST_TERT_QUICK); // need check
+        // userapi->SubscribePrivateTopic(THOST_TERT_RESTART); // need check
+        // userapi->SubscribePrivateTopic(THOST_TERT_RESTART); // need check
+        userapi->Init();
+        // userapi->Join();
+}
+
+inline bool CTraderSpi::IsErrorRspInfo(CThostFtdcRspInfoField* pRspInfo)
 {
         // 如果ErrorID != 0, 说明收到了错误的响应
         bool bResult = ((pRspInfo) && (pRspInfo->ErrorID != 0));
@@ -504,7 +521,7 @@ void CTraderSpi::reqUserLogout()
         CThostFtdcUserLogoutField myreq = CThostFtdcUserLogoutField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "用户代码 TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
         int i = userapi->ReqUserLogout(&myreq, ++nRequestID);
@@ -517,7 +534,7 @@ void CTraderSpi::reqUserPasswordUpdate()
         CThostFtdcUserPasswordUpdateField myreq = CThostFtdcUserPasswordUpdateField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "用户代码 TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
         cout << "原来的口令 TThostFtdcPasswordType:" << endl;
@@ -534,7 +551,7 @@ void CTraderSpi::reqTradingAccountPasswordUpdate()
         CThostFtdcTradingAccountPasswordUpdateField myreq = CThostFtdcTradingAccountPasswordUpdateField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:";
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者帐号 TThostFtdcAccountIDType:" << endl;
         cin >> myreq.AccountID;
         cout << "原来的口令 TThostFtdcPasswordType:" << endl;
@@ -553,7 +570,7 @@ void CTraderSpi::reqOrderInsert()
         CThostFtdcInputOrderField myreq = CThostFtdcInputOrderField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -610,7 +627,7 @@ void CTraderSpi::reqParkedOrderInsert()
         CThostFtdcParkedOrderField myreq = CThostFtdcParkedOrderField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -677,7 +694,7 @@ void CTraderSpi::reqParkedOrderAction()
         CThostFtdcParkedOrderActionField myreq = CThostFtdcParkedOrderActionField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "报单操作引用 TThostFtdcOrderActionRefType:" << endl;
@@ -724,7 +741,7 @@ void CTraderSpi::reqOrderAction()
         CThostFtdcInputOrderActionField myreq = CThostFtdcInputOrderActionField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "报单操作引用 TThostFtdcOrderActionRefType:" << endl;
@@ -761,7 +778,7 @@ void CTraderSpi::reqQueryMaxOrderVolume()
         CThostFtdcQueryMaxOrderVolumeField myreq = CThostFtdcQueryMaxOrderVolumeField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -786,9 +803,9 @@ void CTraderSpi::reqSettlementInfoConfirm()
         CThostFtdcSettlementInfoConfirmField myreq = CThostFtdcSettlementInfoConfirmField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
-        strcpy(myreq.InvestorID,user_id.c_str());
+        strcpy(myreq.InvestorID, user_id.c_str());
         cout << "确认日期 TThostFtdcDateType:" << endl;
         // cin >> myreq.ConfirmDate;
         cout << "确认时间 TThostFtdcTimeType:" << endl;
@@ -803,7 +820,7 @@ void CTraderSpi::reqRemoveParkedOrder()
         CThostFtdcRemoveParkedOrderField myreq = CThostFtdcRemoveParkedOrderField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "预埋报单编号 TThostFtdcParkedOrderIDType:" << endl;
@@ -818,7 +835,7 @@ void CTraderSpi::reqRemoveParkedOrderAction()
         CThostFtdcRemoveParkedOrderActionField myreq = CThostFtdcRemoveParkedOrderActionField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "预埋撤单编号 TThostFtdcParkedOrderActionIDType:" << endl;
@@ -833,7 +850,7 @@ void CTraderSpi::reqExecOrderInsert()
         CThostFtdcInputExecOrderField myreq = CThostFtdcInputExecOrderField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -872,7 +889,7 @@ void CTraderSpi::reqExecOrderAction()
         CThostFtdcInputExecOrderActionField myreq = CThostFtdcInputExecOrderActionField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "执行宣告操作引用 TThostFtdcOrderActionRefType:" << endl;
@@ -905,7 +922,7 @@ void CTraderSpi::reqForQuoteInsert()
         CThostFtdcInputForQuoteField myreq = CThostFtdcInputForQuoteField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -926,7 +943,7 @@ void CTraderSpi::reqQuoteInsert()
         CThostFtdcInputQuoteField myreq = CThostFtdcInputQuoteField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -973,7 +990,7 @@ void CTraderSpi::reqQuoteAction()
         CThostFtdcInputQuoteActionField myreq = CThostFtdcInputQuoteActionField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "报价操作引用 TThostFtdcOrderActionRefType:" << endl;
@@ -1006,7 +1023,7 @@ void CTraderSpi::reqLockInsert()
         CThostFtdcInputLockField myreq = CThostFtdcInputLockField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1035,7 +1052,7 @@ void CTraderSpi::reqCombActionInsert()
         CThostFtdcInputCombActionField myreq = CThostFtdcInputCombActionField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1064,7 +1081,7 @@ void CTraderSpi::reqQryOrder()
         CThostFtdcQryOrderField myreq = CThostFtdcQryOrderField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1087,7 +1104,7 @@ void CTraderSpi::reqQryTrade()
         CThostFtdcQryTradeField myreq = CThostFtdcQryTradeField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1110,7 +1127,7 @@ void CTraderSpi::reqQryInvestorPosition()
         CThostFtdcQryInvestorPositionField myreq = CThostFtdcQryInvestorPositionField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1127,7 +1144,7 @@ void CTraderSpi::reqQryTradingAccount()
         CThostFtdcQryTradingAccountField myreq = CThostFtdcQryTradingAccountField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "币种代码 TThostFtdcCurrencyIDType:" << endl;
@@ -1144,7 +1161,7 @@ void CTraderSpi::reqQryInvestor()
         CThostFtdcQryInvestorField myreq = CThostFtdcQryInvestorField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         int i = userapi->ReqQryInvestor(&myreq, ++nRequestID);
@@ -1157,7 +1174,7 @@ void CTraderSpi::reqQryTradingCode()
         CThostFtdcQryTradingCodeField myreq = CThostFtdcQryTradingCodeField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "交易所代码 TThostFtdcExchangeIDType:" << endl;
@@ -1176,7 +1193,7 @@ void CTraderSpi::reqQryInstrumentMarginRate()
         CThostFtdcQryInstrumentMarginRateField myreq = CThostFtdcQryInstrumentMarginRateField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1193,7 +1210,7 @@ void CTraderSpi::reqQryInstrumentCommissionRate()
         CThostFtdcQryInstrumentCommissionRateField myreq = CThostFtdcQryInstrumentCommissionRateField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1266,7 +1283,7 @@ void CTraderSpi::reqQrySettlementInfo()
         CThostFtdcQrySettlementInfoField myreq = CThostFtdcQrySettlementInfoField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "交易日 TThostFtdcDateType:" << endl;
@@ -1294,7 +1311,7 @@ void CTraderSpi::reqQryInvestorPositionDetail()
         CThostFtdcQryInvestorPositionDetailField myreq = CThostFtdcQryInvestorPositionDetailField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1311,7 +1328,7 @@ void CTraderSpi::reqQryNotice()
         CThostFtdcQryNoticeField myreq = CThostFtdcQryNoticeField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         int i = userapi->ReqQryNotice(&myreq, ++nRequestID);
         cout << "--->>> send request: " << (i == 0 ? "success" : "failed") << endl;
 }
@@ -1322,7 +1339,7 @@ void CTraderSpi::reqQrySettlementInfoConfirm()
         CThostFtdcQrySettlementInfoConfirmField myreq = CThostFtdcQrySettlementInfoConfirmField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         int i = userapi->ReqQrySettlementInfoConfirm(&myreq, ++nRequestID);
@@ -1335,7 +1352,7 @@ void CTraderSpi::reqQryInvestorPositionCombineDetail()
         CThostFtdcQryInvestorPositionCombineDetailField myreq = CThostFtdcQryInvestorPositionCombineDetailField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "组合持仓合约编码 TThostFtdcInstrumentIDType:" << endl;
@@ -1350,7 +1367,7 @@ void CTraderSpi::reqQryCFMMCTradingAccountKey()
         CThostFtdcQryCFMMCTradingAccountKeyField myreq = CThostFtdcQryCFMMCTradingAccountKeyField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         int i = userapi->ReqQryCFMMCTradingAccountKey(&myreq, ++nRequestID);
@@ -1363,7 +1380,7 @@ void CTraderSpi::reqQryEWarrantOffset()
         CThostFtdcQryEWarrantOffsetField myreq = CThostFtdcQryEWarrantOffsetField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "交易所代码 TThostFtdcExchangeIDType:" << endl;
@@ -1380,7 +1397,7 @@ void CTraderSpi::reqQryInvestorProductGroupMargin()
         CThostFtdcQryInvestorProductGroupMarginField myreq = CThostFtdcQryInvestorProductGroupMarginField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "品种/跨品种标示 TThostFtdcInstrumentIDType:" << endl;
@@ -1397,7 +1414,7 @@ void CTraderSpi::reqQryExchangeMarginRate()
         CThostFtdcQryExchangeMarginRateField myreq = CThostFtdcQryExchangeMarginRateField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
         cout << "投机套保标志 TThostFtdcHedgeFlagType:" << endl;
@@ -1412,7 +1429,7 @@ void CTraderSpi::reqQryExchangeMarginRateAdjust()
         CThostFtdcQryExchangeMarginRateAdjustField myreq = CThostFtdcQryExchangeMarginRateAdjustField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
         cout << "投机套保标志 TThostFtdcHedgeFlagType:" << endl;
@@ -1427,7 +1444,7 @@ void CTraderSpi::reqQryExchangeRate()
         CThostFtdcQryExchangeRateField myreq = CThostFtdcQryExchangeRateField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "源币种 TThostFtdcCurrencyIDType:" << endl;
         cin >> myreq.FromCurrencyID;
         cout << "目标币种 TThostFtdcCurrencyIDType:" << endl;
@@ -1442,7 +1459,7 @@ void CTraderSpi::reqQrySecAgentACIDMap()
         CThostFtdcQrySecAgentACIDMapField myreq = CThostFtdcQrySecAgentACIDMapField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "用户代码 TThostFtdcUserIDType:" << endl;
         strcpy(myreq.UserID, user_id.c_str());
         cout << "资金账户 TThostFtdcAccountIDType:" << endl;
@@ -1483,7 +1500,7 @@ void CTraderSpi::reqQryOptionInstrTradeCost()
         CThostFtdcQryOptionInstrTradeCostField myreq = CThostFtdcQryOptionInstrTradeCostField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1506,7 +1523,7 @@ void CTraderSpi::reqQryOptionInstrCommRate()
         CThostFtdcQryOptionInstrCommRateField myreq = CThostFtdcQryOptionInstrCommRateField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1523,7 +1540,7 @@ void CTraderSpi::reqQryExecOrder()
         CThostFtdcQryExecOrderField myreq = CThostFtdcQryExecOrderField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1546,7 +1563,7 @@ void CTraderSpi::reqQryForQuote()
         CThostFtdcQryForQuoteField myreq = CThostFtdcQryForQuoteField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1567,7 +1584,7 @@ void CTraderSpi::reqQryQuote()
         CThostFtdcQryQuoteField myreq = CThostFtdcQryQuoteField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1590,7 +1607,7 @@ void CTraderSpi::reqQryLock()
         CThostFtdcQryLockField myreq = CThostFtdcQryLockField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1613,7 +1630,7 @@ void CTraderSpi::reqQryLockPosition()
         CThostFtdcQryLockPositionField myreq = CThostFtdcQryLockPositionField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1630,7 +1647,7 @@ void CTraderSpi::reqQryInvestorLevel()
         CThostFtdcQryInvestorLevelField myreq = CThostFtdcQryInvestorLevelField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "交易所代码 TThostFtdcExchangeIDType:" << endl;
@@ -1645,7 +1662,7 @@ void CTraderSpi::reqQryExecFreeze()
         CThostFtdcQryExecFreezeField myreq = CThostFtdcQryExecFreezeField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1662,7 +1679,7 @@ void CTraderSpi::reqQryCombInstrumentGuard()
         CThostFtdcQryCombInstrumentGuardField myreq = CThostFtdcQryCombInstrumentGuardField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
         cin >> myreq.InstrumentID;
         int i = userapi->ReqQryCombInstrumentGuard(&myreq, ++nRequestID);
@@ -1675,7 +1692,7 @@ void CTraderSpi::reqQryCombAction()
         CThostFtdcQryCombActionField myreq = CThostFtdcQryCombActionField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1692,7 +1709,7 @@ void CTraderSpi::reqQryTransferSerial()
         CThostFtdcQryTransferSerialField myreq = CThostFtdcQryTransferSerialField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者帐号 TThostFtdcAccountIDType:" << endl;
         cin >> myreq.AccountID;
         cout << "银行编码 TThostFtdcBankIDType:" << endl;
@@ -1709,7 +1726,7 @@ void CTraderSpi::reqQryAccountregister()
         CThostFtdcQryAccountregisterField myreq = CThostFtdcQryAccountregisterField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者帐号 TThostFtdcAccountIDType:" << endl;
         cin >> myreq.AccountID;
         cout << "银行编码 TThostFtdcBankIDType:" << endl;
@@ -1728,7 +1745,7 @@ void CTraderSpi::reqQryContractBank()
         CThostFtdcQryContractBankField myreq = CThostFtdcQryContractBankField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "银行代码 TThostFtdcBankIDType:" << endl;
         cin >> myreq.BankID;
         cout << "银行分中心代码 TThostFtdcBankBrchIDType:" << endl;
@@ -1743,7 +1760,7 @@ void CTraderSpi::reqQryParkedOrder()
         CThostFtdcQryParkedOrderField myreq = CThostFtdcQryParkedOrderField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1760,7 +1777,7 @@ void CTraderSpi::reqQryParkedOrderAction()
         CThostFtdcQryParkedOrderActionField myreq = CThostFtdcQryParkedOrderActionField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1777,7 +1794,7 @@ void CTraderSpi::reqQryTradingNotice()
         CThostFtdcQryTradingNoticeField myreq = CThostFtdcQryTradingNoticeField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         int i = userapi->ReqQryTradingNotice(&myreq, ++nRequestID);
@@ -1790,7 +1807,7 @@ void CTraderSpi::reqQryBrokerTradingParams()
         CThostFtdcQryBrokerTradingParamsField myreq = CThostFtdcQryBrokerTradingParamsField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         cout << "币种代码 TThostFtdcCurrencyIDType:" << endl;
@@ -1805,7 +1822,7 @@ void CTraderSpi::reqQryBrokerTradingAlgos()
         CThostFtdcQryBrokerTradingAlgosField myreq = CThostFtdcQryBrokerTradingAlgosField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "交易所代码 TThostFtdcExchangeIDType:" << endl;
         cin >> myreq.ExchangeID;
         cout << "合约代码 TThostFtdcInstrumentIDType:" << endl;
@@ -1820,7 +1837,7 @@ void CTraderSpi::reqQueryCFMMCTradingAccountToken()
         CThostFtdcQueryCFMMCTradingAccountTokenField myreq = CThostFtdcQueryCFMMCTradingAccountTokenField();
         memset(&myreq, 0, sizeof(myreq));
         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "投资者代码 TThostFtdcInvestorIDType:" << endl;
         strcpy(myreq.InvestorID, user_id.c_str());
         int i = userapi->ReqQueryCFMMCTradingAccountToken(&myreq, ++nRequestID);
@@ -1839,7 +1856,7 @@ void CTraderSpi::reqFromBankToFutureByFuture()
         cout << "银行分支机构代码 TThostFtdcBankBrchIDType:" << endl;
         cin >> myreq.BankBranchID;
         cout << "期商代码 TThostFtdcBrokerIDType:" << endl;
-        strcpy(myreq.BrokerID,broker_id.c_str());
+        strcpy(myreq.BrokerID, broker_id.c_str());
         cout << "期商分支机构代码 TThostFtdcFutureBranchIDType:" << endl;
         cin >> myreq.BrokerBranchID;
         cout << "交易日期 TThostFtdcTradeDateType:" << endl;
@@ -1848,7 +1865,7 @@ void CTraderSpi::reqFromBankToFutureByFuture()
         cin >> myreq.TradeTime;
         cout << "银行流水号 TThostFtdcBankSerialType:" << endl;
         cin >> myreq.BankSerial;
-        // cout << "交易系统日期 TThostFtdcTradeDateType	TradingDa:" << endl;
+        // cout << "交易系统日期 TThostFtdcTradeDateType    TradingDa:" << endl;
         // cin >> myreq.;
         cout << "银期平台消息流水号 TThostFtdcSerialType:" << endl;
         cin >> myreq.PlateSerial;
@@ -1943,7 +1960,7 @@ void CTraderSpi::reqFromFutureToBankByFuture()
         cin >> myreq.TradeTime;
         cout << "银行流水号 TThostFtdcBankSerialType:" << endl;
         cin >> myreq.BankSerial;
-        // cout << "交易系统日期 TThostFtdcTradeDateType	TradingDa:" << endl;
+        // cout << "交易系统日期 TThostFtdcTradeDateType    TradingDa:" << endl;
         // cin >> myreq.;
         cout << "银期平台消息流水号 TThostFtdcSerialType:" << endl;
         cin >> myreq.PlateSerial;
@@ -5463,4 +5480,3 @@ void CTraderSpi::OnRtnChangeAccountByBank(CThostFtdcChangeAccountField* pChangeA
         cout << "错误代码 TThostFtdcErrorIDType:" << pChangeAccount->ErrorID << endl;
         cout << "错误信息 TThostFtdcErrorMsgType:" << pChangeAccount->ErrorMsg << endl;
 }
-

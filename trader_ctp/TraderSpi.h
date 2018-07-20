@@ -22,10 +22,11 @@ class CTraderSpi : public CThostFtdcTraderSpi {
 
         int session_id;
         string front_id;
-        
+
         string order_ref;
 
         bool require_auth;
+
     public:
         //-------------------------------------------------------------------------------------
         //req:主动函数的请求字典
@@ -40,8 +41,12 @@ class CTraderSpi : public CThostFtdcTraderSpi {
             , userapi(NULL)
             , auth_code("")
             , user_product_info("")
-            , connection_status(false),order_ref(""),session_id(0)
-            , login_status(false),auth_status(false),login_failed(false)
+            , connection_status(false)
+            , order_ref("")
+            , session_id(0)
+            , login_status(false)
+            , auth_status(false)
+            , login_failed(false)
             , require_auth(false)
         {
         }
@@ -198,35 +203,9 @@ class CTraderSpi : public CThostFtdcTraderSpi {
 
         bool IsErrorRspInfo(CThostFtdcRspInfoField* pRspInfo);
 
-        inline void load_config(const Document& d)
-        {
-                broker_id = d["broker_id"].GetString();
-                user_id = d["user_id"].GetString();
-                passwd = d["passwd"].GetString();
-                front_id = d["td_address"].GetString();
-        }
+        void load_config(const Document& d);
 
-        inline void connect()
-        {
-                if (userapi == nullptr) {
-                        //userapi = CThostFtdcTraderApi::CreateFtdcTraderApi("./log/trader/"); // 创建UserApi
-                        userapi = CThostFtdcTraderApi::CreateFtdcTraderApi(); // 创建UserApi
-
-                        if (!userapi) {
-                                throw "CtpTrader failed to create api";
-                        }
-                        userapi->RegisterSpi(this);
-                }
-
-                userapi->RegisterFront(const_cast<char*>(front_id.c_str())); // connect
-                // userapi->RegisterFront("tcp://180.169.101.178:41205"); // connect
-                userapi->SubscribePublicTopic(THOST_TERT_QUICK);       // need check
-                userapi->SubscribePublicTopic(THOST_TERT_QUICK);       // need check
-                // userapi->SubscribePrivateTopic(THOST_TERT_RESTART); // need check
-                // userapi->SubscribePrivateTopic(THOST_TERT_RESTART); // need check
-                userapi->Init();
-                // userapi->Join();
-        }
+        void connect();
 
     public:
         ///当客户端与交易后台建立起通信连接时（还未登录前），该方法被调用。
@@ -575,4 +554,3 @@ class CTraderSpi : public CThostFtdcTraderSpi {
         ///银行发起变更银行账号通知
         virtual void OnRtnChangeAccountByBank(CThostFtdcChangeAccountField* pChangeAccount);
 };
-

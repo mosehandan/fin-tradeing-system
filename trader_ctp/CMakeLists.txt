@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 2.8.4)
 
 add_compile_options(-std=c++11)
-# find_library(LIBTHOSTMDUSERAPI_PATH thosttraderapi ../lib)
-# # find_library(LIBZMQ_PATH libzmq ../lib)
+find_library(LIB_TRADER_PATH thosttraderapi ../lib)
+# find_library(LIBZMQ_PATH libzmq ../lib)
 #
-# if(NOT LIBTHOSTMDUSERAPI_PATH)
-#         MESSAGE(FATAL_ERROR "thosttraderapi lib not found")
-# ENDIF(NOT LIBTHOSTMDUSERAPI_PATH)
+if(NOT LIB_TRADER_PATH)
+        MESSAGE(FATAL_ERROR "thosttraderapi lib not found")
+ENDIF(NOT LIB_TRADER_PATH)
 
 
 include_directories(../include)
@@ -22,8 +22,8 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 
 # if you want to use link_directories, you should let add_executable after link_directories
 # target_link_libraries(main thostmduserapi})
-# target_link_libraries(CtpTrader ${LIBTHOSTMDUSERAPI_PATH})
-target_link_libraries(CtpTrader thosttraderapi)
+target_link_libraries(CtpTrader ${LIB_TRADER_PATH})
+# target_link_libraries(CtpTrader thosttraderapi)
 
 # if (CMAKE_SYSTEM_NAME MATCHES "Linux")
 #         message(STATUS "current platform:linux")
