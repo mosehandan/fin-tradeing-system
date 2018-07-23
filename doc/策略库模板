@@ -1,0 +1,25 @@
+暂时打算使用dict描述策略，样本如下：
+
+strategy = {
+
+	#策略名称
+	'name': 'Graham number 格雷厄姆数字价值投资法', 
+
+	#市场分类, 可以填 stock, future, option, 如套利则填写多个，例如stock,future
+	'market':stock, 
+
+	#换仓频率, year, month, week, day, minute, tick
+	'frequency':month,
+
+	#用到的数据库, 基本面fundamental, 行情数据market, 事件event, 如有新增即可添加
+	'data_source':fundamental,
+
+	#用到的具体数据
+	'data':'current ratio, pe, pb',
+
+	#一句话简单描述策略
+	'describe':'抗风险的大公司，高市值，高销售;偿债能力，不会有破产风险 current ratio>2, long term debt<working captial;赚钱能力，利润持续增长;PE ratio < 15;PB ratio <1.5;每个月调仓一次。',
+
+}
+
+
