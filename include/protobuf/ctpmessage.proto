@@ -15,25 +15,25 @@ message CThostFtdcDisseminationField
 message CThostFtdcReqUserLoginField
 {
 	///交易日
-	string TradingDay = 1;
+	string tradingday = 1;
 	///经纪公司代码
-	string BrokerID = 2;
+	string brokerid = 2;
 	///用户代码
-	string UserID = 3;
+	string userid = 3;
 	///密码
-	string Password = 4;
+	string password = 4;
 	///用户端产品信息
-	string UserProductInfo = 5;
+	string userproductinfo = 5;
 	///接口端产品信息
-	string InterfaceProductInfo = 6;
+	string interfaceproductinfo = 6;
 	///协议信息
-	string ProtocolInfo = 7;
-	///Mac地址
-	string MacAddress = 8;
+	string protocolinfo = 7;
+	///mac地址
+	string macaddress = 8;
 	///动态密码
-	string OneTimePassword = 9;
-	///终端IP地址
-	string ClientIPAddress = 10;
+	string onetimepassword = 9;
+	///终端ip地址
+	string clientipaddress = 10;
 }
 
 ///用户登录应答

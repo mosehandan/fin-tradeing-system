@@ -1,69 +1,166 @@
 syntax = "proto3";
 
-package ctp;
+package guosen;
 
-enum MessageType{
-    // 期货行情
-    ctp_sub_marketdata;
-    ctp_un_sub_marketdata;
-    ctp_md_
-    ctp_future_tick = 0;
-    future_transaction = 1;
-    future_orderqueue = 2;
-
-    // 系统消息
-    ctp_connect_result = 3;
-    ctp_login_result = 4;
-    
-
-    // 期货交易
-    
+message ProtoMsg{
+    MsgType head = 1;
+    bytes body = 2;
 }
 
-message MessageHead{
-    MessageType = 1;
-
+enum MsgType{
+    CTP_RTN_CONNECT = 0;
+    CTP_RSP_LOGIN = 1; 
+    CTP_RTN_TICK = 2;
+    ctpheartwarning = 3;
+    ctprsplogout = 4;
+    ctprsperror = 5;
 }
 
-message Message{
-
-    /* MessageHead head = 1; */
-    MessageType = 1;
-    bytes   body = 2;
-}
-
-//数据类型MSG_DATA_FUTURE
-message TDF_FUTURE_DATA
+///响应信息
+message CtpRspError 
 {
-	//TODO: 字段ctp行情中没有
-	string 	szwindcode = 1;         //600001.sh
-	int32	auctionprice = 27;			    //波动性中断参考价
-	int32	auctionqty = 28;			    //波动性中断集合竞价虚拟匹配量
-	int32 	status = 6;				//状态
+	///错误代码
+	int32 errorid = 1;
+	///错误信息
+	string errormsg = 2;
+}
 
-	string 	szcode = 2;             //原始code
-	string 	actionday = 3;             //业务发生日(自然日)
-	string 	tradingday = 4;            //交易日
-	int32 	time = 5;					//时间(hhmmssmmm)
-	double 	preopeninterest = 7;		//昨持仓
-	double 	preclose = 8;				//昨收盘价
-	double	presettleprice = 9;		//昨结算
-	double 	open = 10;					//开盘价
-	double 	high = 11;					//最高价
-	double 	low = 12;					//最低价
-	double	last = 13;				//最新价
-	int32 	volume = 14;				//成交总量
-	double 	turnover = 15;				//成交总金额
-	double 	openinterest = 16;			//持仓总量
-	double 	close = 17;				//今收盘
-	double 	settleprice = 18;			//今结算
-	double	highlimited = 19;			//涨停价
-	double 	lowlimited = 20;			//跌停价
-	double 	predelta = 21;			    //昨虚实度
-	double 	currdelta = 22;            //今虚实度
-	repeated double askprice = 23;			//申卖价
-	repeated int32 	askvol = 24;			//申卖量
-	repeated double bidprice = 25;			//申买价
-	repeated int32	bidvol = 26;			//申买量
-	double 	avgprice = 29;                      //郑商所期货均价
-};
+message CtpHeartWarning{
+    int32 ntimelapse;
+}
+
+message CtpRspLogout{
+
+	///经纪公司代码
+	string brokerid = 1;
+	///用户代码
+	string userid = 2;
+}
+///connectd statu
+message CtpRtnConnect
+{
+    bool status = 1;
+    int32 nreason = 2;
+}
+///用户登录应答
+message CtpRspLogin
+{
+	///交易日
+	string tradingday = 1;
+	///登录成功时间
+	string logintime = 2;
+	///经纪公司代码
+	string brokerid = 3;
+	///用户代码
+	string userid = 4;
+	///交易系统名称
+	string systemname = 5;
+	///前置编号
+	int32 frontid = 6;
+	///会话编号
+	int32 sessionid = 7;
+	///最大报单引用
+	string maxorderref = 8;
+	///上期所时间
+	string shfetime = 9;
+	///大商所时间
+	string dcetime = 10;
+	///郑商所时间
+	string czcetime = 11;
+	///中金所时间
+	string ffextime = 12;
+	///能源中心时间
+	string inetime = 13;
+}
+///深度行情
+message CtpRtnTick
+{
+	///交易日
+	string tradingday = 1;
+	///合约代码
+	string instrumentid = 2;
+	///交易所代码
+	string exchangeid = 3;
+	///合约在交易所的代码
+	string exchangeinstid = 4;
+	///最新价
+	double lastprice = 5;
+	///上次结算价
+	double presettlementprice = 6;
+	///昨收盘
+	double precloseprice = 7;
+	///昨持仓量
+	double preopeninterest = 8;
+	///今开盘
+	double openprice = 9;
+	///最高价
+	double highestprice = 10;
+	///最低价
+	double lowestprice = 11;
+	///数量
+	int32 volume = 12;
+	///成交金额
+	double turnover = 13;
+	///持仓量
+	double openinterest = 14;
+	///今收盘
+	double closeprice = 15;
+	///本次结算价
+	double settlementprice = 16;
+	///涨停板价
+	double upperlimitprice = 17;
+	///跌停板价
+	double lowerlimitprice = 18;
+	///昨虚实度
+	double predelta = 19;
+	///今虚实度
+	double currdelta = 20;
+	///最后修改时间
+	string updatetime = 21;
+	///最后修改毫秒
+	int32 updatemillisec = 22;
+	///申买价一
+	double bidprice1 = 23;
+	///申买量一
+	int32 bidvolume1 = 24;
+	///申卖价一
+	double askprice1 = 25;
+	///申卖量一
+	int32 askvolume1 = 26;
+	///申买价二
+	double bidprice2 = 27;
+	///申买量二
+	int32 bidvolume2 = 28;
+	///申卖价二
+	double askprice2 = 29;
+	///申卖量二
+	int32 askvolume2 = 30;
+	///申买价三
+	double bidprice3 = 31;
+	///申买量三
+	int32 bidvolume3 = 32;
+	///申卖价三
+	double askprice3 = 33;
+	///申卖量三
+	int32 askvolume3 = 34;
+	///申买价四
+	double bidprice4 = 35;
+	///申买量四
+	int32 bidvolume4 = 36;
+	///申卖价四
+	double askprice4 = 37;
+	///申卖量四
+	int32 askvolume4 = 38;
+	///申买价五
+	double bidprice5 = 39;
+	///申买量五
+	int32 bidvolume5 = 40;
+	///申卖价五
+	double askprice5 = 41;
+	///申卖量五
+	int32 askvolume5 = 42;
+	///当日均价
+	double averageprice = 43;
+	///业务日期
+	string actionday = 44;
+}

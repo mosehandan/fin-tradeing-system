@@ -23,7 +23,26 @@ if __name__ == '__main__':
 
     with open('future_contract.txt','w') as f:
         for i in all_contract:
-            f.write(str(i)+'\n')
+            temp_line = str(i)
+
+            if temp_line.find('IF') != -1 :
+                f.write(temp_line+'\n')
+                continue
+
+            if temp_line.find('IC') != -1 :
+                f.write(temp_line+'\n')
+                continue
+
+            if temp_line.find('IH') != -1 :
+                f.write(temp_line+'\n')
+                continue
+
+            if temp_line.find('TF') != -1 :
+                f.write(temp_line+'\n')
+                continue
+
+            temp_line = temp_line.lower()
+            f.write(temp_line+'\n')
             
 
     print(str( len(all_contract) ) + " future contract load complete...")

@@ -1,19 +1,23 @@
 #include "MdSpi.h"
-#include "ctp.pb.h"
-#include "zhelpers.hpp"
+#include "ZmqServer.h"
 #include <fstream>
 #include <vector>
-// #include <stdio.h>
-
-extern Document d;
-extern zmq::context_t context;
-extern zmq::socket_t publisher;
 
 inline bool CMdSpi::IsErrorRspInfo(CThostFtdcRspInfoField* pRspInfo)
 {
         bool bResult = (pRspInfo && pRspInfo->ErrorID != 0);
-        if (bResult)
-                cerr << "--->>> ErrorID=" << pRspInfo->ErrorID << ", ErrorMsg=" << pRspInfo->ErrorMsg << endl;
+        if (bResult) {
+                // cerr << "--->>> ErrorID=" << pRspInfo->ErrorID << ", ErrorMsg=" << pRspInfo->ErrorMsg << endl;
+                guosen::CtpRspError body_message;
+                body_message.set_ErrorID(pRspInfo->ErrorID);
+                body_message.set_ErrorMsg(pRspInfo->ErrorMsg);
+
+                guosen::ProtoMsg proto_message;
+                proto_message.set_head(guosen::MsgType::ctpheartwarning);
+                body_message.SerializeToString(proto_message.mutable_body());
+
+                do_publish(proto_message);
+        }
         return bResult;
 }
 void CMdSpi::load_config(const Document& d)
@@ -50,7 +54,7 @@ int CMdSpi::exit()
 
 void CMdSpi::subscribeMarketData(const vector<string>& instruments)
 {
-        cout << "--->>> " << __FUNCTION__ << endl;
+        // cout << "--->>> " << __FUNCTION__ << endl;
         // char* pp[] = { "IF1807" };
         // int iResult = pUserCMdSpi->SubscribeMarketData(pp, 1);
 
@@ -62,26 +66,29 @@ void CMdSpi::subscribeMarketData(const vector<string>& instruments)
                 // userapi->SubscribeMarketData({buff}, 1);
         }
         int iResult = userapi->SubscribeMarketData(insts, ncount);
-        cerr << "--->>>SubscribeMarketData " << ncount << " request: " << ( iResult == 0 ? "success" : "failed") << endl;
+        // cerr << "--->>>SubscribeMarketData " << ncount << " request: " << (iResult == 0 ? "success" : "failed") << endl;
 }
 
 void CMdSpi::subscribeAllMarketData()
 {
 
-        ifstream in("./config/future_contract.txt");
-
-        if (in) {
-
-                string line;
-                vector<string> sub_code;
-
-                while (getline(in, line)) {
-                        sub_code.push_back(line);
-                }
-                subscribeMarketData(sub_code);
-
-        } else
-                cerr << "can not open future_contract file!" << endl;
+        vector<string> sub_code;
+        sub_code.push_back("IF1808");
+        subscribeMarketData(sub_code);
+        // ifstream in("./config/future_contract.txt");
+        //
+        // if (in) {
+        //
+        //         string line;
+        //         vector<string> sub_code;
+        //
+        //         while (getline(in, line)) {
+        //                 sub_code.push_back(line);
+        //         }
+        //         subscribeMarketData(sub_code);
+        //
+        // } else
+        //         cerr << "can not open future_contract file!" << endl;
 }
 
 int CMdSpi::unSubscribeMarketData(string instrumentID)
@@ -155,8 +162,17 @@ int CMdSpi::reqUserLogout()
 ///当客户端与交易后台建立起通信连接时（还未登录前），该方法被调用。
 void CMdSpi::OnFrontConnected()
 {
-        cerr << "--->>> " << __FUNCTION__ << endl;
+        // cerr << "--->>> " << __FUNCTION__ << endl;
         // user login request
+        guosen::CtpRtnConnect body_message;
+        body_message.set_status(true);
+        body_message.set_nreason(0);
+
+        guosen::ProtoMsg proto_message;
+        proto_message.set_head(guosen::MsgType::CTP_RTN_CONNECT);
+        body_message.SerializeToString(proto_message.mutable_body());
+        do_publish(proto_message);
+
         reqUserLogin();
 }
 
@@ -169,43 +185,83 @@ void CMdSpi::OnFrontConnected()
 ///        0x2003 收到错误报文
 void CMdSpi::OnFrontDisconnected(int nReason)
 {
-        cerr << "--->>> " << __FUNCTION__ << endl;
-        cerr << "--->>> Reason = " << nReason << endl;
-        // publisher.send("OnFrontDisconnected");
+        // cerr << "--->>> " << __FUNCTION__ << endl;
+        // cerr << "--->>> Reason = " << nReason << endl;
+
+        guosen::CtpRtnConnect body_message;
+        body_message.set_status(false);
+        body_message.set_nreason(nReason);
+
+        guosen::ProtoMsg proto_message;
+        proto_message.set_head(guosen::MsgType::CTP_RTN_CONNECT);
+        body_message.SerializeToString(proto_message.mutable_body());
+
+        do_publish(proto_message);
 }
 
 ///心跳超时警告。当长时间未收到报文时，该方法被调用。
 ///@param nTimeLapse 距离上次接收报文的时间
 void CMdSpi::OnHeartBeatWarning(int nTimeLapse)
 {
-        cerr << "--->>> " << __FUNCTION__ << endl;
-        cerr << "--->>> nTimerLapse = " << nTimeLapse << endl;
+        // cerr << "--->>> " << __FUNCTION__ << endl;
+        // cerr << "--->>> nTimerLapse = " << nTimeLapse << endl;
+        guosen::CtpHeartWarning body_message;
+        body_message.set_ntimelapse(nTimeLapse);
+
+        guosen::ProtoMsg proto_message;
+        proto_message.set_head(guosen::MsgType::ctpheartwarning);
+        body_message.SerializeToString(proto_message.mutable_body());
+
+        do_publish(proto_message);
 }
 
 ///登录请求响应
 void CMdSpi::OnRspUserLogin(CThostFtdcRspUserLoginField* pRspUserLogin, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
-        cout << "--->>> " << __FUNCTION__ << endl;
-        if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "交易日 TThostFtdcDateType:" << pRspUserLogin->TradingDay << endl;
-                cout << "登录成功时间 TThostFtdcTimeType:" << pRspUserLogin->LoginTime << endl;
-                cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pRspUserLogin->BrokerID << endl;
-                cout << "用户代码 TThostFtdcUserIDType:" << pRspUserLogin->UserID << endl;
-                cout << "交易系统名称 TThostFtdcSystemNameType:" << pRspUserLogin->SystemName << endl;
-                cout << "前置编号 TThostFtdcFrontIDType:" << pRspUserLogin->FrontID << endl;
-                cout << "会话编号 TThostFtdcSessionIDType:" << pRspUserLogin->SessionID << endl;
-                cout << "最大报单引用 TThostFtdcOrderRefType:" << pRspUserLogin->MaxOrderRef << endl;
-                cout << "上期所时间 TThostFtdcTimeType:" << pRspUserLogin->SHFETime << endl;
-                cout << "大商所时间 TThostFtdcTimeType:" << pRspUserLogin->DCETime << endl;
-                cout << "郑商所时间 TThostFtdcTimeType:" << pRspUserLogin->CZCETime << endl;
-                cout << "中金所时间 TThostFtdcTimeType:" << pRspUserLogin->FFEXTime << endl;
-                cout << "能源中心时间 TThostFtdcTimeType:" << pRspUserLogin->INETime << endl;
+        // cout << "--->>> " << __FUNCTION__ << endl;
+        // if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
+        //         cout << "交易日 TThostFtdcDateType:" << pRspUserLogin->TradingDay << endl;
+        //         cout << "登录成功时间 TThostFtdcTimeType:" << pRspUserLogin->LoginTime << endl;
+        //         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pRspUserLogin->BrokerID << endl;
+        //         cout << "用户代码 TThostFtdcUserIDType:" << pRspUserLogin->UserID << endl;
+        //         cout << "交易系统名称 TThostFtdcSystemNameType:" << pRspUserLogin->SystemName << endl;
+        //         cout << "前置编号 TThostFtdcFrontIDType:" << pRspUserLogin->FrontID << endl;
+        //         cout << "会话编号 TThostFtdcSessionIDType:" << pRspUserLogin->SessionID << endl;
+        //         cout << "最大报单引用 TThostFtdcOrderRefType:" << pRspUserLogin->MaxOrderRef << endl;
+        //         cout << "上期所时间 TThostFtdcTimeType:" << pRspUserLogin->SHFETime << endl;
+        //         cout << "大商所时间 TThostFtdcTimeType:" << pRspUserLogin->DCETime << endl;
+        //         cout << "郑商所时间 TThostFtdcTimeType:" << pRspUserLogin->CZCETime << endl;
+        //         cout << "中金所时间 TThostFtdcTimeType:" << pRspUserLogin->FFEXTime << endl;
+        //         cout << "能源中心时间 TThostFtdcTimeType:" << pRspUserLogin->INETime << endl;
+        //
+        //         // front_id = pRspUserLogin->FrontID;
+        //         // session_id = pRspUserLogin->SessionID;
+        //         // login_status = true;
+        //         // order_ref = pRspUserLogin->MaxOrderRef;
+        // }
+        if (IsErrorRspInfo(pRspInfo) or pRspUserLogin == NULL)
+                return;
 
-                // front_id = pRspUserLogin->FrontID;
-                // session_id = pRspUserLogin->SessionID;
-                // login_status = true;
-                // order_ref = pRspUserLogin->MaxOrderRef;
-        }
+        guosen::CtpRspLogin body_message;
+        body_message.set_tradingday(pRspUserLogin->TradingDay);
+        body_message.set_logintime(pRspUserLogin->LoginTime);
+        body_message.set_brokerid(pRspUserLogin->BrokerID);
+        body_message.set_userid(pRspUserLogin->UserID);
+        body_message.set_systemname(pRspUserLogin->SystemName);
+        body_message.set_frontid(pRspUserLogin->FrontID);
+        body_message.set_sessionid(pRspUserLogin->SessionID);
+        body_message.set_maxorderref(pRspUserLogin->MaxOrderRef);
+        body_message.set_shfetime(pRspUserLogin->SHFETime);
+        body_message.set_dcetime(pRspUserLogin->DCETime);
+        body_message.set_czcetime(pRspUserLogin->CZCETime);
+        body_message.set_ffextime(pRspUserLogin->FFEXTime);
+        body_message.set_inetime(pRspUserLogin->INETime);
+
+        guosen::ProtoMsg proto_message;
+        proto_message.set_head(guosen::MsgType::CTP_RTN_CONNECT);
+        body_message.SerializeToString(proto_message.mutable_body());
+
+        do_publish(proto_message);
 
         subscribeAllMarketData();
 }
@@ -213,11 +269,21 @@ void CMdSpi::OnRspUserLogin(CThostFtdcRspUserLoginField* pRspUserLogin, CThostFt
 ///登出请求响应
 void CMdSpi::OnRspUserLogout(CThostFtdcUserLogoutField* pUserLogout, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
-        cout << "--->>> " << __FUNCTION__ << endl;
-        if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
-                cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pUserLogout->BrokerID << endl;
-                cout << "用户代码 TThostFtdcUserIDType:" << pUserLogout->UserID << endl;
-        }
+        // cout << "--->>> " << __FUNCTION__ << endl;
+        // if (bIsLast && !IsErrorRspInfo(pRspInfo)) {
+        //         cout << "经纪公司代码 TThostFtdcBrokerIDType:" << pUserLogout->BrokerID << endl;
+        //         cout << "用户代码 TThostFtdcUserIDType:" << pUserLogout->UserID << endl;
+        // }
+
+        guosen::CtpRspLogout body_message;
+        body_message.set_brokerid(pUserLogout->BrokerID);
+        body_message.set_userid(pUserLogout->UserID);
+
+        guosen::ProtoMsg proto_message;
+        proto_message.set_head(guosen::MsgType::ctprsplogout);
+        body_message.SerializeToString(proto_message.mutable_body());
+
+        do_publish(proto_message);
 }
 
 ///错误应答
@@ -230,8 +296,8 @@ void CMdSpi::OnRspError(CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool b
 void CMdSpi::OnRspSubMarketData(CThostFtdcSpecificInstrumentField* pSpecificInstrument, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
         cout << "--->>> " << __FUNCTION__ << endl;
-        if ( pSpecificInstrument != NULL && !IsErrorRspInfo(pRspInfo)) {
-                cout <<  pSpecificInstrument->InstrumentID << endl;
+        if (pSpecificInstrument != NULL && !IsErrorRspInfo(pRspInfo)) {
+                cout << pSpecificInstrument->InstrumentID << endl;
                 // cout << "SubscribeMarketData success!" << endl;
         }
 }
@@ -257,74 +323,75 @@ void CMdSpi::OnRspUnSubForQuoteRsp(CThostFtdcSpecificInstrumentField* pSpecificI
 ///深度行情通知
 void CMdSpi::OnRtnDepthMarketData(CThostFtdcDepthMarketDataField* pDepthMarketData)
 {
+
         if (pDepthMarketData == NULL) {
                 cout << "p is null ,no data" << endl;
                 return;
         }
-        ctp::TDF_FUTURE_DATA td;
-        // TODO: 该字段tdf中未使用
-        // cerr << "ExchangeID=" << pDepthMarketData->ExchangeID << endl;
-        // cerr << "ExchangeInstID=" << pDepthMarketData->ExchangeInstID << endl;
-        // cerr << "UpdateTime=" << pDepthMarketData->UpdateTime << endl;
 
-        td.set_szcode(pDepthMarketData->InstrumentID);                //原始Code
-        td.set_nactionday(pDepthMarketData->ActionDay);               //业务发生日(自然日)
-        td.set_ntradingday(pDepthMarketData->TradingDay);             //交易日
-        td.set_ntime(pDepthMarketData->UpdateMillisec);               //时间(HHMMSSmmm)
-        td.set_ipreopeninterest(pDepthMarketData->PreOpenInterest);   //昨持仓
-        td.set_npreclose(pDepthMarketData->PreClosePrice);            //昨收盘价
-        td.set_npresettleprice(pDepthMarketData->PreSettlementPrice); //昨结算
-        td.set_nopen(pDepthMarketData->OpenPrice);                    //开盘价
-        td.set_nhigh(pDepthMarketData->HighestPrice);                 //最高价
-        td.set_nlow(pDepthMarketData->LowestPrice);                   //最低价
-        td.set_nmatch(pDepthMarketData->LastPrice);                   //最新价
-        td.set_ivolume(pDepthMarketData->Volume);                     //成交总量
-        td.set_iturnover(pDepthMarketData->Turnover);                 //成交总金额
-        td.set_iopeninterest(pDepthMarketData->OpenInterest);         //持仓总量
-        td.set_nclose(pDepthMarketData->ClosePrice);                  //今收盘
-        td.set_nsettleprice(pDepthMarketData->SettlementPrice);       //今结算
-        td.set_nhighlimited(pDepthMarketData->UpperLimitPrice);       //涨停价
-        td.set_nlowlimited(pDepthMarketData->LowerLimitPrice);        //跌停价
-        td.set_npredelta(pDepthMarketData->PreDelta);                 //昨虚实度
-        td.set_ncurrdelta(pDepthMarketData->CurrDelta);               //今虚实度
+        guosen::CtpRtnTick body_message;
 
-        td.add_naskprice(pDepthMarketData->AskPrice1); //申卖价
-        td.add_naskprice(pDepthMarketData->AskPrice2); //申卖价
-        td.add_naskprice(pDepthMarketData->AskPrice3); //申卖价
-        td.add_naskprice(pDepthMarketData->AskPrice4); //申卖价
-        td.add_naskprice(pDepthMarketData->AskPrice5); //申卖价
+        body_message.set_exchangeid(pDepthMarketData->ExchangeID);
+        body_message.set_exchangeinstid(pDepthMarketData->ExchangeInstID);
+        body_message.set_updatetime(pDepthMarketData->UpdateTime);
+        body_message.set_instrumentid(pDepthMarketData->InstrumentID);             //原始Code
+        body_message.set_actionday(pDepthMarketData->ActionDay);                   //业务发生日(自然日)
+        body_message.set_tradingday(pDepthMarketData->TradingDay);                 //交易日
+        body_message.set_updatemillisec(pDepthMarketData->UpdateMillisec);         //时间(HHMMSSmmm)
+        body_message.set_preopeninterest(pDepthMarketData->PreOpenInterest);       //昨持仓
+        body_message.set_precloseprice(pDepthMarketData->PreClosePrice);           //昨收盘价
+        body_message.set_presettlementprice(pDepthMarketData->PreSettlementPrice); //昨结算
+        body_message.set_openprice(pDepthMarketData->OpenPrice);                   //开盘价
+        body_message.set_highestprice(pDepthMarketData->HighestPrice);             //最高价
+        body_message.set_lowestprice(pDepthMarketData->LowestPrice);               //最低价
+        body_message.set_lastprice(pDepthMarketData->LastPrice);                   //最新价
+        body_message.set_volume(pDepthMarketData->Volume);                         //成交总量
+        body_message.set_turnover(pDepthMarketData->Turnover);                     //成交总金额
+        body_message.set_openinterest(pDepthMarketData->OpenInterest);             //持仓总量
+        body_message.set_closeprice(pDepthMarketData->ClosePrice);                 //今收盘
+        body_message.set_settlementprice(pDepthMarketData->SettlementPrice);       //今结算
+        body_message.set_upperlimitprice(pDepthMarketData->UpperLimitPrice);       //涨停价
+        body_message.set_lowerlimitprice(pDepthMarketData->LowerLimitPrice);       //跌停价
+        body_message.set_predelta(pDepthMarketData->PreDelta);                     //昨虚实度
+        body_message.set_currdelta(pDepthMarketData->CurrDelta);                   //今虚实度
 
-        td.add_naskvol(pDepthMarketData->AskVolume1); //申卖量
-        td.add_naskvol(pDepthMarketData->AskVolume2); //申卖量
-        td.add_naskvol(pDepthMarketData->AskVolume3); //申卖量
-        td.add_naskvol(pDepthMarketData->AskVolume4); //申卖量
-        td.add_naskvol(pDepthMarketData->AskVolume5); //申卖量
+        body_message.set_askprice1(pDepthMarketData->AskPrice1); //申卖价
+        body_message.set_askprice2(pDepthMarketData->AskPrice2); //申卖价
+        body_message.set_askprice3(pDepthMarketData->AskPrice3); //申卖价
+        body_message.set_askprice4(pDepthMarketData->AskPrice4); //申卖价
+        body_message.set_askprice5(pDepthMarketData->AskPrice5); //申卖价
 
-        td.add_nbidprice(pDepthMarketData->BidPrice1); //申买价
-        td.add_nbidprice(pDepthMarketData->BidPrice2); //申买价
-        td.add_nbidprice(pDepthMarketData->BidPrice3); //申买价
-        td.add_nbidprice(pDepthMarketData->BidPrice4); //申买价
-        td.add_nbidprice(pDepthMarketData->BidPrice5); //申买价
+        body_message.set_askvolume1(pDepthMarketData->AskVolume1); //申卖量
+        body_message.set_askvolume2(pDepthMarketData->AskVolume2); //申卖量
+        body_message.set_askvolume3(pDepthMarketData->AskVolume3); //申卖量
+        body_message.set_askvolume4(pDepthMarketData->AskVolume4); //申卖量
+        body_message.set_askvolume5(pDepthMarketData->AskVolume5); //申卖量
 
-        td.add_nbidvol(pDepthMarketData->BidVolume1);     //申买量
-        td.add_nbidvol(pDepthMarketData->BidVolume2);     //申买量
-        td.add_nbidvol(pDepthMarketData->BidVolume3);     //申买量
-        td.add_nbidvol(pDepthMarketData->BidVolume4);     //申买量
-        td.add_nbidvol(pDepthMarketData->BidVolume5);     //申买量
-        td.set_navgprice(pDepthMarketData->AveragePrice); //郑商所期货均价
+        body_message.set_bidprice1(pDepthMarketData->BidPrice1); //申买价
+        body_message.set_bidprice2(pDepthMarketData->BidPrice2); //申买价
+        body_message.set_bidprice3(pDepthMarketData->BidPrice3); //申买价
+        body_message.set_bidprice4(pDepthMarketData->BidPrice4); //申买价
+        body_message.set_bidprice5(pDepthMarketData->BidPrice5); //申买价
 
-        //TODO: 字段ctp行情中没有
-        td.set_szwindcode("");   //600001.SH
-        td.set_nauctionprice(0); //波动性中断参考价
-        td.set_nauctionqty(0);   //波动性中断集合竞价虚拟匹配量
-        td.set_nstatus(0);       //状态
+        body_message.set_bidvolume1(pDepthMarketData->BidVolume1);     //申买量
+        body_message.set_bidvolume2(pDepthMarketData->BidVolume2);     //申买量
+        body_message.set_bidvolume3(pDepthMarketData->BidVolume3);     //申买量
+        body_message.set_bidvolume4(pDepthMarketData->BidVolume4);     //申买量
+        body_message.set_bidvolume5(pDepthMarketData->BidVolume5);     //申买量
+        body_message.set_averageprice(pDepthMarketData->AveragePrice); //郑商所期货均价
 
-        auto msg_size = td.ByteSize();
-        zmq::message_t message(msg_size);
-        // td.SerializerToString(message.data(),msg_size);
-        td.SerializeToArray(message.data(), msg_size);
-        // publisher.send(message);
-        publisher.send(std::move(message));
+        // cout << "szcode:" << td.szcode() << endl;
+        // cout << "ntime:" << td.time() << endl;
+        // cout << "open:" << td.open() << endl;
+        // cout << "high:" << td.high() << endl;
+        // cout << "close:" << td.last() << endl;
+        //
+
+        guosen::ProtoMsg proto_message;
+        proto_message.set_head(guosen::MsgType::CTP_RTN_TICK);
+        body_message.SerializeToString(proto_message.mutable_body());
+
+        do_publish(proto_message);
 }
 
 ///询价通知

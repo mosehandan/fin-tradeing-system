@@ -1,8 +1,9 @@
 #pragma once
 #include "FileUtils.h"
 #include "ThostFtdcMdApi.h"
-// #include "ctp.pb.h"
-// #include <zmq.hpp>
+#include <string>
+
+using namespace std;
 
 class CMdSpi : public CThostFtdcMdSpi {
 private:

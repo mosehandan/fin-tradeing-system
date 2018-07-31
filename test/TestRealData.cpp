@@ -1,46 +1,56 @@
-#include "ctp.pb.h"
+#include "ZmqServer.h"
 #include <iostream>
-#include "zhelpers.hpp"
 
 using namespace std;
 
-
-int main (int argc, char *argv[])
+int main(int argc, char* argv[])
 {
-	zmq::context_t context (1);
-	//  Socket to talk to server
-	std::cout << "Collecting data from real data server...\n" << std::endl;
+        zmq::context_t context(1);
+        //  Socket to talk to server
+        std::cout << "Collecting data from real data server..."
+                  << std::endl;
 
-	zmq::socket_t subscriber (context, ZMQ_SUB);
-	subscriber.setsockopt(ZMQ_SUBSCRIBE, "", 0);
-	subscriber.connect("tcp://localhost:5520");
+        zmq::socket_t subscriber(context, ZMQ_SUB);
+        subscriber.setsockopt(ZMQ_SUBSCRIBE, "", 0);
+        subscriber.connect("tcp://localhost:5520");
 
-	// subscriber.connect("tcp://localhost:5558");
+        // subscriber.connect("tcp://localhost:5558");
 
-	int count = 0;
+        while (1) {
+                zmq::message_t message;
+                subscriber.recv(&message);
 
-	while(1){
-		zmq::message_t message;
-		subscriber.recv(&message);
+                guosen::ProtoMsg proto_msg;
+                proto_msg.ParseFromArray(message.data(), message.size());
 
-		ctp::TDF_FUTURE_DATA td;
+                guosen::MsgType msg_type = proto_msg.head();
 
-		td.ParseFromArray(message.data(),message.size());
+                switch (proto_msg.head()) {
+                case guosen::MsgType::CTP_RTN_CONNECT: {
+                        guosen::CtpRtnConnect body_msg;
+                        body_msg.ParseFromString(proto_msg.body());
+                        cout << "status:" << body_msg.status() << endl;
+                        cout << "nreason:" << body_msg.nreason() << endl;
+                        break;
+                }
 
-		count = count + 1;
+                case guosen::MsgType::CTP_RTN_TICK: {
+                        guosen::CtpRtnTick body_msg;
+                        body_msg.ParseFromString(proto_msg.body());
+                        cout << "time:" << body_msg.updatetime() << endl;
+                        cout << "open:" << body_msg.openprice() << endl;
+                        cout << "close:" << body_msg.lastprice() << endl;
+                        break;
+                }
 
-		if (count > 10){
-			cout << "szcode:" << td.szcode() << endl;
-			cout << "ntime:" << td.ntime() << endl;
-			cout << "open:" << td.nopen() << endl;
-			cout << "high:" << td.nhigh() << endl;
-			cout << "close:" << td.nmatch() << endl;
-
-			count = 0;
-		}
-
-		// // cout << "what i get is :" << static_cast<char*>(message.data()) << endl;
-	}
-	google::protobuf::ShutdownProtobufLibrary();
-
+                case guosen::MsgType::CTP_RSP_LOGIN: {
+                        guosen::CtpRspLogin body_msg;
+                        body_msg.ParseFromString(proto_msg.body());
+                        cout << "brokerid:" << body_msg.brokerid() << endl;
+                        cout << "userid:" << body_msg.userid() << endl;
+                        break;
+                }
+                }
+        }
+        google::protobuf::ShutdownProtobufLibrary();
 }

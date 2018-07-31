@@ -15,6 +15,7 @@ context = zmq.Context()
 socket = context.socket(zmq.SUB)
 
 socket.connect("tcp://localhost:5520")
+socket.setsockopt_string(zmq.SUBSCRIBE, "")
 
 # Subscribe to zipcode, default is NYC, 10001
 #  zip_filter = sys.argv[1] if len(sys.argv) > 1 else "10001"
@@ -26,12 +27,19 @@ socket.connect("tcp://localhost:5520")
 #  socket.setsockopt_string(zmq.SUBSCRIBE, zip_filter)
 #  socket.setsockopt_string(zmq.SUBSCRIBE, "002736.sz")
 
+ncount = 1
+
 while( True ):
     temp_string = socket.recv_string()
     td = ctp.TDF_FUTURE_DATA()
 
-    td.ParseFromString( temp_string )
+    #  td.ParseFromString( temp_string )
+    if ncount > 10 :
+        print(temp_string)
+        ncount = 1
 
-    print("szcode: %s, ntime %d,open %d,high %d,close %d" % (
-        td.szcode,td.ntime,td.nopen,td.nhigh,td.nmatch ) )
+    ncount = ncount + 1
+
+    #  print("szcode: %s, ntime %d,open %d,high %d,close %d" % (
+    #      td.szcode,td.ntime,td.nopen,td.nhigh,td.nmatch ) )
     #  print("receive real data from port 5520 : %s" % temp_string)
