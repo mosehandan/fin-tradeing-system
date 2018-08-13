@@ -1,0 +1,8923 @@
+syntax = "proto3";
+
+package ctp;
+
+///信息分发
+message CThostFtdcDisseminationField
+{
+	///序列系列号
+	int32 SequenceSeries = 1;
+	///序列号
+	int32 SequenceNo = 2;
+}
+
+///用户登录请求
+message CThostFtdcReqUserLoginField
+{
+	///交易日
+	string TradingDay = 1;
+	///经纪公司代码
+	string BrokerID = 2;
+	///用户代码
+	string UserID = 3;
+	///密码
+	string Password = 4;
+	///用户端产品信息
+	string UserProductInfo = 5;
+	///接口端产品信息
+	string InterfaceProductInfo = 6;
+	///协议信息
+	string ProtocolInfo = 7;
+	///Mac地址
+	string MacAddress = 8;
+	///动态密码
+	string OneTimePassword = 9;
+	///终端IP地址
+	string ClientIPAddress = 10;
+}
+
+///用户登录应答
+message CThostFtdcRspUserLoginField
+{
+	///交易日
+	string TradingDay = 1;
+	///登录成功时间
+	string LoginTime = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///用户代码
+	string UserID = 4;
+	///交易系统名称
+	string SystemName = 5;
+	///前置编号
+	int32 FrontID = 6;
+	///会话编号
+	int32 SessionID = 7;
+	///最大报单引用
+	string MaxOrderRef = 8;
+	///上期所时间
+	string SHFETime = 9;
+	///大商所时间
+	string DCETime = 10;
+	///郑商所时间
+	string CZCETime = 11;
+	///中金所时间
+	string FFEXTime = 12;
+	///能源中心时间
+	string INETime = 13;
+}
+
+///用户登出请求
+message CThostFtdcUserLogoutField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+}
+
+///强制交易员退出
+message CThostFtdcForceUserLogoutField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+}
+
+///客户端认证请求
+message CThostFtdcReqAuthenticateField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+	///用户端产品信息
+	string UserProductInfo = 3;
+	///认证码
+	string AuthCode = 4;
+}
+
+///客户端认证响应
+message CThostFtdcRspAuthenticateField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+	///用户端产品信息
+	string UserProductInfo = 3;
+}
+
+///客户端认证信息
+message CThostFtdcAuthenticationInfoField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+	///用户端产品信息
+	string UserProductInfo = 3;
+	///认证信息
+	string AuthInfo = 4;
+	///是否为认证结果
+	int32 IsResult = 5;
+}
+
+///银期转帐报文头
+message CThostFtdcTransferHeaderField
+{
+	///版本号，常量，1.0
+	string Version = 1;
+	///交易代码，必填
+	string TradeCode = 2;
+	///交易日期，必填，格式：yyyymmdd
+	string TradeDate = 3;
+	///交易时间，必填，格式：hhmmss
+	string TradeTime = 4;
+	///发起方流水号，N/A
+	string TradeSerial = 5;
+	///期货公司代码，必填
+	string FutureID = 6;
+	///银行代码，根据查询银行得到，必填
+	string BankID = 7;
+	///银行分中心代码，根据查询银行得到，必填
+	string BankBrchID = 8;
+	///操作员，N/A
+	string OperNo = 9;
+	///交易设备类型，N/A
+	string DeviceID = 10;
+	///记录数，N/A
+	string RecordNum = 11;
+	///会话编号，N/A
+	int32 SessionID = 12;
+	///请求编号，N/A
+	int32 RequestID = 13;
+}
+
+///银行资金转期货请求，TradeCode=202001
+message CThostFtdcTransferBankToFutureReqField
+{
+	///期货资金账户
+	string FutureAccount = 1;
+	///密码标志
+	string FuturePwdFlag = 2;
+	///密码
+	string FutureAccPwd = 3;
+	///转账金额
+	double TradeAmt = 4;
+	///客户手续费
+	double CustFee = 5;
+	///币种：RMB-人民币 USD-美圆 HKD-港元
+	string CurrencyCode = 6;
+}
+
+///银行资金转期货请求响应
+message CThostFtdcTransferBankToFutureRspField
+{
+	///响应代码
+	string RetCode = 1;
+	///响应信息
+	string RetInfo = 2;
+	///资金账户
+	string FutureAccount = 3;
+	///转帐金额
+	double TradeAmt = 4;
+	///应收客户手续费
+	double CustFee = 5;
+	///币种
+	string CurrencyCode = 6;
+}
+
+///期货资金转银行请求，TradeCode=202002
+message CThostFtdcTransferFutureToBankReqField
+{
+	///期货资金账户
+	string FutureAccount = 1;
+	///密码标志
+	string FuturePwdFlag = 2;
+	///密码
+	string FutureAccPwd = 3;
+	///转账金额
+	double TradeAmt = 4;
+	///客户手续费
+	double CustFee = 5;
+	///币种：RMB-人民币 USD-美圆 HKD-港元
+	string CurrencyCode = 6;
+}
+
+///期货资金转银行请求响应
+message CThostFtdcTransferFutureToBankRspField
+{
+	///响应代码
+	string RetCode = 1;
+	///响应信息
+	string RetInfo = 2;
+	///资金账户
+	string FutureAccount = 3;
+	///转帐金额
+	double TradeAmt = 4;
+	///应收客户手续费
+	double CustFee = 5;
+	///币种
+	string CurrencyCode = 6;
+}
+
+///查询银行资金请求，TradeCode=204002
+message CThostFtdcTransferQryBankReqField
+{
+	///期货资金账户
+	string FutureAccount = 1;
+	///密码标志
+	string FuturePwdFlag = 2;
+	///密码
+	string FutureAccPwd = 3;
+	///币种：RMB-人民币 USD-美圆 HKD-港元
+	string CurrencyCode = 4;
+}
+
+///查询银行资金请求响应
+message CThostFtdcTransferQryBankRspField
+{
+	///响应代码
+	string RetCode = 1;
+	///响应信息
+	string RetInfo = 2;
+	///资金账户
+	string FutureAccount = 3;
+	///银行余额
+	double TradeAmt = 4;
+	///银行可用余额
+	double UseAmt = 5;
+	///银行可取余额
+	double FetchAmt = 6;
+	///币种
+	string CurrencyCode = 7;
+}
+
+///查询银行交易明细请求，TradeCode=204999
+message CThostFtdcTransferQryDetailReqField
+{
+	///期货资金账户
+	string FutureAccount = 1;
+}
+
+///查询银行交易明细请求响应
+message CThostFtdcTransferQryDetailRspField
+{
+	///交易日期
+	string TradeDate = 1;
+	///交易时间
+	string TradeTime = 2;
+	///交易代码
+	string TradeCode = 3;
+	///期货流水号
+	int32 FutureSerial = 4;
+	///期货公司代码
+	string FutureID = 5;
+	///资金帐号
+	string FutureAccount = 6;
+	///银行流水号
+	int32 BankSerial = 7;
+	///银行代码
+	string BankID = 8;
+	///银行分中心代码
+	string BankBrchID = 9;
+	///银行账号
+	string BankAccount = 10;
+	///证件号码
+	string CertCode = 11;
+	///货币代码
+	string CurrencyCode = 12;
+	///发生金额
+	double TxAmount = 13;
+	///有效标志
+	string Flag = 14;
+}
+
+///响应信息
+message CThostFtdcRspInfoField
+{
+	///错误代码
+	int32 ErrorID = 1;
+	///错误信息
+	string ErrorMsg = 2;
+}
+
+///交易所
+message CThostFtdcExchangeField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///交易所名称
+	string ExchangeName = 2;
+	///交易所属性
+	string ExchangeProperty = 3;
+}
+
+///产品
+message CThostFtdcProductField
+{
+	///产品代码
+	string ProductID = 1;
+	///产品名称
+	string ProductName = 2;
+	///交易所代码
+	string ExchangeID = 3;
+	///产品类型
+	string ProductClass = 4;
+	///合约数量乘数
+	int32 VolumeMultiple = 5;
+	///最小变动价位
+	double PriceTick = 6;
+	///市价单最大下单量
+	int32 MaxMarketOrderVolume = 7;
+	///市价单最小下单量
+	int32 MinMarketOrderVolume = 8;
+	///限价单最大下单量
+	int32 MaxLimitOrderVolume = 9;
+	///限价单最小下单量
+	int32 MinLimitOrderVolume = 10;
+	///持仓类型
+	string PositionType = 11;
+	///持仓日期类型
+	string PositionDateType = 12;
+	///平仓处理类型
+	string CloseDealType = 13;
+	///交易币种类型
+	string TradeCurrencyID = 14;
+	///质押资金可用范围
+	string MortgageFundUseRange = 15;
+	///交易所产品代码
+	string ExchangeProductID = 16;
+	///合约基础商品乘数
+	double UnderlyingMultiple = 17;
+}
+
+///合约
+message CThostFtdcInstrumentField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///交易所代码
+	string ExchangeID = 2;
+	///合约名称
+	string InstrumentName = 3;
+	///合约在交易所的代码
+	string ExchangeInstID = 4;
+	///产品代码
+	string ProductID = 5;
+	///产品类型
+	string ProductClass = 6;
+	///交割年份
+	int32 DeliveryYear = 7;
+	///交割月
+	int32 DeliveryMonth = 8;
+	///市价单最大下单量
+	int32 MaxMarketOrderVolume = 9;
+	///市价单最小下单量
+	int32 MinMarketOrderVolume = 10;
+	///限价单最大下单量
+	int32 MaxLimitOrderVolume = 11;
+	///限价单最小下单量
+	int32 MinLimitOrderVolume = 12;
+	///合约数量乘数
+	int32 VolumeMultiple = 13;
+	///最小变动价位
+	double PriceTick = 14;
+	///创建日
+	string CreateDate = 15;
+	///上市日
+	string OpenDate = 16;
+	///到期日
+	string ExpireDate = 17;
+	///开始交割日
+	string StartDelivDate = 18;
+	///结束交割日
+	string EndDelivDate = 19;
+	///合约生命周期状态
+	string InstLifePhase = 20;
+	///当前是否交易
+	int32 IsTrading = 21;
+	///持仓类型
+	string PositionType = 22;
+	///持仓日期类型
+	string PositionDateType = 23;
+	///多头保证金率
+	double LongMarginRatio = 24;
+	///空头保证金率
+	double ShortMarginRatio = 25;
+	///是否使用大额单边保证金算法
+	string MaxMarginSideAlgorithm = 26;
+	///基础商品代码
+	string UnderlyingInstrID = 27;
+	///执行价
+	double StrikePrice = 28;
+	///期权类型
+	string OptionsType = 29;
+	///合约基础商品乘数
+	double UnderlyingMultiple = 30;
+	///组合类型
+	string CombinationType = 31;
+	///最小买下单单位
+	int32 MinBuyVolume = 32;
+	///最小卖下单单位
+	int32 MinSellVolume = 33;
+	///合约标识码
+	string InstrumentCode = 34;
+}
+
+///经纪公司
+message CThostFtdcBrokerField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///经纪公司简称
+	string BrokerAbbr = 2;
+	///经纪公司名称
+	string BrokerName = 3;
+	///是否活跃
+	int32 IsActive = 4;
+}
+
+///交易所交易员
+message CThostFtdcTraderField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///交易所交易员代码
+	string TraderID = 2;
+	///会员代码
+	string ParticipantID = 3;
+	///密码
+	string Password = 4;
+	///安装数量
+	int32 InstallCount = 5;
+	///经纪公司代码
+	string BrokerID = 6;
+}
+
+///投资者
+message CThostFtdcInvestorField
+{
+	///投资者代码
+	string InvestorID = 1;
+	///经纪公司代码
+	string BrokerID = 2;
+	///投资者分组代码
+	string InvestorGroupID = 3;
+	///投资者名称
+	string InvestorName = 4;
+	///证件类型
+	string IdentifiedCardType = 5;
+	///证件号码
+	string IdentifiedCardNo = 6;
+	///是否活跃
+	int32 IsActive = 7;
+	///联系电话
+	string Telephone = 8;
+	///通讯地址
+	string Address = 9;
+	///开户日期
+	string OpenDate = 10;
+	///手机
+	string Mobile = 11;
+	///手续费率模板代码
+	string CommModelID = 12;
+	///保证金率模板代码
+	string MarginModelID = 13;
+}
+
+///交易编码
+message CThostFtdcTradingCodeField
+{
+	///投资者代码
+	string InvestorID = 1;
+	///经纪公司代码
+	string BrokerID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+	///客户代码
+	string ClientID = 4;
+	///是否活跃
+	int32 IsActive = 5;
+	///交易编码类型
+	string ClientIDType = 6;
+	///营业部编号
+	string BranchID = 7;
+	///业务类型
+	string BizType = 8;
+}
+
+///会员编码和经纪公司编码对照表
+message CThostFtdcPartBrokerField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///交易所代码
+	string ExchangeID = 2;
+	///会员代码
+	string ParticipantID = 3;
+	///是否活跃
+	int32 IsActive = 4;
+}
+
+///管理用户
+message CThostFtdcSuperUserField
+{
+	///用户代码
+	string UserID = 1;
+	///用户名称
+	string UserName = 2;
+	///密码
+	string Password = 3;
+	///是否活跃
+	int32 IsActive = 4;
+}
+
+///管理用户功能权限
+message CThostFtdcSuperUserFunctionField
+{
+	///用户代码
+	string UserID = 1;
+	///功能代码
+	string FunctionCode = 2;
+}
+
+///投资者组
+message CThostFtdcInvestorGroupField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者分组代码
+	string InvestorGroupID = 2;
+	///投资者分组名称
+	string InvestorGroupName = 3;
+}
+
+///资金账户
+message CThostFtdcTradingAccountField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者帐号
+	string AccountID = 2;
+	///上次质押金额
+	double PreMortgage = 3;
+	///上次信用额度
+	double PreCredit = 4;
+	///上次存款额
+	double PreDeposit = 5;
+	///上次结算准备金
+	double PreBalance = 6;
+	///上次占用的保证金
+	double PreMargin = 7;
+	///利息基数
+	double InterestBase = 8;
+	///利息收入
+	double Interest = 9;
+	///入金金额
+	double Deposit = 10;
+	///出金金额
+	double Withdraw = 11;
+	///冻结的保证金
+	double FrozenMargin = 12;
+	///冻结的资金
+	double FrozenCash = 13;
+	///冻结的手续费
+	double FrozenCommission = 14;
+	///当前保证金总额
+	double CurrMargin = 15;
+	///资金差额
+	double CashIn = 16;
+	///手续费
+	double Commission = 17;
+	///平仓盈亏
+	double CloseProfit = 18;
+	///持仓盈亏
+	double PositionProfit = 19;
+	///期货结算准备金
+	double Balance = 20;
+	///可用资金
+	double Available = 21;
+	///可取资金
+	double WithdrawQuota = 22;
+	///基本准备金
+	double Reserve = 23;
+	///交易日
+	string TradingDay = 24;
+	///结算编号
+	int32 SettlementID = 25;
+	///信用额度
+	double Credit = 26;
+	///质押金额
+	double Mortgage = 27;
+	///交易所保证金
+	double ExchangeMargin = 28;
+	///投资者交割保证金
+	double DeliveryMargin = 29;
+	///交易所交割保证金
+	double ExchangeDeliveryMargin = 30;
+	///保底期货结算准备金
+	double ReserveBalance = 31;
+	///币种代码
+	string CurrencyID = 32;
+	///上次货币质入金额
+	double PreFundMortgageIn = 33;
+	///上次货币质出金额
+	double PreFundMortgageOut = 34;
+	///货币质入金额
+	double FundMortgageIn = 35;
+	///货币质出金额
+	double FundMortgageOut = 36;
+	///货币质押余额
+	double FundMortgageAvailable = 37;
+	///可质押货币金额
+	double MortgageableFund = 38;
+	///特殊产品占用保证金
+	double SpecProductMargin = 39;
+	///特殊产品冻结保证金
+	double SpecProductFrozenMargin = 40;
+	///特殊产品手续费
+	double SpecProductCommission = 41;
+	///特殊产品冻结手续费
+	double SpecProductFrozenCommission = 42;
+	///特殊产品持仓盈亏
+	double SpecProductPositionProfit = 43;
+	///特殊产品平仓盈亏
+	double SpecProductCloseProfit = 44;
+	///根据持仓盈亏算法计算的特殊产品持仓盈亏
+	double SpecProductPositionProfitByAlg = 45;
+	///特殊产品交易所保证金
+	double SpecProductExchangeMargin = 46;
+	///业务类型
+	string BizType = 47;
+}
+
+///投资者持仓
+message CThostFtdcInvestorPositionField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///经纪公司代码
+	string BrokerID = 2;
+	///投资者代码
+	string InvestorID = 3;
+	///持仓多空方向
+	string PosiDirection = 4;
+	///投机套保标志
+	string HedgeFlag = 5;
+	///持仓日期
+	string PositionDate = 6;
+	///上日持仓
+	int32 YdPosition = 7;
+	///今日持仓
+	int32 Position = 8;
+	///多头冻结
+	int32 LongFrozen = 9;
+	///空头冻结
+	int32 ShortFrozen = 10;
+	///开仓冻结金额
+	double LongFrozenAmount = 11;
+	///开仓冻结金额
+	double ShortFrozenAmount = 12;
+	///开仓量
+	int32 OpenVolume = 13;
+	///平仓量
+	int32 CloseVolume = 14;
+	///开仓金额
+	double OpenAmount = 15;
+	///平仓金额
+	double CloseAmount = 16;
+	///持仓成本
+	double PositionCost = 17;
+	///上次占用的保证金
+	double PreMargin = 18;
+	///占用的保证金
+	double UseMargin = 19;
+	///冻结的保证金
+	double FrozenMargin = 20;
+	///冻结的资金
+	double FrozenCash = 21;
+	///冻结的手续费
+	double FrozenCommission = 22;
+	///资金差额
+	double CashIn = 23;
+	///手续费
+	double Commission = 24;
+	///平仓盈亏
+	double CloseProfit = 25;
+	///持仓盈亏
+	double PositionProfit = 26;
+	///上次结算价
+	double PreSettlementPrice = 27;
+	///本次结算价
+	double SettlementPrice = 28;
+	///交易日
+	string TradingDay = 29;
+	///结算编号
+	int32 SettlementID = 30;
+	///开仓成本
+	double OpenCost = 31;
+	///交易所保证金
+	double ExchangeMargin = 32;
+	///组合成交形成的持仓
+	int32 CombPosition = 33;
+	///组合多头冻结
+	int32 CombLongFrozen = 34;
+	///组合空头冻结
+	int32 CombShortFrozen = 35;
+	///逐日盯市平仓盈亏
+	double CloseProfitByDate = 36;
+	///逐笔对冲平仓盈亏
+	double CloseProfitByTrade = 37;
+	///今日持仓
+	int32 TodayPosition = 38;
+	///保证金率
+	double MarginRateByMoney = 39;
+	///保证金率(按手数)
+	double MarginRateByVolume = 40;
+	///执行冻结
+	int32 StrikeFrozen = 41;
+	///执行冻结金额
+	double StrikeFrozenAmount = 42;
+	///放弃执行冻结
+	int32 AbandonFrozen = 43;
+	///交易所代码
+	string ExchangeID = 44;
+	///执行冻结的昨仓
+	int32 YdStrikeFrozen = 45;
+}
+
+///合约保证金率
+message CThostFtdcInstrumentMarginRateField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///投资者范围
+	string InvestorRange = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///投资者代码
+	string InvestorID = 4;
+	///投机套保标志
+	string HedgeFlag = 5;
+	///多头保证金率
+	double LongMarginRatioByMoney = 6;
+	///多头保证金费
+	double LongMarginRatioByVolume = 7;
+	///空头保证金率
+	double ShortMarginRatioByMoney = 8;
+	///空头保证金费
+	double ShortMarginRatioByVolume = 9;
+	///是否相对交易所收取
+	int32 IsRelative = 10;
+}
+
+///合约手续费率
+message CThostFtdcInstrumentCommissionRateField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///投资者范围
+	string InvestorRange = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///投资者代码
+	string InvestorID = 4;
+	///开仓手续费率
+	double OpenRatioByMoney = 5;
+	///开仓手续费
+	double OpenRatioByVolume = 6;
+	///平仓手续费率
+	double CloseRatioByMoney = 7;
+	///平仓手续费
+	double CloseRatioByVolume = 8;
+	///平今手续费率
+	double CloseTodayRatioByMoney = 9;
+	///平今手续费
+	double CloseTodayRatioByVolume = 10;
+	///交易所代码
+	string ExchangeID = 11;
+	///业务类型
+	string BizType = 12;
+}
+
+///深度行情
+message CThostFtdcDepthMarketDataField
+{
+	///交易日
+	string TradingDay = 1;
+	///合约代码
+	string InstrumentID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+	///合约在交易所的代码
+	string ExchangeInstID = 4;
+	///最新价
+	double LastPrice = 5;
+	///上次结算价
+	double PreSettlementPrice = 6;
+	///昨收盘
+	double PreClosePrice = 7;
+	///昨持仓量
+	double PreOpenInterest = 8;
+	///今开盘
+	double OpenPrice = 9;
+	///最高价
+	double HighestPrice = 10;
+	///最低价
+	double LowestPrice = 11;
+	///数量
+	int32 Volume = 12;
+	///成交金额
+	double Turnover = 13;
+	///持仓量
+	double OpenInterest = 14;
+	///今收盘
+	double ClosePrice = 15;
+	///本次结算价
+	double SettlementPrice = 16;
+	///涨停板价
+	double UpperLimitPrice = 17;
+	///跌停板价
+	double LowerLimitPrice = 18;
+	///昨虚实度
+	double PreDelta = 19;
+	///今虚实度
+	double CurrDelta = 20;
+	///最后修改时间
+	string UpdateTime = 21;
+	///最后修改毫秒
+	int32 UpdateMillisec = 22;
+	///申买价一
+	double BidPrice1 = 23;
+	///申买量一
+	int32 BidVolume1 = 24;
+	///申卖价一
+	double AskPrice1 = 25;
+	///申卖量一
+	int32 AskVolume1 = 26;
+	///申买价二
+	double BidPrice2 = 27;
+	///申买量二
+	int32 BidVolume2 = 28;
+	///申卖价二
+	double AskPrice2 = 29;
+	///申卖量二
+	int32 AskVolume2 = 30;
+	///申买价三
+	double BidPrice3 = 31;
+	///申买量三
+	int32 BidVolume3 = 32;
+	///申卖价三
+	double AskPrice3 = 33;
+	///申卖量三
+	int32 AskVolume3 = 34;
+	///申买价四
+	double BidPrice4 = 35;
+	///申买量四
+	int32 BidVolume4 = 36;
+	///申卖价四
+	double AskPrice4 = 37;
+	///申卖量四
+	int32 AskVolume4 = 38;
+	///申买价五
+	double BidPrice5 = 39;
+	///申买量五
+	int32 BidVolume5 = 40;
+	///申卖价五
+	double AskPrice5 = 41;
+	///申卖量五
+	int32 AskVolume5 = 42;
+	///当日均价
+	double AveragePrice = 43;
+	///业务日期
+	string ActionDay = 44;
+}
+
+///投资者合约交易权限
+message CThostFtdcInstrumentTradingRightField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///投资者范围
+	string InvestorRange = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///投资者代码
+	string InvestorID = 4;
+	///交易权限
+	string TradingRight = 5;
+	///交易所代码
+	string ExchangeID = 6;
+	///业务类型
+	string BizType = 7;
+}
+
+///经纪公司用户
+message CThostFtdcBrokerUserField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+	///用户名称
+	string UserName = 3;
+	///用户类型
+	string UserType = 4;
+	///是否活跃
+	int32 IsActive = 5;
+	///是否使用令牌
+	int32 IsUsingOTP = 6;
+}
+
+///经纪公司用户口令
+message CThostFtdcBrokerUserPasswordField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+	///密码
+	string Password = 3;
+}
+
+///经纪公司用户功能权限
+message CThostFtdcBrokerUserFunctionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+	///经纪公司功能代码
+	string BrokerFunctionCode = 3;
+}
+
+///交易所交易员报盘机
+message CThostFtdcTraderOfferField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///交易所交易员代码
+	string TraderID = 2;
+	///会员代码
+	string ParticipantID = 3;
+	///密码
+	string Password = 4;
+	///安装编号
+	int32 InstallID = 5;
+	///本地报单编号
+	string OrderLocalID = 6;
+	///交易所交易员连接状态
+	string TraderConnectStatus = 7;
+	///发出连接请求的日期
+	string ConnectRequestDate = 8;
+	///发出连接请求的时间
+	string ConnectRequestTime = 9;
+	///上次报告日期
+	string LastReportDate = 10;
+	///上次报告时间
+	string LastReportTime = 11;
+	///完成连接日期
+	string ConnectDate = 12;
+	///完成连接时间
+	string ConnectTime = 13;
+	///启动日期
+	string StartDate = 14;
+	///启动时间
+	string StartTime = 15;
+	///交易日
+	string TradingDay = 16;
+	///经纪公司代码
+	string BrokerID = 17;
+	///本席位最大成交编号
+	string MaxTradeID = 18;
+	///本席位最大报单备拷
+	string MaxOrderMessageReference = 19;
+	///业务类型
+	string BizType = 20;
+}
+
+///投资者结算结果
+message CThostFtdcSettlementInfoField
+{
+	///交易日
+	string TradingDay = 1;
+	///结算编号
+	int32 SettlementID = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///投资者代码
+	string InvestorID = 4;
+	///序号
+	int32 SequenceNo = 5;
+	///消息正文
+	string Content = 6;
+}
+
+///合约保证金率调整
+message CThostFtdcInstrumentMarginRateAdjustField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///投资者范围
+	string InvestorRange = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///投资者代码
+	string InvestorID = 4;
+	///投机套保标志
+	string HedgeFlag = 5;
+	///多头保证金率
+	double LongMarginRatioByMoney = 6;
+	///多头保证金费
+	double LongMarginRatioByVolume = 7;
+	///空头保证金率
+	double ShortMarginRatioByMoney = 8;
+	///空头保证金费
+	double ShortMarginRatioByVolume = 9;
+	///是否相对交易所收取
+	int32 IsRelative = 10;
+}
+
+///交易所保证金率
+message CThostFtdcExchangeMarginRateField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///合约代码
+	string InstrumentID = 2;
+	///投机套保标志
+	string HedgeFlag = 3;
+	///多头保证金率
+	double LongMarginRatioByMoney = 4;
+	///多头保证金费
+	double LongMarginRatioByVolume = 5;
+	///空头保证金率
+	double ShortMarginRatioByMoney = 6;
+	///空头保证金费
+	double ShortMarginRatioByVolume = 7;
+}
+
+///交易所保证金率调整
+message CThostFtdcExchangeMarginRateAdjustField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///合约代码
+	string InstrumentID = 2;
+	///投机套保标志
+	string HedgeFlag = 3;
+	///跟随交易所投资者多头保证金率
+	double LongMarginRatioByMoney = 4;
+	///跟随交易所投资者多头保证金费
+	double LongMarginRatioByVolume = 5;
+	///跟随交易所投资者空头保证金率
+	double ShortMarginRatioByMoney = 6;
+	///跟随交易所投资者空头保证金费
+	double ShortMarginRatioByVolume = 7;
+	///交易所多头保证金率
+	double ExchLongMarginRatioByMoney = 8;
+	///交易所多头保证金费
+	double ExchLongMarginRatioByVolume = 9;
+	///交易所空头保证金率
+	double ExchShortMarginRatioByMoney = 10;
+	///交易所空头保证金费
+	double ExchShortMarginRatioByVolume = 11;
+	///不跟随交易所投资者多头保证金率
+	double NoLongMarginRatioByMoney = 12;
+	///不跟随交易所投资者多头保证金费
+	double NoLongMarginRatioByVolume = 13;
+	///不跟随交易所投资者空头保证金率
+	double NoShortMarginRatioByMoney = 14;
+	///不跟随交易所投资者空头保证金费
+	double NoShortMarginRatioByVolume = 15;
+}
+
+///汇率
+message CThostFtdcExchangeRateField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///源币种
+	string FromCurrencyID = 2;
+	///源币种单位数量
+	double FromCurrencyUnit = 3;
+	///目标币种
+	string ToCurrencyID = 4;
+	///汇率
+	double ExchangeRate = 5;
+}
+
+///结算引用
+message CThostFtdcSettlementRefField
+{
+	///交易日
+	string TradingDay = 1;
+	///结算编号
+	int32 SettlementID = 2;
+}
+
+///当前时间
+message CThostFtdcCurrentTimeField
+{
+	///当前日期
+	string CurrDate = 1;
+	///当前时间
+	string CurrTime = 2;
+	///当前时间（毫秒）
+	int32 CurrMillisec = 3;
+	///业务日期
+	string ActionDay = 4;
+}
+
+///通讯阶段
+message CThostFtdcCommPhaseField
+{
+	///交易日
+	string TradingDay = 1;
+	///通讯时段编号
+	int32 CommPhaseNo = 2;
+	///系统编号
+	string SystemID = 3;
+}
+
+///登录信息
+message CThostFtdcLoginInfoField
+{
+	///前置编号
+	int32 FrontID = 1;
+	///会话编号
+	int32 SessionID = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///用户代码
+	string UserID = 4;
+	///登录日期
+	string LoginDate = 5;
+	///登录时间
+	string LoginTime = 6;
+	///IP地址
+	string IPAddress = 7;
+	///用户端产品信息
+	string UserProductInfo = 8;
+	///接口端产品信息
+	string InterfaceProductInfo = 9;
+	///协议信息
+	string ProtocolInfo = 10;
+	///系统名称
+	string SystemName = 11;
+	///密码
+	string Password = 12;
+	///最大报单引用
+	string MaxOrderRef = 13;
+	///上期所时间
+	string SHFETime = 14;
+	///大商所时间
+	string DCETime = 15;
+	///郑商所时间
+	string CZCETime = 16;
+	///中金所时间
+	string FFEXTime = 17;
+	///Mac地址
+	string MacAddress = 18;
+	///动态密码
+	string OneTimePassword = 19;
+	///能源中心时间
+	string INETime = 20;
+}
+
+///登录信息
+message CThostFtdcLogoutAllField
+{
+	///前置编号
+	int32 FrontID = 1;
+	///会话编号
+	int32 SessionID = 2;
+	///系统名称
+	string SystemName = 3;
+}
+
+///前置状态
+message CThostFtdcFrontStatusField
+{
+	///前置编号
+	int32 FrontID = 1;
+	///上次报告日期
+	string LastReportDate = 2;
+	///上次报告时间
+	string LastReportTime = 3;
+	///是否活跃
+	int32 IsActive = 4;
+}
+
+///用户口令变更
+message CThostFtdcUserPasswordUpdateField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+	///原来的口令
+	string OldPassword = 3;
+	///新的口令
+	string NewPassword = 4;
+}
+
+///输入报单
+message CThostFtdcInputOrderField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///报单引用
+	string OrderRef = 4;
+	///用户代码
+	string UserID = 5;
+	///报单价格条件
+	string OrderPriceType = 6;
+	///买卖方向
+	string Direction = 7;
+	///组合开平标志
+	string CombOffsetFlag = 8;
+	///组合投机套保标志
+	string CombHedgeFlag = 9;
+	///价格
+	double LimitPrice = 10;
+	///数量
+	int32 VolumeTotalOriginal = 11;
+	///有效期类型
+	string TimeCondition = 12;
+	///GTD日期
+	string GTDDate = 13;
+	///成交量类型
+	string VolumeCondition = 14;
+	///最小成交量
+	int32 MinVolume = 15;
+	///触发条件
+	string ContingentCondition = 16;
+	///止损价
+	double StopPrice = 17;
+	///强平原因
+	string ForceCloseReason = 18;
+	///自动挂起标志
+	int32 IsAutoSuspend = 19;
+	///业务单元
+	string BusinessUnit = 20;
+	///请求编号
+	int32 RequestID = 21;
+	///用户强评标志
+	int32 UserForceClose = 22;
+	///互换单标志
+	int32 IsSwapOrder = 23;
+	///交易所代码
+	string ExchangeID = 24;
+}
+
+///报单
+message CThostFtdcOrderField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///报单引用
+	string OrderRef = 4;
+	///用户代码
+	string UserID = 5;
+	///报单价格条件
+	string OrderPriceType = 6;
+	///买卖方向
+	string Direction = 7;
+	///组合开平标志
+	string CombOffsetFlag = 8;
+	///组合投机套保标志
+	string CombHedgeFlag = 9;
+	///价格
+	double LimitPrice = 10;
+	///数量
+	int32 VolumeTotalOriginal = 11;
+	///有效期类型
+	string TimeCondition = 12;
+	///GTD日期
+	string GTDDate = 13;
+	///成交量类型
+	string VolumeCondition = 14;
+	///最小成交量
+	int32 MinVolume = 15;
+	///触发条件
+	string ContingentCondition = 16;
+	///止损价
+	double StopPrice = 17;
+	///强平原因
+	string ForceCloseReason = 18;
+	///自动挂起标志
+	int32 IsAutoSuspend = 19;
+	///业务单元
+	string BusinessUnit = 20;
+	///请求编号
+	int32 RequestID = 21;
+	///本地报单编号
+	string OrderLocalID = 22;
+	///交易所代码
+	string ExchangeID = 23;
+	///会员代码
+	string ParticipantID = 24;
+	///客户代码
+	string ClientID = 25;
+	///合约在交易所的代码
+	string ExchangeInstID = 26;
+	///交易所交易员代码
+	string TraderID = 27;
+	///安装编号
+	int32 InstallID = 28;
+	///报单提交状态
+	string OrderSubmitStatus = 29;
+	///报单提示序号
+	int32 NotifySequence = 30;
+	///交易日
+	string TradingDay = 31;
+	///结算编号
+	int32 SettlementID = 32;
+	///报单编号
+	string OrderSysID = 33;
+	///报单来源
+	string OrderSource = 34;
+	///报单状态
+	string OrderStatus = 35;
+	///报单类型
+	string OrderType = 36;
+	///今成交数量
+	int32 VolumeTraded = 37;
+	///剩余数量
+	int32 VolumeTotal = 38;
+	///报单日期
+	string InsertDate = 39;
+	///委托时间
+	string InsertTime = 40;
+	///激活时间
+	string ActiveTime = 41;
+	///挂起时间
+	string SuspendTime = 42;
+	///最后修改时间
+	string UpdateTime = 43;
+	///撤销时间
+	string CancelTime = 44;
+	///最后修改交易所交易员代码
+	string ActiveTraderID = 45;
+	///结算会员编号
+	string ClearingPartID = 46;
+	///序号
+	int32 SequenceNo = 47;
+	///前置编号
+	int32 FrontID = 48;
+	///会话编号
+	int32 SessionID = 49;
+	///用户端产品信息
+	string UserProductInfo = 50;
+	///状态信息
+	string StatusMsg = 51;
+	///用户强评标志
+	int32 UserForceClose = 52;
+	///操作用户代码
+	string ActiveUserID = 53;
+	///经纪公司报单编号
+	int32 BrokerOrderSeq = 54;
+	///相关报单
+	string RelativeOrderSysID = 55;
+	///郑商所成交数量
+	int32 ZCETotalTradedVolume = 56;
+	///互换单标志
+	int32 IsSwapOrder = 57;
+	///营业部编号
+	string BranchID = 58;
+}
+
+///交易所报单
+message CThostFtdcExchangeOrderField
+{
+	///报单价格条件
+	string OrderPriceType = 1;
+	///买卖方向
+	string Direction = 2;
+	///组合开平标志
+	string CombOffsetFlag = 3;
+	///组合投机套保标志
+	string CombHedgeFlag = 4;
+	///价格
+	double LimitPrice = 5;
+	///数量
+	int32 VolumeTotalOriginal = 6;
+	///有效期类型
+	string TimeCondition = 7;
+	///GTD日期
+	string GTDDate = 8;
+	///成交量类型
+	string VolumeCondition = 9;
+	///最小成交量
+	int32 MinVolume = 10;
+	///触发条件
+	string ContingentCondition = 11;
+	///止损价
+	double StopPrice = 12;
+	///强平原因
+	string ForceCloseReason = 13;
+	///自动挂起标志
+	int32 IsAutoSuspend = 14;
+	///业务单元
+	string BusinessUnit = 15;
+	///请求编号
+	int32 RequestID = 16;
+	///本地报单编号
+	string OrderLocalID = 17;
+	///交易所代码
+	string ExchangeID = 18;
+	///会员代码
+	string ParticipantID = 19;
+	///客户代码
+	string ClientID = 20;
+	///合约在交易所的代码
+	string ExchangeInstID = 21;
+	///交易所交易员代码
+	string TraderID = 22;
+	///安装编号
+	int32 InstallID = 23;
+	///报单提交状态
+	string OrderSubmitStatus = 24;
+	///报单提示序号
+	int32 NotifySequence = 25;
+	///交易日
+	string TradingDay = 26;
+	///结算编号
+	int32 SettlementID = 27;
+	///报单编号
+	string OrderSysID = 28;
+	///报单来源
+	string OrderSource = 29;
+	///报单状态
+	string OrderStatus = 30;
+	///报单类型
+	string OrderType = 31;
+	///今成交数量
+	int32 VolumeTraded = 32;
+	///剩余数量
+	int32 VolumeTotal = 33;
+	///报单日期
+	string InsertDate = 34;
+	///委托时间
+	string InsertTime = 35;
+	///激活时间
+	string ActiveTime = 36;
+	///挂起时间
+	string SuspendTime = 37;
+	///最后修改时间
+	string UpdateTime = 38;
+	///撤销时间
+	string CancelTime = 39;
+	///最后修改交易所交易员代码
+	string ActiveTraderID = 40;
+	///结算会员编号
+	string ClearingPartID = 41;
+	///序号
+	int32 SequenceNo = 42;
+	///营业部编号
+	string BranchID = 43;
+}
+
+///交易所报单插入失败
+message CThostFtdcExchangeOrderInsertErrorField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///会员代码
+	string ParticipantID = 2;
+	///交易所交易员代码
+	string TraderID = 3;
+	///安装编号
+	int32 InstallID = 4;
+	///本地报单编号
+	string OrderLocalID = 5;
+	///错误代码
+	int32 ErrorID = 6;
+	///错误信息
+	string ErrorMsg = 7;
+}
+
+///输入报单操作
+message CThostFtdcInputOrderActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///报单操作引用
+	int32 OrderActionRef = 3;
+	///报单引用
+	string OrderRef = 4;
+	///请求编号
+	int32 RequestID = 5;
+	///前置编号
+	int32 FrontID = 6;
+	///会话编号
+	int32 SessionID = 7;
+	///交易所代码
+	string ExchangeID = 8;
+	///报单编号
+	string OrderSysID = 9;
+	///操作标志
+	string ActionFlag = 10;
+	///价格
+	double LimitPrice = 11;
+	///数量变化
+	int32 VolumeChange = 12;
+	///用户代码
+	string UserID = 13;
+	///合约代码
+	string InstrumentID = 14;
+}
+
+///报单操作
+message CThostFtdcOrderActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///报单操作引用
+	int32 OrderActionRef = 3;
+	///报单引用
+	string OrderRef = 4;
+	///请求编号
+	int32 RequestID = 5;
+	///前置编号
+	int32 FrontID = 6;
+	///会话编号
+	int32 SessionID = 7;
+	///交易所代码
+	string ExchangeID = 8;
+	///报单编号
+	string OrderSysID = 9;
+	///操作标志
+	string ActionFlag = 10;
+	///价格
+	double LimitPrice = 11;
+	///数量变化
+	int32 VolumeChange = 12;
+	///操作日期
+	string ActionDate = 13;
+	///操作时间
+	string ActionTime = 14;
+	///交易所交易员代码
+	string TraderID = 15;
+	///安装编号
+	int32 InstallID = 16;
+	///本地报单编号
+	string OrderLocalID = 17;
+	///操作本地编号
+	string ActionLocalID = 18;
+	///会员代码
+	string ParticipantID = 19;
+	///客户代码
+	string ClientID = 20;
+	///业务单元
+	string BusinessUnit = 21;
+	///报单操作状态
+	string OrderActionStatus = 22;
+	///用户代码
+	string UserID = 23;
+	///状态信息
+	string StatusMsg = 24;
+	///合约代码
+	string InstrumentID = 25;
+	///营业部编号
+	string BranchID = 26;
+}
+
+///交易所报单操作
+message CThostFtdcExchangeOrderActionField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///报单编号
+	string OrderSysID = 2;
+	///操作标志
+	string ActionFlag = 3;
+	///价格
+	double LimitPrice = 4;
+	///数量变化
+	int32 VolumeChange = 5;
+	///操作日期
+	string ActionDate = 6;
+	///操作时间
+	string ActionTime = 7;
+	///交易所交易员代码
+	string TraderID = 8;
+	///安装编号
+	int32 InstallID = 9;
+	///本地报单编号
+	string OrderLocalID = 10;
+	///操作本地编号
+	string ActionLocalID = 11;
+	///会员代码
+	string ParticipantID = 12;
+	///客户代码
+	string ClientID = 13;
+	///业务单元
+	string BusinessUnit = 14;
+	///报单操作状态
+	string OrderActionStatus = 15;
+	///用户代码
+	string UserID = 16;
+	///营业部编号
+	string BranchID = 17;
+}
+
+///交易所报单操作失败
+message CThostFtdcExchangeOrderActionErrorField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///报单编号
+	string OrderSysID = 2;
+	///交易所交易员代码
+	string TraderID = 3;
+	///安装编号
+	int32 InstallID = 4;
+	///本地报单编号
+	string OrderLocalID = 5;
+	///操作本地编号
+	string ActionLocalID = 6;
+	///错误代码
+	int32 ErrorID = 7;
+	///错误信息
+	string ErrorMsg = 8;
+	///经纪公司代码
+	string BrokerID = 9;
+}
+
+///交易所成交
+message CThostFtdcExchangeTradeField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///成交编号
+	string TradeID = 2;
+	///买卖方向
+	string Direction = 3;
+	///报单编号
+	string OrderSysID = 4;
+	///会员代码
+	string ParticipantID = 5;
+	///客户代码
+	string ClientID = 6;
+	///交易角色
+	string TradingRole = 7;
+	///合约在交易所的代码
+	string ExchangeInstID = 8;
+	///开平标志
+	string OffsetFlag = 9;
+	///投机套保标志
+	string HedgeFlag = 10;
+	///价格
+	double Price = 11;
+	///数量
+	int32 Volume = 12;
+	///成交时期
+	string TradeDate = 13;
+	///成交时间
+	string TradeTime = 14;
+	///成交类型
+	string TradeType = 15;
+	///成交价来源
+	string PriceSource = 16;
+	///交易所交易员代码
+	string TraderID = 17;
+	///本地报单编号
+	string OrderLocalID = 18;
+	///结算会员编号
+	string ClearingPartID = 19;
+	///业务单元
+	string BusinessUnit = 20;
+	///序号
+	int32 SequenceNo = 21;
+	///成交来源
+	string TradeSource = 22;
+}
+
+///成交
+message CThostFtdcTradeField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///报单引用
+	string OrderRef = 4;
+	///用户代码
+	string UserID = 5;
+	///交易所代码
+	string ExchangeID = 6;
+	///成交编号
+	string TradeID = 7;
+	///买卖方向
+	string Direction = 8;
+	///报单编号
+	string OrderSysID = 9;
+	///会员代码
+	string ParticipantID = 10;
+	///客户代码
+	string ClientID = 11;
+	///交易角色
+	string TradingRole = 12;
+	///合约在交易所的代码
+	string ExchangeInstID = 13;
+	///开平标志
+	string OffsetFlag = 14;
+	///投机套保标志
+	string HedgeFlag = 15;
+	///价格
+	double Price = 16;
+	///数量
+	int32 Volume = 17;
+	///成交时期
+	string TradeDate = 18;
+	///成交时间
+	string TradeTime = 19;
+	///成交类型
+	string TradeType = 20;
+	///成交价来源
+	string PriceSource = 21;
+	///交易所交易员代码
+	string TraderID = 22;
+	///本地报单编号
+	string OrderLocalID = 23;
+	///结算会员编号
+	string ClearingPartID = 24;
+	///业务单元
+	string BusinessUnit = 25;
+	///序号
+	int32 SequenceNo = 26;
+	///交易日
+	string TradingDay = 27;
+	///结算编号
+	int32 SettlementID = 28;
+	///经纪公司报单编号
+	int32 BrokerOrderSeq = 29;
+	///成交来源
+	string TradeSource = 30;
+}
+
+///用户会话
+message CThostFtdcUserSessionField
+{
+	///前置编号
+	int32 FrontID = 1;
+	///会话编号
+	int32 SessionID = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///用户代码
+	string UserID = 4;
+	///登录日期
+	string LoginDate = 5;
+	///登录时间
+	string LoginTime = 6;
+	///IP地址
+	string IPAddress = 7;
+	///用户端产品信息
+	string UserProductInfo = 8;
+	///接口端产品信息
+	string InterfaceProductInfo = 9;
+	///协议信息
+	string ProtocolInfo = 10;
+	///Mac地址
+	string MacAddress = 11;
+}
+
+///查询最大报单数量
+message CThostFtdcQueryMaxOrderVolumeField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///买卖方向
+	string Direction = 4;
+	///开平标志
+	string OffsetFlag = 5;
+	///投机套保标志
+	string HedgeFlag = 6;
+	///最大允许报单数量
+	int32 MaxVolume = 7;
+	///交易所代码
+	string ExchangeID = 8;
+}
+
+///投资者结算结果确认信息
+message CThostFtdcSettlementInfoConfirmField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///确认日期
+	string ConfirmDate = 3;
+	///确认时间
+	string ConfirmTime = 4;
+}
+
+///出入金同步
+message CThostFtdcSyncDepositField
+{
+	///出入金流水号
+	string DepositSeqNo = 1;
+	///经纪公司代码
+	string BrokerID = 2;
+	///投资者代码
+	string InvestorID = 3;
+	///入金金额
+	double Deposit = 4;
+	///是否强制进行
+	int32 IsForce = 5;
+	///币种代码
+	string CurrencyID = 6;
+}
+
+///货币质押同步
+message CThostFtdcSyncFundMortgageField
+{
+	///货币质押流水号
+	string MortgageSeqNo = 1;
+	///经纪公司代码
+	string BrokerID = 2;
+	///投资者代码
+	string InvestorID = 3;
+	///源币种
+	string FromCurrencyID = 4;
+	///质押金额
+	double MortgageAmount = 5;
+	///目标币种
+	string ToCurrencyID = 6;
+}
+
+///经纪公司同步
+message CThostFtdcBrokerSyncField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+}
+
+///正在同步中的投资者
+message CThostFtdcSyncingInvestorField
+{
+	///投资者代码
+	string InvestorID = 1;
+	///经纪公司代码
+	string BrokerID = 2;
+	///投资者分组代码
+	string InvestorGroupID = 3;
+	///投资者名称
+	string InvestorName = 4;
+	///证件类型
+	string IdentifiedCardType = 5;
+	///证件号码
+	string IdentifiedCardNo = 6;
+	///是否活跃
+	int32 IsActive = 7;
+	///联系电话
+	string Telephone = 8;
+	///通讯地址
+	string Address = 9;
+	///开户日期
+	string OpenDate = 10;
+	///手机
+	string Mobile = 11;
+	///手续费率模板代码
+	string CommModelID = 12;
+	///保证金率模板代码
+	string MarginModelID = 13;
+}
+
+///正在同步中的交易代码
+message CThostFtdcSyncingTradingCodeField
+{
+	///投资者代码
+	string InvestorID = 1;
+	///经纪公司代码
+	string BrokerID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+	///客户代码
+	string ClientID = 4;
+	///是否活跃
+	int32 IsActive = 5;
+	///交易编码类型
+	string ClientIDType = 6;
+	///营业部编号
+	string BranchID = 7;
+}
+
+///正在同步中的投资者分组
+message CThostFtdcSyncingInvestorGroupField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者分组代码
+	string InvestorGroupID = 2;
+	///投资者分组名称
+	string InvestorGroupName = 3;
+}
+
+///正在同步中的交易账号
+message CThostFtdcSyncingTradingAccountField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者帐号
+	string AccountID = 2;
+	///上次质押金额
+	double PreMortgage = 3;
+	///上次信用额度
+	double PreCredit = 4;
+	///上次存款额
+	double PreDeposit = 5;
+	///上次结算准备金
+	double PreBalance = 6;
+	///上次占用的保证金
+	double PreMargin = 7;
+	///利息基数
+	double InterestBase = 8;
+	///利息收入
+	double Interest = 9;
+	///入金金额
+	double Deposit = 10;
+	///出金金额
+	double Withdraw = 11;
+	///冻结的保证金
+	double FrozenMargin = 12;
+	///冻结的资金
+	double FrozenCash = 13;
+	///冻结的手续费
+	double FrozenCommission = 14;
+	///当前保证金总额
+	double CurrMargin = 15;
+	///资金差额
+	double CashIn = 16;
+	///手续费
+	double Commission = 17;
+	///平仓盈亏
+	double CloseProfit = 18;
+	///持仓盈亏
+	double PositionProfit = 19;
+	///期货结算准备金
+	double Balance = 20;
+	///可用资金
+	double Available = 21;
+	///可取资金
+	double WithdrawQuota = 22;
+	///基本准备金
+	double Reserve = 23;
+	///交易日
+	string TradingDay = 24;
+	///结算编号
+	int32 SettlementID = 25;
+	///信用额度
+	double Credit = 26;
+	///质押金额
+	double Mortgage = 27;
+	///交易所保证金
+	double ExchangeMargin = 28;
+	///投资者交割保证金
+	double DeliveryMargin = 29;
+	///交易所交割保证金
+	double ExchangeDeliveryMargin = 30;
+	///保底期货结算准备金
+	double ReserveBalance = 31;
+	///币种代码
+	string CurrencyID = 32;
+	///上次货币质入金额
+	double PreFundMortgageIn = 33;
+	///上次货币质出金额
+	double PreFundMortgageOut = 34;
+	///货币质入金额
+	double FundMortgageIn = 35;
+	///货币质出金额
+	double FundMortgageOut = 36;
+	///货币质押余额
+	double FundMortgageAvailable = 37;
+	///可质押货币金额
+	double MortgageableFund = 38;
+	///特殊产品占用保证金
+	double SpecProductMargin = 39;
+	///特殊产品冻结保证金
+	double SpecProductFrozenMargin = 40;
+	///特殊产品手续费
+	double SpecProductCommission = 41;
+	///特殊产品冻结手续费
+	double SpecProductFrozenCommission = 42;
+	///特殊产品持仓盈亏
+	double SpecProductPositionProfit = 43;
+	///特殊产品平仓盈亏
+	double SpecProductCloseProfit = 44;
+	///根据持仓盈亏算法计算的特殊产品持仓盈亏
+	double SpecProductPositionProfitByAlg = 45;
+	///特殊产品交易所保证金
+	double SpecProductExchangeMargin = 46;
+}
+
+///正在同步中的投资者持仓
+message CThostFtdcSyncingInvestorPositionField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///经纪公司代码
+	string BrokerID = 2;
+	///投资者代码
+	string InvestorID = 3;
+	///持仓多空方向
+	string PosiDirection = 4;
+	///投机套保标志
+	string HedgeFlag = 5;
+	///持仓日期
+	string PositionDate = 6;
+	///上日持仓
+	int32 YdPosition = 7;
+	///今日持仓
+	int32 Position = 8;
+	///多头冻结
+	int32 LongFrozen = 9;
+	///空头冻结
+	int32 ShortFrozen = 10;
+	///开仓冻结金额
+	double LongFrozenAmount = 11;
+	///开仓冻结金额
+	double ShortFrozenAmount = 12;
+	///开仓量
+	int32 OpenVolume = 13;
+	///平仓量
+	int32 CloseVolume = 14;
+	///开仓金额
+	double OpenAmount = 15;
+	///平仓金额
+	double CloseAmount = 16;
+	///持仓成本
+	double PositionCost = 17;
+	///上次占用的保证金
+	double PreMargin = 18;
+	///占用的保证金
+	double UseMargin = 19;
+	///冻结的保证金
+	double FrozenMargin = 20;
+	///冻结的资金
+	double FrozenCash = 21;
+	///冻结的手续费
+	double FrozenCommission = 22;
+	///资金差额
+	double CashIn = 23;
+	///手续费
+	double Commission = 24;
+	///平仓盈亏
+	double CloseProfit = 25;
+	///持仓盈亏
+	double PositionProfit = 26;
+	///上次结算价
+	double PreSettlementPrice = 27;
+	///本次结算价
+	double SettlementPrice = 28;
+	///交易日
+	string TradingDay = 29;
+	///结算编号
+	int32 SettlementID = 30;
+	///开仓成本
+	double OpenCost = 31;
+	///交易所保证金
+	double ExchangeMargin = 32;
+	///组合成交形成的持仓
+	int32 CombPosition = 33;
+	///组合多头冻结
+	int32 CombLongFrozen = 34;
+	///组合空头冻结
+	int32 CombShortFrozen = 35;
+	///逐日盯市平仓盈亏
+	double CloseProfitByDate = 36;
+	///逐笔对冲平仓盈亏
+	double CloseProfitByTrade = 37;
+	///今日持仓
+	int32 TodayPosition = 38;
+	///保证金率
+	double MarginRateByMoney = 39;
+	///保证金率(按手数)
+	double MarginRateByVolume = 40;
+	///执行冻结
+	int32 StrikeFrozen = 41;
+	///执行冻结金额
+	double StrikeFrozenAmount = 42;
+	///放弃执行冻结
+	int32 AbandonFrozen = 43;
+	///交易所代码
+	string ExchangeID = 44;
+	///执行冻结的昨仓
+	int32 YdStrikeFrozen = 45;
+}
+
+///正在同步中的合约保证金率
+message CThostFtdcSyncingInstrumentMarginRateField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///投资者范围
+	string InvestorRange = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///投资者代码
+	string InvestorID = 4;
+	///投机套保标志
+	string HedgeFlag = 5;
+	///多头保证金率
+	double LongMarginRatioByMoney = 6;
+	///多头保证金费
+	double LongMarginRatioByVolume = 7;
+	///空头保证金率
+	double ShortMarginRatioByMoney = 8;
+	///空头保证金费
+	double ShortMarginRatioByVolume = 9;
+	///是否相对交易所收取
+	int32 IsRelative = 10;
+}
+
+///正在同步中的合约手续费率
+message CThostFtdcSyncingInstrumentCommissionRateField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///投资者范围
+	string InvestorRange = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///投资者代码
+	string InvestorID = 4;
+	///开仓手续费率
+	double OpenRatioByMoney = 5;
+	///开仓手续费
+	double OpenRatioByVolume = 6;
+	///平仓手续费率
+	double CloseRatioByMoney = 7;
+	///平仓手续费
+	double CloseRatioByVolume = 8;
+	///平今手续费率
+	double CloseTodayRatioByMoney = 9;
+	///平今手续费
+	double CloseTodayRatioByVolume = 10;
+	///交易所代码
+	string ExchangeID = 11;
+}
+
+///正在同步中的合约交易权限
+message CThostFtdcSyncingInstrumentTradingRightField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///投资者范围
+	string InvestorRange = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///投资者代码
+	string InvestorID = 4;
+	///交易权限
+	string TradingRight = 5;
+	///交易所代码
+	string ExchangeID = 6;
+}
+
+///查询报单
+message CThostFtdcQryOrderField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///报单编号
+	string OrderSysID = 5;
+	///开始时间
+	string InsertTimeStart = 6;
+	///结束时间
+	string InsertTimeEnd = 7;
+}
+
+///查询成交
+message CThostFtdcQryTradeField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///成交编号
+	string TradeID = 5;
+	///开始时间
+	string TradeTimeStart = 6;
+	///结束时间
+	string TradeTimeEnd = 7;
+}
+
+///查询投资者持仓
+message CThostFtdcQryInvestorPositionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+}
+
+///查询资金账户
+message CThostFtdcQryTradingAccountField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///币种代码
+	string CurrencyID = 3;
+	///业务类型
+	string BizType = 4;
+}
+
+///查询投资者
+message CThostFtdcQryInvestorField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+}
+
+///查询交易编码
+message CThostFtdcQryTradingCodeField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+	///客户代码
+	string ClientID = 4;
+	///交易编码类型
+	string ClientIDType = 5;
+}
+
+///查询投资者组
+message CThostFtdcQryInvestorGroupField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+}
+
+///查询合约保证金率
+message CThostFtdcQryInstrumentMarginRateField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///投机套保标志
+	string HedgeFlag = 4;
+}
+
+///查询手续费率
+message CThostFtdcQryInstrumentCommissionRateField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+}
+
+///查询合约交易权限
+message CThostFtdcQryInstrumentTradingRightField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+}
+
+///查询经纪公司
+message CThostFtdcQryBrokerField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+}
+
+///查询交易员
+message CThostFtdcQryTraderField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///会员代码
+	string ParticipantID = 2;
+	///交易所交易员代码
+	string TraderID = 3;
+}
+
+///查询管理用户功能权限
+message CThostFtdcQrySuperUserFunctionField
+{
+	///用户代码
+	string UserID = 1;
+}
+
+///查询用户会话
+message CThostFtdcQryUserSessionField
+{
+	///前置编号
+	int32 FrontID = 1;
+	///会话编号
+	int32 SessionID = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///用户代码
+	string UserID = 4;
+}
+
+///查询经纪公司会员代码
+message CThostFtdcQryPartBrokerField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///经纪公司代码
+	string BrokerID = 2;
+	///会员代码
+	string ParticipantID = 3;
+}
+
+///查询前置状态
+message CThostFtdcQryFrontStatusField
+{
+	///前置编号
+	int32 FrontID = 1;
+}
+
+///查询交易所报单
+message CThostFtdcQryExchangeOrderField
+{
+	///会员代码
+	string ParticipantID = 1;
+	///客户代码
+	string ClientID = 2;
+	///合约在交易所的代码
+	string ExchangeInstID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///交易所交易员代码
+	string TraderID = 5;
+}
+
+///查询报单操作
+message CThostFtdcQryOrderActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+}
+
+///查询交易所报单操作
+message CThostFtdcQryExchangeOrderActionField
+{
+	///会员代码
+	string ParticipantID = 1;
+	///客户代码
+	string ClientID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+	///交易所交易员代码
+	string TraderID = 4;
+}
+
+///查询管理用户
+message CThostFtdcQrySuperUserField
+{
+	///用户代码
+	string UserID = 1;
+}
+
+///查询交易所
+message CThostFtdcQryExchangeField
+{
+	///交易所代码
+	string ExchangeID = 1;
+}
+
+///查询产品
+message CThostFtdcQryProductField
+{
+	///产品代码
+	string ProductID = 1;
+	///产品类型
+	string ProductClass = 2;
+	///交易所代码
+	string ExchangeID = 3;
+}
+
+///查询合约
+message CThostFtdcQryInstrumentField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///交易所代码
+	string ExchangeID = 2;
+	///合约在交易所的代码
+	string ExchangeInstID = 3;
+	///产品代码
+	string ProductID = 4;
+}
+
+///查询行情
+message CThostFtdcQryDepthMarketDataField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///交易所代码
+	string ExchangeID = 2;
+}
+
+///查询经纪公司用户
+message CThostFtdcQryBrokerUserField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+}
+
+///查询经纪公司用户权限
+message CThostFtdcQryBrokerUserFunctionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+}
+
+///查询交易员报盘机
+message CThostFtdcQryTraderOfferField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///会员代码
+	string ParticipantID = 2;
+	///交易所交易员代码
+	string TraderID = 3;
+}
+
+///查询出入金流水
+message CThostFtdcQrySyncDepositField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///出入金流水号
+	string DepositSeqNo = 2;
+}
+
+///查询投资者结算结果
+message CThostFtdcQrySettlementInfoField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///交易日
+	string TradingDay = 3;
+}
+
+///查询交易所保证金率
+message CThostFtdcQryExchangeMarginRateField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///合约代码
+	string InstrumentID = 2;
+	///投机套保标志
+	string HedgeFlag = 3;
+}
+
+///查询交易所调整保证金率
+message CThostFtdcQryExchangeMarginRateAdjustField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///合约代码
+	string InstrumentID = 2;
+	///投机套保标志
+	string HedgeFlag = 3;
+}
+
+///查询汇率
+message CThostFtdcQryExchangeRateField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///源币种
+	string FromCurrencyID = 2;
+	///目标币种
+	string ToCurrencyID = 3;
+}
+
+///查询货币质押流水
+message CThostFtdcQrySyncFundMortgageField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///货币质押流水号
+	string MortgageSeqNo = 2;
+}
+
+///查询报单
+message CThostFtdcQryHisOrderField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///报单编号
+	string OrderSysID = 5;
+	///开始时间
+	string InsertTimeStart = 6;
+	///结束时间
+	string InsertTimeEnd = 7;
+	///交易日
+	string TradingDay = 8;
+	///结算编号
+	int32 SettlementID = 9;
+}
+
+///当前期权合约最小保证金
+message CThostFtdcOptionInstrMiniMarginField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///投资者范围
+	string InvestorRange = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///投资者代码
+	string InvestorID = 4;
+	///单位（手）期权合约最小保证金
+	double MinMargin = 5;
+	///取值方式
+	string ValueMethod = 6;
+	///是否跟随交易所收取
+	int32 IsRelative = 7;
+	///交易所代码
+	string ExchangeID = 8;
+}
+
+///当前期权合约保证金调整系数
+message CThostFtdcOptionInstrMarginAdjustField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///投资者范围
+	string InvestorRange = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///投资者代码
+	string InvestorID = 4;
+	///投机空头保证金调整系数
+	double SShortMarginRatioByMoney = 5;
+	///投机空头保证金调整系数
+	double SShortMarginRatioByVolume = 6;
+	///保值空头保证金调整系数
+	double HShortMarginRatioByMoney = 7;
+	///保值空头保证金调整系数
+	double HShortMarginRatioByVolume = 8;
+	///套利空头保证金调整系数
+	double AShortMarginRatioByMoney = 9;
+	///套利空头保证金调整系数
+	double AShortMarginRatioByVolume = 10;
+	///是否跟随交易所收取
+	int32 IsRelative = 11;
+	///交易所代码
+	string ExchangeID = 12;
+}
+
+///当前期权合约手续费的详细内容
+message CThostFtdcOptionInstrCommRateField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///投资者范围
+	string InvestorRange = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///投资者代码
+	string InvestorID = 4;
+	///开仓手续费率
+	double OpenRatioByMoney = 5;
+	///开仓手续费
+	double OpenRatioByVolume = 6;
+	///平仓手续费率
+	double CloseRatioByMoney = 7;
+	///平仓手续费
+	double CloseRatioByVolume = 8;
+	///平今手续费率
+	double CloseTodayRatioByMoney = 9;
+	///平今手续费
+	double CloseTodayRatioByVolume = 10;
+	///执行手续费率
+	double StrikeRatioByMoney = 11;
+	///执行手续费
+	double StrikeRatioByVolume = 12;
+	///交易所代码
+	string ExchangeID = 13;
+}
+
+///期权交易成本
+message CThostFtdcOptionInstrTradeCostField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///投机套保标志
+	string HedgeFlag = 4;
+	///期权合约保证金不变部分
+	double FixedMargin = 5;
+	///期权合约最小保证金
+	double MiniMargin = 6;
+	///期权合约权利金
+	double Royalty = 7;
+	///交易所期权合约保证金不变部分
+	double ExchFixedMargin = 8;
+	///交易所期权合约最小保证金
+	double ExchMiniMargin = 9;
+	///交易所代码
+	string ExchangeID = 10;
+}
+
+///期权交易成本查询
+message CThostFtdcQryOptionInstrTradeCostField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///投机套保标志
+	string HedgeFlag = 4;
+	///期权合约报价
+	double InputPrice = 5;
+	///标的价格,填0则用昨结算价
+	double UnderlyingPrice = 6;
+	///交易所代码
+	string ExchangeID = 7;
+}
+
+///期权手续费率查询
+message CThostFtdcQryOptionInstrCommRateField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+}
+
+///股指现货指数
+message CThostFtdcIndexPriceField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///合约代码
+	string InstrumentID = 2;
+	///指数现货收盘价
+	double ClosePrice = 3;
+	///交易所代码
+	string ExchangeID = 4;
+}
+
+///输入的执行宣告
+message CThostFtdcInputExecOrderField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///执行宣告引用
+	string ExecOrderRef = 4;
+	///用户代码
+	string UserID = 5;
+	///数量
+	int32 Volume = 6;
+	///请求编号
+	int32 RequestID = 7;
+	///业务单元
+	string BusinessUnit = 8;
+	///开平标志
+	string OffsetFlag = 9;
+	///投机套保标志
+	string HedgeFlag = 10;
+	///执行类型
+	string ActionType = 11;
+	///保留头寸申请的持仓方向
+	string PosiDirection = 12;
+	///期权行权后是否保留期货头寸的标记
+	string ReservePositionFlag = 13;
+	///期权行权后生成的头寸是否自动平仓
+	string CloseFlag = 14;
+	///交易所代码
+	string ExchangeID = 15;
+}
+
+///输入执行宣告操作
+message CThostFtdcInputExecOrderActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///执行宣告操作引用
+	int32 ExecOrderActionRef = 3;
+	///执行宣告引用
+	string ExecOrderRef = 4;
+	///请求编号
+	int32 RequestID = 5;
+	///前置编号
+	int32 FrontID = 6;
+	///会话编号
+	int32 SessionID = 7;
+	///交易所代码
+	string ExchangeID = 8;
+	///执行宣告操作编号
+	string ExecOrderSysID = 9;
+	///操作标志
+	string ActionFlag = 10;
+	///用户代码
+	string UserID = 11;
+	///合约代码
+	string InstrumentID = 12;
+}
+
+///执行宣告
+message CThostFtdcExecOrderField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///执行宣告引用
+	string ExecOrderRef = 4;
+	///用户代码
+	string UserID = 5;
+	///数量
+	int32 Volume = 6;
+	///请求编号
+	int32 RequestID = 7;
+	///业务单元
+	string BusinessUnit = 8;
+	///开平标志
+	string OffsetFlag = 9;
+	///投机套保标志
+	string HedgeFlag = 10;
+	///执行类型
+	string ActionType = 11;
+	///保留头寸申请的持仓方向
+	string PosiDirection = 12;
+	///期权行权后是否保留期货头寸的标记
+	string ReservePositionFlag = 13;
+	///期权行权后生成的头寸是否自动平仓
+	string CloseFlag = 14;
+	///本地执行宣告编号
+	string ExecOrderLocalID = 15;
+	///交易所代码
+	string ExchangeID = 16;
+	///会员代码
+	string ParticipantID = 17;
+	///客户代码
+	string ClientID = 18;
+	///合约在交易所的代码
+	string ExchangeInstID = 19;
+	///交易所交易员代码
+	string TraderID = 20;
+	///安装编号
+	int32 InstallID = 21;
+	///执行宣告提交状态
+	string OrderSubmitStatus = 22;
+	///报单提示序号
+	int32 NotifySequence = 23;
+	///交易日
+	string TradingDay = 24;
+	///结算编号
+	int32 SettlementID = 25;
+	///执行宣告编号
+	string ExecOrderSysID = 26;
+	///报单日期
+	string InsertDate = 27;
+	///插入时间
+	string InsertTime = 28;
+	///撤销时间
+	string CancelTime = 29;
+	///执行结果
+	string ExecResult = 30;
+	///结算会员编号
+	string ClearingPartID = 31;
+	///序号
+	int32 SequenceNo = 32;
+	///前置编号
+	int32 FrontID = 33;
+	///会话编号
+	int32 SessionID = 34;
+	///用户端产品信息
+	string UserProductInfo = 35;
+	///状态信息
+	string StatusMsg = 36;
+	///操作用户代码
+	string ActiveUserID = 37;
+	///经纪公司报单编号
+	int32 BrokerExecOrderSeq = 38;
+	///营业部编号
+	string BranchID = 39;
+}
+
+///执行宣告操作
+message CThostFtdcExecOrderActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///执行宣告操作引用
+	int32 ExecOrderActionRef = 3;
+	///执行宣告引用
+	string ExecOrderRef = 4;
+	///请求编号
+	int32 RequestID = 5;
+	///前置编号
+	int32 FrontID = 6;
+	///会话编号
+	int32 SessionID = 7;
+	///交易所代码
+	string ExchangeID = 8;
+	///执行宣告操作编号
+	string ExecOrderSysID = 9;
+	///操作标志
+	string ActionFlag = 10;
+	///操作日期
+	string ActionDate = 11;
+	///操作时间
+	string ActionTime = 12;
+	///交易所交易员代码
+	string TraderID = 13;
+	///安装编号
+	int32 InstallID = 14;
+	///本地执行宣告编号
+	string ExecOrderLocalID = 15;
+	///操作本地编号
+	string ActionLocalID = 16;
+	///会员代码
+	string ParticipantID = 17;
+	///客户代码
+	string ClientID = 18;
+	///业务单元
+	string BusinessUnit = 19;
+	///报单操作状态
+	string OrderActionStatus = 20;
+	///用户代码
+	string UserID = 21;
+	///执行类型
+	string ActionType = 22;
+	///状态信息
+	string StatusMsg = 23;
+	///合约代码
+	string InstrumentID = 24;
+	///营业部编号
+	string BranchID = 25;
+}
+
+///执行宣告查询
+message CThostFtdcQryExecOrderField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///执行宣告编号
+	string ExecOrderSysID = 5;
+	///开始时间
+	string InsertTimeStart = 6;
+	///结束时间
+	string InsertTimeEnd = 7;
+}
+
+///交易所执行宣告信息
+message CThostFtdcExchangeExecOrderField
+{
+	///数量
+	int32 Volume = 1;
+	///请求编号
+	int32 RequestID = 2;
+	///业务单元
+	string BusinessUnit = 3;
+	///开平标志
+	string OffsetFlag = 4;
+	///投机套保标志
+	string HedgeFlag = 5;
+	///执行类型
+	string ActionType = 6;
+	///保留头寸申请的持仓方向
+	string PosiDirection = 7;
+	///期权行权后是否保留期货头寸的标记
+	string ReservePositionFlag = 8;
+	///期权行权后生成的头寸是否自动平仓
+	string CloseFlag = 9;
+	///本地执行宣告编号
+	string ExecOrderLocalID = 10;
+	///交易所代码
+	string ExchangeID = 11;
+	///会员代码
+	string ParticipantID = 12;
+	///客户代码
+	string ClientID = 13;
+	///合约在交易所的代码
+	string ExchangeInstID = 14;
+	///交易所交易员代码
+	string TraderID = 15;
+	///安装编号
+	int32 InstallID = 16;
+	///执行宣告提交状态
+	string OrderSubmitStatus = 17;
+	///报单提示序号
+	int32 NotifySequence = 18;
+	///交易日
+	string TradingDay = 19;
+	///结算编号
+	int32 SettlementID = 20;
+	///执行宣告编号
+	string ExecOrderSysID = 21;
+	///报单日期
+	string InsertDate = 22;
+	///插入时间
+	string InsertTime = 23;
+	///撤销时间
+	string CancelTime = 24;
+	///执行结果
+	string ExecResult = 25;
+	///结算会员编号
+	string ClearingPartID = 26;
+	///序号
+	int32 SequenceNo = 27;
+	///营业部编号
+	string BranchID = 28;
+}
+
+///交易所执行宣告查询
+message CThostFtdcQryExchangeExecOrderField
+{
+	///会员代码
+	string ParticipantID = 1;
+	///客户代码
+	string ClientID = 2;
+	///合约在交易所的代码
+	string ExchangeInstID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///交易所交易员代码
+	string TraderID = 5;
+}
+
+///执行宣告操作查询
+message CThostFtdcQryExecOrderActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+}
+
+///交易所执行宣告操作
+message CThostFtdcExchangeExecOrderActionField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///执行宣告操作编号
+	string ExecOrderSysID = 2;
+	///操作标志
+	string ActionFlag = 3;
+	///操作日期
+	string ActionDate = 4;
+	///操作时间
+	string ActionTime = 5;
+	///交易所交易员代码
+	string TraderID = 6;
+	///安装编号
+	int32 InstallID = 7;
+	///本地执行宣告编号
+	string ExecOrderLocalID = 8;
+	///操作本地编号
+	string ActionLocalID = 9;
+	///会员代码
+	string ParticipantID = 10;
+	///客户代码
+	string ClientID = 11;
+	///业务单元
+	string BusinessUnit = 12;
+	///报单操作状态
+	string OrderActionStatus = 13;
+	///用户代码
+	string UserID = 14;
+	///执行类型
+	string ActionType = 15;
+	///营业部编号
+	string BranchID = 16;
+}
+
+///交易所执行宣告操作查询
+message CThostFtdcQryExchangeExecOrderActionField
+{
+	///会员代码
+	string ParticipantID = 1;
+	///客户代码
+	string ClientID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+	///交易所交易员代码
+	string TraderID = 4;
+}
+
+///错误执行宣告
+message CThostFtdcErrExecOrderField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///执行宣告引用
+	string ExecOrderRef = 4;
+	///用户代码
+	string UserID = 5;
+	///数量
+	int32 Volume = 6;
+	///请求编号
+	int32 RequestID = 7;
+	///业务单元
+	string BusinessUnit = 8;
+	///开平标志
+	string OffsetFlag = 9;
+	///投机套保标志
+	string HedgeFlag = 10;
+	///执行类型
+	string ActionType = 11;
+	///保留头寸申请的持仓方向
+	string PosiDirection = 12;
+	///期权行权后是否保留期货头寸的标记
+	string ReservePositionFlag = 13;
+	///期权行权后生成的头寸是否自动平仓
+	string CloseFlag = 14;
+	///交易所代码
+	string ExchangeID = 15;
+	///错误代码
+	int32 ErrorID = 16;
+	///错误信息
+	string ErrorMsg = 17;
+}
+
+///查询错误执行宣告
+message CThostFtdcQryErrExecOrderField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+}
+
+///错误执行宣告操作
+message CThostFtdcErrExecOrderActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///执行宣告操作引用
+	int32 ExecOrderActionRef = 3;
+	///执行宣告引用
+	string ExecOrderRef = 4;
+	///请求编号
+	int32 RequestID = 5;
+	///前置编号
+	int32 FrontID = 6;
+	///会话编号
+	int32 SessionID = 7;
+	///交易所代码
+	string ExchangeID = 8;
+	///执行宣告操作编号
+	string ExecOrderSysID = 9;
+	///操作标志
+	string ActionFlag = 10;
+	///用户代码
+	string UserID = 11;
+	///合约代码
+	string InstrumentID = 12;
+	///错误代码
+	int32 ErrorID = 13;
+	///错误信息
+	string ErrorMsg = 14;
+}
+
+///查询错误执行宣告操作
+message CThostFtdcQryErrExecOrderActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+}
+
+///投资者期权合约交易权限
+message CThostFtdcOptionInstrTradingRightField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///投资者范围
+	string InvestorRange = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///投资者代码
+	string InvestorID = 4;
+	///买卖方向
+	string Direction = 5;
+	///交易权限
+	string TradingRight = 6;
+	///交易所代码
+	string ExchangeID = 7;
+	///投机套保标志
+	string HedgeFlag = 8;
+}
+
+///查询期权合约交易权限
+message CThostFtdcQryOptionInstrTradingRightField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///买卖方向
+	string Direction = 4;
+	///交易所代码
+	string ExchangeID = 5;
+}
+
+///输入的询价
+message CThostFtdcInputForQuoteField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///询价引用
+	string ForQuoteRef = 4;
+	///用户代码
+	string UserID = 5;
+	///交易所代码
+	string ExchangeID = 6;
+}
+
+///询价
+message CThostFtdcForQuoteField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///询价引用
+	string ForQuoteRef = 4;
+	///用户代码
+	string UserID = 5;
+	///本地询价编号
+	string ForQuoteLocalID = 6;
+	///交易所代码
+	string ExchangeID = 7;
+	///会员代码
+	string ParticipantID = 8;
+	///客户代码
+	string ClientID = 9;
+	///合约在交易所的代码
+	string ExchangeInstID = 10;
+	///交易所交易员代码
+	string TraderID = 11;
+	///安装编号
+	int32 InstallID = 12;
+	///报单日期
+	string InsertDate = 13;
+	///插入时间
+	string InsertTime = 14;
+	///询价状态
+	string ForQuoteStatus = 15;
+	///前置编号
+	int32 FrontID = 16;
+	///会话编号
+	int32 SessionID = 17;
+	///状态信息
+	string StatusMsg = 18;
+	///操作用户代码
+	string ActiveUserID = 19;
+	///经纪公司询价编号
+	int32 BrokerForQutoSeq = 20;
+}
+
+///询价查询
+message CThostFtdcQryForQuoteField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///开始时间
+	string InsertTimeStart = 5;
+	///结束时间
+	string InsertTimeEnd = 6;
+}
+
+///交易所询价信息
+message CThostFtdcExchangeForQuoteField
+{
+	///本地询价编号
+	string ForQuoteLocalID = 1;
+	///交易所代码
+	string ExchangeID = 2;
+	///会员代码
+	string ParticipantID = 3;
+	///客户代码
+	string ClientID = 4;
+	///合约在交易所的代码
+	string ExchangeInstID = 5;
+	///交易所交易员代码
+	string TraderID = 6;
+	///安装编号
+	int32 InstallID = 7;
+	///报单日期
+	string InsertDate = 8;
+	///插入时间
+	string InsertTime = 9;
+	///询价状态
+	string ForQuoteStatus = 10;
+}
+
+///交易所询价查询
+message CThostFtdcQryExchangeForQuoteField
+{
+	///会员代码
+	string ParticipantID = 1;
+	///客户代码
+	string ClientID = 2;
+	///合约在交易所的代码
+	string ExchangeInstID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///交易所交易员代码
+	string TraderID = 5;
+}
+
+///输入的报价
+message CThostFtdcInputQuoteField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///报价引用
+	string QuoteRef = 4;
+	///用户代码
+	string UserID = 5;
+	///卖价格
+	double AskPrice = 6;
+	///买价格
+	double BidPrice = 7;
+	///卖数量
+	int32 AskVolume = 8;
+	///买数量
+	int32 BidVolume = 9;
+	///请求编号
+	int32 RequestID = 10;
+	///业务单元
+	string BusinessUnit = 11;
+	///卖开平标志
+	string AskOffsetFlag = 12;
+	///买开平标志
+	string BidOffsetFlag = 13;
+	///卖投机套保标志
+	string AskHedgeFlag = 14;
+	///买投机套保标志
+	string BidHedgeFlag = 15;
+	///衍生卖报单引用
+	string AskOrderRef = 16;
+	///衍生买报单引用
+	string BidOrderRef = 17;
+	///应价编号
+	string ForQuoteSysID = 18;
+	///交易所代码
+	string ExchangeID = 19;
+}
+
+///输入报价操作
+message CThostFtdcInputQuoteActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///报价操作引用
+	int32 QuoteActionRef = 3;
+	///报价引用
+	string QuoteRef = 4;
+	///请求编号
+	int32 RequestID = 5;
+	///前置编号
+	int32 FrontID = 6;
+	///会话编号
+	int32 SessionID = 7;
+	///交易所代码
+	string ExchangeID = 8;
+	///报价操作编号
+	string QuoteSysID = 9;
+	///操作标志
+	string ActionFlag = 10;
+	///用户代码
+	string UserID = 11;
+	///合约代码
+	string InstrumentID = 12;
+}
+
+///报价
+message CThostFtdcQuoteField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///报价引用
+	string QuoteRef = 4;
+	///用户代码
+	string UserID = 5;
+	///卖价格
+	double AskPrice = 6;
+	///买价格
+	double BidPrice = 7;
+	///卖数量
+	int32 AskVolume = 8;
+	///买数量
+	int32 BidVolume = 9;
+	///请求编号
+	int32 RequestID = 10;
+	///业务单元
+	string BusinessUnit = 11;
+	///卖开平标志
+	string AskOffsetFlag = 12;
+	///买开平标志
+	string BidOffsetFlag = 13;
+	///卖投机套保标志
+	string AskHedgeFlag = 14;
+	///买投机套保标志
+	string BidHedgeFlag = 15;
+	///本地报价编号
+	string QuoteLocalID = 16;
+	///交易所代码
+	string ExchangeID = 17;
+	///会员代码
+	string ParticipantID = 18;
+	///客户代码
+	string ClientID = 19;
+	///合约在交易所的代码
+	string ExchangeInstID = 20;
+	///交易所交易员代码
+	string TraderID = 21;
+	///安装编号
+	int32 InstallID = 22;
+	///报价提示序号
+	int32 NotifySequence = 23;
+	///报价提交状态
+	string OrderSubmitStatus = 24;
+	///交易日
+	string TradingDay = 25;
+	///结算编号
+	int32 SettlementID = 26;
+	///报价编号
+	string QuoteSysID = 27;
+	///报单日期
+	string InsertDate = 28;
+	///插入时间
+	string InsertTime = 29;
+	///撤销时间
+	string CancelTime = 30;
+	///报价状态
+	string QuoteStatus = 31;
+	///结算会员编号
+	string ClearingPartID = 32;
+	///序号
+	int32 SequenceNo = 33;
+	///卖方报单编号
+	string AskOrderSysID = 34;
+	///买方报单编号
+	string BidOrderSysID = 35;
+	///前置编号
+	int32 FrontID = 36;
+	///会话编号
+	int32 SessionID = 37;
+	///用户端产品信息
+	string UserProductInfo = 38;
+	///状态信息
+	string StatusMsg = 39;
+	///操作用户代码
+	string ActiveUserID = 40;
+	///经纪公司报价编号
+	int32 BrokerQuoteSeq = 41;
+	///衍生卖报单引用
+	string AskOrderRef = 42;
+	///衍生买报单引用
+	string BidOrderRef = 43;
+	///应价编号
+	string ForQuoteSysID = 44;
+	///营业部编号
+	string BranchID = 45;
+}
+
+///报价操作
+message CThostFtdcQuoteActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///报价操作引用
+	int32 QuoteActionRef = 3;
+	///报价引用
+	string QuoteRef = 4;
+	///请求编号
+	int32 RequestID = 5;
+	///前置编号
+	int32 FrontID = 6;
+	///会话编号
+	int32 SessionID = 7;
+	///交易所代码
+	string ExchangeID = 8;
+	///报价操作编号
+	string QuoteSysID = 9;
+	///操作标志
+	string ActionFlag = 10;
+	///操作日期
+	string ActionDate = 11;
+	///操作时间
+	string ActionTime = 12;
+	///交易所交易员代码
+	string TraderID = 13;
+	///安装编号
+	int32 InstallID = 14;
+	///本地报价编号
+	string QuoteLocalID = 15;
+	///操作本地编号
+	string ActionLocalID = 16;
+	///会员代码
+	string ParticipantID = 17;
+	///客户代码
+	string ClientID = 18;
+	///业务单元
+	string BusinessUnit = 19;
+	///报单操作状态
+	string OrderActionStatus = 20;
+	///用户代码
+	string UserID = 21;
+	///状态信息
+	string StatusMsg = 22;
+	///合约代码
+	string InstrumentID = 23;
+	///营业部编号
+	string BranchID = 24;
+}
+
+///报价查询
+message CThostFtdcQryQuoteField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///报价编号
+	string QuoteSysID = 5;
+	///开始时间
+	string InsertTimeStart = 6;
+	///结束时间
+	string InsertTimeEnd = 7;
+}
+
+///交易所报价信息
+message CThostFtdcExchangeQuoteField
+{
+	///卖价格
+	double AskPrice = 1;
+	///买价格
+	double BidPrice = 2;
+	///卖数量
+	int32 AskVolume = 3;
+	///买数量
+	int32 BidVolume = 4;
+	///请求编号
+	int32 RequestID = 5;
+	///业务单元
+	string BusinessUnit = 6;
+	///卖开平标志
+	string AskOffsetFlag = 7;
+	///买开平标志
+	string BidOffsetFlag = 8;
+	///卖投机套保标志
+	string AskHedgeFlag = 9;
+	///买投机套保标志
+	string BidHedgeFlag = 10;
+	///本地报价编号
+	string QuoteLocalID = 11;
+	///交易所代码
+	string ExchangeID = 12;
+	///会员代码
+	string ParticipantID = 13;
+	///客户代码
+	string ClientID = 14;
+	///合约在交易所的代码
+	string ExchangeInstID = 15;
+	///交易所交易员代码
+	string TraderID = 16;
+	///安装编号
+	int32 InstallID = 17;
+	///报价提示序号
+	int32 NotifySequence = 18;
+	///报价提交状态
+	string OrderSubmitStatus = 19;
+	///交易日
+	string TradingDay = 20;
+	///结算编号
+	int32 SettlementID = 21;
+	///报价编号
+	string QuoteSysID = 22;
+	///报单日期
+	string InsertDate = 23;
+	///插入时间
+	string InsertTime = 24;
+	///撤销时间
+	string CancelTime = 25;
+	///报价状态
+	string QuoteStatus = 26;
+	///结算会员编号
+	string ClearingPartID = 27;
+	///序号
+	int32 SequenceNo = 28;
+	///卖方报单编号
+	string AskOrderSysID = 29;
+	///买方报单编号
+	string BidOrderSysID = 30;
+	///应价编号
+	string ForQuoteSysID = 31;
+	///营业部编号
+	string BranchID = 32;
+}
+
+///交易所报价查询
+message CThostFtdcQryExchangeQuoteField
+{
+	///会员代码
+	string ParticipantID = 1;
+	///客户代码
+	string ClientID = 2;
+	///合约在交易所的代码
+	string ExchangeInstID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///交易所交易员代码
+	string TraderID = 5;
+}
+
+///报价操作查询
+message CThostFtdcQryQuoteActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+}
+
+///交易所报价操作
+message CThostFtdcExchangeQuoteActionField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///报价操作编号
+	string QuoteSysID = 2;
+	///操作标志
+	string ActionFlag = 3;
+	///操作日期
+	string ActionDate = 4;
+	///操作时间
+	string ActionTime = 5;
+	///交易所交易员代码
+	string TraderID = 6;
+	///安装编号
+	int32 InstallID = 7;
+	///本地报价编号
+	string QuoteLocalID = 8;
+	///操作本地编号
+	string ActionLocalID = 9;
+	///会员代码
+	string ParticipantID = 10;
+	///客户代码
+	string ClientID = 11;
+	///业务单元
+	string BusinessUnit = 12;
+	///报单操作状态
+	string OrderActionStatus = 13;
+	///用户代码
+	string UserID = 14;
+}
+
+///交易所报价操作查询
+message CThostFtdcQryExchangeQuoteActionField
+{
+	///会员代码
+	string ParticipantID = 1;
+	///客户代码
+	string ClientID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+	///交易所交易员代码
+	string TraderID = 4;
+}
+
+///期权合约delta值
+message CThostFtdcOptionInstrDeltaField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///投资者范围
+	string InvestorRange = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///投资者代码
+	string InvestorID = 4;
+	///Delta值
+	double Delta = 5;
+	///交易所代码
+	string ExchangeID = 6;
+}
+
+///发给做市商的询价请求
+message CThostFtdcForQuoteRspField
+{
+	///交易日
+	string TradingDay = 1;
+	///合约代码
+	string InstrumentID = 2;
+	///询价编号
+	string ForQuoteSysID = 3;
+	///询价时间
+	string ForQuoteTime = 4;
+	///业务日期
+	string ActionDay = 5;
+	///交易所代码
+	string ExchangeID = 6;
+}
+
+///当前期权合约执行偏移值的详细内容
+message CThostFtdcStrikeOffsetField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///投资者范围
+	string InvestorRange = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///投资者代码
+	string InvestorID = 4;
+	///执行偏移值
+	double Offset = 5;
+	///交易所代码
+	string ExchangeID = 6;
+}
+
+///期权执行偏移值查询
+message CThostFtdcQryStrikeOffsetField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+}
+
+///录入锁定
+message CThostFtdcInputLockField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///锁定引用
+	string LockRef = 4;
+	///用户代码
+	string UserID = 5;
+	///数量
+	int32 Volume = 6;
+	///请求编号
+	int32 RequestID = 7;
+	///业务单元
+	string BusinessUnit = 8;
+	///锁定类型
+	string LockType = 9;
+	///交易所代码
+	string ExchangeID = 10;
+}
+
+///锁定
+message CThostFtdcLockField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///锁定引用
+	string LockRef = 4;
+	///用户代码
+	string UserID = 5;
+	///数量
+	int32 Volume = 6;
+	///请求编号
+	int32 RequestID = 7;
+	///业务单元
+	string BusinessUnit = 8;
+	///锁定类型
+	string LockType = 9;
+	///本地锁定编号
+	string LockLocalID = 10;
+	///交易所代码
+	string ExchangeID = 11;
+	///会员代码
+	string ParticipantID = 12;
+	///客户代码
+	string ClientID = 13;
+	///合约在交易所的代码
+	string ExchangeInstID = 14;
+	///交易所交易员代码
+	string TraderID = 15;
+	///安装编号
+	int32 InstallID = 16;
+	///执行宣告提交状态
+	string OrderSubmitStatus = 17;
+	///报单提示序号
+	int32 NotifySequence = 18;
+	///交易日
+	string TradingDay = 19;
+	///结算编号
+	int32 SettlementID = 20;
+	///锁定编号
+	string LockSysID = 21;
+	///报单日期
+	string InsertDate = 22;
+	///插入时间
+	string InsertTime = 23;
+	///撤销时间
+	string CancelTime = 24;
+	///锁定状态
+	string LockStatus = 25;
+	///结算会员编号
+	string ClearingPartID = 26;
+	///序号
+	int32 SequenceNo = 27;
+	///前置编号
+	int32 FrontID = 28;
+	///会话编号
+	int32 SessionID = 29;
+	///用户端产品信息
+	string UserProductInfo = 30;
+	///状态信息
+	string StatusMsg = 31;
+	///操作用户代码
+	string ActiveUserID = 32;
+	///经纪公司报单编号
+	int32 BrokerLockSeq = 33;
+	///营业部编号
+	string BranchID = 34;
+}
+
+///查询锁定
+message CThostFtdcQryLockField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///锁定编号
+	string LockSysID = 5;
+	///开始时间
+	string InsertTimeStart = 6;
+	///结束时间
+	string InsertTimeEnd = 7;
+}
+
+///锁定证券仓位
+message CThostFtdcLockPositionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///数量
+	int32 Volume = 5;
+	///冻结数量
+	int32 FrozenVolume = 6;
+}
+
+///查询锁定证券仓位
+message CThostFtdcQryLockPositionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+}
+
+///当前ETF期权合约手续费的详细内容
+message CThostFtdcETFOptionInstrCommRateField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///投资者范围
+	string InvestorRange = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///投资者代码
+	string InvestorID = 4;
+	///开仓手续费率
+	double OpenRatioByMoney = 5;
+	///开仓手续费
+	double OpenRatioByVolume = 6;
+	///平仓手续费率
+	double CloseRatioByMoney = 7;
+	///平仓手续费
+	double CloseRatioByVolume = 8;
+	///平今手续费率
+	double CloseTodayRatioByMoney = 9;
+	///平今手续费
+	double CloseTodayRatioByVolume = 10;
+	///执行手续费率
+	double StrikeRatioByMoney = 11;
+	///执行手续费
+	double StrikeRatioByVolume = 12;
+	///交易所代码
+	string ExchangeID = 13;
+	///投机套保标志
+	string HedgeFlag = 14;
+	///持仓方向
+	string PosiDirection = 15;
+}
+
+///ETF期权手续费率查询
+message CThostFtdcQryETFOptionInstrCommRateField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+}
+
+///输入的持仓冻结
+message CThostFtdcPosiFreezeField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///本地报单编号
+	string OrderLocalID = 5;
+	///交易所交易员代码
+	string TraderID = 6;
+	///会员代码
+	string ParticipantID = 7;
+	///安装编号
+	int32 InstallID = 8;
+	///数量
+	int32 Volume = 9;
+	///冻结原因
+	string FreezeReasonType = 10;
+	///冻结类型
+	string FreezeType = 11;
+}
+
+///查询锁定
+message CThostFtdcQryExchangeLockField
+{
+	///会员代码
+	string ParticipantID = 1;
+	///客户代码
+	string ClientID = 2;
+	///合约在交易所的代码
+	string ExchangeInstID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///交易所交易员代码
+	string TraderID = 5;
+}
+
+///交易所锁定
+message CThostFtdcExchangeLockField
+{
+	///数量
+	int32 Volume = 1;
+	///请求编号
+	int32 RequestID = 2;
+	///业务单元
+	string BusinessUnit = 3;
+	///锁定类型
+	string LockType = 4;
+	///本地锁定编号
+	string LockLocalID = 5;
+	///交易所代码
+	string ExchangeID = 6;
+	///会员代码
+	string ParticipantID = 7;
+	///客户代码
+	string ClientID = 8;
+	///合约在交易所的代码
+	string ExchangeInstID = 9;
+	///交易所交易员代码
+	string TraderID = 10;
+	///安装编号
+	int32 InstallID = 11;
+	///执行宣告提交状态
+	string OrderSubmitStatus = 12;
+	///报单提示序号
+	int32 NotifySequence = 13;
+	///交易日
+	string TradingDay = 14;
+	///结算编号
+	int32 SettlementID = 15;
+	///锁定编号
+	string LockSysID = 16;
+	///报单日期
+	string InsertDate = 17;
+	///插入时间
+	string InsertTime = 18;
+	///撤销时间
+	string CancelTime = 19;
+	///锁定状态
+	string LockStatus = 20;
+	///结算会员编号
+	string ClearingPartID = 21;
+	///序号
+	int32 SequenceNo = 22;
+	///营业部编号
+	string BranchID = 23;
+}
+
+///交易所操作错误
+message CThostFtdcExchangeExecOrderActionErrorField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///执行宣告编号
+	string ExecOrderSysID = 2;
+	///交易所交易员代码
+	string TraderID = 3;
+	///安装编号
+	int32 InstallID = 4;
+	///本地执行宣告编号
+	string ExecOrderLocalID = 5;
+	///操作本地编号
+	string ActionLocalID = 6;
+	///错误代码
+	int32 ErrorID = 7;
+	///错误信息
+	string ErrorMsg = 8;
+	///经纪公司代码
+	string BrokerID = 9;
+}
+
+///输入批量报单操作
+message CThostFtdcInputBatchOrderActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///报单操作引用
+	int32 OrderActionRef = 3;
+	///请求编号
+	int32 RequestID = 4;
+	///前置编号
+	int32 FrontID = 5;
+	///会话编号
+	int32 SessionID = 6;
+	///交易所代码
+	string ExchangeID = 7;
+	///用户代码
+	string UserID = 8;
+}
+
+///批量报单操作
+message CThostFtdcBatchOrderActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///报单操作引用
+	int32 OrderActionRef = 3;
+	///请求编号
+	int32 RequestID = 4;
+	///前置编号
+	int32 FrontID = 5;
+	///会话编号
+	int32 SessionID = 6;
+	///交易所代码
+	string ExchangeID = 7;
+	///操作日期
+	string ActionDate = 8;
+	///操作时间
+	string ActionTime = 9;
+	///交易所交易员代码
+	string TraderID = 10;
+	///安装编号
+	int32 InstallID = 11;
+	///操作本地编号
+	string ActionLocalID = 12;
+	///会员代码
+	string ParticipantID = 13;
+	///客户代码
+	string ClientID = 14;
+	///业务单元
+	string BusinessUnit = 15;
+	///报单操作状态
+	string OrderActionStatus = 16;
+	///用户代码
+	string UserID = 17;
+	///状态信息
+	string StatusMsg = 18;
+}
+
+///交易所批量报单操作
+message CThostFtdcExchangeBatchOrderActionField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///操作日期
+	string ActionDate = 2;
+	///操作时间
+	string ActionTime = 3;
+	///交易所交易员代码
+	string TraderID = 4;
+	///安装编号
+	int32 InstallID = 5;
+	///操作本地编号
+	string ActionLocalID = 6;
+	///会员代码
+	string ParticipantID = 7;
+	///客户代码
+	string ClientID = 8;
+	///业务单元
+	string BusinessUnit = 9;
+	///报单操作状态
+	string OrderActionStatus = 10;
+	///用户代码
+	string UserID = 11;
+}
+
+///查询批量报单操作
+message CThostFtdcQryBatchOrderActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+}
+
+///投资者持仓限制
+message CThostFtdcLimitPosiField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///总数量限制
+	int32 TotalVolume = 5;
+	///多头数量限制
+	int32 LongVolume = 6;
+	///当日多头开仓数量限制
+	int32 OpenVolume = 7;
+	///多头持仓金额限制
+	double LongAmount = 8;
+	///总数量冻结
+	int32 TotalVolumeFrozen = 9;
+	///多头数量冻结
+	int32 LongVolumeFrozen = 10;
+	///当日多头开仓数量冻结
+	int32 OpenVolumeFrozen = 11;
+	///多头持仓金额冻结
+	double LongAmountFrozen = 12;
+}
+
+///查询投资者持仓限制
+message CThostFtdcQryLimitPosiField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+}
+
+///经纪公司持仓限制
+message CThostFtdcBrokerLimitPosiField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///合约代码
+	string InstrumentID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+	///总数量限制
+	double TotalVolume = 4;
+	///多头数量限制
+	double LongVolume = 5;
+	///总数量冻结
+	double TotalVolumeFrozen = 6;
+	///多头数量冻结
+	double LongVolumeFrozen = 7;
+}
+
+///查询经纪公司持仓限制
+message CThostFtdcQryBrokerLimitPosiField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///合约代码
+	string InstrumentID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+}
+
+///投资者证券持仓限制
+message CThostFtdcLimitPosiSField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///总数量限制
+	int32 TotalVolume = 5;
+	///当日开仓数量限制
+	int32 OpenVolume = 6;
+	///总数量冻结
+	int32 TotalVolumeFrozen = 7;
+	///当日开仓数量冻结
+	int32 OpenVolumeFrozen = 8;
+}
+
+///查询投资者证券持仓限制
+message CThostFtdcQryLimitPosiSField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+}
+
+///投资者持仓限制参数
+message CThostFtdcLimitPosiParamField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///投资者范围
+	string InvestorRange = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///投资者代码
+	string InvestorID = 4;
+	///交易所代码
+	string ExchangeID = 5;
+	///总数量限制
+	int32 TotalVolume = 6;
+	///多头数量限制
+	int32 LongVolume = 7;
+	///当日多头开仓数量限制
+	int32 OpenVolume = 8;
+	///多头持仓金额限制
+	double LongAmount = 9;
+}
+
+///经纪公司持仓限制参数
+message CThostFtdcBrokerLimitPosiParamField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///合约代码
+	string InstrumentID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+	///总数量限制
+	double TotalVolume = 4;
+	///多头数量限制
+	double LongVolume = 5;
+}
+
+///投资者证券持仓限制参数
+message CThostFtdcLimitPosiParamSField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///投资者范围
+	string InvestorRange = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///投资者代码
+	string InvestorID = 4;
+	///交易所代码
+	string ExchangeID = 5;
+	///总数量限制
+	int32 TotalVolume = 6;
+	///当日开仓数量限制
+	int32 OpenVolume = 7;
+}
+
+///输入证券处置操作
+message CThostFtdcInputStockDisposalActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///证券处置操作引用
+	int32 StockDisposalActionRef = 3;
+	///证券处置引用
+	string StockDisposalRef = 4;
+	///请求编号
+	int32 RequestID = 5;
+	///前置编号
+	int32 FrontID = 6;
+	///会话编号
+	int32 SessionID = 7;
+	///交易所代码
+	string ExchangeID = 8;
+	///证券处置操作编号
+	string StockDisposalSysID = 9;
+	///操作标志
+	string ActionFlag = 10;
+	///用户代码
+	string UserID = 11;
+	///合约代码
+	string InstrumentID = 12;
+}
+
+///证券处置操作
+message CThostFtdcStockDisposalActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///证券处置操作引用
+	int32 StockDisposalActionRef = 3;
+	///证券处置引用
+	string StockDisposalRef = 4;
+	///请求编号
+	int32 RequestID = 5;
+	///前置编号
+	int32 FrontID = 6;
+	///会话编号
+	int32 SessionID = 7;
+	///交易所代码
+	string ExchangeID = 8;
+	///证券处置操作编号
+	string StockDisposalSysID = 9;
+	///操作标志
+	string ActionFlag = 10;
+	///操作日期
+	string ActionDate = 11;
+	///操作时间
+	string ActionTime = 12;
+	///交易所交易员代码
+	string TraderID = 13;
+	///安装编号
+	int32 InstallID = 14;
+	///本地证券处置编号
+	string StockDisposalLocalID = 15;
+	///操作本地编号
+	string ActionLocalID = 16;
+	///会员代码
+	string ParticipantID = 17;
+	///客户代码
+	string ClientID = 18;
+	///业务单元
+	string BusinessUnit = 19;
+	///报单操作状态
+	string OrderActionStatus = 20;
+	///用户代码
+	string UserID = 21;
+	///执行类型
+	string ActionType = 22;
+	///状态信息
+	string StatusMsg = 23;
+	///合约代码
+	string InstrumentID = 24;
+	///营业部编号
+	string BranchID = 25;
+}
+
+///证券处置操作查询
+message CThostFtdcQryStockDisposalActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+}
+
+///交易所证券处置操作
+message CThostFtdcExchangeStockDisposalActionField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///证券处置操作编号
+	string StockDisposalSysID = 2;
+	///操作标志
+	string ActionFlag = 3;
+	///操作日期
+	string ActionDate = 4;
+	///操作时间
+	string ActionTime = 5;
+	///交易所交易员代码
+	string TraderID = 6;
+	///安装编号
+	int32 InstallID = 7;
+	///本地证券处置编号
+	string StockDisposalLocalID = 8;
+	///操作本地编号
+	string ActionLocalID = 9;
+	///会员代码
+	string ParticipantID = 10;
+	///客户代码
+	string ClientID = 11;
+	///业务单元
+	string BusinessUnit = 12;
+	///报单操作状态
+	string OrderActionStatus = 13;
+	///用户代码
+	string UserID = 14;
+	///执行类型
+	string ActionType = 15;
+	///营业部编号
+	string BranchID = 16;
+}
+
+///错误证券处置操作
+message CThostFtdcQryExchangeStockDisposalActionField
+{
+	///会员代码
+	string ParticipantID = 1;
+	///客户代码
+	string ClientID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+	///交易所交易员代码
+	string TraderID = 4;
+}
+
+///查询错误证券处置操作
+message CThostFtdcQryErrStockDisposalActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+}
+
+///交易所证券处置操作错误
+message CThostFtdcExchangeStockDisposalActionErrorField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///证券处置编号
+	string StockDisposalSysID = 2;
+	///交易所交易员代码
+	string TraderID = 3;
+	///安装编号
+	int32 InstallID = 4;
+	///本地证券处置编号
+	string StockDisposalLocalID = 5;
+	///操作本地编号
+	string ActionLocalID = 6;
+	///错误代码
+	int32 ErrorID = 7;
+	///错误信息
+	string ErrorMsg = 8;
+	///经纪公司代码
+	string BrokerID = 9;
+}
+
+///错误证券处置操作
+message CThostFtdcErrStockDisposalActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///证券处置操作引用
+	int32 StockDisposalActionRef = 3;
+	///证券处置引用
+	string StockDisposalRef = 4;
+	///请求编号
+	int32 RequestID = 5;
+	///前置编号
+	int32 FrontID = 6;
+	///会话编号
+	int32 SessionID = 7;
+	///交易所代码
+	string ExchangeID = 8;
+	///证券处置操作编号
+	string StockDisposalSysID = 9;
+	///操作标志
+	string ActionFlag = 10;
+	///用户代码
+	string UserID = 11;
+	///合约代码
+	string InstrumentID = 12;
+	///错误代码
+	int32 ErrorID = 13;
+	///错误信息
+	string ErrorMsg = 14;
+}
+
+///投资者分级
+message CThostFtdcInvestorLevelField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+	///投资者分级类型
+	string LevelType = 4;
+}
+
+///组合合约安全系数
+message CThostFtdcCombInstrumentGuardField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///合约代码
+	string InstrumentID = 2;
+	///
+	double GuarantRatio = 3;
+}
+
+///组合合约安全系数查询
+message CThostFtdcQryCombInstrumentGuardField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///合约代码
+	string InstrumentID = 2;
+}
+
+///输入的申请组合
+message CThostFtdcInputCombActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///组合引用
+	string CombActionRef = 4;
+	///用户代码
+	string UserID = 5;
+	///买卖方向
+	string Direction = 6;
+	///数量
+	int32 Volume = 7;
+	///组合指令方向
+	string CombDirection = 8;
+	///投机套保标志
+	string HedgeFlag = 9;
+	///交易所代码
+	string ExchangeID = 10;
+}
+
+///申请组合
+message CThostFtdcCombActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///组合引用
+	string CombActionRef = 4;
+	///用户代码
+	string UserID = 5;
+	///买卖方向
+	string Direction = 6;
+	///数量
+	int32 Volume = 7;
+	///组合指令方向
+	string CombDirection = 8;
+	///投机套保标志
+	string HedgeFlag = 9;
+	///本地申请组合编号
+	string ActionLocalID = 10;
+	///交易所代码
+	string ExchangeID = 11;
+	///会员代码
+	string ParticipantID = 12;
+	///客户代码
+	string ClientID = 13;
+	///合约在交易所的代码
+	string ExchangeInstID = 14;
+	///交易所交易员代码
+	string TraderID = 15;
+	///安装编号
+	int32 InstallID = 16;
+	///组合状态
+	string ActionStatus = 17;
+	///报单提示序号
+	int32 NotifySequence = 18;
+	///交易日
+	string TradingDay = 19;
+	///结算编号
+	int32 SettlementID = 20;
+	///序号
+	int32 SequenceNo = 21;
+	///前置编号
+	int32 FrontID = 22;
+	///会话编号
+	int32 SessionID = 23;
+	///用户端产品信息
+	string UserProductInfo = 24;
+	///状态信息
+	string StatusMsg = 25;
+}
+
+///申请组合查询
+message CThostFtdcQryCombActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+}
+
+///交易所申请组合信息
+message CThostFtdcExchangeCombActionField
+{
+	///买卖方向
+	string Direction = 1;
+	///数量
+	int32 Volume = 2;
+	///组合指令方向
+	string CombDirection = 3;
+	///投机套保标志
+	string HedgeFlag = 4;
+	///本地申请组合编号
+	string ActionLocalID = 5;
+	///交易所代码
+	string ExchangeID = 6;
+	///会员代码
+	string ParticipantID = 7;
+	///客户代码
+	string ClientID = 8;
+	///合约在交易所的代码
+	string ExchangeInstID = 9;
+	///交易所交易员代码
+	string TraderID = 10;
+	///安装编号
+	int32 InstallID = 11;
+	///组合状态
+	string ActionStatus = 12;
+	///报单提示序号
+	int32 NotifySequence = 13;
+	///交易日
+	string TradingDay = 14;
+	///结算编号
+	int32 SettlementID = 15;
+	///序号
+	int32 SequenceNo = 16;
+}
+
+///交易所申请组合查询
+message CThostFtdcQryExchangeCombActionField
+{
+	///会员代码
+	string ParticipantID = 1;
+	///客户代码
+	string ClientID = 2;
+	///合约在交易所的代码
+	string ExchangeInstID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///交易所交易员代码
+	string TraderID = 5;
+}
+
+///产品报价汇率
+message CThostFtdcProductExchRateField
+{
+	///产品代码
+	string ProductID = 1;
+	///报价币种类型
+	string QuoteCurrencyID = 2;
+	///汇率
+	double ExchangeRate = 3;
+}
+
+///产品报价汇率查询
+message CThostFtdcQryProductExchRateField
+{
+	///产品代码
+	string ProductID = 1;
+}
+
+///输入的指定
+message CThostFtdcInputDesignateField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///指定登记引用
+	string DesignateRef = 3;
+	///用户代码
+	string UserID = 4;
+	///指定方向
+	string DesignateType = 5;
+	///交易所代码
+	string ExchangeID = 6;
+}
+
+///指定
+message CThostFtdcDesignateField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///指定登记引用
+	string DesignateRef = 3;
+	///用户代码
+	string UserID = 4;
+	///指定方向
+	string DesignateType = 5;
+	///本地指定编号
+	string DesignateLocalID = 6;
+	///交易所代码
+	string ExchangeID = 7;
+	///会员代码
+	string ParticipantID = 8;
+	///客户代码
+	string ClientID = 9;
+	///交易所交易员代码
+	string TraderID = 10;
+	///安装编号
+	int32 InstallID = 11;
+	///指定状态
+	string DesignateStatus = 12;
+	///报单提示序号
+	int32 NotifySequence = 13;
+	///交易日
+	string TradingDay = 14;
+	///结算编号
+	int32 SettlementID = 15;
+	///报单日期
+	string InsertDate = 16;
+	///插入时间
+	string InsertTime = 17;
+	///前置编号
+	int32 FrontID = 18;
+	///会话编号
+	int32 SessionID = 19;
+	///用户端产品信息
+	string UserProductInfo = 20;
+	///状态信息
+	string StatusMsg = 21;
+	///营业部编号
+	string BranchID = 22;
+}
+
+///申请指定
+message CThostFtdcQryDesignateField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+}
+
+///交易所指定信息
+message CThostFtdcExchangeDesignateField
+{
+	///指定方向
+	string DesignateType = 1;
+	///本地指定编号
+	string DesignateLocalID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+	///会员代码
+	string ParticipantID = 4;
+	///客户代码
+	string ClientID = 5;
+	///交易所交易员代码
+	string TraderID = 6;
+	///安装编号
+	int32 InstallID = 7;
+	///指定状态
+	string DesignateStatus = 8;
+	///报单提示序号
+	int32 NotifySequence = 9;
+	///交易日
+	string TradingDay = 10;
+	///结算编号
+	int32 SettlementID = 11;
+	///报单日期
+	string InsertDate = 12;
+	///插入时间
+	string InsertTime = 13;
+	///营业部编号
+	string BranchID = 14;
+}
+
+///输入的证券处置
+message CThostFtdcInputStockDisposalField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///证券处置登记引用
+	string StockDisposalRef = 3;
+	///用户代码
+	string UserID = 4;
+	///合约代码
+	string InstrumentID = 5;
+	///数量
+	int32 Volume = 6;
+	///证券处置方向
+	string StockDisposalType = 7;
+	///交易所代码
+	string ExchangeID = 8;
+}
+
+///证券处置
+message CThostFtdcStockDisposalField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///证券处置登记引用
+	string StockDisposalRef = 3;
+	///用户代码
+	string UserID = 4;
+	///合约代码
+	string InstrumentID = 5;
+	///数量
+	int32 Volume = 6;
+	///证券处置方向
+	string StockDisposalType = 7;
+	///本地证券处置编号
+	string StockDisposalLocalID = 8;
+	///交易所代码
+	string ExchangeID = 9;
+	///合约在交易所的代码
+	string ExchangeInstID = 10;
+	///会员代码
+	string ParticipantID = 11;
+	///客户代码
+	string ClientID = 12;
+	///交易所交易员代码
+	string TraderID = 13;
+	///安装编号
+	int32 InstallID = 14;
+	///证券处置状态
+	string StockDisposalStatus = 15;
+	///报单提示序号
+	int32 NotifySequence = 16;
+	///交易日
+	string TradingDay = 17;
+	///结算编号
+	int32 SettlementID = 18;
+	///报单日期
+	string InsertDate = 19;
+	///插入时间
+	string InsertTime = 20;
+	///前置编号
+	int32 FrontID = 21;
+	///会话编号
+	int32 SessionID = 22;
+	///用户端产品信息
+	string UserProductInfo = 23;
+	///状态信息
+	string StatusMsg = 24;
+	///营业部编号
+	string BranchID = 25;
+	///证券处置操作编号
+	string StockDisposalSysID = 26;
+	///业务单元
+	string BusinessUnit = 27;
+}
+
+///申请证券处置
+message CThostFtdcQryStockDisposalField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+}
+
+///交易所证券处置信息
+message CThostFtdcExchangeStockDisposalField
+{
+	///数量
+	int32 Volume = 1;
+	///证券处置方向
+	string StockDisposalType = 2;
+	///本地证券处置编号
+	string StockDisposalLocalID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///合约在交易所的代码
+	string ExchangeInstID = 5;
+	///会员代码
+	string ParticipantID = 6;
+	///客户代码
+	string ClientID = 7;
+	///交易所交易员代码
+	string TraderID = 8;
+	///安装编号
+	int32 InstallID = 9;
+	///证券处置状态
+	string StockDisposalStatus = 10;
+	///报单提示序号
+	int32 NotifySequence = 11;
+	///交易日
+	string TradingDay = 12;
+	///结算编号
+	int32 SettlementID = 13;
+	///报单日期
+	string InsertDate = 14;
+	///插入时间
+	string InsertTime = 15;
+	///营业部编号
+	string BranchID = 16;
+	///证券处置操作编号
+	string StockDisposalSysID = 17;
+	///业务单元
+	string BusinessUnit = 18;
+}
+
+///查询投资者分级
+message CThostFtdcQryInvestorLevelField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+}
+
+///查询询价价差参数
+message CThostFtdcQryForQuoteParamField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///合约代码
+	string InstrumentID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+}
+
+///询价价差参数
+message CThostFtdcForQuoteParamField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///合约代码
+	string InstrumentID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+	///最新价
+	double LastPrice = 4;
+	///价差
+	double PriceInterval = 5;
+}
+
+///查询行权冻结
+message CThostFtdcQryExecFreezeField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+}
+
+///行权冻结
+message CThostFtdcExecFreezeField
+{
+	///标的合约代码
+	string InstrumentID = 1;
+	///交易所代码
+	string ExchangeID = 2;
+	///经纪公司代码
+	string BrokerID = 3;
+	///投资者代码
+	string InvestorID = 4;
+	///持仓多空方向
+	string PosiDirection = 5;
+	///期权类型
+	string OptionsType = 6;
+	///冻结的数量_单位股
+	int32 Volume = 7;
+	///冻结金额
+	double FrozenAmount = 8;
+}
+
+///市场行情
+message CThostFtdcMarketDataField
+{
+	///交易日
+	string TradingDay = 1;
+	///合约代码
+	string InstrumentID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+	///合约在交易所的代码
+	string ExchangeInstID = 4;
+	///最新价
+	double LastPrice = 5;
+	///上次结算价
+	double PreSettlementPrice = 6;
+	///昨收盘
+	double PreClosePrice = 7;
+	///昨持仓量
+	double PreOpenInterest = 8;
+	///今开盘
+	double OpenPrice = 9;
+	///最高价
+	double HighestPrice = 10;
+	///最低价
+	double LowestPrice = 11;
+	///数量
+	int32 Volume = 12;
+	///成交金额
+	double Turnover = 13;
+	///持仓量
+	double OpenInterest = 14;
+	///今收盘
+	double ClosePrice = 15;
+	///本次结算价
+	double SettlementPrice = 16;
+	///涨停板价
+	double UpperLimitPrice = 17;
+	///跌停板价
+	double LowerLimitPrice = 18;
+	///昨虚实度
+	double PreDelta = 19;
+	///今虚实度
+	double CurrDelta = 20;
+	///最后修改时间
+	string UpdateTime = 21;
+	///最后修改毫秒
+	int32 UpdateMillisec = 22;
+	///业务日期
+	string ActionDay = 23;
+}
+
+///行情基础属性
+message CThostFtdcMarketDataBaseField
+{
+	///交易日
+	string TradingDay = 1;
+	///上次结算价
+	double PreSettlementPrice = 2;
+	///昨收盘
+	double PreClosePrice = 3;
+	///昨持仓量
+	double PreOpenInterest = 4;
+	///昨虚实度
+	double PreDelta = 5;
+}
+
+///行情静态属性
+message CThostFtdcMarketDataStaticField
+{
+	///今开盘
+	double OpenPrice = 1;
+	///最高价
+	double HighestPrice = 2;
+	///最低价
+	double LowestPrice = 3;
+	///今收盘
+	double ClosePrice = 4;
+	///涨停板价
+	double UpperLimitPrice = 5;
+	///跌停板价
+	double LowerLimitPrice = 6;
+	///本次结算价
+	double SettlementPrice = 7;
+	///今虚实度
+	double CurrDelta = 8;
+}
+
+///行情最新成交属性
+message CThostFtdcMarketDataLastMatchField
+{
+	///最新价
+	double LastPrice = 1;
+	///数量
+	int32 Volume = 2;
+	///成交金额
+	double Turnover = 3;
+	///持仓量
+	double OpenInterest = 4;
+}
+
+///行情最优价属性
+message CThostFtdcMarketDataBestPriceField
+{
+	///申买价一
+	double BidPrice1 = 1;
+	///申买量一
+	int32 BidVolume1 = 2;
+	///申卖价一
+	double AskPrice1 = 3;
+	///申卖量一
+	int32 AskVolume1 = 4;
+}
+
+///行情申买二、三属性
+message CThostFtdcMarketDataBid23Field
+{
+	///申买价二
+	double BidPrice2 = 1;
+	///申买量二
+	int32 BidVolume2 = 2;
+	///申买价三
+	double BidPrice3 = 3;
+	///申买量三
+	int32 BidVolume3 = 4;
+}
+
+///行情申卖二、三属性
+message CThostFtdcMarketDataAsk23Field
+{
+	///申卖价二
+	double AskPrice2 = 1;
+	///申卖量二
+	int32 AskVolume2 = 2;
+	///申卖价三
+	double AskPrice3 = 3;
+	///申卖量三
+	int32 AskVolume3 = 4;
+}
+
+///行情申买四、五属性
+message CThostFtdcMarketDataBid45Field
+{
+	///申买价四
+	double BidPrice4 = 1;
+	///申买量四
+	int32 BidVolume4 = 2;
+	///申买价五
+	double BidPrice5 = 3;
+	///申买量五
+	int32 BidVolume5 = 4;
+}
+
+///行情申卖四、五属性
+message CThostFtdcMarketDataAsk45Field
+{
+	///申卖价四
+	double AskPrice4 = 1;
+	///申卖量四
+	int32 AskVolume4 = 2;
+	///申卖价五
+	double AskPrice5 = 3;
+	///申卖量五
+	int32 AskVolume5 = 4;
+}
+
+///行情更新时间属性
+message CThostFtdcMarketDataUpdateTimeField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///最后修改时间
+	string UpdateTime = 2;
+	///最后修改毫秒
+	int32 UpdateMillisec = 3;
+	///业务日期
+	string ActionDay = 4;
+	///交易所代码
+	string ExchangeID = 5;
+}
+
+///行情交易所代码属性
+message CThostFtdcMarketDataExchangeField
+{
+	///交易所代码
+	string ExchangeID = 1;
+}
+
+///指定的合约
+message CThostFtdcSpecificInstrumentField
+{
+	///合约代码
+	string InstrumentID = 1;
+}
+
+///合约状态
+message CThostFtdcInstrumentStatusField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///合约在交易所的代码
+	string ExchangeInstID = 2;
+	///结算组代码
+	string SettlementGroupID = 3;
+	///合约代码
+	string InstrumentID = 4;
+	///合约交易状态
+	string InstrumentStatus = 5;
+	///交易阶段编号
+	int32 TradingSegmentSN = 6;
+	///进入本状态时间
+	string EnterTime = 7;
+	///进入本状态原因
+	string EnterReason = 8;
+}
+
+///查询合约状态
+message CThostFtdcQryInstrumentStatusField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///合约在交易所的代码
+	string ExchangeInstID = 2;
+}
+
+///投资者账户
+message CThostFtdcInvestorAccountField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///投资者帐号
+	string AccountID = 3;
+	///币种代码
+	string CurrencyID = 4;
+}
+
+///浮动盈亏算法
+message CThostFtdcPositionProfitAlgorithmField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者帐号
+	string AccountID = 2;
+	///盈亏算法
+	string Algorithm = 3;
+	///备注
+	string Memo = 4;
+	///币种代码
+	string CurrencyID = 5;
+}
+
+///会员资金折扣
+message CThostFtdcDiscountField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者范围
+	string InvestorRange = 2;
+	///投资者代码
+	string InvestorID = 3;
+	///资金折扣比例
+	double Discount = 4;
+}
+
+///查询转帐银行
+message CThostFtdcQryTransferBankField
+{
+	///银行代码
+	string BankID = 1;
+	///银行分中心代码
+	string BankBrchID = 2;
+}
+
+///转帐银行
+message CThostFtdcTransferBankField
+{
+	///银行代码
+	string BankID = 1;
+	///银行分中心代码
+	string BankBrchID = 2;
+	///银行名称
+	string BankName = 3;
+	///是否活跃
+	int32 IsActive = 4;
+}
+
+///查询投资者持仓明细
+message CThostFtdcQryInvestorPositionDetailField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+}
+
+///投资者持仓明细
+message CThostFtdcInvestorPositionDetailField
+{
+	///合约代码
+	string InstrumentID = 1;
+	///经纪公司代码
+	string BrokerID = 2;
+	///投资者代码
+	string InvestorID = 3;
+	///投机套保标志
+	string HedgeFlag = 4;
+	///买卖
+	string Direction = 5;
+	///开仓日期
+	string OpenDate = 6;
+	///成交编号
+	string TradeID = 7;
+	///数量
+	int32 Volume = 8;
+	///开仓价
+	double OpenPrice = 9;
+	///交易日
+	string TradingDay = 10;
+	///结算编号
+	int32 SettlementID = 11;
+	///成交类型
+	string TradeType = 12;
+	///组合合约代码
+	string CombInstrumentID = 13;
+	///交易所代码
+	string ExchangeID = 14;
+	///逐日盯市平仓盈亏
+	double CloseProfitByDate = 15;
+	///逐笔对冲平仓盈亏
+	double CloseProfitByTrade = 16;
+	///逐日盯市持仓盈亏
+	double PositionProfitByDate = 17;
+	///逐笔对冲持仓盈亏
+	double PositionProfitByTrade = 18;
+	///投资者保证金
+	double Margin = 19;
+	///交易所保证金
+	double ExchMargin = 20;
+	///保证金率
+	double MarginRateByMoney = 21;
+	///保证金率(按手数)
+	double MarginRateByVolume = 22;
+	///昨结算价
+	double LastSettlementPrice = 23;
+	///结算价
+	double SettlementPrice = 24;
+	///平仓量
+	int32 CloseVolume = 25;
+	///平仓金额
+	double CloseAmount = 26;
+}
+
+///资金账户口令域
+message CThostFtdcTradingAccountPasswordField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者帐号
+	string AccountID = 2;
+	///密码
+	string Password = 3;
+	///币种代码
+	string CurrencyID = 4;
+}
+
+///交易所行情报盘机
+message CThostFtdcMDTraderOfferField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///交易所交易员代码
+	string TraderID = 2;
+	///会员代码
+	string ParticipantID = 3;
+	///密码
+	string Password = 4;
+	///安装编号
+	int32 InstallID = 5;
+	///本地报单编号
+	string OrderLocalID = 6;
+	///交易所交易员连接状态
+	string TraderConnectStatus = 7;
+	///发出连接请求的日期
+	string ConnectRequestDate = 8;
+	///发出连接请求的时间
+	string ConnectRequestTime = 9;
+	///上次报告日期
+	string LastReportDate = 10;
+	///上次报告时间
+	string LastReportTime = 11;
+	///完成连接日期
+	string ConnectDate = 12;
+	///完成连接时间
+	string ConnectTime = 13;
+	///启动日期
+	string StartDate = 14;
+	///启动时间
+	string StartTime = 15;
+	///交易日
+	string TradingDay = 16;
+	///经纪公司代码
+	string BrokerID = 17;
+	///本席位最大成交编号
+	string MaxTradeID = 18;
+	///本席位最大报单备拷
+	string MaxOrderMessageReference = 19;
+	///业务类型
+	string BizType = 20;
+}
+
+///查询行情报盘机
+message CThostFtdcQryMDTraderOfferField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///会员代码
+	string ParticipantID = 2;
+	///交易所交易员代码
+	string TraderID = 3;
+}
+
+///查询客户通知
+message CThostFtdcQryNoticeField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+}
+
+///客户通知
+message CThostFtdcNoticeField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///消息正文
+	string Content = 2;
+	///经纪公司通知内容序列号
+	string SequenceLabel = 3;
+}
+
+///用户权限
+message CThostFtdcUserRightField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+	///客户权限类型
+	string UserRightType = 3;
+	///是否禁止
+	int32 IsForbidden = 4;
+}
+
+///查询结算信息确认域
+message CThostFtdcQrySettlementInfoConfirmField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+}
+
+///装载结算信息
+message CThostFtdcLoadSettlementInfoField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+}
+
+///经纪公司可提资金算法表
+message CThostFtdcBrokerWithdrawAlgorithmField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///可提资金算法
+	string WithdrawAlgorithm = 2;
+	///资金使用率
+	double UsingRatio = 3;
+	///可提是否包含平仓盈利
+	string IncludeCloseProfit = 4;
+	///本日无仓且无成交客户是否受可提比例限制
+	string AllWithoutTrade = 5;
+	///可用是否包含平仓盈利
+	string AvailIncludeCloseProfit = 6;
+	///是否启用用户事件
+	int32 IsBrokerUserEvent = 7;
+	///币种代码
+	string CurrencyID = 8;
+	///货币质押比率
+	double FundMortgageRatio = 9;
+	///权益算法
+	string BalanceAlgorithm = 10;
+}
+
+///资金账户口令变更域
+message CThostFtdcTradingAccountPasswordUpdateV1Field
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///原来的口令
+	string OldPassword = 3;
+	///新的口令
+	string NewPassword = 4;
+}
+
+///资金账户口令变更域
+message CThostFtdcTradingAccountPasswordUpdateField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者帐号
+	string AccountID = 2;
+	///原来的口令
+	string OldPassword = 3;
+	///新的口令
+	string NewPassword = 4;
+	///币种代码
+	string CurrencyID = 5;
+}
+
+///查询组合合约分腿
+message CThostFtdcQryCombinationLegField
+{
+	///组合合约代码
+	string CombInstrumentID = 1;
+	///单腿编号
+	int32 LegID = 2;
+	///单腿合约代码
+	string LegInstrumentID = 3;
+}
+
+///查询组合合约分腿
+message CThostFtdcQrySyncStatusField
+{
+	///交易日
+	string TradingDay = 1;
+}
+
+///组合交易合约的单腿
+message CThostFtdcCombinationLegField
+{
+	///组合合约代码
+	string CombInstrumentID = 1;
+	///单腿编号
+	int32 LegID = 2;
+	///单腿合约代码
+	string LegInstrumentID = 3;
+	///买卖方向
+	string Direction = 4;
+	///单腿乘数
+	int32 LegMultiple = 5;
+	///派生层数
+	int32 ImplyLevel = 6;
+}
+
+///数据同步状态
+message CThostFtdcSyncStatusField
+{
+	///交易日
+	string TradingDay = 1;
+	///数据同步状态
+	string DataSyncStatus = 2;
+}
+
+///查询联系人
+message CThostFtdcQryLinkManField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+}
+
+///联系人
+message CThostFtdcLinkManField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///联系人类型
+	string PersonType = 3;
+	///证件类型
+	string IdentifiedCardType = 4;
+	///证件号码
+	string IdentifiedCardNo = 5;
+	///名称
+	string PersonName = 6;
+	///联系电话
+	string Telephone = 7;
+	///通讯地址
+	string Address = 8;
+	///邮政编码
+	string ZipCode = 9;
+	///优先级
+	int32 Priority = 10;
+	///开户邮政编码
+	string UOAZipCode = 11;
+	///全称
+	string PersonFullName = 12;
+}
+
+///查询经纪公司用户事件
+message CThostFtdcQryBrokerUserEventField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+	///用户事件类型
+	string UserEventType = 3;
+}
+
+///查询经纪公司用户事件
+message CThostFtdcBrokerUserEventField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+	///用户事件类型
+	string UserEventType = 3;
+	///用户事件序号
+	int32 EventSequenceNo = 4;
+	///事件发生日期
+	string EventDate = 5;
+	///事件发生时间
+	string EventTime = 6;
+	///用户事件信息
+	string UserEventInfo = 7;
+	///投资者代码
+	string InvestorID = 8;
+	///合约代码
+	string InstrumentID = 9;
+	///交易所代码
+	string ExchangeID = 10;
+}
+
+///查询签约银行请求
+message CThostFtdcQryContractBankField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分中心代码
+	string BankBrchID = 3;
+}
+
+///查询签约银行响应
+message CThostFtdcContractBankField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分中心代码
+	string BankBrchID = 3;
+	///银行名称
+	string BankName = 4;
+}
+
+///投资者组合持仓明细
+message CThostFtdcInvestorPositionCombineDetailField
+{
+	///交易日
+	string TradingDay = 1;
+	///开仓日期
+	string OpenDate = 2;
+	///交易所代码
+	string ExchangeID = 3;
+	///结算编号
+	int32 SettlementID = 4;
+	///经纪公司代码
+	string BrokerID = 5;
+	///投资者代码
+	string InvestorID = 6;
+	///组合编号
+	string ComTradeID = 7;
+	///撮合编号
+	string TradeID = 8;
+	///合约代码
+	string InstrumentID = 9;
+	///投机套保标志
+	string HedgeFlag = 10;
+	///买卖
+	string Direction = 11;
+	///持仓量
+	int32 TotalAmt = 12;
+	///投资者保证金
+	double Margin = 13;
+	///交易所保证金
+	double ExchMargin = 14;
+	///保证金率
+	double MarginRateByMoney = 15;
+	///保证金率(按手数)
+	double MarginRateByVolume = 16;
+	///单腿编号
+	int32 LegID = 17;
+	///单腿乘数
+	int32 LegMultiple = 18;
+	///组合持仓合约编码
+	string CombInstrumentID = 19;
+	///成交组号
+	int32 TradeGroupID = 20;
+}
+
+///预埋单
+message CThostFtdcParkedOrderField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///报单引用
+	string OrderRef = 4;
+	///用户代码
+	string UserID = 5;
+	///报单价格条件
+	string OrderPriceType = 6;
+	///买卖方向
+	string Direction = 7;
+	///组合开平标志
+	string CombOffsetFlag = 8;
+	///组合投机套保标志
+	string CombHedgeFlag = 9;
+	///价格
+	double LimitPrice = 10;
+	///数量
+	int32 VolumeTotalOriginal = 11;
+	///有效期类型
+	string TimeCondition = 12;
+	///GTD日期
+	string GTDDate = 13;
+	///成交量类型
+	string VolumeCondition = 14;
+	///最小成交量
+	int32 MinVolume = 15;
+	///触发条件
+	string ContingentCondition = 16;
+	///止损价
+	double StopPrice = 17;
+	///强平原因
+	string ForceCloseReason = 18;
+	///自动挂起标志
+	int32 IsAutoSuspend = 19;
+	///业务单元
+	string BusinessUnit = 20;
+	///请求编号
+	int32 RequestID = 21;
+	///用户强评标志
+	int32 UserForceClose = 22;
+	///交易所代码
+	string ExchangeID = 23;
+	///预埋报单编号
+	string ParkedOrderID = 24;
+	///用户类型
+	string UserType = 25;
+	///预埋单状态
+	string Status = 26;
+	///错误代码
+	int32 ErrorID = 27;
+	///错误信息
+	string ErrorMsg = 28;
+	///互换单标志
+	int32 IsSwapOrder = 29;
+}
+
+///输入预埋单操作
+message CThostFtdcParkedOrderActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///报单操作引用
+	int32 OrderActionRef = 3;
+	///报单引用
+	string OrderRef = 4;
+	///请求编号
+	int32 RequestID = 5;
+	///前置编号
+	int32 FrontID = 6;
+	///会话编号
+	int32 SessionID = 7;
+	///交易所代码
+	string ExchangeID = 8;
+	///报单编号
+	string OrderSysID = 9;
+	///操作标志
+	string ActionFlag = 10;
+	///价格
+	double LimitPrice = 11;
+	///数量变化
+	int32 VolumeChange = 12;
+	///用户代码
+	string UserID = 13;
+	///合约代码
+	string InstrumentID = 14;
+	///预埋撤单单编号
+	string ParkedOrderActionID = 15;
+	///用户类型
+	string UserType = 16;
+	///预埋撤单状态
+	string Status = 17;
+	///错误代码
+	int32 ErrorID = 18;
+	///错误信息
+	string ErrorMsg = 19;
+}
+
+///查询预埋单
+message CThostFtdcQryParkedOrderField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+}
+
+///查询预埋撤单
+message CThostFtdcQryParkedOrderActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+}
+
+///删除预埋单
+message CThostFtdcRemoveParkedOrderField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///预埋报单编号
+	string ParkedOrderID = 3;
+}
+
+///删除预埋撤单
+message CThostFtdcRemoveParkedOrderActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///预埋撤单编号
+	string ParkedOrderActionID = 3;
+}
+
+///经纪公司可提资金算法表
+message CThostFtdcInvestorWithdrawAlgorithmField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者范围
+	string InvestorRange = 2;
+	///投资者代码
+	string InvestorID = 3;
+	///可提资金比例
+	double UsingRatio = 4;
+	///币种代码
+	string CurrencyID = 5;
+	///货币质押比率
+	double FundMortgageRatio = 6;
+}
+
+///查询组合持仓明细
+message CThostFtdcQryInvestorPositionCombineDetailField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///组合持仓合约编码
+	string CombInstrumentID = 3;
+}
+
+///成交均价
+message CThostFtdcMarketDataAveragePriceField
+{
+	///当日均价
+	double AveragePrice = 1;
+}
+
+///校验投资者密码
+message CThostFtdcVerifyInvestorPasswordField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///密码
+	string Password = 3;
+}
+
+///用户IP
+message CThostFtdcUserIPField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+	///IP地址
+	string IPAddress = 3;
+	///IP地址掩码
+	string IPMask = 4;
+	///Mac地址
+	string MacAddress = 5;
+}
+
+///用户事件通知信息
+message CThostFtdcTradingNoticeInfoField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///发送时间
+	string SendTime = 3;
+	///消息正文
+	string FieldContent = 4;
+	///序列系列号
+	int32 SequenceSeries = 5;
+	///序列号
+	int32 SequenceNo = 6;
+}
+
+///用户事件通知
+message CThostFtdcTradingNoticeField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者范围
+	string InvestorRange = 2;
+	///投资者代码
+	string InvestorID = 3;
+	///序列系列号
+	int32 SequenceSeries = 4;
+	///用户代码
+	string UserID = 5;
+	///发送时间
+	string SendTime = 6;
+	///序列号
+	int32 SequenceNo = 7;
+	///消息正文
+	string FieldContent = 8;
+}
+
+///查询交易事件通知
+message CThostFtdcQryTradingNoticeField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+}
+
+///查询错误报单
+message CThostFtdcQryErrOrderField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+}
+
+///错误报单
+message CThostFtdcErrOrderField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///报单引用
+	string OrderRef = 4;
+	///用户代码
+	string UserID = 5;
+	///报单价格条件
+	string OrderPriceType = 6;
+	///买卖方向
+	string Direction = 7;
+	///组合开平标志
+	string CombOffsetFlag = 8;
+	///组合投机套保标志
+	string CombHedgeFlag = 9;
+	///价格
+	double LimitPrice = 10;
+	///数量
+	int32 VolumeTotalOriginal = 11;
+	///有效期类型
+	string TimeCondition = 12;
+	///GTD日期
+	string GTDDate = 13;
+	///成交量类型
+	string VolumeCondition = 14;
+	///最小成交量
+	int32 MinVolume = 15;
+	///触发条件
+	string ContingentCondition = 16;
+	///止损价
+	double StopPrice = 17;
+	///强平原因
+	string ForceCloseReason = 18;
+	///自动挂起标志
+	int32 IsAutoSuspend = 19;
+	///业务单元
+	string BusinessUnit = 20;
+	///请求编号
+	int32 RequestID = 21;
+	///用户强评标志
+	int32 UserForceClose = 22;
+	///错误代码
+	int32 ErrorID = 23;
+	///错误信息
+	string ErrorMsg = 24;
+	///互换单标志
+	int32 IsSwapOrder = 25;
+	///交易所代码
+	string ExchangeID = 26;
+}
+
+///查询错误报单操作
+message CThostFtdcErrorConditionalOrderField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///报单引用
+	string OrderRef = 4;
+	///用户代码
+	string UserID = 5;
+	///报单价格条件
+	string OrderPriceType = 6;
+	///买卖方向
+	string Direction = 7;
+	///组合开平标志
+	string CombOffsetFlag = 8;
+	///组合投机套保标志
+	string CombHedgeFlag = 9;
+	///价格
+	double LimitPrice = 10;
+	///数量
+	int32 VolumeTotalOriginal = 11;
+	///有效期类型
+	string TimeCondition = 12;
+	///GTD日期
+	string GTDDate = 13;
+	///成交量类型
+	string VolumeCondition = 14;
+	///最小成交量
+	int32 MinVolume = 15;
+	///触发条件
+	string ContingentCondition = 16;
+	///止损价
+	double StopPrice = 17;
+	///强平原因
+	string ForceCloseReason = 18;
+	///自动挂起标志
+	int32 IsAutoSuspend = 19;
+	///业务单元
+	string BusinessUnit = 20;
+	///请求编号
+	int32 RequestID = 21;
+	///本地报单编号
+	string OrderLocalID = 22;
+	///交易所代码
+	string ExchangeID = 23;
+	///会员代码
+	string ParticipantID = 24;
+	///客户代码
+	string ClientID = 25;
+	///合约在交易所的代码
+	string ExchangeInstID = 26;
+	///交易所交易员代码
+	string TraderID = 27;
+	///安装编号
+	int32 InstallID = 28;
+	///报单提交状态
+	string OrderSubmitStatus = 29;
+	///报单提示序号
+	int32 NotifySequence = 30;
+	///交易日
+	string TradingDay = 31;
+	///结算编号
+	int32 SettlementID = 32;
+	///报单编号
+	string OrderSysID = 33;
+	///报单来源
+	string OrderSource = 34;
+	///报单状态
+	string OrderStatus = 35;
+	///报单类型
+	string OrderType = 36;
+	///今成交数量
+	int32 VolumeTraded = 37;
+	///剩余数量
+	int32 VolumeTotal = 38;
+	///报单日期
+	string InsertDate = 39;
+	///委托时间
+	string InsertTime = 40;
+	///激活时间
+	string ActiveTime = 41;
+	///挂起时间
+	string SuspendTime = 42;
+	///最后修改时间
+	string UpdateTime = 43;
+	///撤销时间
+	string CancelTime = 44;
+	///最后修改交易所交易员代码
+	string ActiveTraderID = 45;
+	///结算会员编号
+	string ClearingPartID = 46;
+	///序号
+	int32 SequenceNo = 47;
+	///前置编号
+	int32 FrontID = 48;
+	///会话编号
+	int32 SessionID = 49;
+	///用户端产品信息
+	string UserProductInfo = 50;
+	///状态信息
+	string StatusMsg = 51;
+	///用户强评标志
+	int32 UserForceClose = 52;
+	///操作用户代码
+	string ActiveUserID = 53;
+	///经纪公司报单编号
+	int32 BrokerOrderSeq = 54;
+	///相关报单
+	string RelativeOrderSysID = 55;
+	///郑商所成交数量
+	int32 ZCETotalTradedVolume = 56;
+	///错误代码
+	int32 ErrorID = 57;
+	///错误信息
+	string ErrorMsg = 58;
+	///互换单标志
+	int32 IsSwapOrder = 59;
+	///营业部编号
+	string BranchID = 60;
+}
+
+///查询错误报单操作
+message CThostFtdcQryErrOrderActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+}
+
+///错误报单操作
+message CThostFtdcErrOrderActionField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///报单操作引用
+	int32 OrderActionRef = 3;
+	///报单引用
+	string OrderRef = 4;
+	///请求编号
+	int32 RequestID = 5;
+	///前置编号
+	int32 FrontID = 6;
+	///会话编号
+	int32 SessionID = 7;
+	///交易所代码
+	string ExchangeID = 8;
+	///报单编号
+	string OrderSysID = 9;
+	///操作标志
+	string ActionFlag = 10;
+	///价格
+	double LimitPrice = 11;
+	///数量变化
+	int32 VolumeChange = 12;
+	///操作日期
+	string ActionDate = 13;
+	///操作时间
+	string ActionTime = 14;
+	///交易所交易员代码
+	string TraderID = 15;
+	///安装编号
+	int32 InstallID = 16;
+	///本地报单编号
+	string OrderLocalID = 17;
+	///操作本地编号
+	string ActionLocalID = 18;
+	///会员代码
+	string ParticipantID = 19;
+	///客户代码
+	string ClientID = 20;
+	///业务单元
+	string BusinessUnit = 21;
+	///报单操作状态
+	string OrderActionStatus = 22;
+	///用户代码
+	string UserID = 23;
+	///状态信息
+	string StatusMsg = 24;
+	///合约代码
+	string InstrumentID = 25;
+	///营业部编号
+	string BranchID = 26;
+	///错误代码
+	int32 ErrorID = 27;
+	///错误信息
+	string ErrorMsg = 28;
+}
+
+///查询交易所状态
+message CThostFtdcQryExchangeSequenceField
+{
+	///交易所代码
+	string ExchangeID = 1;
+}
+
+///交易所状态
+message CThostFtdcExchangeSequenceField
+{
+	///交易所代码
+	string ExchangeID = 1;
+	///序号
+	int32 SequenceNo = 2;
+	///合约交易状态
+	string MarketStatus = 3;
+}
+
+///根据价格查询最大报单数量
+message CThostFtdcQueryMaxOrderVolumeWithPriceField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///买卖方向
+	string Direction = 4;
+	///开平标志
+	string OffsetFlag = 5;
+	///投机套保标志
+	string HedgeFlag = 6;
+	///最大允许报单数量
+	int32 MaxVolume = 7;
+	///报单价格
+	double Price = 8;
+	///交易所代码
+	string ExchangeID = 9;
+}
+
+///查询经纪公司交易参数
+message CThostFtdcQryBrokerTradingParamsField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///币种代码
+	string CurrencyID = 3;
+}
+
+///经纪公司交易参数
+message CThostFtdcBrokerTradingParamsField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///保证金价格类型
+	string MarginPriceType = 3;
+	///盈亏算法
+	string Algorithm = 4;
+	///可用是否包含平仓盈利
+	string AvailIncludeCloseProfit = 5;
+	///币种代码
+	string CurrencyID = 6;
+	///期权权利金价格类型
+	string OptionRoyaltyPriceType = 7;
+}
+
+///查询经纪公司交易算法
+message CThostFtdcQryBrokerTradingAlgosField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///交易所代码
+	string ExchangeID = 2;
+	///合约代码
+	string InstrumentID = 3;
+}
+
+///经纪公司交易算法
+message CThostFtdcBrokerTradingAlgosField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///交易所代码
+	string ExchangeID = 2;
+	///合约代码
+	string InstrumentID = 3;
+	///持仓处理算法编号
+	string HandlePositionAlgoID = 4;
+	///寻找保证金率算法编号
+	string FindMarginRateAlgoID = 5;
+	///资金处理算法编号
+	string HandleTradingAccountAlgoID = 6;
+}
+
+///查询经纪公司资金
+message CThostFtdcQueryBrokerDepositField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///交易所代码
+	string ExchangeID = 2;
+}
+
+///经纪公司资金
+message CThostFtdcBrokerDepositField
+{
+	///交易日期
+	string TradingDay = 1;
+	///经纪公司代码
+	string BrokerID = 2;
+	///会员代码
+	string ParticipantID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///上次结算准备金
+	double PreBalance = 5;
+	///当前保证金总额
+	double CurrMargin = 6;
+	///平仓盈亏
+	double CloseProfit = 7;
+	///期货结算准备金
+	double Balance = 8;
+	///入金金额
+	double Deposit = 9;
+	///出金金额
+	double Withdraw = 10;
+	///可提资金
+	double Available = 11;
+	///基本准备金
+	double Reserve = 12;
+	///冻结的保证金
+	double FrozenMargin = 13;
+}
+
+///查询保证金监管系统经纪公司密钥
+message CThostFtdcQryCFMMCBrokerKeyField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+}
+
+///保证金监管系统经纪公司密钥
+message CThostFtdcCFMMCBrokerKeyField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///经纪公司统一编码
+	string ParticipantID = 2;
+	///密钥生成日期
+	string CreateDate = 3;
+	///密钥生成时间
+	string CreateTime = 4;
+	///密钥编号
+	int32 KeyID = 5;
+	///动态密钥
+	string CurrentKey = 6;
+	///动态密钥类型
+	string KeyKind = 7;
+}
+
+///保证金监管系统经纪公司资金账户密钥
+message CThostFtdcCFMMCTradingAccountKeyField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///经纪公司统一编码
+	string ParticipantID = 2;
+	///投资者帐号
+	string AccountID = 3;
+	///密钥编号
+	int32 KeyID = 4;
+	///动态密钥
+	string CurrentKey = 5;
+}
+
+///请求查询保证金监管系统经纪公司资金账户密钥
+message CThostFtdcQryCFMMCTradingAccountKeyField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+}
+
+///用户动态令牌参数
+message CThostFtdcBrokerUserOTPParamField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+	///动态令牌提供商
+	string OTPVendorsID = 3;
+	///动态令牌序列号
+	string SerialNumber = 4;
+	///令牌密钥
+	string AuthKey = 5;
+	///漂移值
+	int32 LastDrift = 6;
+	///成功值
+	int32 LastSuccess = 7;
+	///动态令牌类型
+	string OTPType = 8;
+}
+
+///手工同步用户动态令牌
+message CThostFtdcManualSyncBrokerUserOTPField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+	///动态令牌类型
+	string OTPType = 3;
+	///第一个动态密码
+	string FirstOTP = 4;
+	///第二个动态密码
+	string SecondOTP = 5;
+}
+
+///投资者手续费率模板
+message CThostFtdcCommRateModelField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///手续费率模板代码
+	string CommModelID = 2;
+	///模板名称
+	string CommModelName = 3;
+}
+
+///请求查询投资者手续费率模板
+message CThostFtdcQryCommRateModelField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///手续费率模板代码
+	string CommModelID = 2;
+}
+
+///投资者保证金率模板
+message CThostFtdcMarginModelField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///保证金率模板代码
+	string MarginModelID = 2;
+	///模板名称
+	string MarginModelName = 3;
+}
+
+///请求查询投资者保证金率模板
+message CThostFtdcQryMarginModelField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///保证金率模板代码
+	string MarginModelID = 2;
+}
+
+///仓单折抵信息
+message CThostFtdcEWarrantOffsetField
+{
+	///交易日期
+	string TradingDay = 1;
+	///经纪公司代码
+	string BrokerID = 2;
+	///投资者代码
+	string InvestorID = 3;
+	///交易所代码
+	string ExchangeID = 4;
+	///合约代码
+	string InstrumentID = 5;
+	///买卖方向
+	string Direction = 6;
+	///投机套保标志
+	string HedgeFlag = 7;
+	///数量
+	int32 Volume = 8;
+}
+
+///查询仓单折抵信息
+message CThostFtdcQryEWarrantOffsetField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///交易所代码
+	string ExchangeID = 3;
+	///合约代码
+	string InstrumentID = 4;
+}
+
+///查询投资者品种/跨品种保证金
+message CThostFtdcQryInvestorProductGroupMarginField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+	///品种/跨品种标示
+	string ProductGroupID = 3;
+	///投机套保标志
+	string HedgeFlag = 4;
+}
+
+///投资者品种/跨品种保证金
+message CThostFtdcInvestorProductGroupMarginField
+{
+	///品种/跨品种标示
+	string ProductGroupID = 1;
+	///经纪公司代码
+	string BrokerID = 2;
+	///投资者代码
+	string InvestorID = 3;
+	///交易日
+	string TradingDay = 4;
+	///结算编号
+	int32 SettlementID = 5;
+	///冻结的保证金
+	double FrozenMargin = 6;
+	///多头冻结的保证金
+	double LongFrozenMargin = 7;
+	///空头冻结的保证金
+	double ShortFrozenMargin = 8;
+	///占用的保证金
+	double UseMargin = 9;
+	///多头保证金
+	double LongUseMargin = 10;
+	///空头保证金
+	double ShortUseMargin = 11;
+	///交易所保证金
+	double ExchMargin = 12;
+	///交易所多头保证金
+	double LongExchMargin = 13;
+	///交易所空头保证金
+	double ShortExchMargin = 14;
+	///平仓盈亏
+	double CloseProfit = 15;
+	///冻结的手续费
+	double FrozenCommission = 16;
+	///手续费
+	double Commission = 17;
+	///冻结的资金
+	double FrozenCash = 18;
+	///资金差额
+	double CashIn = 19;
+	///持仓盈亏
+	double PositionProfit = 20;
+	///折抵总金额
+	double OffsetAmount = 21;
+	///多头折抵总金额
+	double LongOffsetAmount = 22;
+	///空头折抵总金额
+	double ShortOffsetAmount = 23;
+	///交易所折抵总金额
+	double ExchOffsetAmount = 24;
+	///交易所多头折抵总金额
+	double LongExchOffsetAmount = 25;
+	///交易所空头折抵总金额
+	double ShortExchOffsetAmount = 26;
+	///投机套保标志
+	string HedgeFlag = 27;
+}
+
+///查询监控中心用户令牌
+message CThostFtdcQueryCFMMCTradingAccountTokenField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者代码
+	string InvestorID = 2;
+}
+
+///监控中心用户令牌
+message CThostFtdcCFMMCTradingAccountTokenField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///经纪公司统一编码
+	string ParticipantID = 2;
+	///投资者帐号
+	string AccountID = 3;
+	///密钥编号
+	int32 KeyID = 4;
+	///动态令牌
+	string Token = 5;
+}
+
+///投资者指令权限
+message CThostFtdcInmessageionRightField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///交易所代码
+	string ExchangeID = 2;
+	///投资者代码
+	string InvestorID = 3;
+	///指令权限类型
+	string InmessageionRight = 4;
+	///是否禁止
+	int32 IsForbidden = 5;
+}
+
+///查询产品组
+message CThostFtdcQryProductGroupField
+{
+	///产品代码
+	string ProductID = 1;
+	///交易所代码
+	string ExchangeID = 2;
+}
+
+///投资者品种/跨品种保证金产品组
+message CThostFtdcProductGroupField
+{
+	///产品代码
+	string ProductID = 1;
+	///交易所代码
+	string ExchangeID = 2;
+	///产品组代码
+	string ProductGroupID = 3;
+}
+
+///转帐开户请求
+message CThostFtdcReqOpenAccountField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///客户姓名
+	string CustomerName = 13;
+	///证件类型
+	string IdCardType = 14;
+	///证件号码
+	string IdentifiedCardNo = 15;
+	///性别
+	string Gender = 16;
+	///国家代码
+	string CountryCode = 17;
+	///客户类型
+	string CustType = 18;
+	///地址
+	string Address = 19;
+	///邮编
+	string ZipCode = 20;
+	///电话号码
+	string Telephone = 21;
+	///手机
+	string MobilePhone = 22;
+	///传真
+	string Fax = 23;
+	///电子邮件
+	string EMail = 24;
+	///资金账户状态
+	string MoneyAccountStatus = 25;
+	///银行帐号
+	string BankAccount = 26;
+	///银行密码
+	string BankPassWord = 27;
+	///投资者帐号
+	string AccountID = 28;
+	///期货密码
+	string Password = 29;
+	///安装编号
+	int32 InstallID = 30;
+	///验证客户证件号码标志
+	string VerifyCertNoFlag = 31;
+	///币种代码
+	string CurrencyID = 32;
+	///汇钞标志
+	string CashExchangeCode = 33;
+	///摘要
+	string Digest = 34;
+	///银行帐号类型
+	string BankAccType = 35;
+	///渠道标志
+	string DeviceID = 36;
+	///期货单位帐号类型
+	string BankSecuAccType = 37;
+	///期货公司银行编码
+	string BrokerIDByBank = 38;
+	///期货单位帐号
+	string BankSecuAcc = 39;
+	///银行密码标志
+	string BankPwdFlag = 40;
+	///期货资金密码核对标志
+	string SecuPwdFlag = 41;
+	///交易柜员
+	string OperNo = 42;
+	///交易ID
+	int32 TID = 43;
+	///用户标识
+	string UserID = 44;
+}
+
+///转帐销户请求
+message CThostFtdcReqCancelAccountField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///客户姓名
+	string CustomerName = 13;
+	///证件类型
+	string IdCardType = 14;
+	///证件号码
+	string IdentifiedCardNo = 15;
+	///性别
+	string Gender = 16;
+	///国家代码
+	string CountryCode = 17;
+	///客户类型
+	string CustType = 18;
+	///地址
+	string Address = 19;
+	///邮编
+	string ZipCode = 20;
+	///电话号码
+	string Telephone = 21;
+	///手机
+	string MobilePhone = 22;
+	///传真
+	string Fax = 23;
+	///电子邮件
+	string EMail = 24;
+	///资金账户状态
+	string MoneyAccountStatus = 25;
+	///银行帐号
+	string BankAccount = 26;
+	///银行密码
+	string BankPassWord = 27;
+	///投资者帐号
+	string AccountID = 28;
+	///期货密码
+	string Password = 29;
+	///安装编号
+	int32 InstallID = 30;
+	///验证客户证件号码标志
+	string VerifyCertNoFlag = 31;
+	///币种代码
+	string CurrencyID = 32;
+	///汇钞标志
+	string CashExchangeCode = 33;
+	///摘要
+	string Digest = 34;
+	///银行帐号类型
+	string BankAccType = 35;
+	///渠道标志
+	string DeviceID = 36;
+	///期货单位帐号类型
+	string BankSecuAccType = 37;
+	///期货公司银行编码
+	string BrokerIDByBank = 38;
+	///期货单位帐号
+	string BankSecuAcc = 39;
+	///银行密码标志
+	string BankPwdFlag = 40;
+	///期货资金密码核对标志
+	string SecuPwdFlag = 41;
+	///交易柜员
+	string OperNo = 42;
+	///交易ID
+	int32 TID = 43;
+	///用户标识
+	string UserID = 44;
+}
+
+///变更银行账户请求
+message CThostFtdcReqChangeAccountField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///客户姓名
+	string CustomerName = 13;
+	///证件类型
+	string IdCardType = 14;
+	///证件号码
+	string IdentifiedCardNo = 15;
+	///性别
+	string Gender = 16;
+	///国家代码
+	string CountryCode = 17;
+	///客户类型
+	string CustType = 18;
+	///地址
+	string Address = 19;
+	///邮编
+	string ZipCode = 20;
+	///电话号码
+	string Telephone = 21;
+	///手机
+	string MobilePhone = 22;
+	///传真
+	string Fax = 23;
+	///电子邮件
+	string EMail = 24;
+	///资金账户状态
+	string MoneyAccountStatus = 25;
+	///银行帐号
+	string BankAccount = 26;
+	///银行密码
+	string BankPassWord = 27;
+	///新银行帐号
+	string NewBankAccount = 28;
+	///新银行密码
+	string NewBankPassWord = 29;
+	///投资者帐号
+	string AccountID = 30;
+	///期货密码
+	string Password = 31;
+	///银行帐号类型
+	string BankAccType = 32;
+	///安装编号
+	int32 InstallID = 33;
+	///验证客户证件号码标志
+	string VerifyCertNoFlag = 34;
+	///币种代码
+	string CurrencyID = 35;
+	///期货公司银行编码
+	string BrokerIDByBank = 36;
+	///银行密码标志
+	string BankPwdFlag = 37;
+	///期货资金密码核对标志
+	string SecuPwdFlag = 38;
+	///交易ID
+	int32 TID = 39;
+	///摘要
+	string Digest = 40;
+}
+
+///转账请求
+message CThostFtdcReqTransferField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///客户姓名
+	string CustomerName = 13;
+	///证件类型
+	string IdCardType = 14;
+	///证件号码
+	string IdentifiedCardNo = 15;
+	///客户类型
+	string CustType = 16;
+	///银行帐号
+	string BankAccount = 17;
+	///银行密码
+	string BankPassWord = 18;
+	///投资者帐号
+	string AccountID = 19;
+	///期货密码
+	string Password = 20;
+	///安装编号
+	int32 InstallID = 21;
+	///期货公司流水号
+	int32 FutureSerial = 22;
+	///用户标识
+	string UserID = 23;
+	///验证客户证件号码标志
+	string VerifyCertNoFlag = 24;
+	///币种代码
+	string CurrencyID = 25;
+	///转帐金额
+	double TradeAmount = 26;
+	///期货可取金额
+	double FutureFetchAmount = 27;
+	///费用支付标志
+	string FeePayFlag = 28;
+	///应收客户费用
+	double CustFee = 29;
+	///应收期货公司费用
+	double BrokerFee = 30;
+	///发送方给接收方的消息
+	string Message = 31;
+	///摘要
+	string Digest = 32;
+	///银行帐号类型
+	string BankAccType = 33;
+	///渠道标志
+	string DeviceID = 34;
+	///期货单位帐号类型
+	string BankSecuAccType = 35;
+	///期货公司银行编码
+	string BrokerIDByBank = 36;
+	///期货单位帐号
+	string BankSecuAcc = 37;
+	///银行密码标志
+	string BankPwdFlag = 38;
+	///期货资金密码核对标志
+	string SecuPwdFlag = 39;
+	///交易柜员
+	string OperNo = 40;
+	///请求编号
+	int32 RequestID = 41;
+	///交易ID
+	int32 TID = 42;
+	///转账交易状态
+	string TransferStatus = 43;
+}
+
+///银行发起银行资金转期货响应
+message CThostFtdcRspTransferField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///客户姓名
+	string CustomerName = 13;
+	///证件类型
+	string IdCardType = 14;
+	///证件号码
+	string IdentifiedCardNo = 15;
+	///客户类型
+	string CustType = 16;
+	///银行帐号
+	string BankAccount = 17;
+	///银行密码
+	string BankPassWord = 18;
+	///投资者帐号
+	string AccountID = 19;
+	///期货密码
+	string Password = 20;
+	///安装编号
+	int32 InstallID = 21;
+	///期货公司流水号
+	int32 FutureSerial = 22;
+	///用户标识
+	string UserID = 23;
+	///验证客户证件号码标志
+	string VerifyCertNoFlag = 24;
+	///币种代码
+	string CurrencyID = 25;
+	///转帐金额
+	double TradeAmount = 26;
+	///期货可取金额
+	double FutureFetchAmount = 27;
+	///费用支付标志
+	string FeePayFlag = 28;
+	///应收客户费用
+	double CustFee = 29;
+	///应收期货公司费用
+	double BrokerFee = 30;
+	///发送方给接收方的消息
+	string Message = 31;
+	///摘要
+	string Digest = 32;
+	///银行帐号类型
+	string BankAccType = 33;
+	///渠道标志
+	string DeviceID = 34;
+	///期货单位帐号类型
+	string BankSecuAccType = 35;
+	///期货公司银行编码
+	string BrokerIDByBank = 36;
+	///期货单位帐号
+	string BankSecuAcc = 37;
+	///银行密码标志
+	string BankPwdFlag = 38;
+	///期货资金密码核对标志
+	string SecuPwdFlag = 39;
+	///交易柜员
+	string OperNo = 40;
+	///请求编号
+	int32 RequestID = 41;
+	///交易ID
+	int32 TID = 42;
+	///转账交易状态
+	string TransferStatus = 43;
+	///错误代码
+	int32 ErrorID = 44;
+	///错误信息
+	string ErrorMsg = 45;
+}
+
+///冲正请求
+message CThostFtdcReqRepealField
+{
+	///冲正时间间隔
+	int32 RepealTimeInterval = 1;
+	///已经冲正次数
+	int32 RepealedTimes = 2;
+	///银行冲正标志
+	string BankRepealFlag = 3;
+	///期商冲正标志
+	string BrokerRepealFlag = 4;
+	///被冲正平台流水号
+	int32 PlateRepealSerial = 5;
+	///被冲正银行流水号
+	string BankRepealSerial = 6;
+	///被冲正期货流水号
+	int32 FutureRepealSerial = 7;
+	///业务功能码
+	string TradeCode = 8;
+	///银行代码
+	string BankID = 9;
+	///银行分支机构代码
+	string BankBranchID = 10;
+	///期商代码
+	string BrokerID = 11;
+	///期商分支机构代码
+	string BrokerBranchID = 12;
+	///交易日期
+	string TradeDate = 13;
+	///交易时间
+	string TradeTime = 14;
+	///银行流水号
+	string BankSerial = 15;
+	///交易系统日期 
+	string TradingDay = 16;
+	///银期平台消息流水号
+	int32 PlateSerial = 17;
+	///最后分片标志
+	string LastFragment = 18;
+	///会话号
+	int32 SessionID = 19;
+	///客户姓名
+	string CustomerName = 20;
+	///证件类型
+	string IdCardType = 21;
+	///证件号码
+	string IdentifiedCardNo = 22;
+	///客户类型
+	string CustType = 23;
+	///银行帐号
+	string BankAccount = 24;
+	///银行密码
+	string BankPassWord = 25;
+	///投资者帐号
+	string AccountID = 26;
+	///期货密码
+	string Password = 27;
+	///安装编号
+	int32 InstallID = 28;
+	///期货公司流水号
+	int32 FutureSerial = 29;
+	///用户标识
+	string UserID = 30;
+	///验证客户证件号码标志
+	string VerifyCertNoFlag = 31;
+	///币种代码
+	string CurrencyID = 32;
+	///转帐金额
+	double TradeAmount = 33;
+	///期货可取金额
+	double FutureFetchAmount = 34;
+	///费用支付标志
+	string FeePayFlag = 35;
+	///应收客户费用
+	double CustFee = 36;
+	///应收期货公司费用
+	double BrokerFee = 37;
+	///发送方给接收方的消息
+	string Message = 38;
+	///摘要
+	string Digest = 39;
+	///银行帐号类型
+	string BankAccType = 40;
+	///渠道标志
+	string DeviceID = 41;
+	///期货单位帐号类型
+	string BankSecuAccType = 42;
+	///期货公司银行编码
+	string BrokerIDByBank = 43;
+	///期货单位帐号
+	string BankSecuAcc = 44;
+	///银行密码标志
+	string BankPwdFlag = 45;
+	///期货资金密码核对标志
+	string SecuPwdFlag = 46;
+	///交易柜员
+	string OperNo = 47;
+	///请求编号
+	int32 RequestID = 48;
+	///交易ID
+	int32 TID = 49;
+	///转账交易状态
+	string TransferStatus = 50;
+}
+
+///冲正响应
+message CThostFtdcRspRepealField
+{
+	///冲正时间间隔
+	int32 RepealTimeInterval = 1;
+	///已经冲正次数
+	int32 RepealedTimes = 2;
+	///银行冲正标志
+	string BankRepealFlag = 3;
+	///期商冲正标志
+	string BrokerRepealFlag = 4;
+	///被冲正平台流水号
+	int32 PlateRepealSerial = 5;
+	///被冲正银行流水号
+	string BankRepealSerial = 6;
+	///被冲正期货流水号
+	int32 FutureRepealSerial = 7;
+	///业务功能码
+	string TradeCode = 8;
+	///银行代码
+	string BankID = 9;
+	///银行分支机构代码
+	string BankBranchID = 10;
+	///期商代码
+	string BrokerID = 11;
+	///期商分支机构代码
+	string BrokerBranchID = 12;
+	///交易日期
+	string TradeDate = 13;
+	///交易时间
+	string TradeTime = 14;
+	///银行流水号
+	string BankSerial = 15;
+	///交易系统日期 
+	string TradingDay = 16;
+	///银期平台消息流水号
+	int32 PlateSerial = 17;
+	///最后分片标志
+	string LastFragment = 18;
+	///会话号
+	int32 SessionID = 19;
+	///客户姓名
+	string CustomerName = 20;
+	///证件类型
+	string IdCardType = 21;
+	///证件号码
+	string IdentifiedCardNo = 22;
+	///客户类型
+	string CustType = 23;
+	///银行帐号
+	string BankAccount = 24;
+	///银行密码
+	string BankPassWord = 25;
+	///投资者帐号
+	string AccountID = 26;
+	///期货密码
+	string Password = 27;
+	///安装编号
+	int32 InstallID = 28;
+	///期货公司流水号
+	int32 FutureSerial = 29;
+	///用户标识
+	string UserID = 30;
+	///验证客户证件号码标志
+	string VerifyCertNoFlag = 31;
+	///币种代码
+	string CurrencyID = 32;
+	///转帐金额
+	double TradeAmount = 33;
+	///期货可取金额
+	double FutureFetchAmount = 34;
+	///费用支付标志
+	string FeePayFlag = 35;
+	///应收客户费用
+	double CustFee = 36;
+	///应收期货公司费用
+	double BrokerFee = 37;
+	///发送方给接收方的消息
+	string Message = 38;
+	///摘要
+	string Digest = 39;
+	///银行帐号类型
+	string BankAccType = 40;
+	///渠道标志
+	string DeviceID = 41;
+	///期货单位帐号类型
+	string BankSecuAccType = 42;
+	///期货公司银行编码
+	string BrokerIDByBank = 43;
+	///期货单位帐号
+	string BankSecuAcc = 44;
+	///银行密码标志
+	string BankPwdFlag = 45;
+	///期货资金密码核对标志
+	string SecuPwdFlag = 46;
+	///交易柜员
+	string OperNo = 47;
+	///请求编号
+	int32 RequestID = 48;
+	///交易ID
+	int32 TID = 49;
+	///转账交易状态
+	string TransferStatus = 50;
+	///错误代码
+	int32 ErrorID = 51;
+	///错误信息
+	string ErrorMsg = 52;
+}
+
+///查询账户信息请求
+message CThostFtdcReqQueryAccountField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///客户姓名
+	string CustomerName = 13;
+	///证件类型
+	string IdCardType = 14;
+	///证件号码
+	string IdentifiedCardNo = 15;
+	///客户类型
+	string CustType = 16;
+	///银行帐号
+	string BankAccount = 17;
+	///银行密码
+	string BankPassWord = 18;
+	///投资者帐号
+	string AccountID = 19;
+	///期货密码
+	string Password = 20;
+	///期货公司流水号
+	int32 FutureSerial = 21;
+	///安装编号
+	int32 InstallID = 22;
+	///用户标识
+	string UserID = 23;
+	///验证客户证件号码标志
+	string VerifyCertNoFlag = 24;
+	///币种代码
+	string CurrencyID = 25;
+	///摘要
+	string Digest = 26;
+	///银行帐号类型
+	string BankAccType = 27;
+	///渠道标志
+	string DeviceID = 28;
+	///期货单位帐号类型
+	string BankSecuAccType = 29;
+	///期货公司银行编码
+	string BrokerIDByBank = 30;
+	///期货单位帐号
+	string BankSecuAcc = 31;
+	///银行密码标志
+	string BankPwdFlag = 32;
+	///期货资金密码核对标志
+	string SecuPwdFlag = 33;
+	///交易柜员
+	string OperNo = 34;
+	///请求编号
+	int32 RequestID = 35;
+	///交易ID
+	int32 TID = 36;
+}
+
+///查询账户信息响应
+message CThostFtdcRspQueryAccountField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///客户姓名
+	string CustomerName = 13;
+	///证件类型
+	string IdCardType = 14;
+	///证件号码
+	string IdentifiedCardNo = 15;
+	///客户类型
+	string CustType = 16;
+	///银行帐号
+	string BankAccount = 17;
+	///银行密码
+	string BankPassWord = 18;
+	///投资者帐号
+	string AccountID = 19;
+	///期货密码
+	string Password = 20;
+	///期货公司流水号
+	int32 FutureSerial = 21;
+	///安装编号
+	int32 InstallID = 22;
+	///用户标识
+	string UserID = 23;
+	///验证客户证件号码标志
+	string VerifyCertNoFlag = 24;
+	///币种代码
+	string CurrencyID = 25;
+	///摘要
+	string Digest = 26;
+	///银行帐号类型
+	string BankAccType = 27;
+	///渠道标志
+	string DeviceID = 28;
+	///期货单位帐号类型
+	string BankSecuAccType = 29;
+	///期货公司银行编码
+	string BrokerIDByBank = 30;
+	///期货单位帐号
+	string BankSecuAcc = 31;
+	///银行密码标志
+	string BankPwdFlag = 32;
+	///期货资金密码核对标志
+	string SecuPwdFlag = 33;
+	///交易柜员
+	string OperNo = 34;
+	///请求编号
+	int32 RequestID = 35;
+	///交易ID
+	int32 TID = 36;
+	///银行可用金额
+	double BankUseAmount = 37;
+	///银行可取金额
+	double BankFetchAmount = 38;
+}
+
+///期商签到签退
+message CThostFtdcFutureSignIOField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///安装编号
+	int32 InstallID = 13;
+	///用户标识
+	string UserID = 14;
+	///摘要
+	string Digest = 15;
+	///币种代码
+	string CurrencyID = 16;
+	///渠道标志
+	string DeviceID = 17;
+	///期货公司银行编码
+	string BrokerIDByBank = 18;
+	///交易柜员
+	string OperNo = 19;
+	///请求编号
+	int32 RequestID = 20;
+	///交易ID
+	int32 TID = 21;
+}
+
+///期商签到响应
+message CThostFtdcRspFutureSignInField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///安装编号
+	int32 InstallID = 13;
+	///用户标识
+	string UserID = 14;
+	///摘要
+	string Digest = 15;
+	///币种代码
+	string CurrencyID = 16;
+	///渠道标志
+	string DeviceID = 17;
+	///期货公司银行编码
+	string BrokerIDByBank = 18;
+	///交易柜员
+	string OperNo = 19;
+	///请求编号
+	int32 RequestID = 20;
+	///交易ID
+	int32 TID = 21;
+	///错误代码
+	int32 ErrorID = 22;
+	///错误信息
+	string ErrorMsg = 23;
+	///PIN密钥
+	string PinKey = 24;
+	///MAC密钥
+	string MacKey = 25;
+}
+
+///期商签退请求
+message CThostFtdcReqFutureSignOutField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///安装编号
+	int32 InstallID = 13;
+	///用户标识
+	string UserID = 14;
+	///摘要
+	string Digest = 15;
+	///币种代码
+	string CurrencyID = 16;
+	///渠道标志
+	string DeviceID = 17;
+	///期货公司银行编码
+	string BrokerIDByBank = 18;
+	///交易柜员
+	string OperNo = 19;
+	///请求编号
+	int32 RequestID = 20;
+	///交易ID
+	int32 TID = 21;
+}
+
+///期商签退响应
+message CThostFtdcRspFutureSignOutField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///安装编号
+	int32 InstallID = 13;
+	///用户标识
+	string UserID = 14;
+	///摘要
+	string Digest = 15;
+	///币种代码
+	string CurrencyID = 16;
+	///渠道标志
+	string DeviceID = 17;
+	///期货公司银行编码
+	string BrokerIDByBank = 18;
+	///交易柜员
+	string OperNo = 19;
+	///请求编号
+	int32 RequestID = 20;
+	///交易ID
+	int32 TID = 21;
+	///错误代码
+	int32 ErrorID = 22;
+	///错误信息
+	string ErrorMsg = 23;
+}
+
+///查询指定流水号的交易结果请求
+message CThostFtdcReqQueryTradeResultBySerialField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///流水号
+	int32 Reference = 13;
+	///本流水号发布者的机构类型
+	string RefrenceIssureType = 14;
+	///本流水号发布者机构编码
+	string RefrenceIssure = 15;
+	///客户姓名
+	string CustomerName = 16;
+	///证件类型
+	string IdCardType = 17;
+	///证件号码
+	string IdentifiedCardNo = 18;
+	///客户类型
+	string CustType = 19;
+	///银行帐号
+	string BankAccount = 20;
+	///银行密码
+	string BankPassWord = 21;
+	///投资者帐号
+	string AccountID = 22;
+	///期货密码
+	string Password = 23;
+	///币种代码
+	string CurrencyID = 24;
+	///转帐金额
+	double TradeAmount = 25;
+	///摘要
+	string Digest = 26;
+}
+
+///查询指定流水号的交易结果响应
+message CThostFtdcRspQueryTradeResultBySerialField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///错误代码
+	int32 ErrorID = 13;
+	///错误信息
+	string ErrorMsg = 14;
+	///流水号
+	int32 Reference = 15;
+	///本流水号发布者的机构类型
+	string RefrenceIssureType = 16;
+	///本流水号发布者机构编码
+	string RefrenceIssure = 17;
+	///原始返回代码
+	string OriginReturnCode = 18;
+	///原始返回码描述
+	string OriginDescrInfoForReturnCode = 19;
+	///银行帐号
+	string BankAccount = 20;
+	///银行密码
+	string BankPassWord = 21;
+	///投资者帐号
+	string AccountID = 22;
+	///期货密码
+	string Password = 23;
+	///币种代码
+	string CurrencyID = 24;
+	///转帐金额
+	double TradeAmount = 25;
+	///摘要
+	string Digest = 26;
+}
+
+///日终文件就绪请求
+message CThostFtdcReqDayEndFileReadyField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///文件业务功能
+	string FileBusinessCode = 13;
+	///摘要
+	string Digest = 14;
+}
+
+///返回结果
+message CThostFtdcReturnResultField
+{
+	///返回代码
+	string ReturnCode = 1;
+	///返回码描述
+	string DescrInfoForReturnCode = 2;
+}
+
+///验证期货资金密码
+message CThostFtdcVerifyFuturePasswordField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///投资者帐号
+	string AccountID = 13;
+	///期货密码
+	string Password = 14;
+	///银行帐号
+	string BankAccount = 15;
+	///银行密码
+	string BankPassWord = 16;
+	///安装编号
+	int32 InstallID = 17;
+	///交易ID
+	int32 TID = 18;
+	///币种代码
+	string CurrencyID = 19;
+}
+
+///验证客户信息
+message CThostFtdcVerifyCustInfoField
+{
+	///客户姓名
+	string CustomerName = 1;
+	///证件类型
+	string IdCardType = 2;
+	///证件号码
+	string IdentifiedCardNo = 3;
+	///客户类型
+	string CustType = 4;
+}
+
+///验证期货资金密码和客户信息
+message CThostFtdcVerifyFuturePasswordAndCustInfoField
+{
+	///客户姓名
+	string CustomerName = 1;
+	///证件类型
+	string IdCardType = 2;
+	///证件号码
+	string IdentifiedCardNo = 3;
+	///客户类型
+	string CustType = 4;
+	///投资者帐号
+	string AccountID = 5;
+	///期货密码
+	string Password = 6;
+	///币种代码
+	string CurrencyID = 7;
+}
+
+///验证期货资金密码和客户信息
+message CThostFtdcDepositResultInformField
+{
+	///出入金流水号，该流水号为银期报盘返回的流水号
+	string DepositSeqNo = 1;
+	///经纪公司代码
+	string BrokerID = 2;
+	///投资者代码
+	string InvestorID = 3;
+	///入金金额
+	double Deposit = 4;
+	///请求编号
+	int32 RequestID = 5;
+	///返回代码
+	string ReturnCode = 6;
+	///返回码描述
+	string DescrInfoForReturnCode = 7;
+}
+
+///交易核心向银期报盘发出密钥同步请求
+message CThostFtdcReqSyncKeyField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///安装编号
+	int32 InstallID = 13;
+	///用户标识
+	string UserID = 14;
+	///交易核心给银期报盘的消息
+	string Message = 15;
+	///渠道标志
+	string DeviceID = 16;
+	///期货公司银行编码
+	string BrokerIDByBank = 17;
+	///交易柜员
+	string OperNo = 18;
+	///请求编号
+	int32 RequestID = 19;
+	///交易ID
+	int32 TID = 20;
+}
+
+///交易核心向银期报盘发出密钥同步响应
+message CThostFtdcRspSyncKeyField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///安装编号
+	int32 InstallID = 13;
+	///用户标识
+	string UserID = 14;
+	///交易核心给银期报盘的消息
+	string Message = 15;
+	///渠道标志
+	string DeviceID = 16;
+	///期货公司银行编码
+	string BrokerIDByBank = 17;
+	///交易柜员
+	string OperNo = 18;
+	///请求编号
+	int32 RequestID = 19;
+	///交易ID
+	int32 TID = 20;
+	///错误代码
+	int32 ErrorID = 21;
+	///错误信息
+	string ErrorMsg = 22;
+}
+
+///查询账户信息通知
+message CThostFtdcNotifyQueryAccountField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///客户姓名
+	string CustomerName = 13;
+	///证件类型
+	string IdCardType = 14;
+	///证件号码
+	string IdentifiedCardNo = 15;
+	///客户类型
+	string CustType = 16;
+	///银行帐号
+	string BankAccount = 17;
+	///银行密码
+	string BankPassWord = 18;
+	///投资者帐号
+	string AccountID = 19;
+	///期货密码
+	string Password = 20;
+	///期货公司流水号
+	int32 FutureSerial = 21;
+	///安装编号
+	int32 InstallID = 22;
+	///用户标识
+	string UserID = 23;
+	///验证客户证件号码标志
+	string VerifyCertNoFlag = 24;
+	///币种代码
+	string CurrencyID = 25;
+	///摘要
+	string Digest = 26;
+	///银行帐号类型
+	string BankAccType = 27;
+	///渠道标志
+	string DeviceID = 28;
+	///期货单位帐号类型
+	string BankSecuAccType = 29;
+	///期货公司银行编码
+	string BrokerIDByBank = 30;
+	///期货单位帐号
+	string BankSecuAcc = 31;
+	///银行密码标志
+	string BankPwdFlag = 32;
+	///期货资金密码核对标志
+	string SecuPwdFlag = 33;
+	///交易柜员
+	string OperNo = 34;
+	///请求编号
+	int32 RequestID = 35;
+	///交易ID
+	int32 TID = 36;
+	///银行可用金额
+	double BankUseAmount = 37;
+	///银行可取金额
+	double BankFetchAmount = 38;
+	///错误代码
+	int32 ErrorID = 39;
+	///错误信息
+	string ErrorMsg = 40;
+}
+
+///银期转账交易流水表
+message CThostFtdcTransferSerialField
+{
+	///平台流水号
+	int32 PlateSerial = 1;
+	///交易发起方日期
+	string TradeDate = 2;
+	///交易日期
+	string TradingDay = 3;
+	///交易时间
+	string TradeTime = 4;
+	///交易代码
+	string TradeCode = 5;
+	///会话编号
+	int32 SessionID = 6;
+	///银行编码
+	string BankID = 7;
+	///银行分支机构编码
+	string BankBranchID = 8;
+	///银行帐号类型
+	string BankAccType = 9;
+	///银行帐号
+	string BankAccount = 10;
+	///银行流水号
+	string BankSerial = 11;
+	///期货公司编码
+	string BrokerID = 12;
+	///期商分支机构代码
+	string BrokerBranchID = 13;
+	///期货公司帐号类型
+	string FutureAccType = 14;
+	///投资者帐号
+	string AccountID = 15;
+	///投资者代码
+	string InvestorID = 16;
+	///期货公司流水号
+	int32 FutureSerial = 17;
+	///证件类型
+	string IdCardType = 18;
+	///证件号码
+	string IdentifiedCardNo = 19;
+	///币种代码
+	string CurrencyID = 20;
+	///交易金额
+	double TradeAmount = 21;
+	///应收客户费用
+	double CustFee = 22;
+	///应收期货公司费用
+	double BrokerFee = 23;
+	///有效标志
+	string AvailabilityFlag = 24;
+	///操作员
+	string OperatorCode = 25;
+	///新银行帐号
+	string BankNewAccount = 26;
+	///错误代码
+	int32 ErrorID = 27;
+	///错误信息
+	string ErrorMsg = 28;
+}
+
+///请求查询转帐流水
+message CThostFtdcQryTransferSerialField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者帐号
+	string AccountID = 2;
+	///银行编码
+	string BankID = 3;
+	///币种代码
+	string CurrencyID = 4;
+}
+
+///期商签到通知
+message CThostFtdcNotifyFutureSignInField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///安装编号
+	int32 InstallID = 13;
+	///用户标识
+	string UserID = 14;
+	///摘要
+	string Digest = 15;
+	///币种代码
+	string CurrencyID = 16;
+	///渠道标志
+	string DeviceID = 17;
+	///期货公司银行编码
+	string BrokerIDByBank = 18;
+	///交易柜员
+	string OperNo = 19;
+	///请求编号
+	int32 RequestID = 20;
+	///交易ID
+	int32 TID = 21;
+	///错误代码
+	int32 ErrorID = 22;
+	///错误信息
+	string ErrorMsg = 23;
+	///PIN密钥
+	string PinKey = 24;
+	///MAC密钥
+	string MacKey = 25;
+}
+
+///期商签退通知
+message CThostFtdcNotifyFutureSignOutField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///安装编号
+	int32 InstallID = 13;
+	///用户标识
+	string UserID = 14;
+	///摘要
+	string Digest = 15;
+	///币种代码
+	string CurrencyID = 16;
+	///渠道标志
+	string DeviceID = 17;
+	///期货公司银行编码
+	string BrokerIDByBank = 18;
+	///交易柜员
+	string OperNo = 19;
+	///请求编号
+	int32 RequestID = 20;
+	///交易ID
+	int32 TID = 21;
+	///错误代码
+	int32 ErrorID = 22;
+	///错误信息
+	string ErrorMsg = 23;
+}
+
+///交易核心向银期报盘发出密钥同步处理结果的通知
+message CThostFtdcNotifySyncKeyField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///安装编号
+	int32 InstallID = 13;
+	///用户标识
+	string UserID = 14;
+	///交易核心给银期报盘的消息
+	string Message = 15;
+	///渠道标志
+	string DeviceID = 16;
+	///期货公司银行编码
+	string BrokerIDByBank = 17;
+	///交易柜员
+	string OperNo = 18;
+	///请求编号
+	int32 RequestID = 19;
+	///交易ID
+	int32 TID = 20;
+	///错误代码
+	int32 ErrorID = 21;
+	///错误信息
+	string ErrorMsg = 22;
+}
+
+///请求查询银期签约关系
+message CThostFtdcQryAccountregisterField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者帐号
+	string AccountID = 2;
+	///银行编码
+	string BankID = 3;
+	///银行分支机构编码
+	string BankBranchID = 4;
+	///币种代码
+	string CurrencyID = 5;
+}
+
+///客户开销户信息表
+message CThostFtdcAccountregisterField
+{
+	///交易日期
+	string TradeDay = 1;
+	///银行编码
+	string BankID = 2;
+	///银行分支机构编码
+	string BankBranchID = 3;
+	///银行帐号
+	string BankAccount = 4;
+	///期货公司编码
+	string BrokerID = 5;
+	///期货公司分支机构编码
+	string BrokerBranchID = 6;
+	///投资者帐号
+	string AccountID = 7;
+	///证件类型
+	string IdCardType = 8;
+	///证件号码
+	string IdentifiedCardNo = 9;
+	///客户姓名
+	string CustomerName = 10;
+	///币种代码
+	string CurrencyID = 11;
+	///开销户类别
+	string OpenOrDestroy = 12;
+	///签约日期
+	string RegDate = 13;
+	///解约日期
+	string OutDate = 14;
+	///交易ID
+	int32 TID = 15;
+	///客户类型
+	string CustType = 16;
+	///银行帐号类型
+	string BankAccType = 17;
+}
+
+///银期开户信息
+message CThostFtdcOpenAccountField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///客户姓名
+	string CustomerName = 13;
+	///证件类型
+	string IdCardType = 14;
+	///证件号码
+	string IdentifiedCardNo = 15;
+	///性别
+	string Gender = 16;
+	///国家代码
+	string CountryCode = 17;
+	///客户类型
+	string CustType = 18;
+	///地址
+	string Address = 19;
+	///邮编
+	string ZipCode = 20;
+	///电话号码
+	string Telephone = 21;
+	///手机
+	string MobilePhone = 22;
+	///传真
+	string Fax = 23;
+	///电子邮件
+	string EMail = 24;
+	///资金账户状态
+	string MoneyAccountStatus = 25;
+	///银行帐号
+	string BankAccount = 26;
+	///银行密码
+	string BankPassWord = 27;
+	///投资者帐号
+	string AccountID = 28;
+	///期货密码
+	string Password = 29;
+	///安装编号
+	int32 InstallID = 30;
+	///验证客户证件号码标志
+	string VerifyCertNoFlag = 31;
+	///币种代码
+	string CurrencyID = 32;
+	///汇钞标志
+	string CashExchangeCode = 33;
+	///摘要
+	string Digest = 34;
+	///银行帐号类型
+	string BankAccType = 35;
+	///渠道标志
+	string DeviceID = 36;
+	///期货单位帐号类型
+	string BankSecuAccType = 37;
+	///期货公司银行编码
+	string BrokerIDByBank = 38;
+	///期货单位帐号
+	string BankSecuAcc = 39;
+	///银行密码标志
+	string BankPwdFlag = 40;
+	///期货资金密码核对标志
+	string SecuPwdFlag = 41;
+	///交易柜员
+	string OperNo = 42;
+	///交易ID
+	int32 TID = 43;
+	///用户标识
+	string UserID = 44;
+	///错误代码
+	int32 ErrorID = 45;
+	///错误信息
+	string ErrorMsg = 46;
+}
+
+///银期销户信息
+message CThostFtdcCancelAccountField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///客户姓名
+	string CustomerName = 13;
+	///证件类型
+	string IdCardType = 14;
+	///证件号码
+	string IdentifiedCardNo = 15;
+	///性别
+	string Gender = 16;
+	///国家代码
+	string CountryCode = 17;
+	///客户类型
+	string CustType = 18;
+	///地址
+	string Address = 19;
+	///邮编
+	string ZipCode = 20;
+	///电话号码
+	string Telephone = 21;
+	///手机
+	string MobilePhone = 22;
+	///传真
+	string Fax = 23;
+	///电子邮件
+	string EMail = 24;
+	///资金账户状态
+	string MoneyAccountStatus = 25;
+	///银行帐号
+	string BankAccount = 26;
+	///银行密码
+	string BankPassWord = 27;
+	///投资者帐号
+	string AccountID = 28;
+	///期货密码
+	string Password = 29;
+	///安装编号
+	int32 InstallID = 30;
+	///验证客户证件号码标志
+	string VerifyCertNoFlag = 31;
+	///币种代码
+	string CurrencyID = 32;
+	///汇钞标志
+	string CashExchangeCode = 33;
+	///摘要
+	string Digest = 34;
+	///银行帐号类型
+	string BankAccType = 35;
+	///渠道标志
+	string DeviceID = 36;
+	///期货单位帐号类型
+	string BankSecuAccType = 37;
+	///期货公司银行编码
+	string BrokerIDByBank = 38;
+	///期货单位帐号
+	string BankSecuAcc = 39;
+	///银行密码标志
+	string BankPwdFlag = 40;
+	///期货资金密码核对标志
+	string SecuPwdFlag = 41;
+	///交易柜员
+	string OperNo = 42;
+	///交易ID
+	int32 TID = 43;
+	///用户标识
+	string UserID = 44;
+	///错误代码
+	int32 ErrorID = 45;
+	///错误信息
+	string ErrorMsg = 46;
+}
+
+///银期变更银行账号信息
+message CThostFtdcChangeAccountField
+{
+	///业务功能码
+	string TradeCode = 1;
+	///银行代码
+	string BankID = 2;
+	///银行分支机构代码
+	string BankBranchID = 3;
+	///期商代码
+	string BrokerID = 4;
+	///期商分支机构代码
+	string BrokerBranchID = 5;
+	///交易日期
+	string TradeDate = 6;
+	///交易时间
+	string TradeTime = 7;
+	///银行流水号
+	string BankSerial = 8;
+	///交易系统日期 
+	string TradingDay = 9;
+	///银期平台消息流水号
+	int32 PlateSerial = 10;
+	///最后分片标志
+	string LastFragment = 11;
+	///会话号
+	int32 SessionID = 12;
+	///客户姓名
+	string CustomerName = 13;
+	///证件类型
+	string IdCardType = 14;
+	///证件号码
+	string IdentifiedCardNo = 15;
+	///性别
+	string Gender = 16;
+	///国家代码
+	string CountryCode = 17;
+	///客户类型
+	string CustType = 18;
+	///地址
+	string Address = 19;
+	///邮编
+	string ZipCode = 20;
+	///电话号码
+	string Telephone = 21;
+	///手机
+	string MobilePhone = 22;
+	///传真
+	string Fax = 23;
+	///电子邮件
+	string EMail = 24;
+	///资金账户状态
+	string MoneyAccountStatus = 25;
+	///银行帐号
+	string BankAccount = 26;
+	///银行密码
+	string BankPassWord = 27;
+	///新银行帐号
+	string NewBankAccount = 28;
+	///新银行密码
+	string NewBankPassWord = 29;
+	///投资者帐号
+	string AccountID = 30;
+	///期货密码
+	string Password = 31;
+	///银行帐号类型
+	string BankAccType = 32;
+	///安装编号
+	int32 InstallID = 33;
+	///验证客户证件号码标志
+	string VerifyCertNoFlag = 34;
+	///币种代码
+	string CurrencyID = 35;
+	///期货公司银行编码
+	string BrokerIDByBank = 36;
+	///银行密码标志
+	string BankPwdFlag = 37;
+	///期货资金密码核对标志
+	string SecuPwdFlag = 38;
+	///交易ID
+	int32 TID = 39;
+	///摘要
+	string Digest = 40;
+	///错误代码
+	int32 ErrorID = 41;
+	///错误信息
+	string ErrorMsg = 42;
+}
+
+///二级代理操作员银期权限
+message CThostFtdcSecAgentACIDMapField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+	///资金账户
+	string AccountID = 3;
+	///币种
+	string CurrencyID = 4;
+	///境外中介机构资金帐号
+	string BrokerSecAgentID = 5;
+}
+
+///二级代理操作员银期权限查询
+message CThostFtdcQrySecAgentACIDMapField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+	///资金账户
+	string AccountID = 3;
+	///币种
+	string CurrencyID = 4;
+}
+
+///灾备中心交易权限
+message CThostFtdcUserRightsAssignField
+{
+	///应用单元代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+	///交易中心代码
+	int32 DRIdentityID = 3;
+}
+
+///经济公司是否有在本标示的交易权限
+message CThostFtdcBrokerUserRightAssignField
+{
+	///应用单元代码
+	string BrokerID = 1;
+	///交易中心代码
+	int32 DRIdentityID = 2;
+	///能否交易
+	int32 Tradeable = 3;
+}
+
+///灾备交易转换报文
+message CThostFtdcDRTransferField
+{
+	///原交易中心代码
+	int32 OrigDRIdentityID = 1;
+	///目标交易中心代码
+	int32 DestDRIdentityID = 2;
+	///原应用单元代码
+	string OrigBrokerID = 3;
+	///目标易用单元代码
+	string DestBrokerID = 4;
+}
+
+///Fens用户信息
+message CThostFtdcFensUserInfoField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+	///登录模式
+	string LoginMode = 3;
+}
+
+///当前银期所属交易中心
+message CThostFtdcCurrTransferIdentityField
+{
+	///交易中心代码
+	int32 IdentityID = 1;
+}
+
+///禁止登录用户
+message CThostFtdcLoginForbiddenUserField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+	///IP地址
+	string IPAddress = 3;
+}
+
+///查询禁止登录用户
+message CThostFtdcQryLoginForbiddenUserField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///用户代码
+	string UserID = 2;
+}
+
+///UDP组播组信息
+message CThostFtdcMulticastGroupInfoField
+{
+	///组播组IP地址
+	string GroupIP = 1;
+	///组播组IP端口
+	int32 GroupPort = 2;
+	///源地址
+	string SourceIP = 3;
+}
+
+///资金账户基本准备金
+message CThostFtdcTradingAccountReserveField
+{
+	///经纪公司代码
+	string BrokerID = 1;
+	///投资者帐号
+	string AccountID = 2;
+	///基本准备金
+	double Reserve = 3;
+	///币种代码
+	string CurrencyID = 4;
+}
+
+///DBF记录
+message CThostFtdcDBFRecordField
+{
+	///DBF命令类型
+	string DBFComdType = 1;
+	///DBF时间类型
+	string DBFComTime = 2;
+	///DBF原始流水号类型
+	string DBFOComNo = 3;
+	///DBF流水号类型
+	string DBFComNo = 4;
+	///DBF字段类型
+	string DBFFdName1 = 5;
+	///DBF字段内容类型
+	string DBFFdContent1 = 6;
+	///DBF字段类型
+	string DBFFdName2 = 7;
+	///DBF字段内容类型
+	string DBFFdContent2 = 8;
+	///DBF字段类型
+	string DBFFdName3 = 9;
+	///DBF字段内容类型
+	string DBFFdContent3 = 10;
+	///DBF字段类型
+	string DBFFdName4 = 11;
+	///DBF字段内容类型
+	string DBFFdContent4 = 12;
+}
