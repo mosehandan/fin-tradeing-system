@@ -1,19 +1,20 @@
 // #pragma once
 #include "FileUtils.h"
 #include "ThostFtdcTraderApi.h"
+#include "ZmqServer.h"
 
 class CTraderSpi : public CThostFtdcTraderSpi {
 
     private:
         CThostFtdcTraderApi* userapi;
         // map<string,string> config_info;
-        string broker_id;
-        string passwd;
-        string user_id;
+        std::string broker_id;
+        std::string passwd;
+        std::string user_id;
         int nRequestID;
 
-        string auth_code;
-        string user_product_info;
+        std::string auth_code;
+        std::string user_product_info;
 
         bool connection_status;
         bool login_status;
@@ -21,9 +22,9 @@ class CTraderSpi : public CThostFtdcTraderSpi {
         bool login_failed;
 
         int session_id;
-        string front_id;
+        std::string front_id;
 
-        string order_ref;
+        std::string order_ref;
 
         bool require_auth;
 
@@ -57,149 +58,145 @@ class CTraderSpi : public CThostFtdcTraderSpi {
 
         void subscribePublicTopic(int nType);
 
-        void reqAuthenticate();
+        void reqAuthenticate(guosen::msg::ctp::CThostFtdcReqAuthenticateField req);
 
-        void reqUserLogin();
+        void reqUserLogin(guosen::msg::ctp::CThostFtdcReqUserLoginField req);
 
-        void reqUserLogout();
+        void reqUserLogout(guosen::msg::ctp::CThostFtdcUserLogoutField req);
 
-        void reqUserPasswordUpdate();
+        void reqUserPasswordUpdate(guosen::msg::ctp::CThostFtdcUserPasswordUpdateField req);
 
-        void reqTradingAccountPasswordUpdate();
+        void reqTradingAccountPasswordUpdate(guosen::msg::ctp::CThostFtdcTradingAccountPasswordUpdateField req);
 
-        void reqOrderInsert();
+        void reqOrderInsert(guosen::msg::ctp::CThostFtdcInputOrderField req);
 
-        void reqParkedOrderInsert();
+        void reqParkedOrderInsert(guosen::msg::ctp::CThostFtdcParkedOrderField req);
 
-        void reqParkedOrderAction();
+        void reqParkedOrderAction(guosen::msg::ctp::CThostFtdcParkedOrderActionField req);
 
-        void reqOrderAction();
+        void reqOrderAction(guosen::msg::ctp::CThostFtdcInputOrderActionField req);
 
-        void reqQueryMaxOrderVolume();
+        void reqQueryMaxOrderVolume(guosen::msg::ctp::CThostFtdcQueryMaxOrderVolumeField req);
 
-        void reqSettlementInfoConfirm();
+        void reqSettlementInfoConfirm(guosen::msg::ctp::CThostFtdcSettlementInfoConfirmField req);
 
-        void reqRemoveParkedOrder();
+        void reqRemoveParkedOrder(guosen::msg::ctp::CThostFtdcRemoveParkedOrderField req);
 
-        void reqRemoveParkedOrderAction();
+        void reqRemoveParkedOrderAction(guosen::msg::ctp::CThostFtdcRemoveParkedOrderActionField req);
 
-        void reqExecOrderInsert();
+        void reqExecOrderInsert(guosen::msg::ctp::CThostFtdcInputExecOrderField req);
 
-        void reqExecOrderAction();
+        void reqExecOrderAction(guosen::msg::ctp::CThostFtdcInputExecOrderActionField req);
 
-        void reqForQuoteInsert();
+        void reqForQuoteInsert(guosen::msg::ctp::CThostFtdcInputForQuoteField req);
 
-        void reqQuoteInsert();
+        void reqQuoteInsert(guosen::msg::ctp::CThostFtdcInputQuoteField req);
 
-        void reqQuoteAction();
+        void reqQuoteAction(guosen::msg::ctp::CThostFtdcInputQuoteActionField req);
 
-        void reqLockInsert();
+        void reqLockInsert(guosen::msg::ctp::CThostFtdcInputLockField req);
 
-        void reqCombActionInsert();
+        void reqCombActionInsert(guosen::msg::ctp::CThostFtdcInputCombActionField req);
 
-        void reqQryOrder();
+        void reqQryOrder(guosen::msg::ctp::CThostFtdcQryOrderField req);
 
-        void reqQryTrade();
+        void reqQryTrade(guosen::msg::ctp::CThostFtdcQryTradeField req);
 
-        void reqQryInvestorPosition();
+        void reqQryInvestorPosition(guosen::msg::ctp::CThostFtdcQryInvestorPositionField req);
 
-        void reqQryTradingAccount();
+        void reqQryTradingAccount(guosen::msg::ctp::CThostFtdcQryTradingAccountField req);
 
-        void reqQryInvestor();
+        void reqQryInvestor(guosen::msg::ctp::CThostFtdcQryInvestorField req);
 
-        void reqQryTradingCode();
+        void reqQryTradingCode(guosen::msg::ctp::CThostFtdcQryTradingCodeField req);
 
-        void reqQryInstrumentMarginRate();
+        void reqQryInstrumentMarginRate(guosen::msg::ctp::CThostFtdcQryInstrumentMarginRateField req);
 
-        void reqQryInstrumentCommissionRate();
+        void reqQryInstrumentCommissionRate(guosen::msg::ctp::CThostFtdcQryInstrumentCommissionRateField req);
 
-        void reqQryExchange();
+        void reqQryExchange(guosen::msg::ctp::CThostFtdcQryExchangeField req);
 
-        void reqQryProduct();
+        void reqQryProduct(guosen::msg::ctp::CThostFtdcQryProductField req);
 
-        void reqQryInstrument();
+        void reqQryInstrument(guosen::msg::ctp::CThostFtdcQryInstrumentField req);
 
-        void reqQryDepthMarketData();
+        void reqQryDepthMarketData(guosen::msg::ctp::CThostFtdcQryDepthMarketDataField req);
 
-        void reqQrySettlementInfo();
+        void reqQrySettlementInfo(guosen::msg::ctp::CThostFtdcQrySettlementInfoField req);
 
-        void reqQryTransferBank();
+        void reqQryTransferBank(guosen::msg::ctp::CThostFtdcQryTransferBankField req);
 
-        void reqQryInvestorPositionDetail();
+        void reqQryInvestorPositionDetail(guosen::msg::ctp::CThostFtdcQryInvestorPositionDetailField req);
 
-        void reqQryNotice();
+        void reqQryNotice(guosen::msg::ctp::CThostFtdcQryNoticeField req);
 
-        void reqQrySettlementInfoConfirm();
+        void reqQrySettlementInfoConfirm(guosen::msg::ctp::CThostFtdcQrySettlementInfoConfirmField req);
 
-        void reqQryInvestorPositionCombineDetail();
+        void reqQryInvestorPositionCombineDetail(guosen::msg::ctp::CThostFtdcQryInvestorPositionCombineDetailField req);
 
-        void reqQryCFMMCTradingAccountKey();
+        void reqQryCFMMCTradingAccountKey(guosen::msg::ctp::CThostFtdcQryCFMMCTradingAccountKeyField req);
 
-        void reqQryEWarrantOffset();
+        void reqQryEWarrantOffset(guosen::msg::ctp::CThostFtdcQryEWarrantOffsetField req);
 
-        void reqQryInvestorProductGroupMargin();
+        void reqQryInvestorProductGroupMargin(guosen::msg::ctp::CThostFtdcQryInvestorProductGroupMarginField req);
 
-        void reqQryExchangeMarginRate();
+        void reqQryExchangeMarginRate(guosen::msg::ctp::CThostFtdcQryExchangeMarginRateField req);
 
-        void reqQryExchangeMarginRateAdjust();
+        void reqQryExchangeMarginRateAdjust(guosen::msg::ctp::CThostFtdcQryExchangeMarginRateAdjustField req);
 
-        void reqQryExchangeRate();
+        void reqQryExchangeRate(guosen::msg::ctp::CThostFtdcQryExchangeRateField req);
 
-        void reqQrySecAgentACIDMap();
+        void reqQrySecAgentACIDMap(guosen::msg::ctp::CThostFtdcQrySecAgentACIDMapField req);
 
-        void reqQryProductExchRate();
+        void reqQryProductExchRate(guosen::msg::ctp::CThostFtdcQryProductExchRateField req);
 
-        void reqQryProductGroup();
+        void reqQryProductGroup(guosen::msg::ctp::CThostFtdcQryProductGroupField req);
 
-        void reqQryOptionInstrTradeCost();
+        void reqQryOptionInstrTradeCost(guosen::msg::ctp::CThostFtdcQryOptionInstrTradeCostField req);
 
-        void reqQryOptionInstrCommRate();
+        void reqQryOptionInstrCommRate(guosen::msg::ctp::CThostFtdcQryOptionInstrCommRateField req);
 
-        void reqQryExecOrder();
+        void reqQryExecOrder(guosen::msg::ctp::CThostFtdcQryExecOrderField req);
 
-        void reqQryForQuote();
+        void reqQryForQuote(guosen::msg::ctp::CThostFtdcQryForQuoteField req);
 
-        void reqQryQuote();
+        void reqQryQuote(guosen::msg::ctp::CThostFtdcQryQuoteField req);
 
-        void reqQryLock();
+        void reqQryLock(guosen::msg::ctp::CThostFtdcQryLockField req);
 
-        void reqQryLockPosition();
+        void reqQryLockPosition(guosen::msg::ctp::CThostFtdcQryLockPositionField req);
 
-        void reqQryInvestorLevel();
+        void reqQryInvestorLevel(guosen::msg::ctp::CThostFtdcQryInvestorLevelField req);
 
-        void reqQryExecFreeze();
+        void reqQryExecFreeze(guosen::msg::ctp::CThostFtdcQryExecFreezeField req);
 
-        void reqQryCombInstrumentGuard();
+        void reqQryCombInstrumentGuard(guosen::msg::ctp::CThostFtdcQryCombInstrumentGuardField req);
 
-        void reqQryCombAction();
+        void reqQryCombAction(guosen::msg::ctp::CThostFtdcQryCombActionField req);
 
-        void reqQryTransferSerial();
+        void reqQryTransferSerial(guosen::msg::ctp::CThostFtdcQryTransferSerialField req);
 
-        void reqQryAccountregister();
+        void reqQryAccountregister(guosen::msg::ctp::CThostFtdcQryAccountregisterField req);
 
-        void reqQryContractBank();
+        void reqQryContractBank(guosen::msg::ctp::CThostFtdcQryContractBankField req);
 
-        void reqQryParkedOrder();
+        void reqQryParkedOrder(guosen::msg::ctp::CThostFtdcQryParkedOrderField req);
 
-        void reqQryParkedOrderAction();
+        void reqQryParkedOrderAction(guosen::msg::ctp::CThostFtdcQryParkedOrderActionField req);
 
-        void reqQryTradingNotice();
+        void reqQryTradingNotice(guosen::msg::ctp::CThostFtdcQryTradingNoticeField req);
 
-        void reqQryBrokerTradingParams();
+        void reqQryBrokerTradingParams(guosen::msg::ctp::CThostFtdcQryBrokerTradingParamsField req);
 
-        void reqQryBrokerTradingAlgos();
+        void reqQryBrokerTradingAlgos(guosen::msg::ctp::CThostFtdcQryBrokerTradingAlgosField req);
 
-        void reqQueryCFMMCTradingAccountToken();
+        void reqQueryCFMMCTradingAccountToken(guosen::msg::ctp::CThostFtdcQueryCFMMCTradingAccountTokenField req);
 
-        void reqFromBankToFutureByFuture();
+        void reqFromBankToFutureByFuture(guosen::msg::ctp::CThostFtdcReqTransferField req);
 
-        void reqFromFutureToBankByFuture();
+        void reqFromFutureToBankByFuture(guosen::msg::ctp::CThostFtdcReqTransferField req);
 
-        void reqQueryBankAccountMoneyByFuture();
-
-        void TestAllFunction();
-
-        void PrintAllFunction();
+        void reqQueryBankAccountMoneyByFuture(guosen::msg::ctp::CThostFtdcReqQueryAccountField req);
 
         bool IsErrorRspInfo(CThostFtdcRspInfoField* pRspInfo);
 

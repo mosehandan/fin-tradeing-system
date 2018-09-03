@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package ctp;
+package guosen.msg.ctp;
 
 ///信息分发
 message CThostFtdcDisseminationField
@@ -161,7 +161,7 @@ message CThostFtdcTransferBankToFutureReqField
 	///期货资金账户
 	string FutureAccount = 1;
 	///密码标志
-	string FuturePwdFlag = 2;
+	int32 FuturePwdFlag = 2;
 	///密码
 	string FutureAccPwd = 3;
 	///转账金额
@@ -195,7 +195,7 @@ message CThostFtdcTransferFutureToBankReqField
 	///期货资金账户
 	string FutureAccount = 1;
 	///密码标志
-	string FuturePwdFlag = 2;
+	int32 FuturePwdFlag = 2;
 	///密码
 	string FutureAccPwd = 3;
 	///转账金额
@@ -229,7 +229,7 @@ message CThostFtdcTransferQryBankReqField
 	///期货资金账户
 	string FutureAccount = 1;
 	///密码标志
-	string FuturePwdFlag = 2;
+	int32 FuturePwdFlag = 2;
 	///密码
 	string FutureAccPwd = 3;
 	///币种：RMB-人民币 USD-美圆 HKD-港元
@@ -292,7 +292,7 @@ message CThostFtdcTransferQryDetailRspField
 	///发生金额
 	double TxAmount = 13;
 	///有效标志
-	string Flag = 14;
+	int32 Flag = 14;
 }
 
 ///响应信息
@@ -312,7 +312,7 @@ message CThostFtdcExchangeField
 	///交易所名称
 	string ExchangeName = 2;
 	///交易所属性
-	string ExchangeProperty = 3;
+	int32 ExchangeProperty = 3;
 }
 
 ///产品
@@ -325,7 +325,7 @@ message CThostFtdcProductField
 	///交易所代码
 	string ExchangeID = 3;
 	///产品类型
-	string ProductClass = 4;
+	int32 ProductClass = 4;
 	///合约数量乘数
 	int32 VolumeMultiple = 5;
 	///最小变动价位
@@ -339,15 +339,15 @@ message CThostFtdcProductField
 	///限价单最小下单量
 	int32 MinLimitOrderVolume = 10;
 	///持仓类型
-	string PositionType = 11;
+	int32 PositionType = 11;
 	///持仓日期类型
-	string PositionDateType = 12;
+	int32 PositionDateType = 12;
 	///平仓处理类型
-	string CloseDealType = 13;
+	int32 CloseDealType = 13;
 	///交易币种类型
 	string TradeCurrencyID = 14;
 	///质押资金可用范围
-	string MortgageFundUseRange = 15;
+	int32 MortgageFundUseRange = 15;
 	///交易所产品代码
 	string ExchangeProductID = 16;
 	///合约基础商品乘数
@@ -368,7 +368,7 @@ message CThostFtdcInstrumentField
 	///产品代码
 	string ProductID = 5;
 	///产品类型
-	string ProductClass = 6;
+	int32 ProductClass = 6;
 	///交割年份
 	int32 DeliveryYear = 7;
 	///交割月
@@ -396,29 +396,29 @@ message CThostFtdcInstrumentField
 	///结束交割日
 	string EndDelivDate = 19;
 	///合约生命周期状态
-	string InstLifePhase = 20;
+	int32 InstLifePhase = 20;
 	///当前是否交易
 	int32 IsTrading = 21;
 	///持仓类型
-	string PositionType = 22;
+	int32 PositionType = 22;
 	///持仓日期类型
-	string PositionDateType = 23;
+	int32 PositionDateType = 23;
 	///多头保证金率
 	double LongMarginRatio = 24;
 	///空头保证金率
 	double ShortMarginRatio = 25;
 	///是否使用大额单边保证金算法
-	string MaxMarginSideAlgorithm = 26;
+	int32 MaxMarginSideAlgorithm = 26;
 	///基础商品代码
 	string UnderlyingInstrID = 27;
 	///执行价
 	double StrikePrice = 28;
 	///期权类型
-	string OptionsType = 29;
+	int32 OptionsType = 29;
 	///合约基础商品乘数
 	double UnderlyingMultiple = 30;
 	///组合类型
-	string CombinationType = 31;
+	int32 CombinationType = 31;
 	///最小买下单单位
 	int32 MinBuyVolume = 32;
 	///最小卖下单单位
@@ -469,7 +469,7 @@ message CThostFtdcInvestorField
 	///投资者名称
 	string InvestorName = 4;
 	///证件类型
-	string IdentifiedCardType = 5;
+	int32 IdentifiedCardType = 5;
 	///证件号码
 	string IdentifiedCardNo = 6;
 	///是否活跃
@@ -502,11 +502,11 @@ message CThostFtdcTradingCodeField
 	///是否活跃
 	int32 IsActive = 5;
 	///交易编码类型
-	string ClientIDType = 6;
+	int32 ClientIDType = 6;
 	///营业部编号
 	string BranchID = 7;
 	///业务类型
-	string BizType = 8;
+	int32 BizType = 8;
 }
 
 ///会员编码和经纪公司编码对照表
@@ -541,7 +541,7 @@ message CThostFtdcSuperUserFunctionField
 	///用户代码
 	string UserID = 1;
 	///功能代码
-	string FunctionCode = 2;
+	int32 FunctionCode = 2;
 }
 
 ///投资者组
@@ -651,7 +651,7 @@ message CThostFtdcTradingAccountField
 	///特殊产品交易所保证金
 	double SpecProductExchangeMargin = 46;
 	///业务类型
-	string BizType = 47;
+	int32 BizType = 47;
 }
 
 ///投资者持仓
@@ -664,11 +664,11 @@ message CThostFtdcInvestorPositionField
 	///投资者代码
 	string InvestorID = 3;
 	///持仓多空方向
-	string PosiDirection = 4;
+	int32 PosiDirection = 4;
 	///投机套保标志
-	string HedgeFlag = 5;
+	int32 HedgeFlag = 5;
 	///持仓日期
-	string PositionDate = 6;
+	int32 PositionDate = 6;
 	///上日持仓
 	int32 YdPosition = 7;
 	///今日持仓
@@ -755,13 +755,13 @@ message CThostFtdcInstrumentMarginRateField
 	///合约代码
 	string InstrumentID = 1;
 	///投资者范围
-	string InvestorRange = 2;
+	int32 InvestorRange = 2;
 	///经纪公司代码
 	string BrokerID = 3;
 	///投资者代码
 	string InvestorID = 4;
 	///投机套保标志
-	string HedgeFlag = 5;
+	int32 HedgeFlag = 5;
 	///多头保证金率
 	double LongMarginRatioByMoney = 6;
 	///多头保证金费
@@ -780,7 +780,7 @@ message CThostFtdcInstrumentCommissionRateField
 	///合约代码
 	string InstrumentID = 1;
 	///投资者范围
-	string InvestorRange = 2;
+	int32 InvestorRange = 2;
 	///经纪公司代码
 	string BrokerID = 3;
 	///投资者代码
@@ -800,7 +800,7 @@ message CThostFtdcInstrumentCommissionRateField
 	///交易所代码
 	string ExchangeID = 11;
 	///业务类型
-	string BizType = 12;
+	int32 BizType = 12;
 }
 
 ///深度行情
@@ -902,17 +902,17 @@ message CThostFtdcInstrumentTradingRightField
 	///合约代码
 	string InstrumentID = 1;
 	///投资者范围
-	string InvestorRange = 2;
+	int32 InvestorRange = 2;
 	///经纪公司代码
 	string BrokerID = 3;
 	///投资者代码
 	string InvestorID = 4;
 	///交易权限
-	string TradingRight = 5;
+	int32 TradingRight = 5;
 	///交易所代码
 	string ExchangeID = 6;
 	///业务类型
-	string BizType = 7;
+	int32 BizType = 7;
 }
 
 ///经纪公司用户
@@ -925,7 +925,7 @@ message CThostFtdcBrokerUserField
 	///用户名称
 	string UserName = 3;
 	///用户类型
-	string UserType = 4;
+	int32 UserType = 4;
 	///是否活跃
 	int32 IsActive = 5;
 	///是否使用令牌
@@ -951,7 +951,7 @@ message CThostFtdcBrokerUserFunctionField
 	///用户代码
 	string UserID = 2;
 	///经纪公司功能代码
-	string BrokerFunctionCode = 3;
+	int32 BrokerFunctionCode = 3;
 }
 
 ///交易所交易员报盘机
@@ -970,7 +970,7 @@ message CThostFtdcTraderOfferField
 	///本地报单编号
 	string OrderLocalID = 6;
 	///交易所交易员连接状态
-	string TraderConnectStatus = 7;
+	int32 TraderConnectStatus = 7;
 	///发出连接请求的日期
 	string ConnectRequestDate = 8;
 	///发出连接请求的时间
@@ -996,7 +996,7 @@ message CThostFtdcTraderOfferField
 	///本席位最大报单备拷
 	string MaxOrderMessageReference = 19;
 	///业务类型
-	string BizType = 20;
+	int32 BizType = 20;
 }
 
 ///投资者结算结果
@@ -1022,13 +1022,13 @@ message CThostFtdcInstrumentMarginRateAdjustField
 	///合约代码
 	string InstrumentID = 1;
 	///投资者范围
-	string InvestorRange = 2;
+	int32 InvestorRange = 2;
 	///经纪公司代码
 	string BrokerID = 3;
 	///投资者代码
 	string InvestorID = 4;
 	///投机套保标志
-	string HedgeFlag = 5;
+	int32 HedgeFlag = 5;
 	///多头保证金率
 	double LongMarginRatioByMoney = 6;
 	///多头保证金费
@@ -1049,7 +1049,7 @@ message CThostFtdcExchangeMarginRateField
 	///合约代码
 	string InstrumentID = 2;
 	///投机套保标志
-	string HedgeFlag = 3;
+	int32 HedgeFlag = 3;
 	///多头保证金率
 	double LongMarginRatioByMoney = 4;
 	///多头保证金费
@@ -1068,7 +1068,7 @@ message CThostFtdcExchangeMarginRateAdjustField
 	///合约代码
 	string InstrumentID = 2;
 	///投机套保标志
-	string HedgeFlag = 3;
+	int32 HedgeFlag = 3;
 	///跟随交易所投资者多头保证金率
 	double LongMarginRatioByMoney = 4;
 	///跟随交易所投资者多头保证金费
@@ -1239,9 +1239,9 @@ message CThostFtdcInputOrderField
 	///用户代码
 	string UserID = 5;
 	///报单价格条件
-	string OrderPriceType = 6;
+	int32 OrderPriceType = 6;
 	///买卖方向
-	string Direction = 7;
+	int32 Direction = 7;
 	///组合开平标志
 	string CombOffsetFlag = 8;
 	///组合投机套保标志
@@ -1251,19 +1251,19 @@ message CThostFtdcInputOrderField
 	///数量
 	int32 VolumeTotalOriginal = 11;
 	///有效期类型
-	string TimeCondition = 12;
+	int32 TimeCondition = 12;
 	///GTD日期
 	string GTDDate = 13;
 	///成交量类型
-	string VolumeCondition = 14;
+	int32 VolumeCondition = 14;
 	///最小成交量
 	int32 MinVolume = 15;
 	///触发条件
-	string ContingentCondition = 16;
+	int32 ContingentCondition = 16;
 	///止损价
 	double StopPrice = 17;
 	///强平原因
-	string ForceCloseReason = 18;
+	int32 ForceCloseReason = 18;
 	///自动挂起标志
 	int32 IsAutoSuspend = 19;
 	///业务单元
@@ -1292,9 +1292,9 @@ message CThostFtdcOrderField
 	///用户代码
 	string UserID = 5;
 	///报单价格条件
-	string OrderPriceType = 6;
+	int32 OrderPriceType = 6;
 	///买卖方向
-	string Direction = 7;
+	int32 Direction = 7;
 	///组合开平标志
 	string CombOffsetFlag = 8;
 	///组合投机套保标志
@@ -1304,19 +1304,19 @@ message CThostFtdcOrderField
 	///数量
 	int32 VolumeTotalOriginal = 11;
 	///有效期类型
-	string TimeCondition = 12;
+	int32 TimeCondition = 12;
 	///GTD日期
 	string GTDDate = 13;
 	///成交量类型
-	string VolumeCondition = 14;
+	int32 VolumeCondition = 14;
 	///最小成交量
 	int32 MinVolume = 15;
 	///触发条件
-	string ContingentCondition = 16;
+	int32 ContingentCondition = 16;
 	///止损价
 	double StopPrice = 17;
 	///强平原因
-	string ForceCloseReason = 18;
+	int32 ForceCloseReason = 18;
 	///自动挂起标志
 	int32 IsAutoSuspend = 19;
 	///业务单元
@@ -1338,7 +1338,7 @@ message CThostFtdcOrderField
 	///安装编号
 	int32 InstallID = 28;
 	///报单提交状态
-	string OrderSubmitStatus = 29;
+	int32 OrderSubmitStatus = 29;
 	///报单提示序号
 	int32 NotifySequence = 30;
 	///交易日
@@ -1348,11 +1348,11 @@ message CThostFtdcOrderField
 	///报单编号
 	string OrderSysID = 33;
 	///报单来源
-	string OrderSource = 34;
+	int32 OrderSource = 34;
 	///报单状态
-	string OrderStatus = 35;
+	int32 OrderStatus = 35;
 	///报单类型
-	string OrderType = 36;
+	int32 OrderType = 36;
 	///今成交数量
 	int32 VolumeTraded = 37;
 	///剩余数量
@@ -1403,9 +1403,9 @@ message CThostFtdcOrderField
 message CThostFtdcExchangeOrderField
 {
 	///报单价格条件
-	string OrderPriceType = 1;
+	int32 OrderPriceType = 1;
 	///买卖方向
-	string Direction = 2;
+	int32 Direction = 2;
 	///组合开平标志
 	string CombOffsetFlag = 3;
 	///组合投机套保标志
@@ -1415,19 +1415,19 @@ message CThostFtdcExchangeOrderField
 	///数量
 	int32 VolumeTotalOriginal = 6;
 	///有效期类型
-	string TimeCondition = 7;
+	int32 TimeCondition = 7;
 	///GTD日期
 	string GTDDate = 8;
 	///成交量类型
-	string VolumeCondition = 9;
+	int32 VolumeCondition = 9;
 	///最小成交量
 	int32 MinVolume = 10;
 	///触发条件
-	string ContingentCondition = 11;
+	int32 ContingentCondition = 11;
 	///止损价
 	double StopPrice = 12;
 	///强平原因
-	string ForceCloseReason = 13;
+	int32 ForceCloseReason = 13;
 	///自动挂起标志
 	int32 IsAutoSuspend = 14;
 	///业务单元
@@ -1449,7 +1449,7 @@ message CThostFtdcExchangeOrderField
 	///安装编号
 	int32 InstallID = 23;
 	///报单提交状态
-	string OrderSubmitStatus = 24;
+	int32 OrderSubmitStatus = 24;
 	///报单提示序号
 	int32 NotifySequence = 25;
 	///交易日
@@ -1459,11 +1459,11 @@ message CThostFtdcExchangeOrderField
 	///报单编号
 	string OrderSysID = 28;
 	///报单来源
-	string OrderSource = 29;
+	int32 OrderSource = 29;
 	///报单状态
-	string OrderStatus = 30;
+	int32 OrderStatus = 30;
 	///报单类型
-	string OrderType = 31;
+	int32 OrderType = 31;
 	///今成交数量
 	int32 VolumeTraded = 32;
 	///剩余数量
@@ -1531,7 +1531,7 @@ message CThostFtdcInputOrderActionField
 	///报单编号
 	string OrderSysID = 9;
 	///操作标志
-	string ActionFlag = 10;
+	int32 ActionFlag = 10;
 	///价格
 	double LimitPrice = 11;
 	///数量变化
@@ -1564,7 +1564,7 @@ message CThostFtdcOrderActionField
 	///报单编号
 	string OrderSysID = 9;
 	///操作标志
-	string ActionFlag = 10;
+	int32 ActionFlag = 10;
 	///价格
 	double LimitPrice = 11;
 	///数量变化
@@ -1588,7 +1588,7 @@ message CThostFtdcOrderActionField
 	///业务单元
 	string BusinessUnit = 21;
 	///报单操作状态
-	string OrderActionStatus = 22;
+	int32 OrderActionStatus = 22;
 	///用户代码
 	string UserID = 23;
 	///状态信息
@@ -1607,7 +1607,7 @@ message CThostFtdcExchangeOrderActionField
 	///报单编号
 	string OrderSysID = 2;
 	///操作标志
-	string ActionFlag = 3;
+	int32 ActionFlag = 3;
 	///价格
 	double LimitPrice = 4;
 	///数量变化
@@ -1631,7 +1631,7 @@ message CThostFtdcExchangeOrderActionField
 	///业务单元
 	string BusinessUnit = 14;
 	///报单操作状态
-	string OrderActionStatus = 15;
+	int32 OrderActionStatus = 15;
 	///用户代码
 	string UserID = 16;
 	///营业部编号
@@ -1669,7 +1669,7 @@ message CThostFtdcExchangeTradeField
 	///成交编号
 	string TradeID = 2;
 	///买卖方向
-	string Direction = 3;
+	int32 Direction = 3;
 	///报单编号
 	string OrderSysID = 4;
 	///会员代码
@@ -1677,13 +1677,13 @@ message CThostFtdcExchangeTradeField
 	///客户代码
 	string ClientID = 6;
 	///交易角色
-	string TradingRole = 7;
+	int32 TradingRole = 7;
 	///合约在交易所的代码
 	string ExchangeInstID = 8;
 	///开平标志
-	string OffsetFlag = 9;
+	int32 OffsetFlag = 9;
 	///投机套保标志
-	string HedgeFlag = 10;
+	int32 HedgeFlag = 10;
 	///价格
 	double Price = 11;
 	///数量
@@ -1693,9 +1693,9 @@ message CThostFtdcExchangeTradeField
 	///成交时间
 	string TradeTime = 14;
 	///成交类型
-	string TradeType = 15;
+	int32 TradeType = 15;
 	///成交价来源
-	string PriceSource = 16;
+	int32 PriceSource = 16;
 	///交易所交易员代码
 	string TraderID = 17;
 	///本地报单编号
@@ -1707,7 +1707,7 @@ message CThostFtdcExchangeTradeField
 	///序号
 	int32 SequenceNo = 21;
 	///成交来源
-	string TradeSource = 22;
+	int32 TradeSource = 22;
 }
 
 ///成交
@@ -1728,7 +1728,7 @@ message CThostFtdcTradeField
 	///成交编号
 	string TradeID = 7;
 	///买卖方向
-	string Direction = 8;
+	int32 Direction = 8;
 	///报单编号
 	string OrderSysID = 9;
 	///会员代码
@@ -1736,13 +1736,13 @@ message CThostFtdcTradeField
 	///客户代码
 	string ClientID = 11;
 	///交易角色
-	string TradingRole = 12;
+	int32 TradingRole = 12;
 	///合约在交易所的代码
 	string ExchangeInstID = 13;
 	///开平标志
-	string OffsetFlag = 14;
+	int32 OffsetFlag = 14;
 	///投机套保标志
-	string HedgeFlag = 15;
+	int32 HedgeFlag = 15;
 	///价格
 	double Price = 16;
 	///数量
@@ -1752,9 +1752,9 @@ message CThostFtdcTradeField
 	///成交时间
 	string TradeTime = 19;
 	///成交类型
-	string TradeType = 20;
+	int32 TradeType = 20;
 	///成交价来源
-	string PriceSource = 21;
+	int32 PriceSource = 21;
 	///交易所交易员代码
 	string TraderID = 22;
 	///本地报单编号
@@ -1772,7 +1772,7 @@ message CThostFtdcTradeField
 	///经纪公司报单编号
 	int32 BrokerOrderSeq = 29;
 	///成交来源
-	string TradeSource = 30;
+	int32 TradeSource = 30;
 }
 
 ///用户会话
@@ -1812,11 +1812,11 @@ message CThostFtdcQueryMaxOrderVolumeField
 	///合约代码
 	string InstrumentID = 3;
 	///买卖方向
-	string Direction = 4;
+	int32 Direction = 4;
 	///开平标志
-	string OffsetFlag = 5;
+	int32 OffsetFlag = 5;
 	///投机套保标志
-	string HedgeFlag = 6;
+	int32 HedgeFlag = 6;
 	///最大允许报单数量
 	int32 MaxVolume = 7;
 	///交易所代码
@@ -1889,7 +1889,7 @@ message CThostFtdcSyncingInvestorField
 	///投资者名称
 	string InvestorName = 4;
 	///证件类型
-	string IdentifiedCardType = 5;
+	int32 IdentifiedCardType = 5;
 	///证件号码
 	string IdentifiedCardNo = 6;
 	///是否活跃
@@ -1922,7 +1922,7 @@ message CThostFtdcSyncingTradingCodeField
 	///是否活跃
 	int32 IsActive = 5;
 	///交易编码类型
-	string ClientIDType = 6;
+	int32 ClientIDType = 6;
 	///营业部编号
 	string BranchID = 7;
 }
@@ -2045,11 +2045,11 @@ message CThostFtdcSyncingInvestorPositionField
 	///投资者代码
 	string InvestorID = 3;
 	///持仓多空方向
-	string PosiDirection = 4;
+	int32 PosiDirection = 4;
 	///投机套保标志
-	string HedgeFlag = 5;
+	int32 HedgeFlag = 5;
 	///持仓日期
-	string PositionDate = 6;
+	int32 PositionDate = 6;
 	///上日持仓
 	int32 YdPosition = 7;
 	///今日持仓
@@ -2136,13 +2136,13 @@ message CThostFtdcSyncingInstrumentMarginRateField
 	///合约代码
 	string InstrumentID = 1;
 	///投资者范围
-	string InvestorRange = 2;
+	int32 InvestorRange = 2;
 	///经纪公司代码
 	string BrokerID = 3;
 	///投资者代码
 	string InvestorID = 4;
 	///投机套保标志
-	string HedgeFlag = 5;
+	int32 HedgeFlag = 5;
 	///多头保证金率
 	double LongMarginRatioByMoney = 6;
 	///多头保证金费
@@ -2161,7 +2161,7 @@ message CThostFtdcSyncingInstrumentCommissionRateField
 	///合约代码
 	string InstrumentID = 1;
 	///投资者范围
-	string InvestorRange = 2;
+	int32 InvestorRange = 2;
 	///经纪公司代码
 	string BrokerID = 3;
 	///投资者代码
@@ -2188,13 +2188,13 @@ message CThostFtdcSyncingInstrumentTradingRightField
 	///合约代码
 	string InstrumentID = 1;
 	///投资者范围
-	string InvestorRange = 2;
+	int32 InvestorRange = 2;
 	///经纪公司代码
 	string BrokerID = 3;
 	///投资者代码
 	string InvestorID = 4;
 	///交易权限
-	string TradingRight = 5;
+	int32 TradingRight = 5;
 	///交易所代码
 	string ExchangeID = 6;
 }
@@ -2260,7 +2260,7 @@ message CThostFtdcQryTradingAccountField
 	///币种代码
 	string CurrencyID = 3;
 	///业务类型
-	string BizType = 4;
+	int32 BizType = 4;
 }
 
 ///查询投资者
@@ -2284,7 +2284,7 @@ message CThostFtdcQryTradingCodeField
 	///客户代码
 	string ClientID = 4;
 	///交易编码类型
-	string ClientIDType = 5;
+	int32 ClientIDType = 5;
 }
 
 ///查询投资者组
@@ -2304,7 +2304,7 @@ message CThostFtdcQryInstrumentMarginRateField
 	///合约代码
 	string InstrumentID = 3;
 	///投机套保标志
-	string HedgeFlag = 4;
+	int32 HedgeFlag = 4;
 }
 
 ///查询手续费率
@@ -2448,7 +2448,7 @@ message CThostFtdcQryProductField
 	///产品代码
 	string ProductID = 1;
 	///产品类型
-	string ProductClass = 2;
+	int32 ProductClass = 2;
 	///交易所代码
 	string ExchangeID = 3;
 }
@@ -2532,7 +2532,7 @@ message CThostFtdcQryExchangeMarginRateField
 	///合约代码
 	string InstrumentID = 2;
 	///投机套保标志
-	string HedgeFlag = 3;
+	int32 HedgeFlag = 3;
 }
 
 ///查询交易所调整保证金率
@@ -2543,7 +2543,7 @@ message CThostFtdcQryExchangeMarginRateAdjustField
 	///合约代码
 	string InstrumentID = 2;
 	///投机套保标志
-	string HedgeFlag = 3;
+	int32 HedgeFlag = 3;
 }
 
 ///查询汇率
@@ -2595,7 +2595,7 @@ message CThostFtdcOptionInstrMiniMarginField
 	///合约代码
 	string InstrumentID = 1;
 	///投资者范围
-	string InvestorRange = 2;
+	int32 InvestorRange = 2;
 	///经纪公司代码
 	string BrokerID = 3;
 	///投资者代码
@@ -2603,7 +2603,7 @@ message CThostFtdcOptionInstrMiniMarginField
 	///单位（手）期权合约最小保证金
 	double MinMargin = 5;
 	///取值方式
-	string ValueMethod = 6;
+	int32 ValueMethod = 6;
 	///是否跟随交易所收取
 	int32 IsRelative = 7;
 	///交易所代码
@@ -2616,7 +2616,7 @@ message CThostFtdcOptionInstrMarginAdjustField
 	///合约代码
 	string InstrumentID = 1;
 	///投资者范围
-	string InvestorRange = 2;
+	int32 InvestorRange = 2;
 	///经纪公司代码
 	string BrokerID = 3;
 	///投资者代码
@@ -2645,7 +2645,7 @@ message CThostFtdcOptionInstrCommRateField
 	///合约代码
 	string InstrumentID = 1;
 	///投资者范围
-	string InvestorRange = 2;
+	int32 InvestorRange = 2;
 	///经纪公司代码
 	string BrokerID = 3;
 	///投资者代码
@@ -2680,7 +2680,7 @@ message CThostFtdcOptionInstrTradeCostField
 	///合约代码
 	string InstrumentID = 3;
 	///投机套保标志
-	string HedgeFlag = 4;
+	int32 HedgeFlag = 4;
 	///期权合约保证金不变部分
 	double FixedMargin = 5;
 	///期权合约最小保证金
@@ -2705,7 +2705,7 @@ message CThostFtdcQryOptionInstrTradeCostField
 	///合约代码
 	string InstrumentID = 3;
 	///投机套保标志
-	string HedgeFlag = 4;
+	int32 HedgeFlag = 4;
 	///期权合约报价
 	double InputPrice = 5;
 	///标的价格,填0则用昨结算价
@@ -2760,17 +2760,17 @@ message CThostFtdcInputExecOrderField
 	///业务单元
 	string BusinessUnit = 8;
 	///开平标志
-	string OffsetFlag = 9;
+	int32 OffsetFlag = 9;
 	///投机套保标志
-	string HedgeFlag = 10;
+	int32 HedgeFlag = 10;
 	///执行类型
-	string ActionType = 11;
+	int32 ActionType = 11;
 	///保留头寸申请的持仓方向
-	string PosiDirection = 12;
+	int32 PosiDirection = 12;
 	///期权行权后是否保留期货头寸的标记
-	string ReservePositionFlag = 13;
+	int32 ReservePositionFlag = 13;
 	///期权行权后生成的头寸是否自动平仓
-	string CloseFlag = 14;
+	int32 CloseFlag = 14;
 	///交易所代码
 	string ExchangeID = 15;
 }
@@ -2797,7 +2797,7 @@ message CThostFtdcInputExecOrderActionField
 	///执行宣告操作编号
 	string ExecOrderSysID = 9;
 	///操作标志
-	string ActionFlag = 10;
+	int32 ActionFlag = 10;
 	///用户代码
 	string UserID = 11;
 	///合约代码
@@ -2824,17 +2824,17 @@ message CThostFtdcExecOrderField
 	///业务单元
 	string BusinessUnit = 8;
 	///开平标志
-	string OffsetFlag = 9;
+	int32 OffsetFlag = 9;
 	///投机套保标志
-	string HedgeFlag = 10;
+	int32 HedgeFlag = 10;
 	///执行类型
-	string ActionType = 11;
+	int32 ActionType = 11;
 	///保留头寸申请的持仓方向
-	string PosiDirection = 12;
+	int32 PosiDirection = 12;
 	///期权行权后是否保留期货头寸的标记
-	string ReservePositionFlag = 13;
+	int32 ReservePositionFlag = 13;
 	///期权行权后生成的头寸是否自动平仓
-	string CloseFlag = 14;
+	int32 CloseFlag = 14;
 	///本地执行宣告编号
 	string ExecOrderLocalID = 15;
 	///交易所代码
@@ -2850,7 +2850,7 @@ message CThostFtdcExecOrderField
 	///安装编号
 	int32 InstallID = 21;
 	///执行宣告提交状态
-	string OrderSubmitStatus = 22;
+	int32 OrderSubmitStatus = 22;
 	///报单提示序号
 	int32 NotifySequence = 23;
 	///交易日
@@ -2866,7 +2866,7 @@ message CThostFtdcExecOrderField
 	///撤销时间
 	string CancelTime = 29;
 	///执行结果
-	string ExecResult = 30;
+	int32 ExecResult = 30;
 	///结算会员编号
 	string ClearingPartID = 31;
 	///序号
@@ -2909,7 +2909,7 @@ message CThostFtdcExecOrderActionField
 	///执行宣告操作编号
 	string ExecOrderSysID = 9;
 	///操作标志
-	string ActionFlag = 10;
+	int32 ActionFlag = 10;
 	///操作日期
 	string ActionDate = 11;
 	///操作时间
@@ -2929,11 +2929,11 @@ message CThostFtdcExecOrderActionField
 	///业务单元
 	string BusinessUnit = 19;
 	///报单操作状态
-	string OrderActionStatus = 20;
+	int32 OrderActionStatus = 20;
 	///用户代码
 	string UserID = 21;
 	///执行类型
-	string ActionType = 22;
+	int32 ActionType = 22;
 	///状态信息
 	string StatusMsg = 23;
 	///合约代码
@@ -2971,17 +2971,17 @@ message CThostFtdcExchangeExecOrderField
 	///业务单元
 	string BusinessUnit = 3;
 	///开平标志
-	string OffsetFlag = 4;
+	int32 OffsetFlag = 4;
 	///投机套保标志
-	string HedgeFlag = 5;
+	int32 HedgeFlag = 5;
 	///执行类型
-	string ActionType = 6;
+	int32 ActionType = 6;
 	///保留头寸申请的持仓方向
-	string PosiDirection = 7;
+	int32 PosiDirection = 7;
 	///期权行权后是否保留期货头寸的标记
-	string ReservePositionFlag = 8;
+	int32 ReservePositionFlag = 8;
 	///期权行权后生成的头寸是否自动平仓
-	string CloseFlag = 9;
+	int32 CloseFlag = 9;
 	///本地执行宣告编号
 	string ExecOrderLocalID = 10;
 	///交易所代码
@@ -2997,7 +2997,7 @@ message CThostFtdcExchangeExecOrderField
 	///安装编号
 	int32 InstallID = 16;
 	///执行宣告提交状态
-	string OrderSubmitStatus = 17;
+	int32 OrderSubmitStatus = 17;
 	///报单提示序号
 	int32 NotifySequence = 18;
 	///交易日
@@ -3013,7 +3013,7 @@ message CThostFtdcExchangeExecOrderField
 	///撤销时间
 	string CancelTime = 24;
 	///执行结果
-	string ExecResult = 25;
+	int32 ExecResult = 25;
 	///结算会员编号
 	string ClearingPartID = 26;
 	///序号
@@ -3056,7 +3056,7 @@ message CThostFtdcExchangeExecOrderActionField
 	///执行宣告操作编号
 	string ExecOrderSysID = 2;
 	///操作标志
-	string ActionFlag = 3;
+	int32 ActionFlag = 3;
 	///操作日期
 	string ActionDate = 4;
 	///操作时间
@@ -3076,11 +3076,11 @@ message CThostFtdcExchangeExecOrderActionField
 	///业务单元
 	string BusinessUnit = 12;
 	///报单操作状态
-	string OrderActionStatus = 13;
+	int32 OrderActionStatus = 13;
 	///用户代码
 	string UserID = 14;
 	///执行类型
-	string ActionType = 15;
+	int32 ActionType = 15;
 	///营业部编号
 	string BranchID = 16;
 }
@@ -3118,17 +3118,17 @@ message CThostFtdcErrExecOrderField
 	///业务单元
 	string BusinessUnit = 8;
 	///开平标志
-	string OffsetFlag = 9;
+	int32 OffsetFlag = 9;
 	///投机套保标志
-	string HedgeFlag = 10;
+	int32 HedgeFlag = 10;
 	///执行类型
-	string ActionType = 11;
+	int32 ActionType = 11;
 	///保留头寸申请的持仓方向
-	string PosiDirection = 12;
+	int32 PosiDirection = 12;
 	///期权行权后是否保留期货头寸的标记
-	string ReservePositionFlag = 13;
+	int32 ReservePositionFlag = 13;
 	///期权行权后生成的头寸是否自动平仓
-	string CloseFlag = 14;
+	int32 CloseFlag = 14;
 	///交易所代码
 	string ExchangeID = 15;
 	///错误代码
@@ -3168,7 +3168,7 @@ message CThostFtdcErrExecOrderActionField
 	///执行宣告操作编号
 	string ExecOrderSysID = 9;
 	///操作标志
-	string ActionFlag = 10;
+	int32 ActionFlag = 10;
 	///用户代码
 	string UserID = 11;
 	///合约代码
@@ -3194,19 +3194,19 @@ message CThostFtdcOptionInstrTradingRightField
 	///合约代码
 	string InstrumentID = 1;
 	///投资者范围
-	string InvestorRange = 2;
+	int32 InvestorRange = 2;
 	///经纪公司代码
 	string BrokerID = 3;
 	///投资者代码
 	string InvestorID = 4;
 	///买卖方向
-	string Direction = 5;
+	int32 Direction = 5;
 	///交易权限
-	string TradingRight = 6;
+	int32 TradingRight = 6;
 	///交易所代码
 	string ExchangeID = 7;
 	///投机套保标志
-	string HedgeFlag = 8;
+	int32 HedgeFlag = 8;
 }
 
 ///查询期权合约交易权限
@@ -3219,7 +3219,7 @@ message CThostFtdcQryOptionInstrTradingRightField
 	///合约代码
 	string InstrumentID = 3;
 	///买卖方向
-	string Direction = 4;
+	int32 Direction = 4;
 	///交易所代码
 	string ExchangeID = 5;
 }
@@ -3273,7 +3273,7 @@ message CThostFtdcForQuoteField
 	///插入时间
 	string InsertTime = 14;
 	///询价状态
-	string ForQuoteStatus = 15;
+	int32 ForQuoteStatus = 15;
 	///前置编号
 	int32 FrontID = 16;
 	///会话编号
@@ -3325,7 +3325,7 @@ message CThostFtdcExchangeForQuoteField
 	///插入时间
 	string InsertTime = 9;
 	///询价状态
-	string ForQuoteStatus = 10;
+	int32 ForQuoteStatus = 10;
 }
 
 ///交易所询价查询
@@ -3369,13 +3369,13 @@ message CThostFtdcInputQuoteField
 	///业务单元
 	string BusinessUnit = 11;
 	///卖开平标志
-	string AskOffsetFlag = 12;
+	int32 AskOffsetFlag = 12;
 	///买开平标志
-	string BidOffsetFlag = 13;
+	int32 BidOffsetFlag = 13;
 	///卖投机套保标志
-	string AskHedgeFlag = 14;
+	int32 AskHedgeFlag = 14;
 	///买投机套保标志
-	string BidHedgeFlag = 15;
+	int32 BidHedgeFlag = 15;
 	///衍生卖报单引用
 	string AskOrderRef = 16;
 	///衍生买报单引用
@@ -3408,7 +3408,7 @@ message CThostFtdcInputQuoteActionField
 	///报价操作编号
 	string QuoteSysID = 9;
 	///操作标志
-	string ActionFlag = 10;
+	int32 ActionFlag = 10;
 	///用户代码
 	string UserID = 11;
 	///合约代码
@@ -3441,13 +3441,13 @@ message CThostFtdcQuoteField
 	///业务单元
 	string BusinessUnit = 11;
 	///卖开平标志
-	string AskOffsetFlag = 12;
+	int32 AskOffsetFlag = 12;
 	///买开平标志
-	string BidOffsetFlag = 13;
+	int32 BidOffsetFlag = 13;
 	///卖投机套保标志
-	string AskHedgeFlag = 14;
+	int32 AskHedgeFlag = 14;
 	///买投机套保标志
-	string BidHedgeFlag = 15;
+	int32 BidHedgeFlag = 15;
 	///本地报价编号
 	string QuoteLocalID = 16;
 	///交易所代码
@@ -3465,7 +3465,7 @@ message CThostFtdcQuoteField
 	///报价提示序号
 	int32 NotifySequence = 23;
 	///报价提交状态
-	string OrderSubmitStatus = 24;
+	int32 OrderSubmitStatus = 24;
 	///交易日
 	string TradingDay = 25;
 	///结算编号
@@ -3479,7 +3479,7 @@ message CThostFtdcQuoteField
 	///撤销时间
 	string CancelTime = 30;
 	///报价状态
-	string QuoteStatus = 31;
+	int32 QuoteStatus = 31;
 	///结算会员编号
 	string ClearingPartID = 32;
 	///序号
@@ -3532,7 +3532,7 @@ message CThostFtdcQuoteActionField
 	///报价操作编号
 	string QuoteSysID = 9;
 	///操作标志
-	string ActionFlag = 10;
+	int32 ActionFlag = 10;
 	///操作日期
 	string ActionDate = 11;
 	///操作时间
@@ -3552,7 +3552,7 @@ message CThostFtdcQuoteActionField
 	///业务单元
 	string BusinessUnit = 19;
 	///报单操作状态
-	string OrderActionStatus = 20;
+	int32 OrderActionStatus = 20;
 	///用户代码
 	string UserID = 21;
 	///状态信息
@@ -3598,13 +3598,13 @@ message CThostFtdcExchangeQuoteField
 	///业务单元
 	string BusinessUnit = 6;
 	///卖开平标志
-	string AskOffsetFlag = 7;
+	int32 AskOffsetFlag = 7;
 	///买开平标志
-	string BidOffsetFlag = 8;
+	int32 BidOffsetFlag = 8;
 	///卖投机套保标志
-	string AskHedgeFlag = 9;
+	int32 AskHedgeFlag = 9;
 	///买投机套保标志
-	string BidHedgeFlag = 10;
+	int32 BidHedgeFlag = 10;
 	///本地报价编号
 	string QuoteLocalID = 11;
 	///交易所代码
@@ -3622,7 +3622,7 @@ message CThostFtdcExchangeQuoteField
 	///报价提示序号
 	int32 NotifySequence = 18;
 	///报价提交状态
-	string OrderSubmitStatus = 19;
+	int32 OrderSubmitStatus = 19;
 	///交易日
 	string TradingDay = 20;
 	///结算编号
@@ -3636,7 +3636,7 @@ message CThostFtdcExchangeQuoteField
 	///撤销时间
 	string CancelTime = 25;
 	///报价状态
-	string QuoteStatus = 26;
+	int32 QuoteStatus = 26;
 	///结算会员编号
 	string ClearingPartID = 27;
 	///序号
@@ -3685,7 +3685,7 @@ message CThostFtdcExchangeQuoteActionField
 	///报价操作编号
 	string QuoteSysID = 2;
 	///操作标志
-	string ActionFlag = 3;
+	int32 ActionFlag = 3;
 	///操作日期
 	string ActionDate = 4;
 	///操作时间
@@ -3705,7 +3705,7 @@ message CThostFtdcExchangeQuoteActionField
 	///业务单元
 	string BusinessUnit = 12;
 	///报单操作状态
-	string OrderActionStatus = 13;
+	int32 OrderActionStatus = 13;
 	///用户代码
 	string UserID = 14;
 }
@@ -3729,7 +3729,7 @@ message CThostFtdcOptionInstrDeltaField
 	///合约代码
 	string InstrumentID = 1;
 	///投资者范围
-	string InvestorRange = 2;
+	int32 InvestorRange = 2;
 	///经纪公司代码
 	string BrokerID = 3;
 	///投资者代码
@@ -3763,7 +3763,7 @@ message CThostFtdcStrikeOffsetField
 	///合约代码
 	string InstrumentID = 1;
 	///投资者范围
-	string InvestorRange = 2;
+	int32 InvestorRange = 2;
 	///经纪公司代码
 	string BrokerID = 3;
 	///投资者代码
@@ -3805,7 +3805,7 @@ message CThostFtdcInputLockField
 	///业务单元
 	string BusinessUnit = 8;
 	///锁定类型
-	string LockType = 9;
+	int32 LockType = 9;
 	///交易所代码
 	string ExchangeID = 10;
 }
@@ -3830,7 +3830,7 @@ message CThostFtdcLockField
 	///业务单元
 	string BusinessUnit = 8;
 	///锁定类型
-	string LockType = 9;
+	int32 LockType = 9;
 	///本地锁定编号
 	string LockLocalID = 10;
 	///交易所代码
@@ -3846,7 +3846,7 @@ message CThostFtdcLockField
 	///安装编号
 	int32 InstallID = 16;
 	///执行宣告提交状态
-	string OrderSubmitStatus = 17;
+	int32 OrderSubmitStatus = 17;
 	///报单提示序号
 	int32 NotifySequence = 18;
 	///交易日
@@ -3862,7 +3862,7 @@ message CThostFtdcLockField
 	///撤销时间
 	string CancelTime = 24;
 	///锁定状态
-	string LockStatus = 25;
+	int32 LockStatus = 25;
 	///结算会员编号
 	string ClearingPartID = 26;
 	///序号
@@ -3938,7 +3938,7 @@ message CThostFtdcETFOptionInstrCommRateField
 	///合约代码
 	string InstrumentID = 1;
 	///投资者范围
-	string InvestorRange = 2;
+	int32 InvestorRange = 2;
 	///经纪公司代码
 	string BrokerID = 3;
 	///投资者代码
@@ -3962,9 +3962,9 @@ message CThostFtdcETFOptionInstrCommRateField
 	///交易所代码
 	string ExchangeID = 13;
 	///投机套保标志
-	string HedgeFlag = 14;
+	int32 HedgeFlag = 14;
 	///持仓方向
-	string PosiDirection = 15;
+	int32 PosiDirection = 15;
 }
 
 ///ETF期权手续费率查询
@@ -4002,9 +4002,9 @@ message CThostFtdcPosiFreezeField
 	///数量
 	int32 Volume = 9;
 	///冻结原因
-	string FreezeReasonType = 10;
+	int32 FreezeReasonType = 10;
 	///冻结类型
-	string FreezeType = 11;
+	int32 FreezeType = 11;
 }
 
 ///查询锁定
@@ -4032,7 +4032,7 @@ message CThostFtdcExchangeLockField
 	///业务单元
 	string BusinessUnit = 3;
 	///锁定类型
-	string LockType = 4;
+	int32 LockType = 4;
 	///本地锁定编号
 	string LockLocalID = 5;
 	///交易所代码
@@ -4048,7 +4048,7 @@ message CThostFtdcExchangeLockField
 	///安装编号
 	int32 InstallID = 11;
 	///执行宣告提交状态
-	string OrderSubmitStatus = 12;
+	int32 OrderSubmitStatus = 12;
 	///报单提示序号
 	int32 NotifySequence = 13;
 	///交易日
@@ -4064,7 +4064,7 @@ message CThostFtdcExchangeLockField
 	///撤销时间
 	string CancelTime = 19;
 	///锁定状态
-	string LockStatus = 20;
+	int32 LockStatus = 20;
 	///结算会员编号
 	string ClearingPartID = 21;
 	///序号
@@ -4151,7 +4151,7 @@ message CThostFtdcBatchOrderActionField
 	///业务单元
 	string BusinessUnit = 15;
 	///报单操作状态
-	string OrderActionStatus = 16;
+	int32 OrderActionStatus = 16;
 	///用户代码
 	string UserID = 17;
 	///状态信息
@@ -4180,7 +4180,7 @@ message CThostFtdcExchangeBatchOrderActionField
 	///业务单元
 	string BusinessUnit = 9;
 	///报单操作状态
-	string OrderActionStatus = 10;
+	int32 OrderActionStatus = 10;
 	///用户代码
 	string UserID = 11;
 }
@@ -4308,7 +4308,7 @@ message CThostFtdcLimitPosiParamField
 	///合约代码
 	string InstrumentID = 1;
 	///投资者范围
-	string InvestorRange = 2;
+	int32 InvestorRange = 2;
 	///经纪公司代码
 	string BrokerID = 3;
 	///投资者代码
@@ -4346,7 +4346,7 @@ message CThostFtdcLimitPosiParamSField
 	///合约代码
 	string InstrumentID = 1;
 	///投资者范围
-	string InvestorRange = 2;
+	int32 InvestorRange = 2;
 	///经纪公司代码
 	string BrokerID = 3;
 	///投资者代码
@@ -4381,7 +4381,7 @@ message CThostFtdcInputStockDisposalActionField
 	///证券处置操作编号
 	string StockDisposalSysID = 9;
 	///操作标志
-	string ActionFlag = 10;
+	int32 ActionFlag = 10;
 	///用户代码
 	string UserID = 11;
 	///合约代码
@@ -4410,7 +4410,7 @@ message CThostFtdcStockDisposalActionField
 	///证券处置操作编号
 	string StockDisposalSysID = 9;
 	///操作标志
-	string ActionFlag = 10;
+	int32 ActionFlag = 10;
 	///操作日期
 	string ActionDate = 11;
 	///操作时间
@@ -4430,11 +4430,11 @@ message CThostFtdcStockDisposalActionField
 	///业务单元
 	string BusinessUnit = 19;
 	///报单操作状态
-	string OrderActionStatus = 20;
+	int32 OrderActionStatus = 20;
 	///用户代码
 	string UserID = 21;
 	///执行类型
-	string ActionType = 22;
+	int32 ActionType = 22;
 	///状态信息
 	string StatusMsg = 23;
 	///合约代码
@@ -4462,7 +4462,7 @@ message CThostFtdcExchangeStockDisposalActionField
 	///证券处置操作编号
 	string StockDisposalSysID = 2;
 	///操作标志
-	string ActionFlag = 3;
+	int32 ActionFlag = 3;
 	///操作日期
 	string ActionDate = 4;
 	///操作时间
@@ -4482,11 +4482,11 @@ message CThostFtdcExchangeStockDisposalActionField
 	///业务单元
 	string BusinessUnit = 12;
 	///报单操作状态
-	string OrderActionStatus = 13;
+	int32 OrderActionStatus = 13;
 	///用户代码
 	string UserID = 14;
 	///执行类型
-	string ActionType = 15;
+	int32 ActionType = 15;
 	///营业部编号
 	string BranchID = 16;
 }
@@ -4558,7 +4558,7 @@ message CThostFtdcErrStockDisposalActionField
 	///证券处置操作编号
 	string StockDisposalSysID = 9;
 	///操作标志
-	string ActionFlag = 10;
+	int32 ActionFlag = 10;
 	///用户代码
 	string UserID = 11;
 	///合约代码
@@ -4579,7 +4579,7 @@ message CThostFtdcInvestorLevelField
 	///交易所代码
 	string ExchangeID = 3;
 	///投资者分级类型
-	string LevelType = 4;
+	int32 LevelType = 4;
 }
 
 ///组合合约安全系数
@@ -4616,13 +4616,13 @@ message CThostFtdcInputCombActionField
 	///用户代码
 	string UserID = 5;
 	///买卖方向
-	string Direction = 6;
+	int32 Direction = 6;
 	///数量
 	int32 Volume = 7;
 	///组合指令方向
-	string CombDirection = 8;
+	int32 CombDirection = 8;
 	///投机套保标志
-	string HedgeFlag = 9;
+	int32 HedgeFlag = 9;
 	///交易所代码
 	string ExchangeID = 10;
 }
@@ -4641,13 +4641,13 @@ message CThostFtdcCombActionField
 	///用户代码
 	string UserID = 5;
 	///买卖方向
-	string Direction = 6;
+	int32 Direction = 6;
 	///数量
 	int32 Volume = 7;
 	///组合指令方向
-	string CombDirection = 8;
+	int32 CombDirection = 8;
 	///投机套保标志
-	string HedgeFlag = 9;
+	int32 HedgeFlag = 9;
 	///本地申请组合编号
 	string ActionLocalID = 10;
 	///交易所代码
@@ -4663,7 +4663,7 @@ message CThostFtdcCombActionField
 	///安装编号
 	int32 InstallID = 16;
 	///组合状态
-	string ActionStatus = 17;
+	int32 ActionStatus = 17;
 	///报单提示序号
 	int32 NotifySequence = 18;
 	///交易日
@@ -4699,13 +4699,13 @@ message CThostFtdcQryCombActionField
 message CThostFtdcExchangeCombActionField
 {
 	///买卖方向
-	string Direction = 1;
+	int32 Direction = 1;
 	///数量
 	int32 Volume = 2;
 	///组合指令方向
-	string CombDirection = 3;
+	int32 CombDirection = 3;
 	///投机套保标志
-	string HedgeFlag = 4;
+	int32 HedgeFlag = 4;
 	///本地申请组合编号
 	string ActionLocalID = 5;
 	///交易所代码
@@ -4721,7 +4721,7 @@ message CThostFtdcExchangeCombActionField
 	///安装编号
 	int32 InstallID = 11;
 	///组合状态
-	string ActionStatus = 12;
+	int32 ActionStatus = 12;
 	///报单提示序号
 	int32 NotifySequence = 13;
 	///交易日
@@ -4777,7 +4777,7 @@ message CThostFtdcInputDesignateField
 	///用户代码
 	string UserID = 4;
 	///指定方向
-	string DesignateType = 5;
+	int32 DesignateType = 5;
 	///交易所代码
 	string ExchangeID = 6;
 }
@@ -4794,7 +4794,7 @@ message CThostFtdcDesignateField
 	///用户代码
 	string UserID = 4;
 	///指定方向
-	string DesignateType = 5;
+	int32 DesignateType = 5;
 	///本地指定编号
 	string DesignateLocalID = 6;
 	///交易所代码
@@ -4808,7 +4808,7 @@ message CThostFtdcDesignateField
 	///安装编号
 	int32 InstallID = 11;
 	///指定状态
-	string DesignateStatus = 12;
+	int32 DesignateStatus = 12;
 	///报单提示序号
 	int32 NotifySequence = 13;
 	///交易日
@@ -4846,7 +4846,7 @@ message CThostFtdcQryDesignateField
 message CThostFtdcExchangeDesignateField
 {
 	///指定方向
-	string DesignateType = 1;
+	int32 DesignateType = 1;
 	///本地指定编号
 	string DesignateLocalID = 2;
 	///交易所代码
@@ -4860,7 +4860,7 @@ message CThostFtdcExchangeDesignateField
 	///安装编号
 	int32 InstallID = 7;
 	///指定状态
-	string DesignateStatus = 8;
+	int32 DesignateStatus = 8;
 	///报单提示序号
 	int32 NotifySequence = 9;
 	///交易日
@@ -4891,7 +4891,7 @@ message CThostFtdcInputStockDisposalField
 	///数量
 	int32 Volume = 6;
 	///证券处置方向
-	string StockDisposalType = 7;
+	int32 StockDisposalType = 7;
 	///交易所代码
 	string ExchangeID = 8;
 }
@@ -4912,7 +4912,7 @@ message CThostFtdcStockDisposalField
 	///数量
 	int32 Volume = 6;
 	///证券处置方向
-	string StockDisposalType = 7;
+	int32 StockDisposalType = 7;
 	///本地证券处置编号
 	string StockDisposalLocalID = 8;
 	///交易所代码
@@ -4928,7 +4928,7 @@ message CThostFtdcStockDisposalField
 	///安装编号
 	int32 InstallID = 14;
 	///证券处置状态
-	string StockDisposalStatus = 15;
+	int32 StockDisposalStatus = 15;
 	///报单提示序号
 	int32 NotifySequence = 16;
 	///交易日
@@ -4972,7 +4972,7 @@ message CThostFtdcExchangeStockDisposalField
 	///数量
 	int32 Volume = 1;
 	///证券处置方向
-	string StockDisposalType = 2;
+	int32 StockDisposalType = 2;
 	///本地证券处置编号
 	string StockDisposalLocalID = 3;
 	///交易所代码
@@ -4988,7 +4988,7 @@ message CThostFtdcExchangeStockDisposalField
 	///安装编号
 	int32 InstallID = 9;
 	///证券处置状态
-	string StockDisposalStatus = 10;
+	int32 StockDisposalStatus = 10;
 	///报单提示序号
 	int32 NotifySequence = 11;
 	///交易日
@@ -5069,9 +5069,9 @@ message CThostFtdcExecFreezeField
 	///投资者代码
 	string InvestorID = 4;
 	///持仓多空方向
-	string PosiDirection = 5;
+	int32 PosiDirection = 5;
 	///期权类型
-	string OptionsType = 6;
+	int32 OptionsType = 6;
 	///冻结的数量_单位股
 	int32 Volume = 7;
 	///冻结金额
@@ -5284,13 +5284,13 @@ message CThostFtdcInstrumentStatusField
 	///合约代码
 	string InstrumentID = 4;
 	///合约交易状态
-	string InstrumentStatus = 5;
+	int32 InstrumentStatus = 5;
 	///交易阶段编号
 	int32 TradingSegmentSN = 6;
 	///进入本状态时间
 	string EnterTime = 7;
 	///进入本状态原因
-	string EnterReason = 8;
+	int32 EnterReason = 8;
 }
 
 ///查询合约状态
@@ -5323,7 +5323,7 @@ message CThostFtdcPositionProfitAlgorithmField
 	///投资者帐号
 	string AccountID = 2;
 	///盈亏算法
-	string Algorithm = 3;
+	int32 Algorithm = 3;
 	///备注
 	string Memo = 4;
 	///币种代码
@@ -5336,7 +5336,7 @@ message CThostFtdcDiscountField
 	///经纪公司代码
 	string BrokerID = 1;
 	///投资者范围
-	string InvestorRange = 2;
+	int32 InvestorRange = 2;
 	///投资者代码
 	string InvestorID = 3;
 	///资金折扣比例
@@ -5388,9 +5388,9 @@ message CThostFtdcInvestorPositionDetailField
 	///投资者代码
 	string InvestorID = 3;
 	///投机套保标志
-	string HedgeFlag = 4;
+	int32 HedgeFlag = 4;
 	///买卖
-	string Direction = 5;
+	int32 Direction = 5;
 	///开仓日期
 	string OpenDate = 6;
 	///成交编号
@@ -5404,7 +5404,7 @@ message CThostFtdcInvestorPositionDetailField
 	///结算编号
 	int32 SettlementID = 11;
 	///成交类型
-	string TradeType = 12;
+	int32 TradeType = 12;
 	///组合合约代码
 	string CombInstrumentID = 13;
 	///交易所代码
@@ -5464,7 +5464,7 @@ message CThostFtdcMDTraderOfferField
 	///本地报单编号
 	string OrderLocalID = 6;
 	///交易所交易员连接状态
-	string TraderConnectStatus = 7;
+	int32 TraderConnectStatus = 7;
 	///发出连接请求的日期
 	string ConnectRequestDate = 8;
 	///发出连接请求的时间
@@ -5490,7 +5490,7 @@ message CThostFtdcMDTraderOfferField
 	///本席位最大报单备拷
 	string MaxOrderMessageReference = 19;
 	///业务类型
-	string BizType = 20;
+	int32 BizType = 20;
 }
 
 ///查询行情报盘机
@@ -5530,7 +5530,7 @@ message CThostFtdcUserRightField
 	///用户代码
 	string UserID = 2;
 	///客户权限类型
-	string UserRightType = 3;
+	int32 UserRightType = 3;
 	///是否禁止
 	int32 IsForbidden = 4;
 }
@@ -5557,15 +5557,15 @@ message CThostFtdcBrokerWithdrawAlgorithmField
 	///经纪公司代码
 	string BrokerID = 1;
 	///可提资金算法
-	string WithdrawAlgorithm = 2;
+	int32 WithdrawAlgorithm = 2;
 	///资金使用率
 	double UsingRatio = 3;
 	///可提是否包含平仓盈利
-	string IncludeCloseProfit = 4;
+	int32 IncludeCloseProfit = 4;
 	///本日无仓且无成交客户是否受可提比例限制
-	string AllWithoutTrade = 5;
+	int32 AllWithoutTrade = 5;
 	///可用是否包含平仓盈利
-	string AvailIncludeCloseProfit = 6;
+	int32 AvailIncludeCloseProfit = 6;
 	///是否启用用户事件
 	int32 IsBrokerUserEvent = 7;
 	///币种代码
@@ -5573,7 +5573,7 @@ message CThostFtdcBrokerWithdrawAlgorithmField
 	///货币质押比率
 	double FundMortgageRatio = 9;
 	///权益算法
-	string BalanceAlgorithm = 10;
+	int32 BalanceAlgorithm = 10;
 }
 
 ///资金账户口令变更域
@@ -5632,7 +5632,7 @@ message CThostFtdcCombinationLegField
 	///单腿合约代码
 	string LegInstrumentID = 3;
 	///买卖方向
-	string Direction = 4;
+	int32 Direction = 4;
 	///单腿乘数
 	int32 LegMultiple = 5;
 	///派生层数
@@ -5645,7 +5645,7 @@ message CThostFtdcSyncStatusField
 	///交易日
 	string TradingDay = 1;
 	///数据同步状态
-	string DataSyncStatus = 2;
+	int32 DataSyncStatus = 2;
 }
 
 ///查询联系人
@@ -5665,9 +5665,9 @@ message CThostFtdcLinkManField
 	///投资者代码
 	string InvestorID = 2;
 	///联系人类型
-	string PersonType = 3;
+	int32 PersonType = 3;
 	///证件类型
-	string IdentifiedCardType = 4;
+	int32 IdentifiedCardType = 4;
 	///证件号码
 	string IdentifiedCardNo = 5;
 	///名称
@@ -5694,7 +5694,7 @@ message CThostFtdcQryBrokerUserEventField
 	///用户代码
 	string UserID = 2;
 	///用户事件类型
-	string UserEventType = 3;
+	int32 UserEventType = 3;
 }
 
 ///查询经纪公司用户事件
@@ -5705,7 +5705,7 @@ message CThostFtdcBrokerUserEventField
 	///用户代码
 	string UserID = 2;
 	///用户事件类型
-	string UserEventType = 3;
+	int32 UserEventType = 3;
 	///用户事件序号
 	int32 EventSequenceNo = 4;
 	///事件发生日期
@@ -5768,9 +5768,9 @@ message CThostFtdcInvestorPositionCombineDetailField
 	///合约代码
 	string InstrumentID = 9;
 	///投机套保标志
-	string HedgeFlag = 10;
+	int32 HedgeFlag = 10;
 	///买卖
-	string Direction = 11;
+	int32 Direction = 11;
 	///持仓量
 	int32 TotalAmt = 12;
 	///投资者保证金
@@ -5805,9 +5805,9 @@ message CThostFtdcParkedOrderField
 	///用户代码
 	string UserID = 5;
 	///报单价格条件
-	string OrderPriceType = 6;
+	int32 OrderPriceType = 6;
 	///买卖方向
-	string Direction = 7;
+	int32 Direction = 7;
 	///组合开平标志
 	string CombOffsetFlag = 8;
 	///组合投机套保标志
@@ -5817,19 +5817,19 @@ message CThostFtdcParkedOrderField
 	///数量
 	int32 VolumeTotalOriginal = 11;
 	///有效期类型
-	string TimeCondition = 12;
+	int32 TimeCondition = 12;
 	///GTD日期
 	string GTDDate = 13;
 	///成交量类型
-	string VolumeCondition = 14;
+	int32 VolumeCondition = 14;
 	///最小成交量
 	int32 MinVolume = 15;
 	///触发条件
-	string ContingentCondition = 16;
+	int32 ContingentCondition = 16;
 	///止损价
 	double StopPrice = 17;
 	///强平原因
-	string ForceCloseReason = 18;
+	int32 ForceCloseReason = 18;
 	///自动挂起标志
 	int32 IsAutoSuspend = 19;
 	///业务单元
@@ -5843,9 +5843,9 @@ message CThostFtdcParkedOrderField
 	///预埋报单编号
 	string ParkedOrderID = 24;
 	///用户类型
-	string UserType = 25;
+	int32 UserType = 25;
 	///预埋单状态
-	string Status = 26;
+	int32 Status = 26;
 	///错误代码
 	int32 ErrorID = 27;
 	///错误信息
@@ -5876,7 +5876,7 @@ message CThostFtdcParkedOrderActionField
 	///报单编号
 	string OrderSysID = 9;
 	///操作标志
-	string ActionFlag = 10;
+	int32 ActionFlag = 10;
 	///价格
 	double LimitPrice = 11;
 	///数量变化
@@ -5888,9 +5888,9 @@ message CThostFtdcParkedOrderActionField
 	///预埋撤单单编号
 	string ParkedOrderActionID = 15;
 	///用户类型
-	string UserType = 16;
+	int32 UserType = 16;
 	///预埋撤单状态
-	string Status = 17;
+	int32 Status = 17;
 	///错误代码
 	int32 ErrorID = 18;
 	///错误信息
@@ -5951,7 +5951,7 @@ message CThostFtdcInvestorWithdrawAlgorithmField
 	///经纪公司代码
 	string BrokerID = 1;
 	///投资者范围
-	string InvestorRange = 2;
+	int32 InvestorRange = 2;
 	///投资者代码
 	string InvestorID = 3;
 	///可提资金比例
@@ -6029,7 +6029,7 @@ message CThostFtdcTradingNoticeField
 	///经纪公司代码
 	string BrokerID = 1;
 	///投资者范围
-	string InvestorRange = 2;
+	int32 InvestorRange = 2;
 	///投资者代码
 	string InvestorID = 3;
 	///序列系列号
@@ -6076,9 +6076,9 @@ message CThostFtdcErrOrderField
 	///用户代码
 	string UserID = 5;
 	///报单价格条件
-	string OrderPriceType = 6;
+	int32 OrderPriceType = 6;
 	///买卖方向
-	string Direction = 7;
+	int32 Direction = 7;
 	///组合开平标志
 	string CombOffsetFlag = 8;
 	///组合投机套保标志
@@ -6088,19 +6088,19 @@ message CThostFtdcErrOrderField
 	///数量
 	int32 VolumeTotalOriginal = 11;
 	///有效期类型
-	string TimeCondition = 12;
+	int32 TimeCondition = 12;
 	///GTD日期
 	string GTDDate = 13;
 	///成交量类型
-	string VolumeCondition = 14;
+	int32 VolumeCondition = 14;
 	///最小成交量
 	int32 MinVolume = 15;
 	///触发条件
-	string ContingentCondition = 16;
+	int32 ContingentCondition = 16;
 	///止损价
 	double StopPrice = 17;
 	///强平原因
-	string ForceCloseReason = 18;
+	int32 ForceCloseReason = 18;
 	///自动挂起标志
 	int32 IsAutoSuspend = 19;
 	///业务单元
@@ -6133,9 +6133,9 @@ message CThostFtdcErrorConditionalOrderField
 	///用户代码
 	string UserID = 5;
 	///报单价格条件
-	string OrderPriceType = 6;
+	int32 OrderPriceType = 6;
 	///买卖方向
-	string Direction = 7;
+	int32 Direction = 7;
 	///组合开平标志
 	string CombOffsetFlag = 8;
 	///组合投机套保标志
@@ -6145,19 +6145,19 @@ message CThostFtdcErrorConditionalOrderField
 	///数量
 	int32 VolumeTotalOriginal = 11;
 	///有效期类型
-	string TimeCondition = 12;
+	int32 TimeCondition = 12;
 	///GTD日期
 	string GTDDate = 13;
 	///成交量类型
-	string VolumeCondition = 14;
+	int32 VolumeCondition = 14;
 	///最小成交量
 	int32 MinVolume = 15;
 	///触发条件
-	string ContingentCondition = 16;
+	int32 ContingentCondition = 16;
 	///止损价
 	double StopPrice = 17;
 	///强平原因
-	string ForceCloseReason = 18;
+	int32 ForceCloseReason = 18;
 	///自动挂起标志
 	int32 IsAutoSuspend = 19;
 	///业务单元
@@ -6179,7 +6179,7 @@ message CThostFtdcErrorConditionalOrderField
 	///安装编号
 	int32 InstallID = 28;
 	///报单提交状态
-	string OrderSubmitStatus = 29;
+	int32 OrderSubmitStatus = 29;
 	///报单提示序号
 	int32 NotifySequence = 30;
 	///交易日
@@ -6189,11 +6189,11 @@ message CThostFtdcErrorConditionalOrderField
 	///报单编号
 	string OrderSysID = 33;
 	///报单来源
-	string OrderSource = 34;
+	int32 OrderSource = 34;
 	///报单状态
-	string OrderStatus = 35;
+	int32 OrderStatus = 35;
 	///报单类型
-	string OrderType = 36;
+	int32 OrderType = 36;
 	///今成交数量
 	int32 VolumeTraded = 37;
 	///剩余数量
@@ -6275,7 +6275,7 @@ message CThostFtdcErrOrderActionField
 	///报单编号
 	string OrderSysID = 9;
 	///操作标志
-	string ActionFlag = 10;
+	int32 ActionFlag = 10;
 	///价格
 	double LimitPrice = 11;
 	///数量变化
@@ -6299,7 +6299,7 @@ message CThostFtdcErrOrderActionField
 	///业务单元
 	string BusinessUnit = 21;
 	///报单操作状态
-	string OrderActionStatus = 22;
+	int32 OrderActionStatus = 22;
 	///用户代码
 	string UserID = 23;
 	///状态信息
@@ -6329,7 +6329,7 @@ message CThostFtdcExchangeSequenceField
 	///序号
 	int32 SequenceNo = 2;
 	///合约交易状态
-	string MarketStatus = 3;
+	int32 MarketStatus = 3;
 }
 
 ///根据价格查询最大报单数量
@@ -6342,11 +6342,11 @@ message CThostFtdcQueryMaxOrderVolumeWithPriceField
 	///合约代码
 	string InstrumentID = 3;
 	///买卖方向
-	string Direction = 4;
+	int32 Direction = 4;
 	///开平标志
-	string OffsetFlag = 5;
+	int32 OffsetFlag = 5;
 	///投机套保标志
-	string HedgeFlag = 6;
+	int32 HedgeFlag = 6;
 	///最大允许报单数量
 	int32 MaxVolume = 7;
 	///报单价格
@@ -6374,15 +6374,15 @@ message CThostFtdcBrokerTradingParamsField
 	///投资者代码
 	string InvestorID = 2;
 	///保证金价格类型
-	string MarginPriceType = 3;
+	int32 MarginPriceType = 3;
 	///盈亏算法
-	string Algorithm = 4;
+	int32 Algorithm = 4;
 	///可用是否包含平仓盈利
-	string AvailIncludeCloseProfit = 5;
+	int32 AvailIncludeCloseProfit = 5;
 	///币种代码
 	string CurrencyID = 6;
 	///期权权利金价格类型
-	string OptionRoyaltyPriceType = 7;
+	int32 OptionRoyaltyPriceType = 7;
 }
 
 ///查询经纪公司交易算法
@@ -6406,11 +6406,11 @@ message CThostFtdcBrokerTradingAlgosField
 	///合约代码
 	string InstrumentID = 3;
 	///持仓处理算法编号
-	string HandlePositionAlgoID = 4;
+	int32 HandlePositionAlgoID = 4;
 	///寻找保证金率算法编号
-	string FindMarginRateAlgoID = 5;
+	int32 FindMarginRateAlgoID = 5;
 	///资金处理算法编号
-	string HandleTradingAccountAlgoID = 6;
+	int32 HandleTradingAccountAlgoID = 6;
 }
 
 ///查询经纪公司资金
@@ -6476,7 +6476,7 @@ message CThostFtdcCFMMCBrokerKeyField
 	///动态密钥
 	string CurrentKey = 6;
 	///动态密钥类型
-	string KeyKind = 7;
+	int32 KeyKind = 7;
 }
 
 ///保证金监管系统经纪公司资金账户密钥
@@ -6521,7 +6521,7 @@ message CThostFtdcBrokerUserOTPParamField
 	///成功值
 	int32 LastSuccess = 7;
 	///动态令牌类型
-	string OTPType = 8;
+	int32 OTPType = 8;
 }
 
 ///手工同步用户动态令牌
@@ -6532,7 +6532,7 @@ message CThostFtdcManualSyncBrokerUserOTPField
 	///用户代码
 	string UserID = 2;
 	///动态令牌类型
-	string OTPType = 3;
+	int32 OTPType = 3;
 	///第一个动态密码
 	string FirstOTP = 4;
 	///第二个动态密码
@@ -6593,9 +6593,9 @@ message CThostFtdcEWarrantOffsetField
 	///合约代码
 	string InstrumentID = 5;
 	///买卖方向
-	string Direction = 6;
+	int32 Direction = 6;
 	///投机套保标志
-	string HedgeFlag = 7;
+	int32 HedgeFlag = 7;
 	///数量
 	int32 Volume = 8;
 }
@@ -6623,7 +6623,7 @@ message CThostFtdcQryInvestorProductGroupMarginField
 	///品种/跨品种标示
 	string ProductGroupID = 3;
 	///投机套保标志
-	string HedgeFlag = 4;
+	int32 HedgeFlag = 4;
 }
 
 ///投资者品种/跨品种保证金
@@ -6682,7 +6682,7 @@ message CThostFtdcInvestorProductGroupMarginField
 	///交易所空头折抵总金额
 	double ShortExchOffsetAmount = 26;
 	///投机套保标志
-	string HedgeFlag = 27;
+	int32 HedgeFlag = 27;
 }
 
 ///查询监控中心用户令牌
@@ -6768,21 +6768,21 @@ message CThostFtdcReqOpenAccountField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///客户姓名
 	string CustomerName = 13;
 	///证件类型
-	string IdCardType = 14;
+	int32 IdCardType = 14;
 	///证件号码
 	string IdentifiedCardNo = 15;
 	///性别
-	string Gender = 16;
+	int32 Gender = 16;
 	///国家代码
 	string CountryCode = 17;
 	///客户类型
-	string CustType = 18;
+	int32 CustType = 18;
 	///地址
 	string Address = 19;
 	///邮编
@@ -6796,7 +6796,7 @@ message CThostFtdcReqOpenAccountField
 	///电子邮件
 	string EMail = 24;
 	///资金账户状态
-	string MoneyAccountStatus = 25;
+	int32 MoneyAccountStatus = 25;
 	///银行帐号
 	string BankAccount = 26;
 	///银行密码
@@ -6808,27 +6808,27 @@ message CThostFtdcReqOpenAccountField
 	///安装编号
 	int32 InstallID = 30;
 	///验证客户证件号码标志
-	string VerifyCertNoFlag = 31;
+	int32 VerifyCertNoFlag = 31;
 	///币种代码
 	string CurrencyID = 32;
 	///汇钞标志
-	string CashExchangeCode = 33;
+	int32 CashExchangeCode = 33;
 	///摘要
 	string Digest = 34;
 	///银行帐号类型
-	string BankAccType = 35;
+	int32 BankAccType = 35;
 	///渠道标志
 	string DeviceID = 36;
 	///期货单位帐号类型
-	string BankSecuAccType = 37;
+	int32 BankSecuAccType = 37;
 	///期货公司银行编码
 	string BrokerIDByBank = 38;
 	///期货单位帐号
 	string BankSecuAcc = 39;
 	///银行密码标志
-	string BankPwdFlag = 40;
+	int32 BankPwdFlag = 40;
 	///期货资金密码核对标志
-	string SecuPwdFlag = 41;
+	int32 SecuPwdFlag = 41;
 	///交易柜员
 	string OperNo = 42;
 	///交易ID
@@ -6861,21 +6861,21 @@ message CThostFtdcReqCancelAccountField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///客户姓名
 	string CustomerName = 13;
 	///证件类型
-	string IdCardType = 14;
+	int32 IdCardType = 14;
 	///证件号码
 	string IdentifiedCardNo = 15;
 	///性别
-	string Gender = 16;
+	int32 Gender = 16;
 	///国家代码
 	string CountryCode = 17;
 	///客户类型
-	string CustType = 18;
+	int32 CustType = 18;
 	///地址
 	string Address = 19;
 	///邮编
@@ -6889,7 +6889,7 @@ message CThostFtdcReqCancelAccountField
 	///电子邮件
 	string EMail = 24;
 	///资金账户状态
-	string MoneyAccountStatus = 25;
+	int32 MoneyAccountStatus = 25;
 	///银行帐号
 	string BankAccount = 26;
 	///银行密码
@@ -6901,27 +6901,27 @@ message CThostFtdcReqCancelAccountField
 	///安装编号
 	int32 InstallID = 30;
 	///验证客户证件号码标志
-	string VerifyCertNoFlag = 31;
+	int32 VerifyCertNoFlag = 31;
 	///币种代码
 	string CurrencyID = 32;
 	///汇钞标志
-	string CashExchangeCode = 33;
+	int32 CashExchangeCode = 33;
 	///摘要
 	string Digest = 34;
 	///银行帐号类型
-	string BankAccType = 35;
+	int32 BankAccType = 35;
 	///渠道标志
 	string DeviceID = 36;
 	///期货单位帐号类型
-	string BankSecuAccType = 37;
+	int32 BankSecuAccType = 37;
 	///期货公司银行编码
 	string BrokerIDByBank = 38;
 	///期货单位帐号
 	string BankSecuAcc = 39;
 	///银行密码标志
-	string BankPwdFlag = 40;
+	int32 BankPwdFlag = 40;
 	///期货资金密码核对标志
-	string SecuPwdFlag = 41;
+	int32 SecuPwdFlag = 41;
 	///交易柜员
 	string OperNo = 42;
 	///交易ID
@@ -6954,21 +6954,21 @@ message CThostFtdcReqChangeAccountField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///客户姓名
 	string CustomerName = 13;
 	///证件类型
-	string IdCardType = 14;
+	int32 IdCardType = 14;
 	///证件号码
 	string IdentifiedCardNo = 15;
 	///性别
-	string Gender = 16;
+	int32 Gender = 16;
 	///国家代码
 	string CountryCode = 17;
 	///客户类型
-	string CustType = 18;
+	int32 CustType = 18;
 	///地址
 	string Address = 19;
 	///邮编
@@ -6982,7 +6982,7 @@ message CThostFtdcReqChangeAccountField
 	///电子邮件
 	string EMail = 24;
 	///资金账户状态
-	string MoneyAccountStatus = 25;
+	int32 MoneyAccountStatus = 25;
 	///银行帐号
 	string BankAccount = 26;
 	///银行密码
@@ -6996,19 +6996,19 @@ message CThostFtdcReqChangeAccountField
 	///期货密码
 	string Password = 31;
 	///银行帐号类型
-	string BankAccType = 32;
+	int32 BankAccType = 32;
 	///安装编号
 	int32 InstallID = 33;
 	///验证客户证件号码标志
-	string VerifyCertNoFlag = 34;
+	int32 VerifyCertNoFlag = 34;
 	///币种代码
 	string CurrencyID = 35;
 	///期货公司银行编码
 	string BrokerIDByBank = 36;
 	///银行密码标志
-	string BankPwdFlag = 37;
+	int32 BankPwdFlag = 37;
 	///期货资金密码核对标志
-	string SecuPwdFlag = 38;
+	int32 SecuPwdFlag = 38;
 	///交易ID
 	int32 TID = 39;
 	///摘要
@@ -7039,17 +7039,17 @@ message CThostFtdcReqTransferField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///客户姓名
 	string CustomerName = 13;
 	///证件类型
-	string IdCardType = 14;
+	int32 IdCardType = 14;
 	///证件号码
 	string IdentifiedCardNo = 15;
 	///客户类型
-	string CustType = 16;
+	int32 CustType = 16;
 	///银行帐号
 	string BankAccount = 17;
 	///银行密码
@@ -7065,7 +7065,7 @@ message CThostFtdcReqTransferField
 	///用户标识
 	string UserID = 23;
 	///验证客户证件号码标志
-	string VerifyCertNoFlag = 24;
+	int32 VerifyCertNoFlag = 24;
 	///币种代码
 	string CurrencyID = 25;
 	///转帐金额
@@ -7073,7 +7073,7 @@ message CThostFtdcReqTransferField
 	///期货可取金额
 	double FutureFetchAmount = 27;
 	///费用支付标志
-	string FeePayFlag = 28;
+	int32 FeePayFlag = 28;
 	///应收客户费用
 	double CustFee = 29;
 	///应收期货公司费用
@@ -7083,19 +7083,19 @@ message CThostFtdcReqTransferField
 	///摘要
 	string Digest = 32;
 	///银行帐号类型
-	string BankAccType = 33;
+	int32 BankAccType = 33;
 	///渠道标志
 	string DeviceID = 34;
 	///期货单位帐号类型
-	string BankSecuAccType = 35;
+	int32 BankSecuAccType = 35;
 	///期货公司银行编码
 	string BrokerIDByBank = 36;
 	///期货单位帐号
 	string BankSecuAcc = 37;
 	///银行密码标志
-	string BankPwdFlag = 38;
+	int32 BankPwdFlag = 38;
 	///期货资金密码核对标志
-	string SecuPwdFlag = 39;
+	int32 SecuPwdFlag = 39;
 	///交易柜员
 	string OperNo = 40;
 	///请求编号
@@ -7103,7 +7103,7 @@ message CThostFtdcReqTransferField
 	///交易ID
 	int32 TID = 42;
 	///转账交易状态
-	string TransferStatus = 43;
+	int32 TransferStatus = 43;
 }
 
 ///银行发起银行资金转期货响应
@@ -7130,17 +7130,17 @@ message CThostFtdcRspTransferField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///客户姓名
 	string CustomerName = 13;
 	///证件类型
-	string IdCardType = 14;
+	int32 IdCardType = 14;
 	///证件号码
 	string IdentifiedCardNo = 15;
 	///客户类型
-	string CustType = 16;
+	int32 CustType = 16;
 	///银行帐号
 	string BankAccount = 17;
 	///银行密码
@@ -7156,7 +7156,7 @@ message CThostFtdcRspTransferField
 	///用户标识
 	string UserID = 23;
 	///验证客户证件号码标志
-	string VerifyCertNoFlag = 24;
+	int32 VerifyCertNoFlag = 24;
 	///币种代码
 	string CurrencyID = 25;
 	///转帐金额
@@ -7164,7 +7164,7 @@ message CThostFtdcRspTransferField
 	///期货可取金额
 	double FutureFetchAmount = 27;
 	///费用支付标志
-	string FeePayFlag = 28;
+	int32 FeePayFlag = 28;
 	///应收客户费用
 	double CustFee = 29;
 	///应收期货公司费用
@@ -7174,19 +7174,19 @@ message CThostFtdcRspTransferField
 	///摘要
 	string Digest = 32;
 	///银行帐号类型
-	string BankAccType = 33;
+	int32 BankAccType = 33;
 	///渠道标志
 	string DeviceID = 34;
 	///期货单位帐号类型
-	string BankSecuAccType = 35;
+	int32 BankSecuAccType = 35;
 	///期货公司银行编码
 	string BrokerIDByBank = 36;
 	///期货单位帐号
 	string BankSecuAcc = 37;
 	///银行密码标志
-	string BankPwdFlag = 38;
+	int32 BankPwdFlag = 38;
 	///期货资金密码核对标志
-	string SecuPwdFlag = 39;
+	int32 SecuPwdFlag = 39;
 	///交易柜员
 	string OperNo = 40;
 	///请求编号
@@ -7194,7 +7194,7 @@ message CThostFtdcRspTransferField
 	///交易ID
 	int32 TID = 42;
 	///转账交易状态
-	string TransferStatus = 43;
+	int32 TransferStatus = 43;
 	///错误代码
 	int32 ErrorID = 44;
 	///错误信息
@@ -7209,9 +7209,9 @@ message CThostFtdcReqRepealField
 	///已经冲正次数
 	int32 RepealedTimes = 2;
 	///银行冲正标志
-	string BankRepealFlag = 3;
+	int32 BankRepealFlag = 3;
 	///期商冲正标志
-	string BrokerRepealFlag = 4;
+	int32 BrokerRepealFlag = 4;
 	///被冲正平台流水号
 	int32 PlateRepealSerial = 5;
 	///被冲正银行流水号
@@ -7239,17 +7239,17 @@ message CThostFtdcReqRepealField
 	///银期平台消息流水号
 	int32 PlateSerial = 17;
 	///最后分片标志
-	string LastFragment = 18;
+	int32 LastFragment = 18;
 	///会话号
 	int32 SessionID = 19;
 	///客户姓名
 	string CustomerName = 20;
 	///证件类型
-	string IdCardType = 21;
+	int32 IdCardType = 21;
 	///证件号码
 	string IdentifiedCardNo = 22;
 	///客户类型
-	string CustType = 23;
+	int32 CustType = 23;
 	///银行帐号
 	string BankAccount = 24;
 	///银行密码
@@ -7265,7 +7265,7 @@ message CThostFtdcReqRepealField
 	///用户标识
 	string UserID = 30;
 	///验证客户证件号码标志
-	string VerifyCertNoFlag = 31;
+	int32 VerifyCertNoFlag = 31;
 	///币种代码
 	string CurrencyID = 32;
 	///转帐金额
@@ -7273,7 +7273,7 @@ message CThostFtdcReqRepealField
 	///期货可取金额
 	double FutureFetchAmount = 34;
 	///费用支付标志
-	string FeePayFlag = 35;
+	int32 FeePayFlag = 35;
 	///应收客户费用
 	double CustFee = 36;
 	///应收期货公司费用
@@ -7283,19 +7283,19 @@ message CThostFtdcReqRepealField
 	///摘要
 	string Digest = 39;
 	///银行帐号类型
-	string BankAccType = 40;
+	int32 BankAccType = 40;
 	///渠道标志
 	string DeviceID = 41;
 	///期货单位帐号类型
-	string BankSecuAccType = 42;
+	int32 BankSecuAccType = 42;
 	///期货公司银行编码
 	string BrokerIDByBank = 43;
 	///期货单位帐号
 	string BankSecuAcc = 44;
 	///银行密码标志
-	string BankPwdFlag = 45;
+	int32 BankPwdFlag = 45;
 	///期货资金密码核对标志
-	string SecuPwdFlag = 46;
+	int32 SecuPwdFlag = 46;
 	///交易柜员
 	string OperNo = 47;
 	///请求编号
@@ -7303,7 +7303,7 @@ message CThostFtdcReqRepealField
 	///交易ID
 	int32 TID = 49;
 	///转账交易状态
-	string TransferStatus = 50;
+	int32 TransferStatus = 50;
 }
 
 ///冲正响应
@@ -7314,9 +7314,9 @@ message CThostFtdcRspRepealField
 	///已经冲正次数
 	int32 RepealedTimes = 2;
 	///银行冲正标志
-	string BankRepealFlag = 3;
+	int32 BankRepealFlag = 3;
 	///期商冲正标志
-	string BrokerRepealFlag = 4;
+	int32 BrokerRepealFlag = 4;
 	///被冲正平台流水号
 	int32 PlateRepealSerial = 5;
 	///被冲正银行流水号
@@ -7344,17 +7344,17 @@ message CThostFtdcRspRepealField
 	///银期平台消息流水号
 	int32 PlateSerial = 17;
 	///最后分片标志
-	string LastFragment = 18;
+	int32 LastFragment = 18;
 	///会话号
 	int32 SessionID = 19;
 	///客户姓名
 	string CustomerName = 20;
 	///证件类型
-	string IdCardType = 21;
+	int32 IdCardType = 21;
 	///证件号码
 	string IdentifiedCardNo = 22;
 	///客户类型
-	string CustType = 23;
+	int32 CustType = 23;
 	///银行帐号
 	string BankAccount = 24;
 	///银行密码
@@ -7370,7 +7370,7 @@ message CThostFtdcRspRepealField
 	///用户标识
 	string UserID = 30;
 	///验证客户证件号码标志
-	string VerifyCertNoFlag = 31;
+	int32 VerifyCertNoFlag = 31;
 	///币种代码
 	string CurrencyID = 32;
 	///转帐金额
@@ -7378,7 +7378,7 @@ message CThostFtdcRspRepealField
 	///期货可取金额
 	double FutureFetchAmount = 34;
 	///费用支付标志
-	string FeePayFlag = 35;
+	int32 FeePayFlag = 35;
 	///应收客户费用
 	double CustFee = 36;
 	///应收期货公司费用
@@ -7388,19 +7388,19 @@ message CThostFtdcRspRepealField
 	///摘要
 	string Digest = 39;
 	///银行帐号类型
-	string BankAccType = 40;
+	int32 BankAccType = 40;
 	///渠道标志
 	string DeviceID = 41;
 	///期货单位帐号类型
-	string BankSecuAccType = 42;
+	int32 BankSecuAccType = 42;
 	///期货公司银行编码
 	string BrokerIDByBank = 43;
 	///期货单位帐号
 	string BankSecuAcc = 44;
 	///银行密码标志
-	string BankPwdFlag = 45;
+	int32 BankPwdFlag = 45;
 	///期货资金密码核对标志
-	string SecuPwdFlag = 46;
+	int32 SecuPwdFlag = 46;
 	///交易柜员
 	string OperNo = 47;
 	///请求编号
@@ -7408,7 +7408,7 @@ message CThostFtdcRspRepealField
 	///交易ID
 	int32 TID = 49;
 	///转账交易状态
-	string TransferStatus = 50;
+	int32 TransferStatus = 50;
 	///错误代码
 	int32 ErrorID = 51;
 	///错误信息
@@ -7439,17 +7439,17 @@ message CThostFtdcReqQueryAccountField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///客户姓名
 	string CustomerName = 13;
 	///证件类型
-	string IdCardType = 14;
+	int32 IdCardType = 14;
 	///证件号码
 	string IdentifiedCardNo = 15;
 	///客户类型
-	string CustType = 16;
+	int32 CustType = 16;
 	///银行帐号
 	string BankAccount = 17;
 	///银行密码
@@ -7465,25 +7465,25 @@ message CThostFtdcReqQueryAccountField
 	///用户标识
 	string UserID = 23;
 	///验证客户证件号码标志
-	string VerifyCertNoFlag = 24;
+	int32 VerifyCertNoFlag = 24;
 	///币种代码
 	string CurrencyID = 25;
 	///摘要
 	string Digest = 26;
 	///银行帐号类型
-	string BankAccType = 27;
+	int32 BankAccType = 27;
 	///渠道标志
 	string DeviceID = 28;
 	///期货单位帐号类型
-	string BankSecuAccType = 29;
+	int32 BankSecuAccType = 29;
 	///期货公司银行编码
 	string BrokerIDByBank = 30;
 	///期货单位帐号
 	string BankSecuAcc = 31;
 	///银行密码标志
-	string BankPwdFlag = 32;
+	int32 BankPwdFlag = 32;
 	///期货资金密码核对标志
-	string SecuPwdFlag = 33;
+	int32 SecuPwdFlag = 33;
 	///交易柜员
 	string OperNo = 34;
 	///请求编号
@@ -7516,17 +7516,17 @@ message CThostFtdcRspQueryAccountField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///客户姓名
 	string CustomerName = 13;
 	///证件类型
-	string IdCardType = 14;
+	int32 IdCardType = 14;
 	///证件号码
 	string IdentifiedCardNo = 15;
 	///客户类型
-	string CustType = 16;
+	int32 CustType = 16;
 	///银行帐号
 	string BankAccount = 17;
 	///银行密码
@@ -7542,25 +7542,25 @@ message CThostFtdcRspQueryAccountField
 	///用户标识
 	string UserID = 23;
 	///验证客户证件号码标志
-	string VerifyCertNoFlag = 24;
+	int32 VerifyCertNoFlag = 24;
 	///币种代码
 	string CurrencyID = 25;
 	///摘要
 	string Digest = 26;
 	///银行帐号类型
-	string BankAccType = 27;
+	int32 BankAccType = 27;
 	///渠道标志
 	string DeviceID = 28;
 	///期货单位帐号类型
-	string BankSecuAccType = 29;
+	int32 BankSecuAccType = 29;
 	///期货公司银行编码
 	string BrokerIDByBank = 30;
 	///期货单位帐号
 	string BankSecuAcc = 31;
 	///银行密码标志
-	string BankPwdFlag = 32;
+	int32 BankPwdFlag = 32;
 	///期货资金密码核对标志
-	string SecuPwdFlag = 33;
+	int32 SecuPwdFlag = 33;
 	///交易柜员
 	string OperNo = 34;
 	///请求编号
@@ -7597,7 +7597,7 @@ message CThostFtdcFutureSignIOField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///安装编号
@@ -7644,7 +7644,7 @@ message CThostFtdcRspFutureSignInField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///安装编号
@@ -7699,7 +7699,7 @@ message CThostFtdcReqFutureSignOutField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///安装编号
@@ -7746,7 +7746,7 @@ message CThostFtdcRspFutureSignOutField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///安装编号
@@ -7797,23 +7797,23 @@ message CThostFtdcReqQueryTradeResultBySerialField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///流水号
 	int32 Reference = 13;
 	///本流水号发布者的机构类型
-	string RefrenceIssureType = 14;
+	int32 RefrenceIssureType = 14;
 	///本流水号发布者机构编码
 	string RefrenceIssure = 15;
 	///客户姓名
 	string CustomerName = 16;
 	///证件类型
-	string IdCardType = 17;
+	int32 IdCardType = 17;
 	///证件号码
 	string IdentifiedCardNo = 18;
 	///客户类型
-	string CustType = 19;
+	int32 CustType = 19;
 	///银行帐号
 	string BankAccount = 20;
 	///银行密码
@@ -7854,7 +7854,7 @@ message CThostFtdcRspQueryTradeResultBySerialField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///错误代码
@@ -7864,7 +7864,7 @@ message CThostFtdcRspQueryTradeResultBySerialField
 	///流水号
 	int32 Reference = 15;
 	///本流水号发布者的机构类型
-	string RefrenceIssureType = 16;
+	int32 RefrenceIssureType = 16;
 	///本流水号发布者机构编码
 	string RefrenceIssure = 17;
 	///原始返回代码
@@ -7911,11 +7911,11 @@ message CThostFtdcReqDayEndFileReadyField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///文件业务功能
-	string FileBusinessCode = 13;
+	int32 FileBusinessCode = 13;
 	///摘要
 	string Digest = 14;
 }
@@ -7953,7 +7953,7 @@ message CThostFtdcVerifyFuturePasswordField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///投资者帐号
@@ -7978,11 +7978,11 @@ message CThostFtdcVerifyCustInfoField
 	///客户姓名
 	string CustomerName = 1;
 	///证件类型
-	string IdCardType = 2;
+	int32 IdCardType = 2;
 	///证件号码
 	string IdentifiedCardNo = 3;
 	///客户类型
-	string CustType = 4;
+	int32 CustType = 4;
 }
 
 ///验证期货资金密码和客户信息
@@ -7991,11 +7991,11 @@ message CThostFtdcVerifyFuturePasswordAndCustInfoField
 	///客户姓名
 	string CustomerName = 1;
 	///证件类型
-	string IdCardType = 2;
+	int32 IdCardType = 2;
 	///证件号码
 	string IdentifiedCardNo = 3;
 	///客户类型
-	string CustType = 4;
+	int32 CustType = 4;
 	///投资者帐号
 	string AccountID = 5;
 	///期货密码
@@ -8047,7 +8047,7 @@ message CThostFtdcReqSyncKeyField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///安装编号
@@ -8092,7 +8092,7 @@ message CThostFtdcRspSyncKeyField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///安装编号
@@ -8141,17 +8141,17 @@ message CThostFtdcNotifyQueryAccountField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///客户姓名
 	string CustomerName = 13;
 	///证件类型
-	string IdCardType = 14;
+	int32 IdCardType = 14;
 	///证件号码
 	string IdentifiedCardNo = 15;
 	///客户类型
-	string CustType = 16;
+	int32 CustType = 16;
 	///银行帐号
 	string BankAccount = 17;
 	///银行密码
@@ -8167,25 +8167,25 @@ message CThostFtdcNotifyQueryAccountField
 	///用户标识
 	string UserID = 23;
 	///验证客户证件号码标志
-	string VerifyCertNoFlag = 24;
+	int32 VerifyCertNoFlag = 24;
 	///币种代码
 	string CurrencyID = 25;
 	///摘要
 	string Digest = 26;
 	///银行帐号类型
-	string BankAccType = 27;
+	int32 BankAccType = 27;
 	///渠道标志
 	string DeviceID = 28;
 	///期货单位帐号类型
-	string BankSecuAccType = 29;
+	int32 BankSecuAccType = 29;
 	///期货公司银行编码
 	string BrokerIDByBank = 30;
 	///期货单位帐号
 	string BankSecuAcc = 31;
 	///银行密码标志
-	string BankPwdFlag = 32;
+	int32 BankPwdFlag = 32;
 	///期货资金密码核对标志
-	string SecuPwdFlag = 33;
+	int32 SecuPwdFlag = 33;
 	///交易柜员
 	string OperNo = 34;
 	///请求编号
@@ -8222,7 +8222,7 @@ message CThostFtdcTransferSerialField
 	///银行分支机构编码
 	string BankBranchID = 8;
 	///银行帐号类型
-	string BankAccType = 9;
+	int32 BankAccType = 9;
 	///银行帐号
 	string BankAccount = 10;
 	///银行流水号
@@ -8232,7 +8232,7 @@ message CThostFtdcTransferSerialField
 	///期商分支机构代码
 	string BrokerBranchID = 13;
 	///期货公司帐号类型
-	string FutureAccType = 14;
+	int32 FutureAccType = 14;
 	///投资者帐号
 	string AccountID = 15;
 	///投资者代码
@@ -8240,7 +8240,7 @@ message CThostFtdcTransferSerialField
 	///期货公司流水号
 	int32 FutureSerial = 17;
 	///证件类型
-	string IdCardType = 18;
+	int32 IdCardType = 18;
 	///证件号码
 	string IdentifiedCardNo = 19;
 	///币种代码
@@ -8252,7 +8252,7 @@ message CThostFtdcTransferSerialField
 	///应收期货公司费用
 	double BrokerFee = 23;
 	///有效标志
-	string AvailabilityFlag = 24;
+	int32 AvailabilityFlag = 24;
 	///操作员
 	string OperatorCode = 25;
 	///新银行帐号
@@ -8300,7 +8300,7 @@ message CThostFtdcNotifyFutureSignInField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///安装编号
@@ -8355,7 +8355,7 @@ message CThostFtdcNotifyFutureSignOutField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///安装编号
@@ -8406,7 +8406,7 @@ message CThostFtdcNotifySyncKeyField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///安装编号
@@ -8464,7 +8464,7 @@ message CThostFtdcAccountregisterField
 	///投资者帐号
 	string AccountID = 7;
 	///证件类型
-	string IdCardType = 8;
+	int32 IdCardType = 8;
 	///证件号码
 	string IdentifiedCardNo = 9;
 	///客户姓名
@@ -8472,7 +8472,7 @@ message CThostFtdcAccountregisterField
 	///币种代码
 	string CurrencyID = 11;
 	///开销户类别
-	string OpenOrDestroy = 12;
+	int32 OpenOrDestroy = 12;
 	///签约日期
 	string RegDate = 13;
 	///解约日期
@@ -8480,9 +8480,9 @@ message CThostFtdcAccountregisterField
 	///交易ID
 	int32 TID = 15;
 	///客户类型
-	string CustType = 16;
+	int32 CustType = 16;
 	///银行帐号类型
-	string BankAccType = 17;
+	int32 BankAccType = 17;
 }
 
 ///银期开户信息
@@ -8509,21 +8509,21 @@ message CThostFtdcOpenAccountField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///客户姓名
 	string CustomerName = 13;
 	///证件类型
-	string IdCardType = 14;
+	int32 IdCardType = 14;
 	///证件号码
 	string IdentifiedCardNo = 15;
 	///性别
-	string Gender = 16;
+	int32 Gender = 16;
 	///国家代码
 	string CountryCode = 17;
 	///客户类型
-	string CustType = 18;
+	int32 CustType = 18;
 	///地址
 	string Address = 19;
 	///邮编
@@ -8537,7 +8537,7 @@ message CThostFtdcOpenAccountField
 	///电子邮件
 	string EMail = 24;
 	///资金账户状态
-	string MoneyAccountStatus = 25;
+	int32 MoneyAccountStatus = 25;
 	///银行帐号
 	string BankAccount = 26;
 	///银行密码
@@ -8549,27 +8549,27 @@ message CThostFtdcOpenAccountField
 	///安装编号
 	int32 InstallID = 30;
 	///验证客户证件号码标志
-	string VerifyCertNoFlag = 31;
+	int32 VerifyCertNoFlag = 31;
 	///币种代码
 	string CurrencyID = 32;
 	///汇钞标志
-	string CashExchangeCode = 33;
+	int32 CashExchangeCode = 33;
 	///摘要
 	string Digest = 34;
 	///银行帐号类型
-	string BankAccType = 35;
+	int32 BankAccType = 35;
 	///渠道标志
 	string DeviceID = 36;
 	///期货单位帐号类型
-	string BankSecuAccType = 37;
+	int32 BankSecuAccType = 37;
 	///期货公司银行编码
 	string BrokerIDByBank = 38;
 	///期货单位帐号
 	string BankSecuAcc = 39;
 	///银行密码标志
-	string BankPwdFlag = 40;
+	int32 BankPwdFlag = 40;
 	///期货资金密码核对标志
-	string SecuPwdFlag = 41;
+	int32 SecuPwdFlag = 41;
 	///交易柜员
 	string OperNo = 42;
 	///交易ID
@@ -8606,21 +8606,21 @@ message CThostFtdcCancelAccountField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///客户姓名
 	string CustomerName = 13;
 	///证件类型
-	string IdCardType = 14;
+	int32 IdCardType = 14;
 	///证件号码
 	string IdentifiedCardNo = 15;
 	///性别
-	string Gender = 16;
+	int32 Gender = 16;
 	///国家代码
 	string CountryCode = 17;
 	///客户类型
-	string CustType = 18;
+	int32 CustType = 18;
 	///地址
 	string Address = 19;
 	///邮编
@@ -8634,7 +8634,7 @@ message CThostFtdcCancelAccountField
 	///电子邮件
 	string EMail = 24;
 	///资金账户状态
-	string MoneyAccountStatus = 25;
+	int32 MoneyAccountStatus = 25;
 	///银行帐号
 	string BankAccount = 26;
 	///银行密码
@@ -8646,27 +8646,27 @@ message CThostFtdcCancelAccountField
 	///安装编号
 	int32 InstallID = 30;
 	///验证客户证件号码标志
-	string VerifyCertNoFlag = 31;
+	int32 VerifyCertNoFlag = 31;
 	///币种代码
 	string CurrencyID = 32;
 	///汇钞标志
-	string CashExchangeCode = 33;
+	int32 CashExchangeCode = 33;
 	///摘要
 	string Digest = 34;
 	///银行帐号类型
-	string BankAccType = 35;
+	int32 BankAccType = 35;
 	///渠道标志
 	string DeviceID = 36;
 	///期货单位帐号类型
-	string BankSecuAccType = 37;
+	int32 BankSecuAccType = 37;
 	///期货公司银行编码
 	string BrokerIDByBank = 38;
 	///期货单位帐号
 	string BankSecuAcc = 39;
 	///银行密码标志
-	string BankPwdFlag = 40;
+	int32 BankPwdFlag = 40;
 	///期货资金密码核对标志
-	string SecuPwdFlag = 41;
+	int32 SecuPwdFlag = 41;
 	///交易柜员
 	string OperNo = 42;
 	///交易ID
@@ -8703,21 +8703,21 @@ message CThostFtdcChangeAccountField
 	///银期平台消息流水号
 	int32 PlateSerial = 10;
 	///最后分片标志
-	string LastFragment = 11;
+	int32 LastFragment = 11;
 	///会话号
 	int32 SessionID = 12;
 	///客户姓名
 	string CustomerName = 13;
 	///证件类型
-	string IdCardType = 14;
+	int32 IdCardType = 14;
 	///证件号码
 	string IdentifiedCardNo = 15;
 	///性别
-	string Gender = 16;
+	int32 Gender = 16;
 	///国家代码
 	string CountryCode = 17;
 	///客户类型
-	string CustType = 18;
+	int32 CustType = 18;
 	///地址
 	string Address = 19;
 	///邮编
@@ -8731,7 +8731,7 @@ message CThostFtdcChangeAccountField
 	///电子邮件
 	string EMail = 24;
 	///资金账户状态
-	string MoneyAccountStatus = 25;
+	int32 MoneyAccountStatus = 25;
 	///银行帐号
 	string BankAccount = 26;
 	///银行密码
@@ -8745,19 +8745,19 @@ message CThostFtdcChangeAccountField
 	///期货密码
 	string Password = 31;
 	///银行帐号类型
-	string BankAccType = 32;
+	int32 BankAccType = 32;
 	///安装编号
 	int32 InstallID = 33;
 	///验证客户证件号码标志
-	string VerifyCertNoFlag = 34;
+	int32 VerifyCertNoFlag = 34;
 	///币种代码
 	string CurrencyID = 35;
 	///期货公司银行编码
 	string BrokerIDByBank = 36;
 	///银行密码标志
-	string BankPwdFlag = 37;
+	int32 BankPwdFlag = 37;
 	///期货资金密码核对标志
-	string SecuPwdFlag = 38;
+	int32 SecuPwdFlag = 38;
 	///交易ID
 	int32 TID = 39;
 	///摘要
@@ -8839,7 +8839,7 @@ message CThostFtdcFensUserInfoField
 	///用户代码
 	string UserID = 2;
 	///登录模式
-	string LoginMode = 3;
+	int32 LoginMode = 3;
 }
 
 ///当前银期所属交易中心
